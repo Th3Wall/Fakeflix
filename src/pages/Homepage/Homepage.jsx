@@ -1,5 +1,5 @@
 import requests from "../../requests"
-import Row from "../Row/Row"
+import Row from '../../components/Row/Row';
 
 const Homepage = () => (
     <div className="Homepage">
