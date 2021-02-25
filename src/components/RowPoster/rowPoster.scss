@@ -1,6 +1,12 @@
 .Row__poster {
     margin-right: 0.5rem;
 
+    &:last-of-type{
+        img {
+            margin-right: 3rem;
+        }
+    }
+
     &--wrp {
         display: flex;
         overflow-x: auto;
