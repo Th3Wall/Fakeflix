@@ -1,0 +1,12 @@
+@import '../../scss/variables';
+
+.Banner {
+    width: 100%;
+    display: block;
+    position: relative;
+    height: 80vh;
+    background: $black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}

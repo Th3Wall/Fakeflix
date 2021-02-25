@@ -1,8 +1,10 @@
 import requests from "../../requests"
 import Row from "../../components/Row/Row"
+import Banner from '../../components/Banner/Banner';
 
 const Homepage = () => (
     <div className="Homepage">
+        <Banner />
         <Row title="Top Rated on Fakeflix" fetchUrl={requests.fetchTopRated} />
         <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
         <Row title="Fakeflix Originals" fetchUrl={requests.fetchNetflixOriginals} isLarge />
