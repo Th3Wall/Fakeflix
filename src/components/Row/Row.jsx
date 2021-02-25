@@ -1,4 +1,4 @@
-import './row.scss';
+import "./row.scss"
 import RowPoster from "../RowPoster/RowPoster"
 import useFetch from "../../hooks/useFetch"
 
@@ -11,8 +11,8 @@ const Row = ({ title, fetchUrl, isLarge }) => {
 
             {loading && <div>Loading...</div>}
             {hasError && <div>Error occured.</div>}
-            <div className='Row__poster--wrp'>
-                {response.map(({ id, poster_path, backdrop_path, title }, ) => (
+            <div className="Row__poster--wrp">
+                {response.map(({ id, poster_path, backdrop_path, title }) => (
                     <RowPoster
                         key={id}
                         id={id}
