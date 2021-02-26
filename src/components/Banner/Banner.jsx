@@ -18,13 +18,14 @@ const Banner = () => {
 
     return (
         <header className='Banner' style={{backgroundImage: `url(${base_url}${movie?.backdrop_path})`}}>
+            <div className="Banner__panel" />
             <div className="Banner__content">
-                <h1>{movie?.title || movie?.name || movie?.original_name }</h1>
+                <h1 className='Banner__content--title'>{movie?.title || movie?.name || movie?.original_name }</h1>
                 <div className="Banner__buttons">
                     <button className="Banner__button">Play</button>
                     <button className="Banner__button">Add to Favourites</button>
                 </div>
-                <p className='Banner__description'>{movie?.overview}</p>
+                <p className='Banner__content--description'>{movie?.overview}</p>
             </div>
         </header>
     )
