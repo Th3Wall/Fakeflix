@@ -1,17 +1,17 @@
 import './banner.scss'
-import requests from '../../requests';
+import requests, { BASE_IMG_URL } from '../../requests';
 import axios from '../../utils';
 import { useState, useEffect } from 'react';
 
 const Banner = () => {
-    const base_url = "https://image.tmdb.org/t/p/original"
     const [ movie, setMovie ] = useState([]);
     
     useEffect(() => {
         async function fetchBannerData() {
             const res = await axios.get(requests.fetchNetflixOriginals);
-            const randomize = Math.floor(Math.random() * res.data.results.length - 1);
-            setMovie(res.data.results[randomize]);
+            const { data: { results } } = res;
+            const randomize = Math.floor(Math.random() * results.length - 1);
+            setMovie(results[randomize]);
         }
         fetchBannerData();
     }, [])
@@ -21,8 +21,7 @@ const Banner = () => {
     }
 
     return (
-        <header className='Banner' style={{backgroundImage: `url(${base_url}${movie?.backdrop_path})`}}>
-            <div className="Banner__panel" />
+        <header className='Banner' style={{backgroundImage: `url(${BASE_IMG_URL}${movie?.backdrop_path})`}}>
             <div className="Banner__content">
                 <h1 className='Banner__content--title'>{movie?.title || movie?.name || movie?.original_name }</h1>
                 <div className="Banner__buttons">
@@ -31,6 +30,7 @@ const Banner = () => {
                 </div>
                 <p className='Banner__content--description'>{truncate(movie?.overview, 280)}</p>
             </div>
+            <div className="Banner__panel" />
             <div className="Banner__bottom-shadow" />
         </header>
     )

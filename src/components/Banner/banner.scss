@@ -42,6 +42,7 @@
             
             @include mq('md'){
                 font-size: 2vw;
+                max-width: 60vw;
             }
             @include mq('lg'){
                 max-width: 30vw;

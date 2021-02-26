@@ -1,11 +1,10 @@
 import "./rowPoster.scss"
+import { BASE_IMG_URL } from '../../requests';
 
 const RowPoster = ({ id, image, title, isLarge }) => {
-    const base_url = "https://image.tmdb.org/t/p/original"
-
     return (
         <div key={id} className={`Row__poster ${isLarge ? "Row__poster--big" : ""}`}>
-            <img src={`${base_url}${image}`} alt={title} loading="lazy" />
+            <img src={`${BASE_IMG_URL}${image}`} alt={title} loading="lazy" />
         </div>
     )
 }
