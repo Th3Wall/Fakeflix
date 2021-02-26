@@ -1,3 +1,5 @@
+![Image of Fakeflix Project](https://i.postimg.cc/xThMn9Rm/Fakeflix.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
