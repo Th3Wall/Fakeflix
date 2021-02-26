@@ -16,6 +16,10 @@ const Banner = () => {
         fetchBannerData();
     }, [])
 
+    const truncate = (text, n) => {
+        return text?.length > n ? text.substr(0, n - 1) + '...' : text;
+    }
+
     return (
         <header className='Banner' style={{backgroundImage: `url(${base_url}${movie?.backdrop_path})`}}>
             <div className="Banner__panel" />
@@ -25,8 +29,9 @@ const Banner = () => {
                     <button className="Banner__button">Play</button>
                     <button className="Banner__button">Add to Favourites</button>
                 </div>
-                <p className='Banner__content--description'>{movie?.overview}</p>
+                <p className='Banner__content--description'>{truncate(movie?.overview, 280)}</p>
             </div>
+            <div className="Banner__bottom-shadow" />
         </header>
     )
 }
