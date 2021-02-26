@@ -1,0 +1,105 @@
+/*
+* VARIABLES
+*/
+$breakpoints: (ll: 1450px, lg: 1024px, md: 768px, sm: 640px) !default;
+
+/*
+* MIXINS
+*/
+@mixin mq($min: null, $max: null) {
+    $min-type: type-of($min);
+    $max-type: type-of($max);
+
+    @if $min-type==string {
+        @if $min==sm {
+            $min: "(min-width: #{map-get($breakpoints, sm)})";
+        }
+        @else if $min==md {
+            $min: "(min-width: #{map-get($breakpoints, md)})";
+        }
+        @else if $min==lg {
+            $min: "(min-width: #{map-get($breakpoints, lg)})";
+        }
+        @else if $min==ll {
+            $min: "(min-width: #{map-get($breakpoints, ll)})";
+        }
+        @else {
+            @warn "mq mixin supports: sm, md, lg, ll";
+        }
+    }
+    @else if $min-type==number {
+        $min: "(min-width: #{$min})";
+    }
+
+    @if $max-type==string {
+        @if $max==sm {
+            $max: "(max-width: #{map-get($breakpoints, sm) - 1})";
+        }
+        @else if $max==md {
+            $max: "(max-width: #{map-get($breakpoints, md) - 1})";
+        }
+        @else if $max==lg {
+            $max: "(max-width: #{map-get($breakpoints, lg) - 1})";
+        }
+        @else if $max==ll {
+            $max: "(max-width: #{map-get($breakpoints, ll) - 1})";
+        }
+        @else {
+            @warn "mq mixin supports: sm, md, lg, ll";
+        }
+    }
+
+    @else if $max-type==number {
+        $max: "(max-width: #{$max})";
+    }
+
+    $query: false;
+    @if $min and $max {
+        $query: "#{$min} and #{$max}";
+    }
+    @else if $min {
+        $query: "#{$min}";
+    }
+    @else if $max {
+        $query: "#{$max}";
+    }
+
+    @if (not $query) {
+        @warn "Invalid media query";
+    }
+    @else {
+        @media #{$query} {
+            @content;
+        }
+    }
+}
+
+@mixin mob() {
+    @include mq(null, md) {
+        @content;
+    }
+}
+
+@mixin smart() {
+    @include mq(null, sm) {
+        @content;
+    }
+}
+
+@mixin tab-portrait() {
+    @include mq(sm, md) {
+        @content;
+    }
+}
+
+@mixin tab-landscape() {
+    @include mq(md, lg) {
+        @content;
+    }
+}
+
+@mixin desk() {
+    @include mq(lg) {
+        @content;
+    }
+}

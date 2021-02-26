@@ -1,3 +1,4 @@
+@import '../../scss/mixin';
 @import '../../scss/variables';
 
 .Banner {
@@ -20,9 +21,12 @@
         z-index: 1;
 
         &--title {
-            font-size: 64px;
-            line-height: 1.4;
+            font-size: 30px;
+            line-height: 1;
             text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
+            @include mq('lg'){
+                font-size: 60px;
+            }
         }
 
         &--description {
