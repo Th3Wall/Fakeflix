@@ -1,5 +1,5 @@
 import "./rowPoster.scss"
-import { BASE_IMG_URL } from '../../requests';
+import { BASE_IMG_URL } from "../../requests"
 
 const RowPoster = ({ id, image, title, isLarge }) => {
     return (
