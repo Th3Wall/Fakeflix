@@ -1,3 +1,4 @@
+import './homepage.scss';
 import requests from "../../requests"
 import Row from "../../components/Row/Row"
 import Banner from '../../components/Banner/Banner';

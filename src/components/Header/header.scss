@@ -1,7 +1,9 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
 .Header {
     position: relative;
     z-index: 10;
-    width: 100%;
     height: 70px;
     top: 0;
     display: flex;
@@ -11,21 +13,61 @@
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
 
     &__logo {
-        max-width: 150px;
+        max-width: 130px;
         width: 100%;
     }
 
-    &__navlinks {
+    &__primarynav,
+    &__secondarynav {
         display: flex;
         align-items: center;
         margin: 0;
         padding: 0;
+    }
+
+    &__navlinks {
         margin-left: 2rem;
 
         &--link {
             display: inline-block;
             margin: 0 8px;
             font-size: 14px;
+            text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
+            
+            @include mq('md'){
+                font-size: 1vw;
+            }
+            @include mq(1330px){
+                font-size: 0.8vw;
+            }
+        }
+    }
+
+    &__secondarynav {
+        margin-left: auto;
+    }
+
+    &__navsearch {
+        margin-right: 2rem;
+
+        &--search {
+            background-color: rgba($color: $black, $alpha: 0.25);
+            border: 1px solid $white;
+            padding: 7px 14px 7px 7px;
+            font-size: 14px;
+            color: $white;
+            outline: none;
+            border-radius: 6px;
+        }
+    }
+
+    &__navprofile {
+        display: flex;
+        align-items: center;
+        
+        &--avatar {
+            max-width: 40px;
+            width: 100%;
         }
     }
 }
