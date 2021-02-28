@@ -1,0 +1,31 @@
+.Header {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 70px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 5vw;
+    background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
+
+    &__logo {
+        max-width: 150px;
+        width: 100%;
+    }
+
+    &__navlinks {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        margin-left: 2rem;
+
+        &--link {
+            display: inline-block;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+    }
+}
