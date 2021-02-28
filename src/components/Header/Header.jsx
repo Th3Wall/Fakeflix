@@ -1,5 +1,6 @@
 import "./header.scss"
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests"
+import { FaCaretDown } from "react-icons/fa"
 
 const Header = () => {
     return (
@@ -15,13 +16,18 @@ const Header = () => {
             <div className="Header__secondarynav">
                 <div className="Header__navitem">
                     <div className="Header__navsearch">
-                        <input type="text" className="Header__navsearch--search"/>
+                        <input type="text" className="Header__navsearch--search" />
                         <div className="Header__navsearch--toggler"></div>
                     </div>
                 </div>
                 <div className="Header__navitem">
                     <div className="Header__navprofile">
-                        <img className="Header__navprofile--avatar" src={PROFILE_PIC_URL} alt="Profile Picture" />
+                        <img
+                            className="Header__navprofile--avatar"
+                            src={PROFILE_PIC_URL}
+                            alt="Profile Picture"
+                        />
+                        <FaCaretDown />
                     </div>
                 </div>
             </div>

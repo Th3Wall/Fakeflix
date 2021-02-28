@@ -2,6 +2,8 @@ import "./banner.scss"
 import requests, { BASE_IMG_URL } from "../../requests"
 import axios from "../../utils"
 import { useState, useEffect } from "react"
+import { FaPlay } from "react-icons/fa"
+import { ImInfo } from "react-icons/im"
 
 const Banner = () => {
     const [movie, setMovie] = useState([])
@@ -9,7 +11,7 @@ const Banner = () => {
     useEffect(() => {
         async function fetchBannerData() {
             const res = await axios.get(requests.fetchNetflixOriginals)
-            const { data: { results } } = res
+            const {data: { results }} = res
             const randomize = Math.floor(Math.random() * results.length - 1)
             setMovie(results[randomize])
         }
@@ -32,8 +34,14 @@ const Banner = () => {
                     {movie?.title || movie?.name || movie?.original_name}
                 </h1>
                 <div className="Banner__buttons">
-                    <button className="Banner__button">Play</button>
-                    <button className="Banner__button">Add to Favourites</button>
+                    <button className="Banner__button">
+                        <FaPlay />
+                        <span>Play</span>
+                    </button>
+                    <button className="Banner__button">
+                        <ImInfo />
+                        <span>Add to Favourites</span>
+                    </button>
                 </div>
                 <p className="Banner__content--description">
                     {truncate(movie?.overview, 280)}
