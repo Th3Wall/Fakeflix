@@ -4,6 +4,7 @@ import useViewport from "../../hooks/useViewport"
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests"
 import { FaCaretDown } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
     const { width } = useViewport()
@@ -12,13 +13,9 @@ const Navbar = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 70) {
-                setFixedNav(true)
-            } else setFixedNav(false)
+            window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false);
         })
-        return () => {
-            window.removeEventListener("scroll")
-        }
+        return () => window.removeEventListener("scroll");
     }, [])
 
     const toggleSearchInput = () => {
@@ -27,10 +24,16 @@ const Navbar = () => {
 
     return (
         <nav className={`Navbar ${fixedNav ? "Navbar__fixed" : ""}`}>
-            <img className="Navbar__logo" src={LOGO_URL} alt="Logo" />
+            <Link to='/'>
+                <img className="Navbar__logo" src={LOGO_URL} alt="Logo" />
+            </Link>
             {width >= 1024 ? (
                 <ul className="Navbar__primarynav Navbar__navlinks">
-                    <li className="Navbar__navlinks--link">Home</li>
+                    <li className="Navbar__navlinks--link">
+                        <Link to='/browse'>
+                            Home
+                        </Link>
+                    </li>
                     <li className="Navbar__navlinks--link">TV Series</li>
                     <li className="Navbar__navlinks--link">Movies</li>
                     <li className="Navbar__navlinks--link">Popular</li>

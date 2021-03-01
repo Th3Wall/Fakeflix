@@ -48,6 +48,11 @@
             @include mq(1330px){
                 font-size: 0.8vw;
             }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
         }
     }
 
