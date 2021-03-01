@@ -59,6 +59,7 @@
         display: flex;
         align-items: center;
         margin-right: 2rem;
+        cursor: pointer;
 
         &--search {
             background-color: rgba($color: $black, $alpha: 0.25);
@@ -68,10 +69,18 @@
             color: $white;
             outline: none;
             border-radius: 6px;
+            width: 0;
+            opacity: 0;
+            transition: all 0.2s ease-out;
         }
 
         &--toggler {
             margin-left: 0.5rem;
+        }
+
+        &--active {
+            width: 200px;
+            opacity: 1;
         }
     }
 
