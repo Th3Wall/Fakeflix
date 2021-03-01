@@ -1,16 +1,24 @@
 @import '../../scss/mixin';
 @import '../../scss/variables';
 
-.Header {
-    position: relative;
+.Navbar {
+    position: fixed;
+    box-sizing: border-box;
     z-index: 10;
+    width: 100%;
     height: 70px;
     top: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 5vw;
+    padding: 0 4vw;
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
+    transition: all 0.2s ease-out;
+
+    &__fixed {
+        background-image: none;
+        background-color: $black;
+    }
 
     &__logo {
         max-width: 130px;
@@ -48,6 +56,8 @@
     }
 
     &__navsearch {
+        display: flex;
+        align-items: center;
         margin-right: 2rem;
 
         &--search {
@@ -58,6 +68,10 @@
             color: $white;
             outline: none;
             border-radius: 6px;
+        }
+
+        &--toggler {
+            margin-left: 0.5rem;
         }
     }
 
