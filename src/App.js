@@ -7,7 +7,7 @@ function App() {
         <div className="App">
             <Navbar />
             <Switch>
-                <Route path='/browse'>
+                <Route path="/browse">
                     <Homepage />
                 </Route>
             </Switch>

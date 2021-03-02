@@ -13,9 +13,9 @@ const Navbar = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false);
+            window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false)
         })
-        return () => window.removeEventListener("scroll");
+        return () => window.removeEventListener("scroll")
     }, [])
 
     const toggleSearchInput = () => {
@@ -24,15 +24,13 @@ const Navbar = () => {
 
     return (
         <nav className={`Navbar ${fixedNav ? "Navbar__fixed" : ""}`}>
-            <Link to='/'>
+            <Link to="/">
                 <img className="Navbar__logo" src={LOGO_URL} alt="Logo" />
             </Link>
             {width >= 1024 ? (
                 <ul className="Navbar__primarynav Navbar__navlinks">
                     <li className="Navbar__navlinks--link">
-                        <Link to='/browse'>
-                            Home
-                        </Link>
+                        <Link to="/browse">Home</Link>
                     </li>
                     <li className="Navbar__navlinks--link">TV Series</li>
                     <li className="Navbar__navlinks--link">Movies</li>
@@ -53,7 +51,7 @@ const Navbar = () => {
                             placeholder="Search titles"
                             className={`
                                 Navbar__navsearch--search
-                                ${ searchInput ? "Navbar__navsearch--active" : "" }
+                                ${searchInput ? "Navbar__navsearch--active" : ""}
                             `}
                         />
                         <div

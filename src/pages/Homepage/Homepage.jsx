@@ -1,7 +1,7 @@
-import './homepage.scss';
+import "./homepage.scss"
 import requests from "../../requests"
 import Row from "../../components/Row/Row"
-import Banner from '../../components/Banner/Banner';
+import Banner from "../../components/Banner/Banner"
 
 const Homepage = () => (
     <div className="Homepage">
