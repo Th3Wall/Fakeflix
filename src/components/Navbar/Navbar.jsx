@@ -83,7 +83,7 @@ const Navbar = ({ currentUser }) => {
                     <div className="Navbar__navprofile">
                         <img
                             className="Navbar__navprofile--avatar"
-                            src={PROFILE_PIC_URL}
+                            src={currentUser ? currentUser.photoURL : PROFILE_PIC_URL}
                             alt="Profile Picture"
                         />
                         <FaCaretDown />
