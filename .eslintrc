@@ -18,7 +18,7 @@
         }
     },
     "rules": {
-        "no-console": "warn",
+        "no-console": "off",
         "no-eval": "error",
         "import/first": "error",
         "react/react-in-jsx-scope": "off",

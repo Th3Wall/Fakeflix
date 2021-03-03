@@ -8,6 +8,7 @@
         "@testing-library/user-event": "^12.7.3",
         "axios": "^0.21.1",
         "dotenv": "^8.2.0",
+        "firebase": "^8.2.9",
         "firebase-tools": "^9.5.0",
         "node-sass": "^5.0.0",
         "react": "^17.0.1",

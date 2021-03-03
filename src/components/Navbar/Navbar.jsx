@@ -5,6 +5,7 @@ import { LOGO_URL, PROFILE_PIC_URL } from "../../requests"
 import { FaCaretDown } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
 import { Link } from "react-router-dom"
+import { signInWithGoogle } from "../../firebase/firebaseUtils"
 
 const Navbar = () => {
     const { width } = useViewport()
@@ -36,6 +37,7 @@ const Navbar = () => {
                     <li className="Navbar__navlinks--link">Movies</li>
                     <li className="Navbar__navlinks--link">Popular</li>
                     <li className="Navbar__navlinks--link">My list</li>
+                    <li className="Navbar__navlinks--link" onClick={signInWithGoogle}>Sign In</li>
                 </ul>
             ) : (
                 <div className="Navbar__primarynav Navbar__navlinks">
