@@ -14,15 +14,15 @@ const firebaseConfig = {
 }
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if (!userAuth) return;
+    if (!userAuth) return
 
-    const userRef = firestore.doc(`users/${userAuth.uid}`);
-    const snapShot = await userRef.get();
+    const userRef = firestore.doc(`users/${userAuth.uid}`)
+    const snapShot = await userRef.get()
 
     if (!snapShot.exists) {
-        console.log(snapShot);
-        const { displayName, email, photoURL } = userAuth;
-        const createdAt = new Date();
+        console.log(snapShot)
+        const { displayName, email, photoURL } = userAuth
+        const createdAt = new Date()
 
         try {
             await userRef.set({
@@ -30,25 +30,25 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
                 email,
                 photoURL,
                 createdAt,
-                ...additionalData
+                ...additionalData,
             })
         } catch (error) {
-            console.log('error creating user', error.message);
+            console.log("error creating user", error.message)
         }
     }
 
-    return userRef;
+    return userRef
 }
 
 // Firebase web app init
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const auth = firebase.auth()
+export const firestore = firebase.firestore()
 
 // Sign in With Google Setup with popup
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
+googleProvider.setCustomParameters({ prompt: "select_account" })
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider)
 
 export default firebase

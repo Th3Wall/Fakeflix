@@ -1,53 +1,44 @@
-import { Component } from "react"
+import { useEffect } from "react"
+import { connect } from "react-redux"
 import { Route, Switch } from "react-router-dom"
 import Navbar from "./components/Navbar/Navbar"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import Homepage from "./pages/Homepage/Homepage"
+import { setCurrentUser } from "./redux/user/user.actions"
 
-class App extends Component {
-    constructor() {
-        super()
+const App = ({ setCurrentUser }) => {
+    let unsubscribeFromAuth = null
 
-        this.state = {
-            currentUser: null
-        }
-    }
-
-    unsubscribeFromAuth = null;
-
-    componentDidMount() {
-        this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    useEffect(() => {
+        unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
             if (userAuth) {
-                const userRef = await createUserProfileDocument(userAuth);
+                const userRef = await createUserProfileDocument(userAuth)
 
                 userRef.onSnapshot(snapShot => {
-                    this.setState({
+                    setCurrentUser({
                         id: snapShot.id,
-                        ...snapShot.data()
-                    }, () => {
-                        console.log(this.state);
-                    });
+                        ...snapShot.data(),
+                    })
                 })
-            } else this.setState({ currentUser: null });
+            } else setCurrentUser(userAuth)
         })
-    }
+        return () => unsubscribeFromAuth()
+    })
 
-    componentWillUnmount() {
-        this.unsubscribeFromAuth();
-    }
-
-    render () {
-        return (
-            <div className="App">
-                <Navbar />
-                <Switch>
-                    <Route path="/browse">
-                        <Homepage />
-                    </Route>
-                </Switch>
-            </div>
-        )
-    }
+    return (
+        <div className="App">
+            <Navbar />
+            <Switch>
+                <Route path="/browse">
+                    <Homepage />
+                </Route>
+            </Switch>
+        </div>
+    )
 }
 
-export default App
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user)),
+})
+
+export default connect(null, mapDispatchToProps)(App)
