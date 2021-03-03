@@ -5,8 +5,9 @@ import Navbar from "./components/Navbar/Navbar"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import Homepage from "./pages/Homepage/Homepage"
 import { setCurrentUser } from "./redux/user/user.actions"
+import SignIn from './pages/SignIn/SignIn';
 
-const App = ({ setCurrentUser }) => {
+const App = ({ setCurrentUser, currentUser }) => {
     let unsubscribeFromAuth = null
 
     useEffect(() => {
@@ -27,18 +28,25 @@ const App = ({ setCurrentUser }) => {
 
     return (
         <div className="App">
-            <Navbar />
+            { currentUser && <Navbar /> }
             <Switch>
                 <Route path="/browse">
                     <Homepage />
+                </Route>
+                <Route path="/login">
+                    <SignIn />
                 </Route>
             </Switch>
         </div>
     )
 }
 
+const mapStateToProps = ({user}) => ({
+    currentUser: user.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user)),
 })
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
