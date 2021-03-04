@@ -63,7 +63,6 @@
         }
     },
     "lint-staged": {
-        "*.+(js|jsx)": "eslint --cache --fix",
-        "*.+(json|css|md)": "prettier --write"
+        "*.+(js|jsx|json|css|md)": "prettier --write"
     }
 }

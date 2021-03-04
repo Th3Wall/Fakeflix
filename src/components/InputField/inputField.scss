@@ -1,0 +1,26 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.InputField {
+    width: 100%;
+    padding: 1em 1.2em;
+    border-radius: 5px;
+    background-color: #333333;
+    font-size: 16px;
+    color: $white;
+    outline: none;
+    box-shadow: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-out;
+    
+    &.Input--error {
+        border-bottom: 2px solid orange;
+    }
+
+    &__label {
+        margin-top: 0.4em;
+        font-size: 13px;
+        color: orange;
+    }
+}
