@@ -13,11 +13,14 @@ const Navbar = ({ currentUser }) => {
     const [fixedNav, setFixedNav] = useState(false)
     const [searchInput, setSearchInput] = useState(false)
 
+
+    const checkScroll = () => {
+        window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false)
+    }
+
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false)
-        })
-        return () => window.removeEventListener("scroll")
+        window.addEventListener("scroll", checkScroll)
+        return () => window.removeEventListener("scroll", checkScroll)
     }, [])
 
     const toggleSearchInput = () => {
@@ -83,7 +86,7 @@ const Navbar = ({ currentUser }) => {
                     <div className="Navbar__navprofile">
                         <img
                             className="Navbar__navprofile--avatar"
-                            src={currentUser ? currentUser.photoURL : PROFILE_PIC_URL}
+                            src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
                             alt="Profile Picture"
                         />
                         <FaCaretDown />

@@ -23,7 +23,7 @@ const App = ({ setCurrentUser, currentUser }) => {
             } else setCurrentUser(userAuth)
         })
         return () => unsubscribeFromAuth()
-    })
+    }, [])
 
     return (
         <div className="App">
@@ -33,10 +33,10 @@ const App = ({ setCurrentUser, currentUser }) => {
                     <Redirect to="/login" />
                 </Route>
                 <Route path="/browse">
-                    <Homepage />
+                    {currentUser ? <Homepage /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/login">
-                    <SignIn />
+                    {currentUser ? <Redirect to="/browse"/> : <SignIn />}
                 </Route>
             </Switch>
         </div>

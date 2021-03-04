@@ -4,12 +4,22 @@ import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import InputField from "../../components/InputField/InputField"
 import { FcGoogle } from "react-icons/fc"
+import { auth } from "../../firebase/firebaseUtils"
+import { signInWithGoogle } from "../../firebase/firebaseUtils"
 
 const SignIn = () => {
-    const { register, handleSubmit, errors } = useForm()
+    const { register, handleSubmit, errors } = useForm({
+        mode: "onTouched"
+    })
 
     const onSubmit = data => {
-        console.log(data)
+        const { email, password } = data;
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(authUser =>{
+                console.log(authUser)
+                // Set authUser to store
+            })
+            .catch((error)=> console.log(error.message))
     }
 
     return (
@@ -34,7 +44,7 @@ const SignIn = () => {
                             validationMessage="Please enter a valid email address."
                             validation={register({
                                 required: true,
-                                pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                             })}
                             errors={errors}
                         />
@@ -62,6 +72,7 @@ const SignIn = () => {
                     <button
                         type="button"
                         className="SignIn__form--button button__google"
+                        onClick={signInWithGoogle}
                     >
                         <FcGoogle />
                         Sign in with Google
