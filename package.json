@@ -13,6 +13,7 @@
         "node-sass": "^5.0.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "react-hook-form": "^6.15.4",
         "react-icons": "^4.2.0",
         "react-redux": "^7.2.2",
         "react-router-dom": "^5.2.0",
@@ -63,6 +64,7 @@
         }
     },
     "lint-staged": {
-        "*.+(js|jsx|json|css|md)": "prettier --write"
+        "*.+(js|jsx)": "eslint --cache --fix",
+        "*.+(json|css|md)": "prettier --write"
     }
 }

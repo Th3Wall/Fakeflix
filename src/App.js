@@ -5,32 +5,32 @@ import Navbar from "./components/Navbar/Navbar"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import Homepage from "./pages/Homepage/Homepage"
 import { setCurrentUser } from "./redux/user/user.actions"
-import SignIn from './pages/SignIn/SignIn';
+import SignIn from "./pages/SignIn/SignIn"
 
 const App = ({ setCurrentUser, currentUser }) => {
-    let unsubscribeFromAuth = null;
+    let unsubscribeFromAuth = null
 
     useEffect(() => {
         unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
             if (userAuth) {
-                const userRef = await createUserProfileDocument(userAuth);
+                const userRef = await createUserProfileDocument(userAuth)
                 userRef.onSnapshot(snapShot => {
                     setCurrentUser({
                         id: snapShot.id,
-                        ...snapShot.data()
+                        ...snapShot.data(),
                     })
                 })
-            } else setCurrentUser(userAuth);
+            } else setCurrentUser(userAuth)
         })
-        return () => unsubscribeFromAuth();
+        return () => unsubscribeFromAuth()
     })
 
     return (
         <div className="App">
-            { currentUser && <Navbar /> }
+            {currentUser && <Navbar />}
             <Switch>
                 <Route exact path="/">
-                    <Redirect to='/login' />
+                    <Redirect to="/login" />
                 </Route>
                 <Route path="/browse">
                     <Homepage />
@@ -43,8 +43,8 @@ const App = ({ setCurrentUser, currentUser }) => {
     )
 }
 
-const mapStateToProps = ({user}) => ({
-    currentUser: user.currentUser
+const mapStateToProps = ({ user }) => ({
+    currentUser: user.currentUser,
 })
 
 const mapDispatchToProps = dispatch => ({
