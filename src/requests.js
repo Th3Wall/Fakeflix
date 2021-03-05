@@ -1,8 +1,10 @@
 const API_KEY = "e8d53ad78d99a4722c3f0f0f6a5c9014"
+const GITHUB_ASSETS_BASE_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix"
 export const BASE_IMG_URL = "https://image.tmdb.org/t/p/original"
-export const LOGO_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_logo.png"
-export const PROFILE_PIC_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_profilepic.png"
-export const SIGNIN_BGIMG_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_signin_bg.jpg"
+
+export const LOGO_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_logo.png`
+export const PROFILE_PIC_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_profilepic.png`
+export const SIGNIN_BGIMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_signin_bg.jpg`
 
 const requests = {
     fetchTrending: `/trending/all/week?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US`,
