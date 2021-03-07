@@ -3,27 +3,27 @@ import { moviesActionTypes } from './movies.types';
 const initialState = {
     loading: false,
     error: '',
-    horrorMovies: []
+    netflixMovies: []
 }
 
-const horrorMoviesReducer = (state = initialState, {type, payload}) => {
+const netflixMoviesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case moviesActionTypes.FETCH_HORROR_MOVIES_REQUEST:
+        case moviesActionTypes.FETCH_NETFLIX_MOVIES_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case moviesActionTypes.FETCH_HORROR_MOVIES_SUCCESS:
+        case moviesActionTypes.FETCH_NETFLIX_MOVIES_SUCCESS:
             return {
                 ...state,
-                horrorMovies: payload,
+                netflixMovies: payload,
                 loading: false,
                 error: ''
             }
-        case moviesActionTypes.FETCH_HORROR_MOVIES_FAILURE:
+        case moviesActionTypes.FETCH_NETFLIX_MOVIES_FAILURE:
             return {
                 ...state,
-                horrorMovies: [],
+                netflixMovies: [],
                 loading: false,
                 error: payload
             }
@@ -32,4 +32,4 @@ const horrorMoviesReducer = (state = initialState, {type, payload}) => {
     }
 }
 
-export default horrorMoviesReducer;
+export default netflixMoviesReducer;

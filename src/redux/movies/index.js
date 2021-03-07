@@ -3,7 +3,7 @@ import actionMoviesReducer from "./action.reducer";
 import adventureMoviesReducer from "./adventure.reducer";
 import comedyMoviesReducer from "./comedy.reducer";
 import horrorMoviesReducer from "./horror.reducer";
-import netflixOriginalMoviesReducer from "./netflixOriginals.reducer";
+import netflixMoviesReducer from "./netflix.reducer";
 import romanceMoviesReducer from "./romance.reducer";
 import topRatedMoviesReducer from "./topRated.reducer";
 import trendingMoviesReducer from "./trending.reducer";
@@ -11,7 +11,7 @@ import trendingMoviesReducer from "./trending.reducer";
 export default combineReducers({
     topRatedMovies: topRatedMoviesReducer,
     trendingMovies: trendingMoviesReducer,
-    netflixOriginalMovies: netflixOriginalMoviesReducer,
+    netflixMovies: netflixMoviesReducer,
     actionMovies: actionMoviesReducer,
     adventureMovies: adventureMoviesReducer,
     comedyMovies: comedyMoviesReducer,

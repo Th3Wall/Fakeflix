@@ -25,7 +25,7 @@ const Banner = () => {
         <header
             className="Banner"
             style={{
-                backgroundImage: `url(${BASE_IMG_URL}${movie?.backdrop_path})`,
+                backgroundImage: `url(${BASE_IMG_URL}/${movie?.backdrop_path})`,
             }}
         >
             <div className="Banner__content">
