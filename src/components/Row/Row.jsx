@@ -10,7 +10,7 @@ const Row = ({ title, fetchUrl, isLarge }) => {
             <h3 className="Row__title">{title}</h3>
 
             {loading && <div>Loading...</div>}
-            {hasError && <div>Error occured.</div>}
+            {hasError && <div>Error occurred.</div>}
             <div className="Row__poster--wrp">
                 {response.map(({ id, poster_path, backdrop_path, title }) => (
                     <RowPoster
