@@ -47,6 +47,52 @@ export const fetchAdventureMoviesFailure = error => ({
     payload: error
 })
 
+export const fetchAdventureMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchAdventureMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const adventureMovies = res.data;
+                dispatch(fetchAdventureMoviesSuccess(adventureMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchAdventureMoviesFailure(errorMessage))
+            })
+    }
+}
+
+
+// Animation
+export const fetchAnimationMoviesRequest = () => ({
+    type: moviesActionTypes.FETCH_ANIMATION_MOVIES_REQUEST
+})
+
+export const fetchAnimationMoviesSuccess = animationMovies => ({
+    type: moviesActionTypes.FETCH_ANIMATION_MOVIES_SUCCESS,
+    payload: animationMovies
+})
+
+export const fetchAnimationMoviesFailure = error => ({
+    type: moviesActionTypes.FETCH_ANIMATION_MOVIES_FAILURE,
+    payload: error
+})
+
+export const fetchAnimationMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchAnimationMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const animationMovies = res.data;
+                dispatch(fetchAnimationMoviesSuccess(animationMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchAnimationMoviesFailure(errorMessage))
+            })
+    }
+}
+
 
 // Comedy
 export const fetchComedyMoviesRequest = () => ({
@@ -62,6 +108,21 @@ export const fetchComedyMoviesFailure = error => ({
     type: moviesActionTypes.FETCH_COMEDY_MOVIES_FAILURE,
     payload: error
 })
+
+export const fetchComedyMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchComedyMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const comedyMovies = res.data;
+                dispatch(fetchComedyMoviesSuccess(comedyMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchComedyMoviesFailure(errorMessage))
+            })
+    }
+}
 
 
 // Horror
@@ -79,6 +140,21 @@ export const fetchHorrorMoviesFailure = error => ({
     payload: error
 })
 
+export const fetchHorrorMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchHorrorMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const horrorMovies = res.data;
+                dispatch(fetchHorrorMoviesSuccess(horrorMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchHorrorMoviesFailure(errorMessage))
+            })
+    }
+}
+
 
 // Netflix
 export const fetchNetflixMoviesRequest = () => ({
@@ -94,6 +170,21 @@ export const fetchNetflixMoviesFailure = error => ({
     type: moviesActionTypes.FETCH_NETFLIX_MOVIES_FAILURE,
     payload: error
 })
+
+export const fetchNetflixMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchNetflixMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const netflixMovies = res.data;
+                dispatch(fetchNetflixMoviesSuccess(netflixMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchNetflixMoviesFailure(errorMessage))
+            })
+    }
+}
 
 
 // Romance
@@ -111,6 +202,21 @@ export const fetchRomanceMoviesFailure = error => ({
     payload: error
 })
 
+export const fetchRomanceMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchRomanceMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const romanceMovies = res.data;
+                dispatch(fetchRomanceMoviesSuccess(romanceMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchRomanceMoviesFailure(errorMessage))
+            })
+    }
+}
+
 
 // Top Rated
 export const fetchTopRatedMoviesRequest = () => ({
@@ -127,6 +233,21 @@ export const fetchTopRatedMoviesFailure = error => ({
     payload: error
 })
 
+export const fetchTopRatedMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchTopRatedMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const topRatedMovies = res.data;
+                dispatch(fetchTopRatedMoviesSuccess(topRatedMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchTopRatedMoviesFailure(errorMessage))
+            })
+    }
+}
+
 
 // Trending
 export const fetchTrendingMoviesRequest = () => ({
@@ -142,3 +263,18 @@ export const fetchTrendingMoviesFailure = error => ({
     type: moviesActionTypes.FETCH_TRENDING_MOVIES_FAILURE,
     payload: error
 })
+
+export const fetchTrendingMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchTrendingMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const trendingMovies = res.data;
+                dispatch(fetchTrendingMoviesSuccess(trendingMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchTrendingMoviesFailure(errorMessage))
+            })
+    }
+}
