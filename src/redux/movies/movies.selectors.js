@@ -4,7 +4,7 @@ const selectActionMovies = state => state.movies.actionMovies;
 const selectAdventureMovies = state => state.movies.adventureMovies;
 const selectComedyMovies = state => state.movies.comedyMovies;
 const selectHorrorMovies = state => state.movies.horrorMovies;
-const selectNetflixMovies = state => state.movies.netflixOriginalMovies;
+const selectNetflixMovies = state => state.movies.netflixMovies;
 const selectRomanceMovies = state => state.movies.romanceMovies;
 const selectTopRatedMovies = state => state.movies.topRatedMovies;
 const selectTrendingMovies = state => state.movies.trendingMovies;
@@ -31,7 +31,7 @@ export const selectHorrorMoviesSelector = createSelector(
 
 export const selectNetflixMoviesSelector = createSelector(
     [selectNetflixMovies],
-    netflixOriginalMovies => netflixOriginalMovies.netflixOriginalMovies
+    netflixMovies => netflixMovies.netflixMovies
 )
 
 export const selectRomanceMoviesSelector = createSelector(

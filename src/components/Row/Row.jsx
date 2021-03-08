@@ -1,18 +1,28 @@
 import "./row.scss"
 import RowPoster from "../RowPoster/RowPoster"
-import useFetch from "../../hooks/useFetch"
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux"
+import { fetchActionMoviesAsync } from "../../redux/movies/movies.actions"
+import { selectActionMoviesSelector } from "../../redux/movies/movies.selectors"
 
 const Row = ({ title, fetchUrl, isLarge }) => {
-    const [response, loading, hasError] = useFetch(fetchUrl)
+    
+    const data = useSelector(selectActionMoviesSelector)
+    const dispatch = useDispatch();
+    const {loading, error, results} = data;
+
+    useEffect(() => {
+        dispatch(fetchActionMoviesAsync(fetchUrl))
+    }, [])
 
     return (
         <div className="Row">
             <h3 className="Row__title">{title}</h3>
 
             {loading && <div>Loading...</div>}
-            {hasError && <div>Error occurred.</div>}
+            {error && <div>Error occurred.</div>}
             <div className="Row__poster--wrp">
-                {response.map(({ id, poster_path, backdrop_path, title }) => (
+                {results && results.map(({ id, poster_path, backdrop_path, title }) => (
                     <RowPoster
                         key={id}
                         id={id}
