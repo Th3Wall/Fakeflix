@@ -1,29 +1,29 @@
-import { moviesActionTypes } from './movies.types';
+import { moviesActionTypes } from '../movies.types';
 
 const initialState = {
     loading: false,
     error: '',
-    movies: []
+    horrorMovies: []
 }
 
-const animationMoviesReducer = (state = initialState, {type, payload}) => {
+const horrorMoviesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case moviesActionTypes.FETCH_ANIMATION_MOVIES_REQUEST:
+        case moviesActionTypes.FETCH_HORROR_MOVIES_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case moviesActionTypes.FETCH_ANIMATION_MOVIES_SUCCESS:
+        case moviesActionTypes.FETCH_HORROR_MOVIES_SUCCESS:
             return {
                 ...state,
-                movies: payload,
+                horrorMovies: payload,
                 loading: false,
                 error: ''
             }
-        case moviesActionTypes.FETCH_ANIMATION_MOVIES_FAILURE:
+        case moviesActionTypes.FETCH_HORROR_MOVIES_FAILURE:
             return {
                 ...state,
-                movies: [],
+                horrorMovies: [],
                 loading: false,
                 error: payload
             }
@@ -32,4 +32,4 @@ const animationMoviesReducer = (state = initialState, {type, payload}) => {
     }
 }
 
-export default animationMoviesReducer;
+export default horrorMoviesReducer;

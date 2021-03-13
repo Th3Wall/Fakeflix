@@ -1,9 +1,9 @@
-import { moviesActionTypes } from './movies.types';
+import { moviesActionTypes } from '../movies.types';
 
 const initialState = {
     loading: false,
     error: '',
-    movies: []
+    topRatedMovies: []
 }
 
 const topRatedMoviesReducer = (state = initialState, {type, payload}) => {
@@ -16,14 +16,14 @@ const topRatedMoviesReducer = (state = initialState, {type, payload}) => {
         case moviesActionTypes.FETCH_TOP_RATED_MOVIES_SUCCESS:
             return {
                 ...state,
-                movies: payload,
+                topRatedMovies: payload,
                 loading: false,
                 error: ''
             }
         case moviesActionTypes.FETCH_TOP_RATED_MOVIES_FAILURE:
             return {
                 ...state,
-                movies: [],
+                topRatedMovies: [],
                 loading: false,
                 error: payload
             }

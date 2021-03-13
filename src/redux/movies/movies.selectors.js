@@ -9,6 +9,40 @@ export const selectNetflixMovies = state => state.movies.netflixMovies;
 export const selectRomanceMovies = state => state.movies.romanceMovies;
 export const selectTopRatedMovies = state => state.movies.topRatedMovies;
 export const selectTrendingMovies = state => state.movies.trendingMovies;
+export const selectCurrentGenre = state => state.movies ? state.movies.currentGenre : '';
+export const selectCurrentMovies = state => {
+    console.log('**************')
+    let currentGenre = selectCurrentGenre(state);
+    let currentMovies = [];
+    console.log({currentGenre})
+    if(currentGenre) {
+        const genre = currentGenre.currentGenre.toString();
+        console.log(genre)
+        switch(genre.toLowerCase()) {
+            case "action":
+                console.log('*******ASA*******')
+                currentMovies = selectActionMovies(state);
+                break;
+            case "adventure":
+                console.log('********BBB******')
+                currentMovies = selectAdventureMovies(state);
+                break;
+            // default:
+            //     currentGenre = [];
+            //     break;
+        }
+    }
+    console.log({currentMovies})
+
+    return createSelector(
+        currentMovies => currentMovies
+    )
+};
+
+export const selectMoviesByCurrentGenre = createSelector(
+    [selectCurrentMovies],
+    currentMovies => currentMovies.movies
+);
 
 export const selectActionMoviesSelector = createSelector(
     [selectActionMovies],

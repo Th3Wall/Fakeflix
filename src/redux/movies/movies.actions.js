@@ -1,7 +1,24 @@
 import axios from '../../utils';
 import { moviesActionTypes } from './movies.types';
 
+export const allGenreFetchMovies = () => [
+    { 
+        "name": "action", 
+        "value": fetchActionMoviesAsync 
+    },
+    { 
+        "name": "adventure", 
+        "value": fetchAdventureMoviesAsync 
+    },
+];
+
 // Action
+export const changeCurrentGenre = (genre) => ({
+    type: moviesActionTypes.CHANGE_CURRENT_GENRE,
+    payload: genre
+})
+
+
 export const fetchActionMoviesRequest = () => ({
     type: moviesActionTypes.FETCH_ACTION_MOVIES_REQUEST
 })

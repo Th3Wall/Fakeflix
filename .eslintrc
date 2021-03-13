@@ -6,7 +6,7 @@
         "node": true
     },
     "plugins": ["import", "react"],
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2020,

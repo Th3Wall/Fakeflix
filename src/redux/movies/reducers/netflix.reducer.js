@@ -1,29 +1,29 @@
-import { moviesActionTypes } from './movies.types';
+import { moviesActionTypes } from '../movies.types';
 
 const initialState = {
     loading: false,
     error: '',
-    movies: []
+    netflixMovies: []
 }
 
-const comedyMoviesReducer = (state = initialState, {type, payload}) => {
+const netflixMoviesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case moviesActionTypes.FETCH_COMEDY_MOVIES_REQUEST:
+        case moviesActionTypes.FETCH_NETFLIX_MOVIES_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case moviesActionTypes.FETCH_COMEDY_MOVIES_SUCCESS:
+        case moviesActionTypes.FETCH_NETFLIX_MOVIES_SUCCESS:
             return {
                 ...state,
-                movies: payload,
+                netflixMovies: payload,
                 loading: false,
                 error: ''
             }
-        case moviesActionTypes.FETCH_COMEDY_MOVIES_FAILURE:
+        case moviesActionTypes.FETCH_NETFLIX_MOVIES_FAILURE:
             return {
                 ...state,
-                movies: [],
+                netflixMovies: [],
                 loading: false,
                 error: payload
             }
@@ -32,4 +32,4 @@ const comedyMoviesReducer = (state = initialState, {type, payload}) => {
     }
 }
 
-export default comedyMoviesReducer;
+export default netflixMoviesReducer;
