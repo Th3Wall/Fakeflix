@@ -2,7 +2,6 @@ import { homepageActionTypes } from "./homepage.types"
 import * as selectors from "../../redux/movies/movies.selectors"
 
 const initialState = {
-    loading: false,
     rows: [
         {
             id: 0,
@@ -55,16 +54,10 @@ const initialState = {
 
 const homepageReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case homepageActionTypes.LOAD_HOME_SECTIONS_REQUEST:
+        case homepageActionTypes.LOAD_HOME_SECTIONS:
             return {
                 ...state,
-                loading: true
-            }
-        case homepageActionTypes.LOAD_HOME_SECTIONS_SUCCESS:
-            return {
-                ...state,
-                rows: payload,
-                loading: false
+                rows: payload
             }
         default:
             return state
