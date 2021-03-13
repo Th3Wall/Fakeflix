@@ -32,12 +32,14 @@ const App = ({ setCurrentUser, currentUser }) => {
                 <Route exact path="/">
                     <Redirect to="/login" />
                 </Route>
-                <Route path="/browse">
-                    {currentUser ? <Homepage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/login">
-                    {currentUser ? <Redirect to="/browse"/> : <SignIn />}
-                </Route>
+                <Route
+                    path="/browse"
+                    render={() => currentUser ? <Homepage /> : <Redirect to="/login" />}
+                />
+                <Route
+                    path="/login"
+                    render={() => currentUser ? <Redirect to="/browse"/> : <SignIn />}
+                />
             </Switch>
         </div>
     )

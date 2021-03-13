@@ -1,19 +1,11 @@
 import "./row.scss"
 import RowPoster from "../RowPoster/RowPoster"
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux"
-import { fetchActionMoviesAsync } from "../../redux/movies/movies.actions"
-import { selectActionMoviesSelector } from "../../redux/movies/movies.selectors"
+import { useSelector } from "react-redux";
 
-const Row = ({ title, fetchUrl, isLarge }) => {
+const Row = ({ title, selector, isLarge }) => {
     
-    const data = useSelector(selectActionMoviesSelector)
-    const dispatch = useDispatch();
+    const data = useSelector(selector)
     const {loading, error, results} = data;
-
-    useEffect(() => {
-        dispatch(fetchActionMoviesAsync(fetchUrl))
-    }, [])
 
     return (
         <div className="Row">

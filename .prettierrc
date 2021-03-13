@@ -1,7 +1,7 @@
 {
-    "printWidth": 85,
+    "printWidth": 90,
     "arrowParens": "avoid",
     "bracketSpacing": true,
-    "semi": false,
+    "semi": true,
     "tabWidth": 4
 }
