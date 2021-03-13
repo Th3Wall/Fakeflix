@@ -3,7 +3,7 @@ import { moviesActionTypes } from './movies.types';
 const initialState = {
     loading: false,
     error: '',
-    netflixMovies: []
+    movies: []
 }
 
 const netflixMoviesReducer = (state = initialState, {type, payload}) => {
@@ -16,14 +16,14 @@ const netflixMoviesReducer = (state = initialState, {type, payload}) => {
         case moviesActionTypes.FETCH_NETFLIX_MOVIES_SUCCESS:
             return {
                 ...state,
-                netflixMovies: payload,
+                movies: payload,
                 loading: false,
                 error: ''
             }
         case moviesActionTypes.FETCH_NETFLIX_MOVIES_FAILURE:
             return {
                 ...state,
-                netflixMovies: [],
+                movies: [],
                 loading: false,
                 error: payload
             }

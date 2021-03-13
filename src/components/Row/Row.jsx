@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 const Row = ({ title, selector, isLarge }) => {
     
-    const data = useSelector(selector)
-    const {loading, error, results} = data;
+    const rowData = useSelector(selector)
+    const {loading, error, movies: {results}} = rowData;
 
     return (
         <div className="Row">

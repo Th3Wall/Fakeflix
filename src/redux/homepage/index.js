@@ -6,48 +6,48 @@ const initialState = {
         {
             id: 0,
             title: "Top Rated on Fakeflix",
-            selector: selectors.selectTopRatedMoviesSelector
+            selector: selectors.selectTopRatedMovies
         },
         {
             id: 1,
             title: "Trending Now",
-            selector: selectors.selectTrendingMoviesSelector
+            selector: selectors.selectTrendingMovies
         },
         {
             id: 2,
             title: "Fakeflix Originals",
-            selector: selectors.selectNetflixMoviesSelector,
+            selector: selectors.selectNetflixMovies,
             isLarge: true
         },
         {
             id: 3,
             title: "Action",
-            selector: selectors.selectActionMoviesSelector
+            selector: selectors.selectActionMovies
         },
         {
             id: 4,
             title: "Horror",
-            selector: selectors.selectHorrorMoviesSelector
+            selector: selectors.selectHorrorMovies
         },
         {
             id: 5,
             title: "Adventure",
-            selector: selectors.selectAdventureMoviesSelector
+            selector: selectors.selectAdventureMovies
         },
         {
             id: 6,
             title: "Comedy",
-            selector: selectors.selectComedyMoviesSelector
+            selector: selectors.selectComedyMovies
         },
         {
             id: 7,
             title: "Romance",
-            selector: selectors.selectRomanceMoviesSelector
+            selector: selectors.selectRomanceMovies
         },
         {
             id: 8,
             title: "Animation",
-            selector: selectors.selectAnimationMoviesSelector
+            selector: selectors.selectAnimationMovies
         }
     ]
 }

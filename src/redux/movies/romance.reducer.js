@@ -3,7 +3,7 @@ import { moviesActionTypes } from './movies.types';
 const initialState = {
     loading: false,
     error: '',
-    romanceMovies: []
+    movies: []
 }
 
 const romanceMoviesReducer = (state = initialState, {type, payload}) => {
@@ -16,14 +16,14 @@ const romanceMoviesReducer = (state = initialState, {type, payload}) => {
         case moviesActionTypes.FETCH_ROMANCE_MOVIES_SUCCESS:
             return {
                 ...state,
-                romanceMovies: payload,
+                movies: payload,
                 loading: false,
                 error: ''
             }
         case moviesActionTypes.FETCH_ROMANCE_MOVIES_FAILURE:
             return {
                 ...state,
-                romanceMovies: [],
+                movies: [],
                 loading: false,
                 error: payload
             }
