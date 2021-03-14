@@ -1,17 +1,16 @@
 import "./homepage.scss"
 import Row from "../../components/Row/Row"
 import Banner from "../../components/Banner/Banner"
-import { useRetrieveAllMovies } from '../../hooks/useRetrieveMovies';
-import { homepageRows } from "./utils";
+import { useRetrieveData } from "../../hooks/useRetrieveData";
 
 const Homepage = () => {
 
-    useRetrieveAllMovies();
+    const rows = useRetrieveData('movies');
     
     return (
         <div className="Homepage">
             <Banner />
-            {homepageRows.map(props => (
+            {rows && rows.map(props => (
                 <Row key={props.id} {...props} />
             ))}
         </div>

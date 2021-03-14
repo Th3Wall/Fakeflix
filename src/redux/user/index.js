@@ -2,6 +2,7 @@ import { userActionTypes } from "./user.types"
 
 const initialState = {
     currentUser: null,
+    error: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -10,6 +11,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.payload,
+                error: null
             }
         default:
             return state
