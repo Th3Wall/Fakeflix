@@ -38,5 +38,5 @@ export const useRetrieveAllMovies = () => {
         dispatch(fetchRomanceMoviesAsync(fetchRomanceMovies))
         dispatch(fetchTopRatedMoviesAsync(fetchTopRated))
         dispatch(fetchTrendingMoviesAsync(fetchTrending))
-    }, [])
+    }, [dispatch])
 }
