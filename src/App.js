@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Route, Switch, Redirect } from "react-router-dom"
 import Navbar from "./components/Navbar/Navbar"
 import Homepage from "./pages/Homepage/Homepage"
+import Movies from "./pages/Movies/Movies"
+import TVSeries from './pages/TVSeries/TVSeries';
 import SignIn from "./pages/SignIn/SignIn"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
@@ -39,6 +41,14 @@ const App = () => {
                 <Route
                     path="/browse"
                     render={() => currentUser ? <Homepage /> : <Redirect to="/login" />}
+                />
+                <Route
+                    path="/tvseries"
+                    render={() => currentUser ? <TVSeries /> : <Redirect to="/login" />}
+                />
+                <Route
+                    path="/movies"
+                    render={() => currentUser ? <Movies /> : <Redirect to="/login" />}
                 />
                 <Route
                     path="/login"

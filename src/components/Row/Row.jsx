@@ -14,7 +14,7 @@ const Row = ({ title, selector, isLarge }) => {
             {loading && <div>Loading...</div>}
             {error && <div>Error occurred.</div>}
             <div className="Row__poster--wrp">
-                {results && results.map(({ id, poster_path, backdrop_path, title }) => (
+                {!loading && results && results.map(({ id, poster_path, backdrop_path, title }) => (
                     <RowPoster
                         key={id}
                         id={id}

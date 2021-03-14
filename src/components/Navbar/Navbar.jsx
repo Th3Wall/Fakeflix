@@ -37,8 +37,12 @@ const Navbar = ({ currentUser }) => {
                     <li className="Navbar__navlinks--link">
                         <Link to="/browse">Home</Link>
                     </li>
-                    <li className="Navbar__navlinks--link">TV Series</li>
-                    <li className="Navbar__navlinks--link">Movies</li>
+                    <li className="Navbar__navlinks--link">
+                        <Link to="/tvseries">TV Series</Link>
+                    </li>
+                    <li className="Navbar__navlinks--link">
+                        <Link to="/movies">Movies</Link>
+                    </li>
                     <li className="Navbar__navlinks--link">Popular</li>
                     <li className="Navbar__navlinks--link">My list</li>
                     {currentUser ? (
