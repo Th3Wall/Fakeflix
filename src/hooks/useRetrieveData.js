@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import requests from "../requests"
-import * as selectors from "../redux/movies/movies.selectors"
+import * as movieSelectors from "../redux/movies/movies.selectors"
+import * as seriesSelectors from "../redux/series/series.selectors"
 import {
     fetchTrendingMoviesAsync,
     fetchNetflixMoviesAsync,
@@ -14,6 +15,9 @@ import {
     fetchAnimationMoviesAsync,
     fetchUpcomingMoviesAsync
 } from "../redux/movies/movies.actions"
+import {
+    fetchNetflixSeriesAsync
+} from "../redux/series/series.actions"
 
 const {
     fetchTrending,
@@ -36,7 +40,7 @@ const fetchData = {
             url: fetchTopRated,
             title: "Top Rated on Fakeflix",
             genre: "TopRated",
-            selector: selectors.selectTopRatedMovies
+            selector: movieSelectors.selectTopRatedMovies
         },
         {
             id: 1,
@@ -44,7 +48,7 @@ const fetchData = {
             url: fetchTrending,
             title: "Trending Now",
             genre: "Trending",
-            selector: selectors.selectTrendingMovies
+            selector: movieSelectors.selectTrendingMovies
         },
         {
             id: 2,
@@ -52,7 +56,7 @@ const fetchData = {
             url: fetchNetflixOriginals,
             title: "Fakeflix Originals",
             genre: "Fakeflix",
-            selector: selectors.selectNetflixMovies,
+            selector: movieSelectors.selectNetflixMovies,
             isLarge: true
         },
         {
@@ -61,7 +65,7 @@ const fetchData = {
             url: fetchActionMovies,
             title: "Action",
             genre: "Action",
-            selector: selectors.selectActionMovies
+            selector: movieSelectors.selectActionMovies
         },
         {
             id: 4,
@@ -69,7 +73,7 @@ const fetchData = {
             url: fetchAdventureMovies,
             title: "Adventure",
             genre: "Adventure",
-            selector: selectors.selectAdventureMovies
+            selector: movieSelectors.selectAdventureMovies
         },
         {
             id: 5,
@@ -77,7 +81,7 @@ const fetchData = {
             url: fetchComedyMovies,
             title: "Comedy",
             genre: "Comedy",
-            selector: selectors.selectComedyMovies
+            selector: movieSelectors.selectComedyMovies
         },
         {
             id: 6,
@@ -85,7 +89,7 @@ const fetchData = {
             url: fetchHorrorMovies,
             title: "Horror",
             genre: "Horror",
-            selector: selectors.selectHorrorMovies
+            selector: movieSelectors.selectHorrorMovies
         },
         {
             id: 7,
@@ -93,7 +97,7 @@ const fetchData = {
             url: fetchRomanceMovies,
             title: "Romance",
             genre: "Romance",
-            selector: selectors.selectRomanceMovies
+            selector: movieSelectors.selectRomanceMovies
         },
         {
             id: 8,
@@ -101,27 +105,27 @@ const fetchData = {
             url: fetchAnimationMovies,
             title: "Animation",
             genre: "Animation",
-            selector: selectors.selectAnimationMovies
+            selector: movieSelectors.selectAnimationMovies
         },
         {
-            id: 8,
+            id: 9,
             thunk: fetchUpcomingMoviesAsync,
             url: fetchUpcomingMovies,
             title: "Upcoming",
             genre: "Upcoming",
-            selector: selectors.selectUpcomingMovies
+            selector: movieSelectors.selectUpcomingMovies
         }
     ],
     series: [
         {
-            id: 2,
-            thunk: fetchNetflixMoviesAsync,
+            id: 1,
+            thunk: fetchNetflixSeriesAsync,
             url: fetchNetflixOriginals,
             title: "Fakeflix Originals",
             genre: "Fakeflix",
-            selector: selectors.selectNetflixMovies,
+            selector: seriesSelectors.selectNetflixSeries,
             isLarge: true
-        },
+        }
     ]
 }
 

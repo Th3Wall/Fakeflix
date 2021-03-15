@@ -1,4 +1,4 @@
-import { moviesActionTypes } from './movies.types';
+import { seriesActionTypes } from './series.types';
 
 const initialState = {
     loading: false,
@@ -6,21 +6,21 @@ const initialState = {
     data: []
 }
 
-const upcomingMoviesReducer = (state = initialState, {type, payload}) => {
+const netflixSeriesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case moviesActionTypes.FETCH_UPCOMING_MOVIES_REQUEST:
+        case seriesActionTypes.FETCH_NETFLIX_SERIES_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case moviesActionTypes.FETCH_UPCOMING_MOVIES_SUCCESS:
+        case seriesActionTypes.FETCH_NETFLIX_SERIES_SUCCESS:
             return {
                 ...state,
                 data: payload,
                 loading: false,
                 error: ''
             }
-        case moviesActionTypes.FETCH_UPCOMING_MOVIES_FAILURE:
+        case seriesActionTypes.FETCH_NETFLIX_SERIES_FAILURE:
             return {
                 ...state,
                 data: [],
@@ -32,4 +32,4 @@ const upcomingMoviesReducer = (state = initialState, {type, payload}) => {
     }
 }
 
-export default upcomingMoviesReducer;
+export default netflixSeriesReducer;
