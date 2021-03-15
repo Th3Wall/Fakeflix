@@ -16,7 +16,15 @@ import {
     fetchUpcomingMoviesAsync
 } from "../redux/movies/movies.actions"
 import {
-    fetchNetflixSeriesAsync
+    fetchActionAdventureSeriesAsync,
+    fetchAnimationSeriesAsync,
+    fetchComedySeriesAsync,
+    fetchCrimeSeriesAsync,
+    fetchDocumentarySeriesAsync,
+    fetchFamilySeriesAsync,
+    fetchKidsSeriesAsync,
+    fetchNetflixSeriesAsync,
+    fetchSciFiFantasySeriesAsync
 } from "../redux/series/series.actions"
 
 const {
@@ -29,7 +37,15 @@ const {
     fetchHorrorMovies,
     fetchRomanceMovies,
     fetchAnimationMovies,
-    fetchUpcomingMovies
+    fetchUpcomingMovies,
+    fetchActionAdventureSeries,
+    fetchAnimationSeries,
+    fetchComedySeries,
+    fetchCrimeSeries,
+    fetchDocumentarySeries,
+    fetchFamilySeries,
+    fetchKidsSeries,
+    fetchSciFiFantasySeries
 } = requests
 
 const fetchData = {
@@ -125,6 +141,70 @@ const fetchData = {
             genre: "Fakeflix",
             selector: seriesSelectors.selectNetflixSeries,
             isLarge: true
+        },
+        {
+            id: 2,
+            thunk: fetchActionAdventureSeriesAsync,
+            url: fetchActionAdventureSeries,
+            title: "Action & Adventure",
+            genre: "ActionAdventure",
+            selector: seriesSelectors.selectActionAdventureSeries
+        },
+        {
+            id: 3,
+            thunk: fetchAnimationSeriesAsync,
+            url: fetchAnimationSeries,
+            title: "Animation",
+            genre: "Animation",
+            selector: seriesSelectors.selectAnimationSeries
+        },
+        {
+            id: 4,
+            thunk: fetchComedySeriesAsync,
+            url: fetchComedySeries,
+            title: "Comedy",
+            genre: "Comedy",
+            selector: seriesSelectors.selectComedySeries
+        },
+        {
+            id: 5,
+            thunk: fetchCrimeSeriesAsync,
+            url: fetchCrimeSeries,
+            title: "Crime",
+            genre: "Crime",
+            selector: seriesSelectors.selectCrimeSeries
+        },
+        {
+            id: 6,
+            thunk: fetchDocumentarySeriesAsync,
+            url: fetchDocumentarySeries,
+            title: "Documentary",
+            genre: "Documentary",
+            selector: seriesSelectors.selectDocumentarySeries
+        },
+        {
+            id: 7,
+            thunk: fetchFamilySeriesAsync,
+            url: fetchFamilySeries,
+            title: "Family",
+            genre: "Family",
+            selector: seriesSelectors.selectFamilySeries
+        },
+        {
+            id: 8,
+            thunk: fetchKidsSeriesAsync,
+            url: fetchKidsSeries,
+            title: "Kids",
+            genre: "Kids",
+            selector: seriesSelectors.selectKidsSeries
+        },
+        {
+            id: 9,
+            thunk: fetchSciFiFantasySeriesAsync,
+            url: fetchSciFiFantasySeries,
+            title: "Sci-Fi & Fantasy",
+            genre: "SciFiFantasy",
+            selector: seriesSelectors.selectSciFiFantasySeries
         }
     ]
 }
