@@ -9,6 +9,7 @@ export const SIGNIN_BGIMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_signin_bg.jp
 const requests = {
     discoverMovies: `/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US`,
     discoverSeries: `/discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US`,
+    fetchUpcomingMovies: `/movie/upcoming?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US`,
     fetchTrending: `/trending/all/week?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&with_networks=213&sort_by=popularity.desc&language=en-US`,
     fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US`,

@@ -11,7 +11,8 @@ import {
     fetchComedyMoviesAsync,
     fetchHorrorMoviesAsync,
     fetchRomanceMoviesAsync,
-    fetchAnimationMoviesAsync
+    fetchAnimationMoviesAsync,
+    fetchUpcomingMoviesAsync
 } from "../redux/movies/movies.actions"
 
 const {
@@ -23,7 +24,8 @@ const {
     fetchComedyMovies,
     fetchHorrorMovies,
     fetchRomanceMovies,
-    fetchAnimationMovies
+    fetchAnimationMovies,
+    fetchUpcomingMovies
 } = requests
 
 const fetchData = {
@@ -100,9 +102,27 @@ const fetchData = {
             title: "Animation",
             genre: "Animation",
             selector: selectors.selectAnimationMovies
+        },
+        {
+            id: 8,
+            thunk: fetchUpcomingMoviesAsync,
+            url: fetchUpcomingMovies,
+            title: "Upcoming",
+            genre: "Upcoming",
+            selector: selectors.selectUpcomingMovies
         }
     ],
-    series: [{}]
+    series: [
+        {
+            id: 2,
+            thunk: fetchNetflixMoviesAsync,
+            url: fetchNetflixOriginals,
+            title: "Fakeflix Originals",
+            genre: "Fakeflix",
+            selector: selectors.selectNetflixMovies,
+            isLarge: true
+        },
+    ]
 }
 
 export const useRetrieveData = type => {
@@ -129,7 +149,17 @@ export const useRetrieveData = type => {
                 break
             case "series":
                 {
-                    //...
+                    const rowsData = fetchData.series.map(el => {
+                        dispatch(el.thunk(el.url))
+                        return {
+                            id: el.id,
+                            title: el.title,
+                            genre: el.genre,
+                            selector: el.selector,
+                            isLarge: el.isLarge
+                        }
+                    })
+                    setData(rowsData)
                 }
                 break
             default:

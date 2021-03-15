@@ -8,6 +8,7 @@ import romanceMoviesReducer from "./romance.reducer";
 import topRatedMoviesReducer from "./topRated.reducer";
 import trendingMoviesReducer from "./trending.reducer";
 import animationMoviesReducer from './animation.reducer';
+import upcomingMoviesReducer from './upcoming.reducer';
 
 export default combineReducers({
     actionMovies: actionMoviesReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     netflixMovies: netflixMoviesReducer,
     romanceMovies: romanceMoviesReducer,
     topRatedMovies: topRatedMoviesReducer,
-    trendingMovies: trendingMoviesReducer
+    trendingMovies: trendingMoviesReducer,
+    upcomingMovies: upcomingMoviesReducer
 })

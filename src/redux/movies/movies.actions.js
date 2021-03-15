@@ -278,3 +278,34 @@ export const fetchTrendingMoviesAsync = fetchUrl => {
             })
     }
 }
+
+
+// Upcoming
+export const fetchUpcomingMoviesRequest = () => ({
+    type: moviesActionTypes.FETCH_UPCOMING_MOVIES_REQUEST
+})
+
+export const fetchUpcomingMoviesSuccess = upcomingMovies => ({
+    type: moviesActionTypes.FETCH_UPCOMING_MOVIES_SUCCESS,
+    payload: upcomingMovies
+})
+
+export const fetchUpcomingTrendingMoviesFailure = error => ({
+    type: moviesActionTypes.FETCH_UPCOMING_MOVIES_FAILURE,
+    payload: error
+})
+
+export const fetchUpcomingMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchUpcomingMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const upcomingMovies = res.data;
+                dispatch(fetchUpcomingMoviesSuccess(upcomingMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchUpcomingTrendingMoviesFailure(errorMessage))
+            })
+    }
+}
