@@ -9,7 +9,7 @@ const Movies = () => {
     
     return (
         <div className="Movies">
-            <Banner />
+            <Banner type='movies' />
             {rows && rows.map(props => (
                 <Row key={props.id} {...props} />
             ))}

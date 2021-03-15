@@ -9,7 +9,7 @@ const TVSeries = () => {
     
     return (
         <div className="TVSeries">
-            <Banner />
+            <Banner type='series' />
             {rows && rows.map(props => (
                 <Row key={props.id} {...props} />
             ))}
