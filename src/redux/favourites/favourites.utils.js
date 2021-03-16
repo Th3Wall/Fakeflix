@@ -1,15 +1,15 @@
 export const addToFavouritesUtil = (favouritesList, favouriteToAdd) => {
+    const existingFavourite = favouritesList.find(fav => fav.item.id === favouriteToAdd.item.id);
 
-    const existingFavourite = favouritesList.find(item => item.id === favouriteToAdd.id);
-    if (existingFavourite) return;
-
-    return [...favouritesList, {...favouriteToAdd}]
+    return existingFavourite
+        ? [...favouritesList]
+        : [...favouritesList, favouriteToAdd];
 }
 
 export const removeFromFavouritesUtil = (favouritesList, favouriteToRemove) => {
-
-    const existingFavourite = favouritesList.find(item => item.id === favouriteToRemove.id);
-    if (!existingFavourite) return;
-
-    return favouritesList.map(item => item.id !== favouriteToRemove.id);
+    const existingFavourite = favouritesList.find(fav => fav.item.id === favouriteToRemove.item.id);
+    
+    return existingFavourite
+        ? favouritesList.filter(fav => fav.item.id !== favouriteToRemove.item.id)
+        : [...favouritesList];
 }

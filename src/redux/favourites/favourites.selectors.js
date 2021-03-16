@@ -6,3 +6,5 @@ export const selectFavouritesList = createSelector(
     [selectFavourites],
     favourites => favourites.favouritesList
 )
+
+export const selecFavouritesById = (state, resultId) => state.favourites.favouritesList.find(fav => fav.item.id === resultId);
