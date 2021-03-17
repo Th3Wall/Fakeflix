@@ -44,7 +44,9 @@ const Navbar = ({ currentUser }) => {
                         <Link to="/movies">Movies</Link>
                     </li>
                     <li className="Navbar__navlinks--link">Popular</li>
-                    <li className="Navbar__navlinks--link">My list</li>
+                    <li className="Navbar__navlinks--link">
+                        <Link to="/mylist">My list</Link>
+                    </li>
                     {currentUser ? (
                         <li
                             className="Navbar__navlinks--link"

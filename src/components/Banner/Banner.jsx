@@ -3,6 +3,7 @@ import requests, { BASE_IMG_URL } from "../../requests"
 import axios from "../../utils"
 import { useState, useEffect } from "react"
 import { FaPlay, FaStar } from "react-icons/fa"
+import { randomize } from "./utils"
 
 const {
     fetchNetflixOriginals,
@@ -30,8 +31,7 @@ const Banner = ({ type }) => {
         const fetchBannerData = async () => {
             const res = await axios.get(fetchReq);
             const {data: { results }} = res;
-            const randomize = Math.floor(Math.random() * results.length - 1);
-            setBanner(results[randomize])
+            setBanner(results[randomize(results)])
         }
 
         fetchBannerData();

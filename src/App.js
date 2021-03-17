@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Homepage from "./pages/Homepage/Homepage"
 import Movies from "./pages/Movies/Movies"
 import TVSeries from './pages/TVSeries/TVSeries';
+import MyList from './pages/MyList/MyList';
 import SignIn from "./pages/SignIn/SignIn"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
@@ -49,6 +50,10 @@ const App = () => {
                 <Route
                     path="/movies"
                     render={() => currentUser ? <Movies /> : <Redirect to="/login" />}
+                />
+                <Route
+                    path="/mylist"
+                    render={() => currentUser ? <MyList /> : <Redirect to="/login" />}
                 />
                 <Route
                     path="/login"

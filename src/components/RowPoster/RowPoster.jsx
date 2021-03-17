@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors";
 
 const RowPoster = result => {
-    const {id, image, title, isLarge} = result;
+    const {item: {id}, image, title, isLarge} = result;
     const dispatch = useDispatch();
     const selector = useSelector(selectFavouritesList);
     let isFavourite = selector.includes(result) ? true : false;
