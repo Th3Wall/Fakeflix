@@ -1,5 +1,5 @@
 import "./myList.scss"
-import RowPoster from "../../components/RowPoster/RowPoster"
+import FavouritePoster from "../../components/FavouritePoster/FavouritePoster"
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
 
@@ -9,17 +9,21 @@ const MyList = () => {
     
     return (
         <div className="MyList">
-            {favs && favs.length > 0
-                ? favs.map(props => (
-                    <RowPoster
-                        key={props.id}
-                        {...props}
-                    />
-                ))
-                : (
-                    <h2>{`Sorry, you don't have a favourite movie or tv-show yet.`}</h2>
-                )
-            }
+            {favs && favs.length > 0 && <h2>My List</h2>}
+            <div className="MyList__wrp">
+                {favs && favs.length > 0
+                    ? favs.map(result => (
+                        <FavouritePoster
+                            key={result.id}
+                            item={result}
+                            {...result}
+                        />
+                    ))
+                    : (
+                        <h2>{`Sorry, you don't have a favourite movie or tv-show yet.`}</h2>
+                    )
+                }
+            </div>
         </div>
     )
 }

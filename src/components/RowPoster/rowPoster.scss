@@ -1,4 +1,5 @@
 .Row__poster {
+    position: relative;
     margin-right: 0.5rem;
 
     &:last-of-type{
@@ -28,5 +29,17 @@
             width: 300px;
             min-height: 450px;
         }
+    }
+
+    .Button {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        display: inline-flex;
+        padding: 6px;
+        border-radius: 50%;
+        border: 0;
+        font-size: 14px;
+        cursor: pointer;
     }
 }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import { useSelector } from 'react-redux';
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors";
+import { FaPlus, FaMinus } from "react-icons/fa"
 
 const RowPoster = result => {
     const {item: {id}, image, title, isLarge} = result;
@@ -20,8 +21,13 @@ const RowPoster = result => {
 
     return (
         <div key={id} className={`Row__poster ${isLarge ? "Row__poster--big" : ""}`}>
-            <button onClick={!isFavourite ? handleAdd : handleRemove}>{`${isFavourite ? 'Remove from' : 'Add to'} Favourites`}</button>
-            <img src={`${BASE_IMG_URL}/${image}`} alt={title} loading="lazy" />
+            <button className='Button'>
+                {!isFavourite
+                    ? <FaPlus onClick={handleAdd} />
+                    : <FaMinus onClick={handleRemove} />
+                }
+            </button>
+            <img src={`${BASE_IMG_URL}/${image}`} alt={title} />
         </div>
     )
 }
