@@ -21,7 +21,10 @@ export const fetchActionMoviesAsync = fetchUrl => {
         dispatch(fetchActionMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const actionMovies = res.data;
+                const actionMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: true
+                }));
                 dispatch(fetchActionMoviesSuccess(actionMovies))
             })
             .catch(error => {
@@ -52,7 +55,10 @@ export const fetchAdventureMoviesAsync = fetchUrl => {
         dispatch(fetchAdventureMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const adventureMovies = res.data;
+                const adventureMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchAdventureMoviesSuccess(adventureMovies))
             })
             .catch(error => {
@@ -83,7 +89,10 @@ export const fetchAnimationMoviesAsync = fetchUrl => {
         dispatch(fetchAnimationMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const animationMovies = res.data;
+                const animationMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchAnimationMoviesSuccess(animationMovies))
             })
             .catch(error => {
@@ -114,7 +123,10 @@ export const fetchComedyMoviesAsync = fetchUrl => {
         dispatch(fetchComedyMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const comedyMovies = res.data;
+                const comedyMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchComedyMoviesSuccess(comedyMovies))
             })
             .catch(error => {
@@ -145,7 +157,10 @@ export const fetchHorrorMoviesAsync = fetchUrl => {
         dispatch(fetchHorrorMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const horrorMovies = res.data;
+                const horrorMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchHorrorMoviesSuccess(horrorMovies))
             })
             .catch(error => {
@@ -176,7 +191,10 @@ export const fetchNetflixMoviesAsync = fetchUrl => {
         dispatch(fetchNetflixMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const netflixMovies = res.data;
+                const netflixMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchNetflixMoviesSuccess(netflixMovies))
             })
             .catch(error => {
@@ -207,7 +225,10 @@ export const fetchRomanceMoviesAsync = fetchUrl => {
         dispatch(fetchRomanceMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const romanceMovies = res.data;
+                const romanceMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchRomanceMoviesSuccess(romanceMovies))
             })
             .catch(error => {
@@ -238,7 +259,10 @@ export const fetchTopRatedMoviesAsync = fetchUrl => {
         dispatch(fetchTopRatedMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const topRatedMovies = res.data;
+                const topRatedMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchTopRatedMoviesSuccess(topRatedMovies))
             })
             .catch(error => {
@@ -269,7 +293,10 @@ export const fetchTrendingMoviesAsync = fetchUrl => {
         dispatch(fetchTrendingMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const trendingMovies = res.data;
+                const trendingMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchTrendingMoviesSuccess(trendingMovies))
             })
             .catch(error => {
@@ -300,7 +327,10 @@ export const fetchUpcomingMoviesAsync = fetchUrl => {
         dispatch(fetchUpcomingMoviesRequest())
         axios.get(fetchUrl)
             .then(res => {
-                const upcomingMovies = res.data;
+                const upcomingMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchUpcomingMoviesSuccess(upcomingMovies))
             })
             .catch(error => {

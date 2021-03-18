@@ -13,50 +13,50 @@ export const selectUpcomingMovies = state => state.movies.upcomingMovies;
 
 export const selectActionMoviesSelector = createSelector(
     [selectActionMovies],
-    actionMovies => actionMovies.movies
+    actionMovies => actionMovies.data
 )
 
 export const selectAdventureMoviesSelector = createSelector(
     [selectAdventureMovies],
-    adventureMovies => adventureMovies.movies
+    adventureMovies => adventureMovies.data
 )
 
 export const selectAnimationMoviesSelector = createSelector(
     [selectAnimationMovies],
-    animationMovies => animationMovies.movies
+    animationMovies => animationMovies.data
 )
 
 export const selectComedyMoviesSelector = createSelector(
     [selectComedyMovies],
-    comedyMovies => comedyMovies.movies
+    comedyMovies => comedyMovies.data
 )
 
 export const selectHorrorMoviesSelector = createSelector(
     [selectHorrorMovies],
-    horrorMovies => horrorMovies.movies
+    horrorMovies => horrorMovies.data
 )
 
 export const selectNetflixMoviesSelector = createSelector(
     [selectNetflixMovies],
-    netflixMovies => netflixMovies.movies
+    netflixMovies => netflixMovies.data
 )
 
 export const selectRomanceMoviesSelector = createSelector(
     [selectRomanceMovies],
-    romanceMovies => romanceMovies.movies
+    romanceMovies => romanceMovies.data
 )
 
 export const selectTopRatedMoviesSelector = createSelector(
     [selectTopRatedMovies],
-    topRatedMovies => topRatedMovies.movies
+    topRatedMovies => topRatedMovies.data
 )
 
 export const selectTrendingMoviesSelector = createSelector(
     [selectTrendingMovies],
-    trendingMovies => trendingMovies.movies
+    trendingMovies => trendingMovies.data
 )
 
 export const selectUpcomingMoviesSelector = createSelector(
     [selectUpcomingMovies],
-    upcomingMovies => upcomingMovies.movies
+    upcomingMovies => upcomingMovies.data
 )

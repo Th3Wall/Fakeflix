@@ -21,7 +21,10 @@ export const fetchNetflixSeriesAsync = fetchUrl => {
         dispatch(fetchNetflixSeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const netflixSeries = res.data;
+                const netflixSeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchNetflixSeriesSuccess(netflixSeries));
             })
             .catch(error => {
@@ -52,7 +55,10 @@ export const fetchActionAdventureSeriesAsync = fetchUrl => {
         dispatch(fetchActionAdventureSeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const actionAdventureSeries = res.data;
+                const actionAdventureSeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchActionAdventureSeriesSuccess(actionAdventureSeries));
             })
             .catch(error => {
@@ -83,7 +89,10 @@ export const fetchAnimationSeriesAsync = fetchUrl => {
         dispatch(fetchAnimationSeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const animationSeries = res.data;
+                const animationSeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchAnimationSeriesSuccess(animationSeries));
             })
             .catch(error => {
@@ -114,7 +123,10 @@ export const fetchComedySeriesAsync = fetchUrl => {
         dispatch(fetchComedySeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const comedySeries = res.data;
+                const comedySeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchComedySeriesSuccess(comedySeries));
             })
             .catch(error => {
@@ -145,7 +157,10 @@ export const fetchCrimeSeriesAsync = fetchUrl => {
         dispatch(fetchCrimeSeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const crimeSeries = res.data;
+                const crimeSeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchCrimeSeriesSuccess(crimeSeries));
             })
             .catch(error => {
@@ -176,7 +191,10 @@ export const fetchDocumentarySeriesAsync = fetchUrl => {
         dispatch(fetchDocumentarySeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const documentarySeries = res.data;
+                const documentarySeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchDocumentarySeriesSuccess(documentarySeries));
             })
             .catch(error => {
@@ -207,7 +225,10 @@ export const fetchFamilySeriesAsync = fetchUrl => {
         dispatch(fetchFamilySeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const familySeries = res.data;
+                const familySeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchFamilySeriesSuccess(familySeries));
             })
             .catch(error => {
@@ -238,7 +259,10 @@ export const fetchKidsSeriesAsync = fetchUrl => {
         dispatch(fetchKidsSeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const kidsSeries = res.data;
+                const kidsSeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchKidsSeriesSuccess(kidsSeries));
             })
             .catch(error => {
@@ -269,7 +293,10 @@ export const fetchSciFiFantasySeriesAsync = fetchUrl => {
         dispatch(fetchSciFiFantasySeriesRequest());
         axios.get(fetchUrl)
             .then(res => {
-                const sciFiFantasySeries = res.data;
+                const sciFiFantasySeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
                 dispatch(fetchSciFiFantasySeriesSuccess(sciFiFantasySeries));
             })
             .catch(error => {

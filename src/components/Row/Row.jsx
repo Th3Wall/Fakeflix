@@ -2,10 +2,10 @@ import "./row.scss"
 import RowPoster from "../RowPoster/RowPoster"
 import { useSelector } from "react-redux";
 
-const Row = ({ title, selector, isLarge }) => {
+const Row = ({ selector, title, isLarge }) => {
     
-    const rowData = useSelector(selector)
-    const {loading, error, data: {results}} = rowData;
+    const rowData = useSelector(selector);
+    const {loading, error, data: results} = rowData;
 
     return (
         <div className="Row">
@@ -20,6 +20,7 @@ const Row = ({ title, selector, isLarge }) => {
                         title={title}
                         isLarge={isLarge}
                         key={result.id}
+                        isFavourite={result.isFavourite}
                         image={isLarge ? result.poster_path : result.backdrop_path}
                     />
                 ))}

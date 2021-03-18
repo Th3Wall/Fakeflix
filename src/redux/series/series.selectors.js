@@ -12,45 +12,45 @@ export const selectSciFiFantasySeries = state => state.series.sciFiFantasySeries
 
 export const selectNetflixSeriesSelector = createSelector(
     [selectNetflixSeries],
-    netflixSeries => netflixSeries.series
+    netflixSeries => netflixSeries.data
 )
 
 export const selectActionAdventureSeriesSelector = createSelector(
     [selectActionAdventureSeries],
-    actionAdventureSeries => actionAdventureSeries.series
+    actionAdventureSeries => actionAdventureSeries.data
 )
 
 export const selectAnimationSeriesSelector = createSelector(
     [selectAnimationSeries],
-    animationSeries => animationSeries.series
+    animationSeries => animationSeries.data
 )
 
 export const selectComedySeriesSelector = createSelector(
     [selectComedySeries],
-    comedySeries => comedySeries.series
+    comedySeries => comedySeries.data
 )
 
 export const selectCrimeSeriesSelector = createSelector(
     [selectCrimeSeries],
-    crimeSeries => crimeSeries.series
+    crimeSeries => crimeSeries.data
 )
 
 export const selectDocumentarySeriesSelector = createSelector(
     [selectDocumentarySeries],
-    documentarySeries => documentarySeries.series
+    documentarySeries => documentarySeries.data
 )
 
 export const selectFamilySeriesSelector = createSelector(
     [selectFamilySeries],
-    familySeries => familySeries.series
+    familySeries => familySeries.data
 )
 
 export const selectKidsSeriesSelector = createSelector(
     [selectKidsSeries],
-    kidsSeries => kidsSeries.series
+    kidsSeries => kidsSeries.data
 )
 
 export const selectSciFiFantasySeriesSelector = createSelector(
     [selectSciFiFantasySeries],
-    sciFiFantasySeries => sciFiFantasySeries.series
+    sciFiFantasySeries => sciFiFantasySeries.data
 )
