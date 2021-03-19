@@ -10,7 +10,6 @@
 
     &--wrp {
         display: flex;
-        overflow-x: auto;
 
         &::-webkit-scrollbar {
             display: none;
@@ -19,15 +18,15 @@
 
     img {
         height: 100%;
-        width: 250px;
+        width: 100%;
         min-height: 100px;
         border-radius: 5px;
     }
 
     &--big {
         img {
-            width: 300px;
-            min-height: 450px;
+            width: 100%;
+            min-height: auto;
         }
     }
 

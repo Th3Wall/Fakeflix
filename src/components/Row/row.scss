@@ -1,10 +1,16 @@
 .Row {
-    display: flex;
-    flex-direction: column;
-    padding: 3vh 0 3vh 4vw;
+    display: block;
+    padding: 3vh 4% 3vh 4%;
+    overflow: hidden;
 
     &__title {
         text-align: left;
         margin-bottom: 1rem;
+    }
+
+    .swiper-container {
+        overflow: initial;
+        width: 100%;
+        height: auto;
     }
 }
