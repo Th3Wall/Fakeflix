@@ -23,7 +23,7 @@ export const fetchActionMoviesAsync = fetchUrl => {
             .then(res => {
                 const actionMovies = res.data.results.map(el => ({
                     ...el,
-                    isFavourite: true
+                    isFavourite: false
                 }));
                 dispatch(fetchActionMoviesSuccess(actionMovies))
             })

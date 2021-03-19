@@ -11,5 +11,9 @@
         margin: 0 auto;
         margin-top: 2vw;
         width: 100%;
+
+        @media screen and (max-width: 399px) {
+            margin-top: 6.5vw;
+        }
     }
 }
