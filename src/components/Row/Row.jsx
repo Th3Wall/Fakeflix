@@ -1,9 +1,15 @@
 import "./row.scss";
 import RowPoster from "../RowPoster/RowPoster";
 import { useSelector } from "react-redux";
+import useViewport from "../../hooks/useViewport";
+// Swiper
+import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import useViewport from "../../hooks/useViewport";
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+
+SwiperCore.use([Navigation, Pagination]);
 
 const Row = ({ selector, title, isLarge }) => {
 	const { width } = useViewport();
@@ -25,6 +31,7 @@ const Row = ({ selector, title, isLarge }) => {
                     {...customSwiperParams}
 					grabCursor={false}
 					draggable={false}
+					navigation
 					loop={false}
 					loopAdditionalSlides={width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2}
 					breakpoints={{
@@ -54,6 +61,7 @@ const Row = ({ selector, title, isLarge }) => {
 					slideToClickedSlide={false}
 					pagination={{ clickable: true }}
 				>
+					<div className="test"></div>
 					{!loading &&
 						results &&
 						results.map(result => (
@@ -67,7 +75,8 @@ const Row = ({ selector, title, isLarge }) => {
 									image={isLarge ? result.poster_path : result.backdrop_path}
 								/>
 							</SwiperSlide>
-						))}
+						))
+					}
 				</Swiper>
 			</div>
 		</div>

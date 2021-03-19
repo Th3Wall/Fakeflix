@@ -1,16 +1,41 @@
 .Row {
     display: block;
-    padding: 3vh 4% 3vh 4%;
+    padding: 3vh 0;
     overflow: hidden;
 
     &__title {
         text-align: left;
         margin-bottom: 1rem;
+        padding: 0 4%;
     }
 
     .swiper-container {
         overflow: initial;
         width: 100%;
         height: auto;
+        padding: 0 4%;
+    }
+    .swiper-pagination {
+        top: -35px;
+        right: 4.5%;
+        left: initial !important;
+        bottom: initial !important;
+        width: auto !important;
+        transform: none;
+
+        &-bullet {
+            width: 12px;
+            height: 3px;
+            display: inline-block;
+            margin: 0 2px !important;
+            border-radius: 0;
+            opacity: 0.2;
+            background: #ccc;
+
+            &-active {
+                opacity: 1;
+                height: 4px;
+            }
+        }
     }
 }
