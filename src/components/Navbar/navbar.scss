@@ -95,13 +95,7 @@
         align-items: center;
         cursor: pointer;
 
-        &:hover {
-            .Navbar__navprofile--content {
-                opacity: 1;
-                top: 40px;
-                display: block;
-                pointer-events: all;
-            }
+        &.active {
             .Navbar__navprofile--caret {
                 transform: rotate(180deg);
             }
@@ -118,18 +112,24 @@
         }
 
         &--content {
-            pointer-events: none;
-            opacity: 0;
+            display: block;
             position: absolute;
+            opacity: 0;
             top: 100px;
             right: 0;
             padding: 10px 0;
             min-width: 180px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.5);
             background-color: rgba(0,0,0,0.9);
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             transition: all 0.2s ease-out;
+
+            &.active {
+                opacity: 1;
+                top: 55px;
+                pointer-events: all;
+            }
             
             li {
                 color: $white;

@@ -12,6 +12,7 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 const Navbar = () => {
 	const { width } = useViewport();
 	const [fixedNav, setFixedNav] = useState(false);
+	const [profileNav, setProfileNav] = useState(false)
 	const [searchInput, setSearchInput] = useState(false);
 	const currentUser = useSelector(selectCurrentUser);
 
@@ -72,22 +73,26 @@ const Navbar = () => {
 					</div>
 				</div>
 				<div className="Navbar__navitem">
-					<div className="Navbar__navprofile">
+					<div
+						className={`Navbar__navprofile ${profileNav && 'active'}`}
+						onClick={() => setProfileNav(!profileNav)}
+					>
 						<img
 							className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
 							src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
 							alt="Profile Picture"
 						/>
 						<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />
-
-						<div className="Navbar__navprofile--content">
-                            <ul className='Navbar__navprofile--content-wrp'>
-                                {currentUser && (
-                                    <li className="Navbar__navlinks--link" onClick={() => auth.signOut()}>
-                                        Sign Out
-                                    </li>
-                                )}
-                            </ul>
+						<div className={`Navbar__navprofile--content ${profileNav && 'active'}`}>
+							{profileNav && (
+								<ul className='Navbar__navprofile--content-wrp'>
+									{currentUser && (
+										<li className="Navbar__navlinks--link" onClick={() => auth.signOut()}>
+											Sign Out
+										</li>
+									)}
+								</ul>
+							)}
 						</div>
 					</div>
 				</div>
