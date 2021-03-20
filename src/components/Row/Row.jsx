@@ -1,14 +1,16 @@
 import "./row.scss";
 import RowPoster from "../RowPoster/RowPoster";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 import useViewport from "../../hooks/useViewport";
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+
 // Swiper
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
-
 SwiperCore.use([Navigation, Pagination]);
 
 const Row = ({ selector, title, isLarge }) => {
@@ -17,8 +19,10 @@ const Row = ({ selector, title, isLarge }) => {
 	const { loading, error, data: results } = rowData;
     const customSwiperParams = {
         observer: true,
-        observeParents: true
-    }
+        observeParents: true,
+    };
+	const navigationPrevRef = useRef(null);
+	const navigationNextRef = useRef(null);
 
 	return (
 		<div className="Row">
@@ -27,41 +31,38 @@ const Row = ({ selector, title, isLarge }) => {
 			{loading && <div>Loading...</div>}
 			{error && <div>Error occurred.</div>}
 			<div className="Row__poster--wrp">
+				<div className="Row__slider--mask left" ref={navigationPrevRef}>
+					<MdChevronLeft className="Row__slider--mask-icon left" size="3em" style={{ color:'white' }} />
+				</div>
+				<div className="Row__slider--mask right" ref={navigationNextRef}>
+					<MdChevronRight className="Row__slider--mask-icon right" size="3em" style={{ color:'white' }} />
+				</div>
 				<Swiper
                     {...customSwiperParams}
+					navigation={{
+						prevEl: navigationPrevRef.current,
+						nextEl: navigationNextRef.current,
+					}}
+					onBeforeInit={(swiper) => {
+						swiper.params.navigation.prevEl = navigationPrevRef.current;
+						swiper.params.navigation.nextEl = navigationNextRef.current;
+					}}
+					breakpoints={{
+						1378: { slidesPerView: 6, slidesPerGroup: 6 },
+						998: { slidesPerView: 4, slidesPerGroup: 4 },
+						625: { slidesPerView: 3, slidesPerGroup: 3 },
+                        330: { slidesPerView: 2, slidesPerGroup: 2 },
+						0: { slidesPerView: 1.5, slidesPerGroup: 1.5 },
+					}}
+					loopAdditionalSlides={width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2}
+					pagination
+					loop={false}
 					grabCursor={false}
 					draggable={false}
-					navigation
-					loop={false}
-					loopAdditionalSlides={width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2}
-					breakpoints={{
-						1378: {
-							slidesPerView: 6,
-							slidesPerGroup: 6,
-						},
-						998: {
-							slidesPerView: 4,
-							slidesPerGroup: 4,
-						},
-						625: {
-							slidesPerView: 3,
-							slidesPerGroup: 3,
-						},
-                        330: {
-                            slidesPerView: 2,
-                            slidesPerGroup: 2,
-                        },
-						0: {
-							slidesPerView: 1.5,
-							slidesPerGroup: 1.5,
-						},
-					}}
 					preventClicksPropagation={true}
 					preventClicks={true}
 					slideToClickedSlide={false}
-					pagination={{ clickable: true }}
 				>
-					<div className="test"></div>
 					{!loading &&
 						results &&
 						results.map(result => (

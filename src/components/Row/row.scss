@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .Row {
     display: block;
     padding: 3vh 0;
@@ -14,27 +16,97 @@
         width: 100%;
         height: auto;
         padding: 0 4%;
+
+        &:hover {
+            .swiper-pagination {
+                opacity: 1;
+            }
+        }
     }
+
     .swiper-pagination {
         top: -35px;
         right: 4.5%;
         left: initial !important;
         bottom: initial !important;
         width: auto !important;
+        opacity: 0;
         transform: none;
+        transition: opacity 0.2s ease-out;
 
         &-bullet {
             width: 12px;
-            height: 3px;
+            height: 4px;
             display: inline-block;
-            margin: 0 2px !important;
+            margin: 0 !important;
+            margin-left: 2px !important;
             border-radius: 0;
-            opacity: 0.2;
-            background: #ccc;
+            opacity: 1;
+            background-color: #4d4d4d;
 
             &-active {
-                opacity: 1;
-                height: 4px;
+                background-color: #aaa;
+                height: 5px;
+            }
+        }
+    }
+
+    &__slider {
+        &--mask {
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            width: 4%;
+            height: 100%;
+            background: rgba($grey, 0.5);
+            z-index: 10;
+
+            &.left {
+                left: 0;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+
+                &:hover {
+                    .Row__slider--mask-icon {
+                        opacity: 1;
+                        transform: scale(1.3);
+                    }
+                }
+            }
+            &.right {
+                right: 0;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+
+                &:hover {
+                    .Row__slider--mask-icon {
+                        opacity: 1;
+                        transform: scale(1.3);
+                    }
+                }
+            }
+
+            &-icon {
+                opacity: 0;
+                transform: scale(0.9);
+                transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            }
+
+            &.swiper-button-disabled {
+                opacity: 0.2;
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                ~ .swiper-container {
+                    .swiper-pagination {
+                        opacity: 1;
+                    }
+                }
             }
         }
     }

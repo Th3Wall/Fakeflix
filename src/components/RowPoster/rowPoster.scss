@@ -10,6 +10,7 @@
 
     &--wrp {
         display: flex;
+        position: relative;
 
         &::-webkit-scrollbar {
             display: none;
