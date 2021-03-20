@@ -15,7 +15,7 @@ import {
 } from "../redux/movies/movies.actions"
 
 const {
-    fetchTrending,
+    fetchTrendingMovies,
     fetchNetflixOriginals,
     fetchTopRated,
     fetchActionMovies,
@@ -39,7 +39,7 @@ export const useRetrieveAllMovies = () => {
         dispatch(fetchHorrorMoviesAsync(fetchHorrorMovies))
         dispatch(fetchRomanceMoviesAsync(fetchRomanceMovies))
         dispatch(fetchTopRatedMoviesAsync(fetchTopRated))
-        dispatch(fetchTrendingMoviesAsync(fetchTrending))
+        dispatch(fetchTrendingMoviesAsync(fetchTrendingMovies))
         dispatch(fetchUpcomingMoviesAsync(fetchUpcomingMovies))
     }, [dispatch])
 }

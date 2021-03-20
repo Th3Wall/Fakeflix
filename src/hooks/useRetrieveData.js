@@ -24,11 +24,12 @@ import {
     fetchFamilySeriesAsync,
     fetchKidsSeriesAsync,
     fetchNetflixSeriesAsync,
-    fetchSciFiFantasySeriesAsync
+    fetchSciFiFantasySeriesAsync,
+    fetchTrendingSeriesAsync
 } from "../redux/series/series.actions"
 
 const {
-    fetchTrending,
+    fetchTrendingMovies,
     fetchNetflixOriginals,
     fetchTopRated,
     fetchActionMovies,
@@ -45,7 +46,8 @@ const {
     fetchDocumentarySeries,
     fetchFamilySeries,
     fetchKidsSeries,
-    fetchSciFiFantasySeries
+    fetchSciFiFantasySeries,
+    fetchTrendingSeries
 } = requests
 
 const fetchData = {
@@ -61,7 +63,7 @@ const fetchData = {
         {
             id: 1,
             thunk: fetchTrendingMoviesAsync,
-            url: fetchTrending,
+            url: fetchTrendingMovies,
             title: "Trending Now",
             genre: "Trending",
             selector: movieSelectors.selectTrendingMovies
@@ -133,6 +135,14 @@ const fetchData = {
         }
     ],
     series: [
+        {
+            id: 0,
+            thunk: fetchTrendingSeriesAsync,
+            url: fetchTrendingSeries,
+            title: "Trending Now",
+            genre: "Trending",
+            selector: seriesSelectors.selectTrendingSeries
+        },
         {
             id: 1,
             thunk: fetchNetflixSeriesAsync,

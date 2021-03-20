@@ -9,6 +9,7 @@ export const selectDocumentarySeries = state => state.series.documentarySeries;
 export const selectFamilySeries = state => state.series.familySeries;
 export const selectKidsSeries = state => state.series.kidsSeries;
 export const selectSciFiFantasySeries = state => state.series.sciFiFantasySeries;
+export const selectTrendingSeries = state => state.series.trendingSeries;
 
 export const selectNetflixSeriesSelector = createSelector(
     [selectNetflixSeries],
@@ -53,4 +54,9 @@ export const selectKidsSeriesSelector = createSelector(
 export const selectSciFiFantasySeriesSelector = createSelector(
     [selectSciFiFantasySeries],
     sciFiFantasySeries => sciFiFantasySeries.data
+)
+
+export const selectTrendingSeriesSelector = createSelector(
+    [selectTrendingSeries],
+    trendingSeries => trendingSeries.data
 )

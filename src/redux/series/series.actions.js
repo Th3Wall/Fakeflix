@@ -305,3 +305,37 @@ export const fetchSciFiFantasySeriesAsync = fetchUrl => {
             })
     }
 }
+
+
+// Trending
+export const fetchTrendingSeriesRequest = () => ({
+    type: seriesActionTypes.FETCH_TRENDING_SERIES_REQUEST
+})
+
+export const fetchTrendingSeriesSuccess = trendingSeries => ({
+    type: seriesActionTypes.FETCH_TRENDING_SERIES_SUCCESS,
+    payload: trendingSeries
+})
+
+export const fetchTrendingSeriesFailure = errorMessage => ({
+    type: seriesActionTypes.FETCH_TRENDING_SERIES_FAILURE,
+    payload: errorMessage
+})
+
+export const fetchTrendingSeriesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchTrendingSeriesRequest());
+        axios.get(fetchUrl)
+            .then(res => {
+                const trendingSeries = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
+                dispatch(fetchTrendingSeriesSuccess(trendingSeries));
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchTrendingSeriesFailure(errorMessage));
+            })
+    }
+}

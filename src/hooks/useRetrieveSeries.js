@@ -10,7 +10,8 @@ import {
     fetchFamilySeriesAsync,
     fetchKidsSeriesAsync,
     fetchNetflixSeriesAsync,
-    fetchSciFiFantasySeriesAsync
+    fetchSciFiFantasySeriesAsync,
+    fetchTrendingSeriesAsync
 } from "../redux/series/series.actions"
 
 const {
@@ -22,7 +23,8 @@ const {
     fetchFamilySeries,
     fetchKidsSeries,
     fetchNetflixOriginals,
-    fetchSciFiFantasySeries
+    fetchSciFiFantasySeries,
+    fetchTrendingSeries
 } = requests
 
 export const useRetrieveAllSeries = () => {
@@ -38,5 +40,6 @@ export const useRetrieveAllSeries = () => {
         dispatch(fetchKidsSeriesAsync(fetchKidsSeries))
         dispatch(fetchNetflixSeriesAsync(fetchNetflixOriginals))
         dispatch(fetchSciFiFantasySeriesAsync(fetchSciFiFantasySeries))
+        dispatch(fetchTrendingSeriesAsync(fetchTrendingSeries))
     }, [dispatch])
 }
