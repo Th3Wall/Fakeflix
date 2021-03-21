@@ -72,7 +72,6 @@ const Row = ({ selector, title, isLarge }) => {
 										item={result}
 										title={title}
 										isLarge={isLarge}
-										key={result.id}
 										isFavourite={result.isFavourite}
 										image={isLarge ? result.poster_path : result.backdrop_path}
 									/>
