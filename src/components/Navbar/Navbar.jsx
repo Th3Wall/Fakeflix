@@ -45,7 +45,9 @@ const Navbar = () => {
 					<li className="Navbar__navlinks--link">
 						<Link to="/movies">Movies</Link>
 					</li>
-					<li className="Navbar__navlinks--link">Popular</li>
+					<li className="Navbar__navlinks--link">
+						<Link to="/popular">New & Popular</Link>
+					</li>
 					<li className="Navbar__navlinks--link">
 						<Link to="/mylist">My list</Link>
 					</li>

@@ -1,6 +1,6 @@
 import "./banner.scss";
 import requests, { BASE_IMG_URL } from "../../requests";
-import axios from "../../utils";
+import axios from "../../axiosInstance";
 import { useState, useEffect } from "react";
 import { FaPlay, FaStar } from "react-icons/fa";
 import { randomize, truncate } from "./utils";

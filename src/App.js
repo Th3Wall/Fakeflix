@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Homepage from "./pages/Homepage/Homepage"
 import Movies from "./pages/Movies/Movies"
 import TVSeries from './pages/TVSeries/TVSeries';
+import Popular from "./pages/Popular/Popular";
 import MyList from './pages/MyList/MyList';
 import SignIn from "./pages/SignIn/SignIn"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
@@ -12,7 +13,7 @@ import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 const App = () => {
-
+    
     const currentUser = useSelector(selectCurrentUser);
     const dispatch = useDispatch();
     let unsubscribeFromAuth = null;
@@ -50,6 +51,10 @@ const App = () => {
                 <Route
                     path="/movies"
                     render={() => currentUser ? <Movies /> : <Redirect to="/login" />}
+                />
+                <Route
+                    path="/popular"
+                    render={() => currentUser ? <Popular /> : <Redirect to="/login" />}
                 />
                 <Route
                     path="/mylist"

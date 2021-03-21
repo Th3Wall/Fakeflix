@@ -1,4 +1,4 @@
-import axios from '../../utils';
+import axios from '../../axiosInstance';
 import { moviesActionTypes } from './movies.types';
 
 // Action
@@ -336,6 +336,40 @@ export const fetchUpcomingMoviesAsync = fetchUrl => {
             .catch(error => {
                 const errorMessage = error.message;
                 dispatch(fetchUpcomingTrendingMoviesFailure(errorMessage))
+            })
+    }
+}
+
+
+// Latest
+export const fetchLatestMoviesRequest = () => ({
+    type: moviesActionTypes.FETCH_LATEST_MOVIES_REQUEST
+})
+
+export const fetchLatestMoviesSuccess = latestMovies => ({
+    type: moviesActionTypes.FETCH_LATEST_MOVIES_SUCCESS,
+    payload: latestMovies
+})
+
+export const fetchLatestTrendingMoviesFailure = error => ({
+    type: moviesActionTypes.FETCH_LATEST_MOVIES_FAILURE,
+    payload: error
+})
+
+export const fetchLatestMoviesAsync = fetchUrl => {
+    return dispatch => {
+        dispatch(fetchLatestMoviesRequest())
+        axios.get(fetchUrl)
+            .then(res => {
+                const latestMovies = res.data.results.map(el => ({
+                    ...el,
+                    isFavourite: false
+                }));
+                dispatch(fetchLatestMoviesSuccess(latestMovies))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(fetchLatestTrendingMoviesFailure(errorMessage))
             })
     }
 }

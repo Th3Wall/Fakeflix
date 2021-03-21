@@ -13,7 +13,8 @@ import {
     fetchHorrorMoviesAsync,
     fetchRomanceMoviesAsync,
     fetchAnimationMoviesAsync,
-    fetchUpcomingMoviesAsync
+    fetchUpcomingMoviesAsync,
+    fetchLatestMoviesAsync
 } from "../redux/movies/movies.actions"
 import {
     fetchActionAdventureSeriesAsync,
@@ -29,6 +30,7 @@ import {
 } from "../redux/series/series.actions"
 
 const {
+    fetchReleasedMoviesByOneMonth,
     fetchTrendingMovies,
     fetchNetflixOriginals,
     fetchTopRated,
@@ -216,6 +218,32 @@ const fetchData = {
             genre: "SciFiFantasy",
             selector: seriesSelectors.selectSciFiFantasySeries
         }
+    ],
+    popular: [
+        {
+            id: 0,
+            thunk: fetchTopRatedMoviesAsync,
+            url: fetchTopRated,
+            title: "Top Rated in your country",
+            genre: "TopRated",
+            selector: movieSelectors.selectTopRatedMovies
+        },
+        {
+            id: 1,
+            thunk: fetchLatestMoviesAsync,
+            url: fetchReleasedMoviesByOneMonth,
+            title: "New on Fakeflix",
+            genre: "NewIn",
+            selector: movieSelectors.selectLatestMovies
+        },
+        {
+            id: 2,
+            thunk: fetchUpcomingMoviesAsync,
+            url: fetchUpcomingMovies,
+            title: "Upcoming",
+            genre: "Upcoming",
+            selector: movieSelectors.selectUpcomingMovies
+        }
     ]
 }
 
@@ -244,6 +272,21 @@ export const useRetrieveData = type => {
             case "series":
                 {
                     const rowsData = fetchData.series.map(el => {
+                        dispatch(el.thunk(el.url))
+                        return {
+                            id: el.id,
+                            title: el.title,
+                            genre: el.genre,
+                            selector: el.selector,
+                            isLarge: el.isLarge
+                        }
+                    })
+                    setData(rowsData)
+                }
+                break
+            case "popular":
+                {
+                    const rowsData = fetchData.popular.map(el => {
                         dispatch(el.thunk(el.url))
                         return {
                             id: el.id,

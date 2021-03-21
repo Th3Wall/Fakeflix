@@ -10,6 +10,7 @@ export const selectRomanceMovies = state => state.movies.romanceMovies;
 export const selectTopRatedMovies = state => state.movies.topRatedMovies;
 export const selectTrendingMovies = state => state.movies.trendingMovies;
 export const selectUpcomingMovies = state => state.movies.upcomingMovies;
+export const selectLatestMovies = state => state.movies.latestMovies;
 
 export const selectActionMoviesSelector = createSelector(
     [selectActionMovies],
@@ -59,4 +60,9 @@ export const selectTrendingMoviesSelector = createSelector(
 export const selectUpcomingMoviesSelector = createSelector(
     [selectUpcomingMovies],
     upcomingMovies => upcomingMovies.data
+)
+
+export const selectLatestMoviesSelector = createSelector(
+    [selectLatestMovies],
+    latestMovies => latestMovies.data
 )

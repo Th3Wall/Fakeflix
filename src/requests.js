@@ -1,18 +1,22 @@
+import { getOneMonthAgoReleaseDate } from "./utils";
+
 const API_KEY = "e8d53ad78d99a4722c3f0f0f6a5c9014";
 const GITHUB_ASSETS_BASE_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix";
 export const LANG = "en-US";
+export const REGION = "US";
 export const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
-
 export const LOGO_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_logo.png`;
 export const PROFILE_PIC_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_profilepic.png`;
 export const SIGNIN_BGIMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_signin_bg.jpg`;
+const ONEMONTHAGO = getOneMonthAgoReleaseDate();
 
 const requests = {
 	fetchTrendingAll: `/trending/all/week?api_key=${API_KEY}&sort_by=popularity.desc&language=${LANG}`,
+	fetchReleasedMoviesByOneMonth: `/discover/movie?api_key=${API_KEY}&primary_release_date.gte=${ONEMONTHAGO}&sort_by=popularity.desc&language=${LANG}`,
     // Movies
 	fetchTrendingMovies: `/trending/movies/week?api_key=${API_KEY}&sort_by=popularity.desc&language=${LANG}`,
 	fetchUpcomingMovies: `/movie/upcoming?api_key=${API_KEY}&sort_by=popularity.desc&language=${LANG}`,
-	fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&sort_by=popularity.desc&language=${LANG}`,
+	fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&sort_by=popularity.desc&region=${REGION}`,
 	fetchActionMovies: `/discover/movie?api_key=${API_KEY}&with_genres=28&sort_by=popularity.desc&language=${LANG}`,
 	fetchAdventureMovies: `/discover/movie?api_key=${API_KEY}&with_genres=12&sort_by=popularity.desc&language=${LANG}`,
 	fetchComedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35&sort_by=popularity.desc&language=${LANG}`,

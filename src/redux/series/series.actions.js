@@ -1,4 +1,4 @@
-import axios from '../../utils';
+import axios from '../../axiosInstance';
 import { seriesActionTypes } from './series.types';
 
 // Netflix
