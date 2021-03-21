@@ -35,31 +35,33 @@ const Banner = ({ type }) => {
 
 	return (
 		<>
-			{banner && (
-				<header
-					className="Banner"
-					style={{
-						backgroundImage: `url(${BASE_IMG_URL}/${banner.backdrop_path})`,
-					}}
-				>
-					<div className="Banner__content">
-						<h1 className="Banner__content--title">{banner.title || banner.name || banner.original_name}</h1>
-						<div className="Banner__buttons">
-							<button className="Banner__button">
-								<FaPlay />
-								<span>Play</span>
-							</button>
-							<button className="Banner__button">
-								<FaStar />
-								<span>Add to Favourites</span>
-							</button>
+			<header
+				className="Banner"
+				style={{
+					backgroundImage: `url(${BASE_IMG_URL}/${banner?.backdrop_path})`,
+				}}
+			>
+				{banner && (
+					<>
+						<div className="Banner__content">
+							<h1 className="Banner__content--title">{banner.title || banner.name || banner.original_name}</h1>
+							<div className="Banner__buttons">
+								<button className="Banner__button">
+									<FaPlay />
+									<span>Play</span>
+								</button>
+								<button className="Banner__button">
+									<FaStar />
+									<span>Add to Favourites</span>
+								</button>
+							</div>
+							<p className="Banner__content--description">{truncate(banner.overview, 280)}</p>
 						</div>
-						<p className="Banner__content--description">{truncate(banner.overview, 280)}</p>
-					</div>
-					<div className="Banner__panel" />
-					<div className="Banner__bottom-shadow" />
-				</header>
-			)}
+						<div className="Banner__panel" />
+						<div className="Banner__bottom-shadow" />
+					</>
+				)}
+			</header>
 		</>
 	);
 };

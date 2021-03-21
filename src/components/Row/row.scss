@@ -1,3 +1,4 @@
+@import '../../scss/mixin';
 @import '../../scss/variables';
 
 .Row {
@@ -6,9 +7,18 @@
     overflow: hidden;
 
     &__title {
-        text-align: left;
         margin-bottom: 1rem;
         padding: 0 4%;
+        font-size: 16px;
+        line-height: 1.25vw;
+        text-align: left;
+
+        @include mq('md'){
+            font-size: 18px;
+        }
+        @include mq(1330px){
+            font-size: 1.2vw;
+        }
     }
 
     &__not-loaded {

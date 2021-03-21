@@ -9,7 +9,9 @@ const MyList = () => {
     
     return (
         <div className="MyList">
-            {favs && favs.length > 0 && <h2>My List</h2>}
+            {favs && favs.length > 0 && (
+                <h2 className="MyList__title">My List</h2>
+            )}
             <div className="MyList__wrp">
                 {favs && favs.length > 0
                     ? favs.map(result => (
@@ -20,7 +22,9 @@ const MyList = () => {
                         />
                     ))
                     : (
-                        <h2>{`Sorry, you don't have a favourite movie or tv-show yet.`}</h2>
+                        <h2 className="MyList__title">
+                            {`Sorry, you don't have a favourite movie or tv-show yet.`}
+                        </h2>
                     )
                 }
             </div>
