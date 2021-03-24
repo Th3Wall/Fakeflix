@@ -1,0 +1,26 @@
+@import '../../scss/mixin';
+
+.Search {
+  padding: 2em 4vw;
+  margin-top: 4em;
+
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.25vw;
+    text-align: left;
+
+    @include mq('md'){
+      font-size: 18px;
+    }
+    @include mq(1330px){
+      font-size: 1.2vw;
+    }
+  }
+
+  &__wrp {
+    margin: 0 auto;
+    margin-top: 3vh;
+    width: 100%;
+  }
+}

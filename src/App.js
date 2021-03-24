@@ -8,15 +8,16 @@ import TVSeries from './pages/TVSeries/TVSeries';
 import Popular from "./pages/Popular/Popular";
 import MyList from './pages/MyList/MyList';
 import SignIn from "./pages/SignIn/SignIn"
+import Search from "./pages/Search/Search";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
-// import { selectSearchResults } from "./redux/search/search.selectors";
+import { selectSearchResults } from "./redux/search/search.selectors";
 
 const App = () => {
     
     const currentUser = useSelector(selectCurrentUser);
-    // const searchResults = useSelector(selectSearchResults);
+    const searchResults = useSelector(selectSearchResults);
     const dispatch = useDispatch();
     let unsubscribeFromAuth = null;
 
@@ -42,6 +43,12 @@ const App = () => {
                 <Route exact path="/">
                     <Redirect to="/login" />
                 </Route>
+                {searchResults && searchResults.length > 0 && (
+                    <Route
+                        path="/search"
+                        render={() => currentUser ? <Search results={searchResults}/> : <Redirect to="/login" />}
+                    />
+                )}
                 <Route
                     path="/browse"
                     render={() => currentUser ? <Homepage /> : <Redirect to="/login" />}
