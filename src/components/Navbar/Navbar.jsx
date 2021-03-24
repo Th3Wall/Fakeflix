@@ -6,11 +6,13 @@ import { FaCaretDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebaseUtils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { fetchSearchResultsAsync } from "../../redux/search/search.actions";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
 	const { width } = useViewport();
 	const [fixedNav, setFixedNav] = useState(false);
 	const [genresNav, setGenresNav] = useState(false)
@@ -44,6 +46,10 @@ const Navbar = () => {
 	const handleSearchInput = event => {
 		const {value} = event.target;
 		setSearchInput(value);
+
+		if (searchInput.length >= 1) {
+			dispatch(fetchSearchResultsAsync(searchInput));
+		}
 	};
 
 	return (

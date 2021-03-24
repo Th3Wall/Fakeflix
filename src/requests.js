@@ -11,6 +11,7 @@ export const SIGNIN_BGIMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_signin_bg.jp
 const ONEMONTHAGO = getOneMonthAgoReleaseDate();
 
 const requests = {
+	fetchSearchQuery: `/search/multi?api_key=${API_KEY}&language=${LANG}&query=`,
 	fetchTrendingAll: `/trending/all/week?api_key=${API_KEY}&sort_by=popularity.desc&language=${LANG}`,
 	fetchReleasedMoviesByOneMonth: `/discover/movie?api_key=${API_KEY}&primary_release_date.gte=${ONEMONTHAGO}&sort_by=popularity.desc&language=${LANG}`,
     // Movies

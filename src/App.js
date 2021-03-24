@@ -11,10 +11,12 @@ import SignIn from "./pages/SignIn/SignIn"
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
+// import { selectSearchResults } from "./redux/search/search.selectors";
 
 const App = () => {
     
     const currentUser = useSelector(selectCurrentUser);
+    // const searchResults = useSelector(selectSearchResults);
     const dispatch = useDispatch();
     let unsubscribeFromAuth = null;
 
