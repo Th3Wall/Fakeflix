@@ -23,7 +23,8 @@ export const fetchSearchResultsAsync = searchQuery => {
 		axios.get(`${requests.fetchSearchQuery}${searchQuery}`)
 			.then(response => {
 				const { data: { results } } = response;
-				dispatch(fetchSearchResultsSuccess(results));
+				const filteredResults = results.filter(result => result.media_type !== 'person');
+				dispatch(fetchSearchResultsSuccess(filteredResults));
 			})
 			.catch(err => {
 				dispatch(fetchSearchResultsFailure(err.message));
