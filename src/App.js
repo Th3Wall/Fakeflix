@@ -43,12 +43,12 @@ const App = () => {
                 <Route exact path="/">
                     <Redirect to="/login" />
                 </Route>
-                {searchResults && searchResults.length > 0 && (
-                    <Route
-                        path="/search"
-                        render={() => currentUser ? <Search results={searchResults}/> : <Redirect to="/login" />}
-                    />
-                )}
+                <Route
+                    path="/search"
+                    render={() => currentUser
+                        ? (searchResults && <Search results={searchResults}/>)
+                        : <Redirect to="/login" />}
+                />
                 <Route
                     path="/browse"
                     render={() => currentUser ? <Homepage /> : <Redirect to="/login" />}

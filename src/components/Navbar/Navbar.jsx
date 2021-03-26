@@ -4,7 +4,7 @@ import useViewport from "../../hooks/useViewport";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../firebase/firebaseUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -12,6 +12,7 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import { fetchSearchResultsAsync } from "../../redux/search/search.actions";
 
 const Navbar = () => {
+	let history = useHistory();
 	const dispatch = useDispatch();
 	const { width } = useViewport();
 	const [fixedNav, setFixedNav] = useState(false);
@@ -48,6 +49,7 @@ const Navbar = () => {
 		setSearchInput(value);
 
 		if (searchInput.length >= 1) {
+			history.push(`/search?q=${value}`);
 			dispatch(fetchSearchResultsAsync(searchInput));
 		}
 	};
