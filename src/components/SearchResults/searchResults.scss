@@ -25,4 +25,18 @@
         min-height: 150px;
         border-radius: 5px;
     }
+
+    &__fallback {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        min-width: 100%;
+        min-height: 150px;
+        border-radius: 5px;
+        background: #333333;
+        text-align: center;
+        font-weight: 500;
+    }
 }

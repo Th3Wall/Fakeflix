@@ -16,10 +16,10 @@ const Navbar = () => {
 	const dispatch = useDispatch();
 	const { width } = useViewport();
 	const [fixedNav, setFixedNav] = useState(false);
-	const [genresNav, setGenresNav] = useState(false)
-	const [profileNav, setProfileNav] = useState(false)
+	const [genresNav, setGenresNav] = useState(false);
+	const [profileNav, setProfileNav] = useState(false);
 	const [searchInputToggle, setSearchInputToggle] = useState(false);
-	const [searchInput, setSearchInput] = useState('');
+	const [searchInput, setSearchInput] = useState("");
 	const genresNavRef = useRef();
 	const profileNavRef = useRef();
 	const currentUser = useSelector(selectCurrentUser);
@@ -45,7 +45,7 @@ const Navbar = () => {
 	};
 
 	const handleSearchInput = event => {
-		const {value} = event.target;
+		const { value } = event.target;
 		setSearchInput(value);
 
 		if (searchInput.length >= 1) {
@@ -79,15 +79,24 @@ const Navbar = () => {
 				</ul>
 			) : (
 				<div
-					className={`Navbar__primarynav Navbar__navlinks ${genresNav ? 'active' : ''}`}
+					className={`Navbar__primarynav Navbar__navlinks ${
+						genresNav ? "active" : ""
+					}`}
 					onClick={() => setGenresNav(!genresNav)}
 				>
 					<span className="Navbar__navlinks--link">Show more</span>
 					<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
 
-					<div className={`Navbar__primarynav--content ${genresNav ? 'active' : ''}`}>
+					<div
+						className={`Navbar__primarynav--content ${
+							genresNav ? "active" : ""
+						}`}
+					>
 						{genresNav && (
-							<ul className="Navbar__primarynav--content-wrp" ref={genresNavRef}>
+							<ul
+								className="Navbar__primarynav--content-wrp"
+								ref={genresNavRef}
+							>
 								<li className="Navbar__navlinks--link">
 									<Link to="/browse">Home</Link>
 								</li>
@@ -121,27 +130,44 @@ const Navbar = () => {
                                 ${searchInputToggle ? "Navbar__navsearch--active" : ""}
                             `}
 						/>
-						<div className="Navbar__navsearch--toggler" onClick={handleSearchInputToggle}>
+						<div
+							className="Navbar__navsearch--toggler"
+							onClick={handleSearchInputToggle}
+						>
 							<FiSearch size="1.5em" />
 						</div>
 					</div>
 				</div>
 				<div className="Navbar__navitem">
 					<div
-						className={`Navbar__navprofile ${profileNav ? 'active' : ''}`}
+						className={`Navbar__navprofile ${profileNav ? "active" : ""}`}
 						onClick={() => setProfileNav(!profileNav)}
 					>
 						<img
 							className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
-							src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
+							src={
+								currentUser && currentUser.photoURL
+									? currentUser.photoURL
+									: PROFILE_PIC_URL
+							}
 							alt="Profile Picture"
 						/>
 						<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />
-						<div className={`Navbar__navprofile--content ${profileNav ? 'active' : ''}`}>
+						<div
+							className={`Navbar__navprofile--content ${
+								profileNav ? "active" : ""
+							}`}
+						>
 							{profileNav && (
-								<ul className='Navbar__navprofile--content-wrp' ref={profileNavRef}>
+								<ul
+									className="Navbar__navprofile--content-wrp"
+									ref={profileNavRef}
+								>
 									{currentUser && (
-										<li className="Navbar__navlinks--link" onClick={() => auth.signOut()}>
+										<li
+											className="Navbar__navlinks--link"
+											onClick={() => auth.signOut()}
+										>
 											Sign Out
 										</li>
 									)}
