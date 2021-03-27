@@ -10,10 +10,12 @@ const SearchResults = result => {
             {backdrop_path ? (
                 <img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} />
             ) : (
-                <img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
-                // <div className='SearchResults__fallback'>
-                //     <span>{fallbackTitle}</span>
-                // </div>
+                <>
+                    <img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
+                    <div className='SearchResults__fallback'>
+                        <span>{fallbackTitle}</span>
+                    </div>
+                </>
             )}
         </div>
     )
