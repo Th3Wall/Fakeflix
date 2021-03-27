@@ -1,4 +1,4 @@
-![Image of Fakeflix Project](https://i.postimg.cc/xThMn9Rm/Fakeflix.png)
+![Image of Fakeflix Project](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png)
 
 # Getting Started with Create React App
 
