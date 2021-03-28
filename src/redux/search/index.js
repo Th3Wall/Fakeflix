@@ -2,12 +2,18 @@ import { searchActionTypes } from "./search.types";
 
 const initialState = {
 	searchResults: [],
+	inputValue: '',
 	error: null,
 	isLoading: false
 }
 
 const searchReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case searchActionTypes.CHANGE_INPUT_VALUE:
+			return {
+				...state,
+				inputValue: action.payload
+			}
 		case searchActionTypes.FETCH_SEARCH_RESULTS_REQUEST:
 			return {
 				...state,

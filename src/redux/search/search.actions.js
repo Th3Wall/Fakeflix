@@ -2,6 +2,11 @@ import { searchActionTypes } from "./search.types";
 import axios from "../../axiosInstance";
 import requests from "../../requests";
 
+export const changeSearchInputValue = inputValue => ({
+	type: searchActionTypes.CHANGE_SEARCH_INPUT_VALUE,
+	payload: inputValue
+})
+
 export const fetchSearchResultsRequest = searchQuery => ({
 	type: searchActionTypes.FETCH_SEARCH_RESULTS_REQUEST,
 	payload: searchQuery
