@@ -43,6 +43,7 @@ const Navbar = () => {
 	const handleSearchInputToggle = () => {
 		setSearchInputToggle(!searchInputToggle);
 	};
+
 	const clearSearchInputToggle = () => {
 		setSearchInput('');
 		dispatch(clearSearchInputValue());
@@ -57,7 +58,7 @@ const Navbar = () => {
 		if (value.length > 0) {
 			history.push(`/search?q=${value}`);
 			dispatch(fetchSearchResultsAsync(value));
-		}
+		} else history.push('/');
 	};
 
 	return (
@@ -143,7 +144,7 @@ const Navbar = () => {
 							<FiSearch size="1.5em" />
 						</div>
 						<div
-							className={`Navbar__navsearch--clear ${searchInputToggle ? 'typing' : ''}`}
+							className={`Navbar__navsearch--clear ${searchInputToggle && searchInput.length ? 'typing' : ''}`}
 							onClick={clearSearchInputToggle}
 						>
 							<RiCloseFill />
