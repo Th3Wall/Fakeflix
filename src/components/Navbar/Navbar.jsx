@@ -10,7 +10,11 @@ import { auth } from "../../firebase/firebaseUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { changeSearchInputValue, clearSearchInputValue, fetchSearchResultsAsync } from "../../redux/search/search.actions";
+import {
+	changeSearchInputValue,
+	clearSearchInputValue,
+	fetchSearchResultsAsync,
+} from "../../redux/search/search.actions";
 
 const Navbar = () => {
 	let history = useHistory();
@@ -45,9 +49,9 @@ const Navbar = () => {
 	};
 
 	const clearSearchInputToggle = () => {
-		setSearchInput('');
+		setSearchInput("");
 		dispatch(clearSearchInputValue());
-		history.push('/browse');
+		history.push("/browse");
 	};
 
 	const handleSearchInput = event => {
@@ -58,7 +62,7 @@ const Navbar = () => {
 		if (value.length > 0) {
 			history.push(`/search?q=${value}`);
 			dispatch(fetchSearchResultsAsync(value));
-		} else history.push('/');
+		} else history.push("/");
 	};
 
 	return (
@@ -144,7 +148,9 @@ const Navbar = () => {
 							<FiSearch size="1.5em" />
 						</div>
 						<div
-							className={`Navbar__navsearch--clear ${searchInputToggle && searchInput.length ? 'typing' : ''}`}
+							className={`Navbar__navsearch--clear ${
+								searchInputToggle && searchInput.length ? "typing" : ""
+							}`}
 							onClick={clearSearchInputToggle}
 						>
 							<RiCloseFill />

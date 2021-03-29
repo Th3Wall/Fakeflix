@@ -39,7 +39,10 @@ const App = () => {
         <div className="App">
             {currentUser && <Navbar />}
             <Switch>
-                <Route exact path="/">
+                <Route
+                    exact
+                    path="/"
+                >
                     <Redirect to="/login" />
                 </Route>
                 <Route
@@ -49,29 +52,42 @@ const App = () => {
                         : <Redirect to="/login" />}
                 />
                 <Route
+                    exact
                     path="/browse"
                     render={() => currentUser ? <Homepage /> : <Redirect to="/login" />}
                 />
                 <Route
+                    path="/browse/:categoryName"
+                    render={() => currentUser ? <h1>Test</h1> : <Redirect to="/login" />}
+                />
+                <Route
+                    exact
                     path="/tvseries"
                     render={() => currentUser ? <TVSeries /> : <Redirect to="/login" />}
                 />
                 <Route
+                    exact
                     path="/movies"
                     render={() => currentUser ? <Movies /> : <Redirect to="/login" />}
                 />
                 <Route
+                    exact
                     path="/popular"
                     render={() => currentUser ? <Popular /> : <Redirect to="/login" />}
                 />
                 <Route
+                    exact
                     path="/mylist"
                     render={() => currentUser ? <MyList /> : <Redirect to="/login" />}
                 />
                 <Route
+                    exact
                     path="/login"
                     render={() => currentUser ? <Redirect to="/browse"/> : <SignIn />}
                 />
+                <Route path="*">
+                    <Redirect to="/" />
+                </Route>
             </Switch>
         </div>
     )
