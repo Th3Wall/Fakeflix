@@ -2,6 +2,7 @@ import "./row.scss";
 import RowPoster from "../RowPoster/RowPoster";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import useViewport from "../../hooks/useViewport";
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
@@ -13,10 +14,11 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 SwiperCore.use([Navigation, Pagination]);
 
-const Row = ({ selector, title, isLarge }) => {
+const Row = ({ selector, title, genre, isLarge }) => {
 	const { width } = useViewport();
 	const rowData = useSelector(selector);
 	const { loading, error, data: results } = rowData;
+	const { pathname } = useLocation();
     const customSwiperParams = {
         observer: true,
         observeParents: true,
@@ -26,7 +28,11 @@ const Row = ({ selector, title, isLarge }) => {
 
 	return (
 		<div className="Row">
-			<h3 className="Row__title">{title}</h3>
+			<h3 className="Row__title">
+				<Link to={`${pathname}/${genre.toLowerCase()}`}>
+					{title}
+				</Link>
+			</h3>
 
 			{loading && <div className='Row__not-loaded'>Loading...</div>}
 			{error && <div className='Row__not-loaded'>Error occurred.</div>}

@@ -9,6 +9,7 @@ import Popular from "./pages/Popular/Popular";
 import MyList from './pages/MyList/MyList';
 import SignIn from "./pages/SignIn/SignIn"
 import Search from "./pages/Search/Search";
+import Category from "./pages/Category/Category";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -54,11 +55,16 @@ const App = () => {
                 <Route
                     exact
                     path="/browse"
-                    render={() => currentUser ? <Homepage /> : <Redirect to="/login" />}
+                    render={() => currentUser
+                        ? <Homepage />
+                        : <Redirect to="/login" />}
                 />
                 <Route
+                    exact
                     path="/browse/:categoryName"
-                    render={() => currentUser ? <h1>Test</h1> : <Redirect to="/login" />}
+                    render={(props) => currentUser
+                        ? <Category {...props} />
+                        : <Redirect to="/login" />}
                 />
                 <Route
                     exact
@@ -67,13 +73,34 @@ const App = () => {
                 />
                 <Route
                     exact
+                    path="/tvseries/:categoryName"
+                    render={(props) => currentUser
+                        ? <Category {...props} />
+                        : <Redirect to="/login" />}
+                />
+                <Route
+                    exact
                     path="/movies"
                     render={() => currentUser ? <Movies /> : <Redirect to="/login" />}
                 />
                 <Route
                     exact
+                    path="/movies/:categoryName"
+                    render={(props) => currentUser
+                        ? <Category {...props} />
+                        : <Redirect to="/login" />}
+                />
+                <Route
+                    exact
                     path="/popular"
                     render={() => currentUser ? <Popular /> : <Redirect to="/login" />}
+                />
+                <Route
+                    exact
+                    path="/popular/:categoryName"
+                    render={(props) => currentUser
+                        ? <Category {...props} />
+                        : <Redirect to="/login" />}
                 />
                 <Route
                     exact
