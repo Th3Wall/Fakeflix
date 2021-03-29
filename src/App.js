@@ -19,10 +19,9 @@ const App = () => {
     const currentUser = useSelector(selectCurrentUser);
     const searchResults = useSelector(selectSearchResults);
     const dispatch = useDispatch();
-    let unsubscribeFromAuth = null;
 
     useEffect(() => {
-        unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+        let unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
             if (userAuth) {
                 const userRef = await createUserProfileDocument(userAuth)
                 userRef.onSnapshot(snapShot => {
@@ -34,7 +33,7 @@ const App = () => {
             } else dispatch(setCurrentUser(userAuth))
         })
         return () => unsubscribeFromAuth()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="App">

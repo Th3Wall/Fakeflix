@@ -1,13 +1,16 @@
 import "./search.scss"
 import SearchResults from "../../components/SearchResults/SearchResults";
+import { useSelector } from "react-redux";
+import { selectSearchInputValue } from "../../redux/search/search.selectors";
 
 const Search = searchResults => {
 	const { results } = searchResults;
+	const selectInputValue = useSelector(selectSearchInputValue);
 
-    return (
+	return (
 		<div className="Search">
 			{results && results.length > 0 && (
-				<h2 className="Search__title">Search results for </h2>
+				<h2 className="Search__title">Search results for: {selectInputValue}</h2>
 			)}
 			<div className="MyList__wrp">
 				{results && results.length > 0

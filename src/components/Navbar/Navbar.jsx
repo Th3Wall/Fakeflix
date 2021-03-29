@@ -9,7 +9,7 @@ import { auth } from "../../firebase/firebaseUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { fetchSearchResultsAsync } from "../../redux/search/search.actions";
+import { changeSearchInputValue, fetchSearchResultsAsync } from "../../redux/search/search.actions";
 
 const Navbar = () => {
 	let history = useHistory();
@@ -27,7 +27,6 @@ const Navbar = () => {
 	const checkScroll = () => {
 		window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false);
 	};
-
 	useEffect(() => {
 		window.addEventListener("scroll", checkScroll);
 		return () => window.removeEventListener("scroll", checkScroll);
@@ -47,10 +46,11 @@ const Navbar = () => {
 	const handleSearchInput = event => {
 		const { value } = event.target;
 		setSearchInput(value);
+		dispatch(changeSearchInputValue(value));
 
-		if (searchInput.length >= 1) {
+		if (value.length > 0) {
 			history.push(`/search?q=${value}`);
-			dispatch(fetchSearchResultsAsync(searchInput));
+			dispatch(fetchSearchResultsAsync(value));
 		}
 	};
 
@@ -122,7 +122,7 @@ const Navbar = () => {
 					<div className="Navbar__navsearch">
 						<input
 							type="text"
-							placeholder="Search titles"
+							placeholder="Search titles, people"
 							value={searchInput}
 							onChange={handleSearchInput}
 							className={`
