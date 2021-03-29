@@ -7,6 +7,10 @@ export const changeSearchInputValue = inputValue => ({
 	payload: inputValue
 })
 
+export const clearSearchInputValue = () => ({
+	type: searchActionTypes.CLEAR_SEARCH_INPUT_VALUE
+})
+
 export const fetchSearchResultsRequest = searchQuery => ({
 	type: searchActionTypes.FETCH_SEARCH_RESULTS_REQUEST,
 	payload: searchQuery

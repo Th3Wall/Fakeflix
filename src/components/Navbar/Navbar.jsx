@@ -4,12 +4,13 @@ import useViewport from "../../hooks/useViewport";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
+import { RiCloseFill } from "react-icons/ri";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../firebase/firebaseUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { changeSearchInputValue, fetchSearchResultsAsync } from "../../redux/search/search.actions";
+import { changeSearchInputValue, clearSearchInputValue, fetchSearchResultsAsync } from "../../redux/search/search.actions";
 
 const Navbar = () => {
 	let history = useHistory();
@@ -41,6 +42,11 @@ const Navbar = () => {
 
 	const handleSearchInputToggle = () => {
 		setSearchInputToggle(!searchInputToggle);
+	};
+	const clearSearchInputToggle = () => {
+		setSearchInput('');
+		dispatch(clearSearchInputValue());
+		history.push('/browse');
 	};
 
 	const handleSearchInput = event => {
@@ -135,6 +141,12 @@ const Navbar = () => {
 							onClick={handleSearchInputToggle}
 						>
 							<FiSearch size="1.5em" />
+						</div>
+						<div
+							className={`Navbar__navsearch--clear ${searchInputToggle ? 'typing' : ''}`}
+							onClick={clearSearchInputToggle}
+						>
+							<RiCloseFill />
 						</div>
 					</div>
 				</div>

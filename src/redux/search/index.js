@@ -9,10 +9,15 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case searchActionTypes.CHANGE_INPUT_VALUE:
+		case searchActionTypes.CHANGE_SEARCH_INPUT_VALUE:
 			return {
 				...state,
 				inputValue: action.payload
+			}
+		case searchActionTypes.CLEAR_SEARCH_INPUT_VALUE:
+			return {
+				...state,
+				inputValue: ''
 			}
 		case searchActionTypes.FETCH_SEARCH_RESULTS_REQUEST:
 			return {
