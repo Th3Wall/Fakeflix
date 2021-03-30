@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useViewport from "../../hooks/useViewport";
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { FiChevronRight } from "react-icons/all";
 
 // Swiper
 import SwiperCore, { Navigation, Pagination } from 'swiper';
@@ -30,7 +31,8 @@ const Row = ({ selector, title, genre, isLarge }) => {
 		<div className="Row">
 			<h3 className="Row__title">
 				<Link to={`${pathname}/${genre.toLowerCase()}`}>
-					{title}
+					<span>{title}</span>
+					<span className='Row__showmore'>Show all <FiChevronRight/></span>
 				</Link>
 			</h3>
 

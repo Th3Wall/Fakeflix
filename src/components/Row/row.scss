@@ -12,12 +12,46 @@
         font-size: 16px;
         line-height: 1.25vw;
         text-align: left;
+        display: inline-block;
 
         @include mq('md'){
             font-size: 18px;
         }
         @include mq(1330px){
             font-size: 1.2vw;
+        }
+
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+
+        &:hover {
+            .Row__showmore {
+                opacity: 1;
+                max-width: 200px;
+                transform: translate(1vw,0);
+            }
+        }
+    }
+
+    &__showmore {
+        font-size: 12px;
+        line-height: 1vw;
+        display: inline-flex;
+        align-items: center;
+        color: $white;
+        white-space: nowrap;
+        opacity: 0;
+        max-width: 0;
+        transform: translateZ(0);
+        transition: max-width 450ms, opacity 450ms, transform 750ms;
+
+        @include mq('md'){
+            font-size: 14px;
+        }
+        @include mq(1330px){
+            font-size: 0.8vw;
         }
     }
 
