@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .Row__poster {
     position: relative;
     margin-right: 0.5rem;
@@ -28,6 +30,38 @@
         img {
             width: 100%;
             min-height: auto;
+        }
+    }
+
+    &-info {
+
+        &--title {
+
+        }
+
+        &--genres {
+            display: block;
+            width: 100%;
+
+            .genre-title {
+                display: inline-block;
+                width: auto;
+                font-size: 12px;
+                margin: 0 .3vw 0 0;
+
+                &:after {
+                    content:"●";
+                    display: inline-block;
+                    margin: 0 0 0 .3vw;
+                    font-size: 12px;
+                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0);
+                    color: rgba($white, 0.4);
+                }
+
+                &:last-child:after {
+                    display: none;
+                }
+            }
         }
     }
 

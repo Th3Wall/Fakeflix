@@ -78,7 +78,6 @@ const Row = ({ selector, title, genre, isLarge }) => {
 								<SwiperSlide key={result.id}>
 									<RowPoster
 										item={result}
-										title={title}
 										isLarge={isLarge}
 										isFavourite={result.isFavourite}
 										image={isLarge ? result.poster_path : result.backdrop_path}
