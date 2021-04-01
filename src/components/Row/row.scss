@@ -78,6 +78,7 @@
     }
 
     .swiper-slide {
+        display: inline-flex;
         transform: scale(1);
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     }
@@ -102,6 +103,7 @@
         bottom: initial !important;
         width: auto !important;
         opacity: 0;
+        z-index: 1;
         transform: none;
         transition: opacity 0.2s ease-out;
 
