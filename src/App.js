@@ -14,6 +14,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { selectSearchResults } from "./redux/search/search.selectors";
+import DetailModal from "./components/DetailModal/DetailModal";
 
 const App = () => {
     
@@ -38,7 +39,12 @@ const App = () => {
 
     return (
         <div className="App">
-            {currentUser && <Navbar />}
+            {currentUser && (
+                <>
+                    <Navbar />
+                    <DetailModal />
+                </>
+            )}
             <Switch>
                 <Route
                     exact
