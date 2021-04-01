@@ -89,9 +89,8 @@
 
 		&--title {
 			h3 {
-				font-size: 15vw;
+				font-size: 15px;
 				font-weight: 600;
-				margin-bottom: 0.3vw;
 				text-transform: none;
 			}
 
@@ -143,7 +142,7 @@
                 background: linear-gradient(
                                 360deg,
                                 rgba(0, 0, 0, 0.6) 0%,
-                                rgba(255, 255, 255, 0) 100%
+                                rgba(255, 255, 255, 0) 65%
                 );
 				z-index: 0;
 			}
