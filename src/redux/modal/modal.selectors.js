@@ -4,7 +4,7 @@ const selectModal = state => state.detailModal;
 
 export const selectModalState = createSelector(
 	[selectModal],
-	detailModal => detailModal.modalIsOpen
+	detailModal => detailModal.modalIsClosed
 )
 
 export const selectModalContent = createSelector(

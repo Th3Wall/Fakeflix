@@ -1,28 +1,27 @@
+import './detailModal.scss'
 import { hideModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch, useSelector } from "react-redux";
-import { selectModalState } from "../../redux/modal/modal.selectors";
+import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
 
 const DetailModal = () => {
 
 	const dispatch = useDispatch();
-	const modalOpen = useSelector(selectModalState);
-	const modalContent = useSelector(selectModalState);
-	console.log("modal state => ", modalOpen);
-	console.log("modal content => ", modalContent);
-
+	const modalClosed = useSelector(selectModalState);
+	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => {
 		dispatch(hideModalDetail());
 	}
 
 	return (
 		<>
-			{modalOpen && (
-				<div className='Modal__overlay'>
-					<div className='Modal__wrp'>
+			{!modalClosed && (
+				<>
+					<div className={`Modal__overlay ${modalClosed ? 'Modal__invisible': ''}`} />
+					<div className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}>
 						<button onClick={handleModalClose}>{` X `}</button>
 						{JSON.stringify(modalContent)}
 					</div>
-				</div>
+				</>
 			)}
 		</>
 	)

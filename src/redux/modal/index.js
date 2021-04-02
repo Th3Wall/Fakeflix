@@ -1,7 +1,7 @@
 import { modalActionTypes } from "./modal.types"
 
 const initialState = {
-    modalIsOpen: false,
+    modalIsClosed: true,
     modalContent: {}
 }
 
@@ -10,13 +10,13 @@ const modalReducer = (state = initialState, action) => {
         case modalActionTypes.SHOW_MODAL_DETAILS:
             return {
                 ...state,
-                modalIsOpen: true,
+                modalIsClosed: false,
                 modalContent: { ...action.payload }
             }
         case modalActionTypes.HIDE_MODAL_DETAILS:
             return {
                 ...state,
-                modalIsOpen: false,
+                modalIsClosed: true,
                 modalContent: {}
             }
         default:
