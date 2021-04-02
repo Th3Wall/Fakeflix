@@ -7,7 +7,7 @@ import useGenreConversion from "../../hooks/useGenreConversion";
 import { showModalDetail } from "../../redux/modal/modal.actions";
 
 const RowPoster = result => {
-    const { item: { title, original_name, original_title, name, genre_ids }, image, isLarge, isFavourite } = result;
+    const { item, item: { title, original_name, original_title, name, genre_ids }, image, isLarge, isFavourite } = result;
     let fallbackTitle = title || original_title || name || original_name;
     const dispatch = useDispatch();
     const genresConverted = useGenreConversion(genre_ids);
@@ -19,7 +19,7 @@ const RowPoster = result => {
         dispatch(removeFromFavourites(result));
     }
     const handleModalOpening = () => {
-        dispatch(showModalDetail(result));
+        dispatch(showModalDetail({ ...item, fallbackTitle, genresConverted }));
     }
     const handlePlayAction = (event) => {
         event.stopPropagation();

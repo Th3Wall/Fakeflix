@@ -27,10 +27,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    display: block;
     width: 55vw;
     height: calc(100vh - 100px);
     overflow-y: visible;
@@ -40,12 +37,60 @@
     z-index: 99;
     pointer-events: all;
     background: $black;
-    padding: 1.5em;
     border-radius: 5px;
 
     &.Modal__invisible {
       z-index: -1;
       pointer-events: none;
+    }
+  }
+
+  &__closebtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    z-index: 1;
+    display: inline-flex;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+    margin-bottom: 0.8em;
+    background: $black;
+    color: $white;
+    border: 1px solid $white;
+    transition: all 0.3s ease-out;
+    outline: none;
+
+    &:hover {
+      background: $white;
+      color: $black;
+    }
+  }
+
+  &__image {
+    &--wrp {
+      position: relative;
+    }
+    &--img {
+      width: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &--shadow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20%;
+      background: linear-gradient(180deg, transparent, rgba(14, 14, 14, 0.6), $black);
+    }
+  }
+
+  &__info {
+    &--wrp {
+      padding: 1.5em;
     }
   }
 }

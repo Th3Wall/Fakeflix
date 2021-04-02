@@ -61,7 +61,6 @@
 			display: inline-flex;
 			padding: 8px;
 			border-radius: 50%;
-			border: 0;
 			font-size: 14px;
 			cursor: pointer;
 			margin: 0 5px;
@@ -71,7 +70,6 @@
 			border: 1px solid $white;
 			transition: all 0.3s ease-out;
 			outline: none;
-			transition: all 0.3s ease-out;
 
 			&:hover {
 				background: $white;
