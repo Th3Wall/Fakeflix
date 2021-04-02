@@ -10,7 +10,6 @@ const RowPoster = result => {
     const { item: { title, original_name, original_title, name, genre_ids }, image, isLarge, isFavourite } = result;
     let fallbackTitle = title || original_title || name || original_name;
     const dispatch = useDispatch();
-
     const genresConverted = useGenreConversion(genre_ids);
     
     const handleAdd = () => {
@@ -22,14 +21,20 @@ const RowPoster = result => {
     const handleModalOpening = () => {
         dispatch(showModalDetail(result));
     }
+    const handlePlayAction = (event) => {
+        event.stopPropagation();
+    }
 
     return (
-        <div className={`Row__poster ${isLarge ? "Row__poster--big" : ""}`}>
-            <img src={`${BASE_IMG_URL}/${image}`} alt={fallbackTitle} />
+        <div className={`Row__poster ${isLarge ? "Row__poster--big" : ""}`} onClick={handleModalOpening}>
+            <img src={`${BASE_IMG_URL}/${image}`} alt={fallbackTitle}/>
 
             <div className="Row__poster-info">
                 <div className="Row__poster-info--iconswrp">
-                    <button className='Row__poster-info--icon icon--play'>
+                    <button
+                        className='Row__poster-info--icon icon--play'
+                        onClick={handlePlayAction}
+                    >
                         <FaPlay />
                     </button>
                     <button className='Row__poster-info--icon icon--favourite'>
@@ -38,7 +43,6 @@ const RowPoster = result => {
                             : <FaMinus onClick={handleRemove} />
                         }
                     </button>
-
                     <button className='Row__poster-info--icon icon--toggleModal'>
                         <FaChevronDown onClick={handleModalOpening}/>
                     </button>
@@ -52,7 +56,6 @@ const RowPoster = result => {
                     ))}
                 </div>
             </div>
-            {/*<Modal result={result} modalOpen={modalOpen} setModalOpen={setModalOpen} />*/}
         </div>
     )
 }

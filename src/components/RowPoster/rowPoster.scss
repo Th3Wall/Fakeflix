@@ -3,6 +3,7 @@
 .Row__poster {
 	position: relative;
 	margin-right: 0.5rem;
+	cursor: pointer;
 
 	&:last-of-type {
 		img {
@@ -68,6 +69,8 @@
 			background: transparent;
 			color: $white;
 			border: 1px solid $white;
+			transition: all 0.3s ease-out;
+			outline: none;
 			transition: all 0.3s ease-out;
 
 			&:hover {
