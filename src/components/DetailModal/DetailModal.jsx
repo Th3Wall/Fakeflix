@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
 import { BASE_IMG_URL } from "../../requests";
 import { VscChromeClose } from "react-icons/vsc";
+import { dateToYearOnly } from "../../utils";
 
 const DetailModal = () => {
 
@@ -11,7 +12,7 @@ const DetailModal = () => {
 	const modalClosed = useSelector(selectModalState);
 	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => dispatch(hideModalDetail());
-	const {overview, fallbackTitle, backdrop_path} = modalContent;
+	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date} = modalContent;
 
 	return (
 		<>
@@ -35,6 +36,7 @@ const DetailModal = () => {
 						</div>
 						<div className="Modal__info--wrp">
 							<h3 className="Modal__info--title">{fallbackTitle}</h3>
+							<p className="Modal__info--release">{dateToYearOnly(release_date || first_air_date)}</p>
 							<p className="Modal__info--description">{overview}</p>
 						</div>
 					</div>

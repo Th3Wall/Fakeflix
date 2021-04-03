@@ -5,3 +5,7 @@ export const getOneMonthAgoReleaseDate = () => {
 
     return formattedDate;
 }
+
+export const dateToYearOnly = date => {
+    return date.slice(0,4);
+}

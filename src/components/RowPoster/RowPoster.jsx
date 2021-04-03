@@ -9,13 +9,15 @@ import { showModalDetail } from "../../redux/modal/modal.actions";
 const RowPoster = result => {
     const { item, item: { title, original_name, original_title, name, genre_ids }, image, isLarge, isFavourite } = result;
     let fallbackTitle = title || original_title || name || original_name;
-    const dispatch = useDispatch();
     const genresConverted = useGenreConversion(genre_ids);
-    
-    const handleAdd = () => {
+    const dispatch = useDispatch();
+
+    const handleAdd = (event) => {
+        event.stopPropagation();
         dispatch(addToFavourites(result));
     }
-    const handleRemove = () => {
+    const handleRemove = (event) => {
+        event.stopPropagation();
         dispatch(removeFromFavourites(result));
     }
     const handleModalOpening = () => {
@@ -37,12 +39,16 @@ const RowPoster = result => {
                     >
                         <FaPlay />
                     </button>
-                    <button className='Row__poster-info--icon icon--favourite'>
-                        {!isFavourite
-                            ? <FaPlus onClick={handleAdd} />
-                            : <FaMinus onClick={handleRemove} />
-                        }
-                    </button>
+                    {!isFavourite
+                        ? (
+                            <button className='Row__poster-info--icon icon--favourite' onClick={handleAdd}>
+                                <FaPlus />
+                            </button>
+                        ): (
+                            <button className='Row__poster-info--icon icon--favourite' onClick={handleRemove}>
+                                <FaMinus />
+                            </button>
+                    )}
                     <button className='Row__poster-info--icon icon--toggleModal'>
                         <FaChevronDown onClick={handleModalOpening}/>
                     </button>
