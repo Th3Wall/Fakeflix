@@ -116,5 +116,28 @@
       font-size: 16px;
       line-height: 1.5;
     }
+    &--line {
+      border-color: rgba(121,121,121,0.7);
+      margin: 1.5em 0;
+    }
+    &--otherTitle {
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+    &--row {
+      font-size: 14px;
+      line-height: 20px;
+      margin: .5em;
+      margin-left: 0;
+      word-break: break-word;
+      &-label {
+        color: #777;
+      }
+      &-description {
+        color: #ddd;
+      }
+    }
   }
 }

@@ -12,7 +12,8 @@ const DetailModal = () => {
 	const modalClosed = useSelector(selectModalState);
 	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => dispatch(hideModalDetail());
-	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date} = modalContent;
+	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date, genresConverted} = modalContent;
+	const joinedGenres = genresConverted?.join(', ') || "Not found";
 
 	return (
 		<>
@@ -38,6 +39,12 @@ const DetailModal = () => {
 							<h3 className="Modal__info--title">{fallbackTitle}</h3>
 							<p className="Modal__info--release">{dateToYearOnly(release_date || first_air_date)}</p>
 							<p className="Modal__info--description">{overview}</p>
+							<hr className="Modal__info--line"/>
+							<h4 className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></h4>
+							<div className="Modal__info--row">
+								<span className='Modal__info--row-label'>Genres: </span>
+								<span className="Modal__info--row-description">{joinedGenres}</span>
+							</div>
 						</div>
 					</div>
 				</>
