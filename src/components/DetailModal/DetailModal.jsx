@@ -12,8 +12,8 @@ const DetailModal = () => {
 	const modalClosed = useSelector(selectModalState);
 	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => dispatch(hideModalDetail());
-	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date, genresConverted} = modalContent;
-	const joinedGenres = genresConverted?.join(', ') || "Not found";
+	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, genresConverted} = modalContent;
+	const joinedGenres = genresConverted?.join(', ') || "Not available";
 
 	return (
 		<>
@@ -37,13 +37,26 @@ const DetailModal = () => {
 						</div>
 						<div className="Modal__info--wrp">
 							<h3 className="Modal__info--title">{fallbackTitle}</h3>
-							<p className="Modal__info--release">{dateToYearOnly(release_date || first_air_date)}</p>
 							<p className="Modal__info--description">{overview}</p>
 							<hr className="Modal__info--line"/>
 							<h4 className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></h4>
 							<div className="Modal__info--row">
 								<span className='Modal__info--row-label'>Genres: </span>
 								<span className="Modal__info--row-description">{joinedGenres}</span>
+							</div>
+							<div className="Modal__info--row">
+								<span className='Modal__info--row-label'>Cast: </span>
+								<span className="Modal__info--row-description"></span>
+							</div>
+							<div className="Modal__info--row">
+								<span className='Modal__info--row-label'>
+									{release_date ? "Release: " : "First air date: "}
+								</span>
+								<span className="Modal__info--row-description">{dateToYearOnly(release_date || first_air_date)}</span>
+							</div>
+							<div className="Modal__info--row">
+								<span className='Modal__info--row-label'>Average vote: </span>
+								<span className="Modal__info--row-description">{vote_average || "Not available"}</span>
 							</div>
 						</div>
 					</div>
