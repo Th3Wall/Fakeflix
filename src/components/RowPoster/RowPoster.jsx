@@ -1,5 +1,5 @@
 import "./rowPoster.scss"
-import { BASE_IMG_URL } from "../../requests"
+import { BASE_IMG_URL, FALLBACK_IMG_URL } from "../../requests";
 import { useDispatch } from 'react-redux';
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import { FaPlus, FaMinus, FaPlay, FaChevronDown } from "react-icons/fa";
@@ -29,8 +29,16 @@ const RowPoster = result => {
 
     return (
         <div className={`Row__poster ${isLarge ? "Row__poster--big" : ""}`} onClick={handleModalOpening}>
-            <img src={`${BASE_IMG_URL}/${image}`} alt={fallbackTitle}/>
-
+            {image ? (
+                    <img src={`${BASE_IMG_URL}/${image}`} alt={fallbackTitle}/>
+            ) : (
+                <>
+                    <img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
+                    <div className='Row__poster__fallback'>
+                        <span>{fallbackTitle}</span>
+                    </div>
+                </>
+            )}
             <div className="Row__poster-info">
                 <div className="Row__poster-info--iconswrp">
                     <button
