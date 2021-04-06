@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
 import { BASE_IMG_URL } from "../../requests";
 import { VscChromeClose } from "react-icons/vsc";
-import { dateToYearOnly } from "../../utils";
+import { capitalizeFirstLetter, dateToYearOnly } from "../../utils";
 
 const DetailModal = () => {
 
@@ -12,8 +12,9 @@ const DetailModal = () => {
 	const modalClosed = useSelector(selectModalState);
 	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => dispatch(hideModalDetail());
-	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, genresConverted} = modalContent;
+	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, original_language, adult, genresConverted} = modalContent;
 	const joinedGenres = genresConverted?.join(', ') || "Not available";
+	const maturityRating = adult === undefined ? "Not available" : adult ? "Suitable for adults only" : "Suitable for all ages";
 
 	return (
 		<>
@@ -45,18 +46,22 @@ const DetailModal = () => {
 								<span className="Modal__info--row-description">{joinedGenres}</span>
 							</div>
 							<div className="Modal__info--row">
-								<span className='Modal__info--row-label'>Cast: </span>
-								<span className="Modal__info--row-description"></span>
-							</div>
-							<div className="Modal__info--row">
 								<span className='Modal__info--row-label'>
-									{release_date ? "Release: " : "First air date: "}
+									{release_date ? "Release date: " : "First air date: "}
 								</span>
 								<span className="Modal__info--row-description">{dateToYearOnly(release_date || first_air_date)}</span>
 							</div>
 							<div className="Modal__info--row">
 								<span className='Modal__info--row-label'>Average vote: </span>
 								<span className="Modal__info--row-description">{vote_average || "Not available"}</span>
+							</div>
+							<div className="Modal__info--row">
+								<span className='Modal__info--row-label'>Original language: </span>
+								<span className="Modal__info--row-description">{capitalizeFirstLetter(original_language)}</span>
+							</div>
+							<div className="Modal__info--row">
+								<span className='Modal__info--row-label'>Age classification: </span>
+								<span className="Modal__info--row-description">{maturityRating}</span>
 							</div>
 						</div>
 					</div>

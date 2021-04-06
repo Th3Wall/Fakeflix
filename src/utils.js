@@ -9,3 +9,7 @@ export const getOneMonthAgoReleaseDate = () => {
 export const dateToYearOnly = date => {
     return date.slice(0,4);
 }
+
+export const capitalizeFirstLetter = text => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
