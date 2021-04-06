@@ -21,7 +21,7 @@ const RowPoster = result => {
         dispatch(removeFromFavourites(result));
     }
     const handleModalOpening = () => {
-        dispatch(showModalDetail({ ...item, fallbackTitle, genresConverted }));
+        dispatch(showModalDetail({ ...item, fallbackTitle, genresConverted, isFavourite, result }));
     }
     const handlePlayAction = (event) => {
         event.stopPropagation();

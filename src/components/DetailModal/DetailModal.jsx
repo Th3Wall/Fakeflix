@@ -5,6 +5,8 @@ import { selectModalContent, selectModalState } from "../../redux/modal/modal.se
 import { BASE_IMG_URL } from "../../requests";
 import { VscChromeClose } from "react-icons/vsc";
 import { capitalizeFirstLetter, dateToYearOnly } from "../../utils";
+import { FaMinus, FaPlay, FaPlus } from "react-icons/fa";
+import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 
 const DetailModal = () => {
 
@@ -12,9 +14,17 @@ const DetailModal = () => {
 	const modalClosed = useSelector(selectModalState);
 	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => dispatch(hideModalDetail());
-	const {overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, original_language, adult, genresConverted} = modalContent;
+	const {result, overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, original_language, adult, genresConverted, isFavourite} = modalContent;
 	const joinedGenres = genresConverted?.join(', ') || "Not available";
 	const maturityRating = adult === undefined ? "Not available" : adult ? "Suitable for adults only" : "Suitable for all ages";
+	const handleAdd = (event) => {
+		event.stopPropagation();
+		dispatch(addToFavourites(result));
+	}
+	const handleRemove = (event) => {
+		event.stopPropagation();
+		dispatch(removeFromFavourites(result));
+	}
 
 	return (
 		<>
@@ -35,6 +45,22 @@ const DetailModal = () => {
 								src={`${BASE_IMG_URL}/${backdrop_path}`}
 								alt={fallbackTitle}
 							/>
+							<div className="Modal__image--buttonswrp">
+								<button className="Modal__image--button">
+									<FaPlay />
+									<span>Play</span>
+								</button>
+								{!isFavourite
+									? (
+										<button className='Modal__image--button-circular' onClick={handleAdd}>
+											<FaPlus />
+										</button>
+									): (
+										<button className='Modal__image--button-circular' onClick={handleRemove}>
+											<FaMinus />
+										</button>
+									)}
+							</div>
 						</div>
 						<div className="Modal__info--wrp">
 							<h3 className="Modal__info--title">{fallbackTitle}</h3>

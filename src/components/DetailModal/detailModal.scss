@@ -99,6 +99,75 @@
       height: 20%;
       background: linear-gradient(180deg, transparent, rgba(14, 14, 14, 0.6), $light-black);
     }
+
+    &--buttonswrp {
+      position: absolute;
+      bottom: 10%;
+      left: 2em;
+      display: flex;
+      align-items: center;
+    }
+
+    &--button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 150px;
+      background-color: $red;
+      color: $white;
+      padding: 12px 20px;
+      margin-left: 0;
+      border-radius: 6px;
+      border: 0;
+      font-family: 'Inter';
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+
+      &:hover {
+        background-color: darken($red, 5);
+      }
+
+      @include mq('md'){
+        font-size: 15px;
+      }
+
+      span {
+        margin-left: 8px;
+      }
+
+      &-circular {
+        display: inline-flex;
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 0 5px;
+        margin-left: 0.8em;
+        background: transparent;
+        color: $white;
+        border: 1px solid $white;
+        transition: all 0.3s ease-out;
+        outline: none;
+
+        &:hover {
+          background: $white;
+          color: $black;
+        }
+
+        &:first-child {
+          margin-left: 0;
+          background: $white;
+          color: $black;
+
+          &:hover {
+            background: rgba($white, 0.7);
+            border-color: rgba($white, 0.7);
+          }
+        }
+      }
+    }
   }
 
   &__info {
