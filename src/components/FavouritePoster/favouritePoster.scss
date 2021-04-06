@@ -25,4 +25,22 @@
         min-height: 150px;
         border-radius: 5px;
     }
+
+    &__fallback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        min-width: 100%;
+        min-height: 150px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: 500;
+        z-index: -1;
+        padding: 0 1em;
+    }
 }

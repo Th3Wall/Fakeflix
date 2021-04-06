@@ -80,7 +80,6 @@ const Row = ({ selector, title, genre, isLarge }) => {
 										item={result}
 										isLarge={isLarge}
 										isFavourite={result.isFavourite}
-										image={isLarge ? result.poster_path : result.backdrop_path}
 									/>
 								</SwiperSlide>
 							))
