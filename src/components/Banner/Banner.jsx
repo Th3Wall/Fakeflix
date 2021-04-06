@@ -2,7 +2,8 @@ import "./banner.scss";
 import requests, { BASE_IMG_URL } from "../../requests";
 import axios from "../../axiosInstance";
 import { useState, useEffect } from "react";
-import { FaPlay, FaStar } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+import { BiInfoCircle } from "react-icons/bi";
 import { randomize, truncate } from "./utils";
 
 const { fetchNetflixOriginals, discoverMovies, discoverSeries } = requests;
@@ -51,8 +52,8 @@ const Banner = ({ type }) => {
 									<span>Play</span>
 								</button>
 								<button className="Banner__button">
-									<FaStar />
-									<span>Add to Favourites</span>
+									<BiInfoCircle size={"1.5em"}/>
+									<span>More info</span>
 								</button>
 							</div>
 							<p className="Banner__content--description">{truncate(banner.overview, 280)}</p>
