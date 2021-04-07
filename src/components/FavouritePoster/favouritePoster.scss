@@ -1,3 +1,5 @@
+@import '../../scss/mixin';
+
 .FavouritePoster {
     display: inline-block;
     position: relative;
@@ -5,24 +7,25 @@
     vertical-align: top;
     padding: 0 3px;
     margin-bottom: 4vw;
-    width: 20%;
-    
-    @media screen and (min-width: 769px) and (max-width: 1329px) {
-        width: 33.3%;
-    }
+    width: 100%;
 
-    @media screen and (min-width: 400px) and (max-width: 768px) {
+    @include mq(330px) {
         width: 50%;
     }
-
-    @media screen and (max-width: 399px) {
-        width: 100%;
+    @include mq(625px) {
+        width: 33.3%;
     }
-    
+    @include mq(998px) {
+        width: 25%;
+    }
+    @include mq(1378px) {
+        width: 16.6%;
+    }
+
     img {
         height: 100%;
         width: 100%;
-        min-height: 150px;
+        min-height: 110px;
         border-radius: 5px;
     }
 
@@ -36,7 +39,7 @@
         height: 100%;
         width: 100%;
         min-width: 100%;
-        min-height: 150px;
+        min-height: 110px;
         border-radius: 5px;
         text-align: center;
         font-weight: 500;
