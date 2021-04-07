@@ -81,6 +81,51 @@
         display: inline-flex;
         transform: scale(1);
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+
+        @include mq(330px) {
+            &:nth-child(1n) {
+                transform-origin: initial;
+            }
+            &:nth-child(2n+1) {
+                transform-origin: left;
+            }
+            &:nth-child(2n+2) {
+                transform-origin: right;
+            }
+        }
+        @include mq(625px) {
+            &:nth-child(1n) {
+                transform-origin: initial;
+            }
+            &:nth-child(3n+1) {
+                transform-origin: left;
+            }
+            &:nth-child(3n+3) {
+                transform-origin: right;
+            }
+        }
+        @include mq(998px) {
+            &:nth-child(1n) {
+                transform-origin: initial;
+            }
+            &:nth-child(4n+1) {
+                transform-origin: left;
+            }
+            &:nth-child(4n+4) {
+                transform-origin: right;
+            }
+        }
+        @include mq(1378px) {
+            &:nth-child(1n) {
+                transform-origin: initial;
+            }
+            &:nth-child(6n+1) {
+                transform-origin: left;
+            }
+            &:nth-child(6n+6) {
+                transform-origin: right;
+            }
+        }
     }
 
     .swiper-container {

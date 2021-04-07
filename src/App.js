@@ -10,11 +10,11 @@ import MyList from './pages/MyList/MyList';
 import SignIn from "./pages/SignIn/SignIn"
 import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
+import DetailModal from "./components/DetailModal/DetailModal";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { selectSearchResults } from "./redux/search/search.selectors";
-import DetailModal from "./components/DetailModal/DetailModal";
 
 const App = () => {
     
