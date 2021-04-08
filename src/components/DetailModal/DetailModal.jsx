@@ -1,4 +1,5 @@
 import './detailModal.scss'
+import { useRef } from 'react';
 import { hideModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
@@ -7,6 +8,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import { capitalizeFirstLetter, dateToYearOnly } from "../../utils";
 import { FaMinus, FaPlay, FaPlus } from "react-icons/fa";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const DetailModal = () => {
 
@@ -18,6 +20,7 @@ const DetailModal = () => {
 	const joinedGenres = genresConverted ? genresConverted.join(', ') : "Not available";
 	const maturityRating = adult === undefined ? "Not available" : adult ? "Suitable for adults only" : "Suitable for all ages";
 	const reducedDate = release_date ? dateToYearOnly(release_date) : first_air_date ? dateToYearOnly(first_air_date) : "Not Available";
+	const modalRef = useRef();
 
 	const handleAdd = (event) => {
 		event.stopPropagation();
@@ -27,13 +30,16 @@ const DetailModal = () => {
 		event.stopPropagation();
 		dispatch(removeFromFavourites(result));
 	}
+	useOutsideClick(modalRef, () => {
+		if (!modalClosed) handleModalClose();
+	});
 
 	return (
 		<>
 			{!modalClosed && (
 				<>
 					<div className={`Modal__overlay ${modalClosed ? 'Modal__invisible': ''}`} />
-					<div className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}>
+					<div ref={modalRef} className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}>
 						<button
 							className="Modal__closebtn"
 							onClick={handleModalClose}
