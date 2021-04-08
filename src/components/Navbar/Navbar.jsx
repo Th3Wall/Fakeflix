@@ -5,7 +5,7 @@ import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { RiCloseFill } from "react-icons/ri";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { auth } from "../../firebase/firebaseUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -73,19 +73,44 @@ const Navbar = () => {
 			{width >= 1024 ? (
 				<ul className="Navbar__primarynav Navbar__navlinks">
 					<li className="Navbar__navlinks--link">
-						<Link to="/browse">Home</Link>
+						<NavLink
+							to="/browse"
+							activeClassName="activeNavLink"
+						>
+							Home
+						</NavLink>
 					</li>
 					<li className="Navbar__navlinks--link">
-						<Link to="/tvseries">TV Series</Link>
+						<NavLink
+							to="/tvseries"
+							activeClassName="activeNavLink"
+						>
+							TV Series
+						</NavLink>
 					</li>
 					<li className="Navbar__navlinks--link">
-						<Link to="/movies">Movies</Link>
+						<NavLink
+							to="/movies"
+							activeClassName="activeNavLink"
+						>
+							Movies
+						</NavLink>
 					</li>
 					<li className="Navbar__navlinks--link">
-						<Link to="/popular">New & Popular</Link>
+						<NavLink
+							to="/popular"
+							activeClassName="activeNavLink"
+						>
+							New & Popular
+						</NavLink>
 					</li>
 					<li className="Navbar__navlinks--link">
-						<Link to="/mylist">My list</Link>
+						<NavLink
+							to="/mylist"
+							activeClassName="activeNavLink"
+						>
+							My list
+						</NavLink>
 					</li>
 				</ul>
 			) : (
@@ -95,7 +120,7 @@ const Navbar = () => {
 					}`}
 					onClick={() => setGenresNav(!genresNav)}
 				>
-					<span className="Navbar__navlinks--link">Show more</span>
+					<span className="Navbar__navlinks--link">Discover</span>
 					<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
 
 					<div
@@ -109,19 +134,44 @@ const Navbar = () => {
 								ref={genresNavRef}
 							>
 								<li className="Navbar__navlinks--link">
-									<Link to="/browse">Home</Link>
+									<NavLink
+										to="/browse"
+										activeClassName="activeNavLink"
+									>
+										Home
+									</NavLink>
 								</li>
 								<li className="Navbar__navlinks--link">
-									<Link to="/tvseries">TV Series</Link>
+									<NavLink
+										to="/tvseries"
+										activeClassName="activeNavLink"
+									>
+										TV Series
+									</NavLink>
 								</li>
 								<li className="Navbar__navlinks--link">
-									<Link to="/movies">Movies</Link>
+									<NavLink
+										to="/movies"
+										activeClassName="activeNavLink"
+									>
+										Movies
+									</NavLink>
 								</li>
 								<li className="Navbar__navlinks--link">
-									<Link to="/popular">New & Popular</Link>
+									<NavLink
+										to="/popular"
+										activeClassName="activeNavLink"
+									>
+										New & Popular
+									</NavLink>
 								</li>
 								<li className="Navbar__navlinks--link">
-									<Link to="/mylist">My list</Link>
+									<NavLink
+										to="/mylist"
+										activeClassName="activeNavLink"
+									>
+										My list
+									</NavLink>
 								</li>
 							</ul>
 						)}
