@@ -73,43 +73,6 @@
                         transform: translateX(15%);
                     }
                 }
-
-                @include mq(330px) {
-                    &:nth-child(1n+1) {
-                        &:hover {
-                            ~ .swiper-slide {
-                                transform: translateX(0%);
-                            }
-                        }
-                    }
-                }
-                @include mq(625px) {
-                    &:nth-child(3n+3) {
-                        &:hover {
-                            ~ .swiper-slide {
-                                transform: translateX(0%);
-                            }
-                        }
-                    }
-                }
-                @include mq(998px) {
-                    &:nth-child(4n+4) {
-                        &:hover {
-                            ~ .swiper-slide {
-                                transform: translateX(0%);
-                            }
-                        }
-                    }
-                }
-                @include mq(1378px) {
-                    &:nth-child(6n+6) {
-                        &:hover {
-                            ~ .swiper-slide {
-                                transform: translateX(0%);
-                            }
-                        }
-                    }
-                }
             }
         }
     }
