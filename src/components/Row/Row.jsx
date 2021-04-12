@@ -30,7 +30,7 @@ const Row = ({ selector, title, genre, isLarge }) => {
 	return (
 		<div className="Row">
 			<h3 className="Row__title">
-				<Link to={`${pathname}/${genre.toLowerCase()}`}>
+				<Link to={`${pathname}/${genre}`}>
 					<span>{title}</span>
 					<span className='Row__showmore'>Show all <FiChevronRight/></span>
 				</Link>
