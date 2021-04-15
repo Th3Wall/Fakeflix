@@ -1,5 +1,5 @@
 import "./myList.scss"
-import FavouritePoster from "../../components/FavouritePoster/FavouritePoster"
+import Poster from "../../components/Poster/Poster";
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
 
@@ -15,7 +15,7 @@ const MyList = () => {
             <div className="MyList__wrp">
                 {favs && favs.length > 0
                     ? favs.map(result => (
-                        <FavouritePoster
+                        <Poster
                             key={result.id}
                             item={result}
                             {...result}

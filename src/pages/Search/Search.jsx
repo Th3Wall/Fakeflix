@@ -1,5 +1,5 @@
 import "./search.scss"
-import SearchResults from "../../components/SearchResults/SearchResults";
+import Poster from "../../components/Poster/Poster";
 import { useSelector } from "react-redux";
 import { selectSearchInputValue } from "../../redux/search/search.selectors";
 
@@ -15,7 +15,7 @@ const Search = searchResults => {
 			<div className="MyList__wrp">
 				{results && results.length > 0
 					? results.map(result => (
-						<SearchResults
+						<Poster
 							key={result.id}
 							item={result}
 							{...result}
