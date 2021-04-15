@@ -1,10 +1,21 @@
 import "./category.scss"
 import { useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Category = ({match}) => {
     const [page, setPage] = useState(1);
-    const categoryData = useRetrieveCategory(match, page);
+    const { url } = match;
+    const slicedUrl = url.split("/");
+    const { categoryName } = useParams();
+    const categoryData = useRetrieveCategory(slicedUrl[1], categoryName, page);
+
+    const selectorThatReturnsUndefined = () => undefined
+    const selector = categoryData ? categoryData.selector : selectorThatReturnsUndefined
+    const data = useSelector(selector)
+    console.log("data => ", data);
+
     return (
         <>
             {categoryData && (

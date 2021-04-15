@@ -2,15 +2,13 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchMovieDataConfig, fetchPopularDataConfig, fetchSeriesDataConfig } from "../dataConfig";
 
-export const useRetrieveCategory = (match, page) => {
+export const useRetrieveCategory = (slicedUrl, categoryName, page) => {
 
 	const dispatch = useDispatch();
 	const [categoryData, setCategoryData] = useState();
-	const { url, params: { categoryName } } = match;
-	const slicedUrl = url.split("/");
 
 	useEffect(() => {
-		switch (slicedUrl[1]) {
+		switch (slicedUrl) {
 			case "browse":
 			case "movies":
 				{
