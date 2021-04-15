@@ -8,32 +8,26 @@ export const useRetrieveCategory = (slicedUrl, categoryName, page) => {
 	const [categoryData, setCategoryData] = useState();
 
 	useEffect(() => {
+		let selectedConfigArray = null;
 		switch (slicedUrl) {
 			case "browse":
 			case "movies":
-				{
-					const [data] = fetchMovieDataConfig.filter(el => el.genre === categoryName);
-					dispatch(data.thunk(`${data.url}&page=${page}`));
-					setCategoryData(data);
-				}
-				break
+				selectedConfigArray = fetchMovieDataConfig;
+				break;
 			case "tvseries":
-				{
-					const [data] = fetchSeriesDataConfig.filter(el => el.genre === categoryName);
-					dispatch(data.thunk(`${data.url}&page=${page}`));
-					setCategoryData(data);
-				}
-				break
+				selectedConfigArray = fetchSeriesDataConfig;
+				break;
 			case "popular":
-				{
-					const [data] = fetchPopularDataConfig.filter(el => el.genre === categoryName);
-					dispatch(data.thunk(`${data.url}&page=${page}`));
-					setCategoryData(data);
-				}
-				break
+				selectedConfigArray = fetchPopularDataConfig;
+				break;
 			default:
-				break
+				break;
 		}
+
+		const [data] = selectedConfigArray.filter(el => el.genre === categoryName);
+		dispatch(data.thunk(`${data.url}&page=${page}`));
+		setCategoryData(data);
+
 	}, [dispatch, categoryName, slicedUrl, page])
 
 	return categoryData;
