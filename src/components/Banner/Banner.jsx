@@ -4,7 +4,7 @@ import axios from "../../axiosInstance";
 import { useState, useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
-import { randomize, truncate } from "./utils";
+import { randomize, truncate } from "../../utils";
 
 const { fetchNetflixOriginals, discoverMovies, discoverSeries } = requests;
 
