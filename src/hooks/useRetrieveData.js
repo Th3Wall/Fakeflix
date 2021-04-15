@@ -8,55 +8,33 @@ export const useRetrieveData = type => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
+        let selectedConfigArray = null;
         switch (type) {
             case "movies":
-                {
-                    const rowsData = fetchMovieDataConfig.map(el => {
-                        dispatch(el.thunk(el.url))
-                        return {
-                            id: el.id,
-                            title: el.title,
-                            genre: el.genre,
-                            selector: el.selector,
-                            isLarge: el.isLarge
-                        }
-                    })
-                    setData(rowsData)
-                }
-                break
+                selectedConfigArray = fetchMovieDataConfig;
+                break;
             case "series":
-                {
-                    const rowsData = fetchSeriesDataConfig.map(el => {
-                        dispatch(el.thunk(el.url))
-                        return {
-                            id: el.id,
-                            title: el.title,
-                            genre: el.genre,
-                            selector: el.selector,
-                            isLarge: el.isLarge
-                        }
-                    })
-                    setData(rowsData)
-                }
-                break
+                selectedConfigArray = fetchSeriesDataConfig;
+                break;
             case "popular":
-                {
-                    const rowsData = fetchPopularDataConfig.map(el => {
-                        dispatch(el.thunk(el.url))
-                        return {
-                            id: el.id,
-                            title: el.title,
-                            genre: el.genre,
-                            selector: el.selector,
-                            isLarge: el.isLarge
-                        }
-                    })
-                    setData(rowsData)
-                }
-                break
+                selectedConfigArray = fetchPopularDataConfig;
+                break;
             default:
-                console.log("wrong type")
+                break;
         }
+
+        const rowsData = selectedConfigArray.map(el => {
+            dispatch(el.thunk(el.url))
+            return {
+                id: el.id,
+                title: el.title,
+                genre: el.genre,
+                selector: el.selector,
+                isLarge: el.isLarge
+            }
+        })
+        setData(rowsData)
+
     }, [type, dispatch])
 
     return data
