@@ -11,7 +11,7 @@ import SignIn from "./pages/SignIn/SignIn"
 import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
-// import Animation from "./components/Animation/Animation";
+import Animation from "./components/Animation/Animation";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -44,7 +44,6 @@ const App = () => {
                 <>
                     <Navbar />
                     <DetailModal />
-                    {/*<Animation />*/}
                 </>
             )}
             <Switch>
@@ -54,6 +53,10 @@ const App = () => {
                 >
                     <Redirect to="/login" />
                 </Route>
+                <Route
+                    path="/spash"
+                    component={Animation}
+                />
                 <Route
                     path="/search"
                     render={() => currentUser
@@ -118,7 +121,7 @@ const App = () => {
                 <Route
                     exact
                     path="/login"
-                    render={() => currentUser ? <Redirect to="/browse"/> : <SignIn />}
+                    render={() => currentUser ? <Redirect to="/spash"/> : <SignIn />}
                 />
                 <Route path="*">
                     <Redirect to="/" />

@@ -1,6 +1,17 @@
 import "./animation.scss"
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const Animation = () => {
+
+	let history = useHistory();
+
+	useEffect(() => {
+		setTimeout(() => {
+			history.push('/browse')
+		}, 5700)
+	}, [history])
+
 	return (
 		<div id="container" className='Animation'>
 			<div className="netflixintro" letter="F">
