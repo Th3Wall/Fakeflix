@@ -3,7 +3,7 @@ import "./animation.scss"
 const Animation = () => {
 	return (
 		<div id="container" className='Animation'>
-			<netflixintro letter="F">
+			<div className="netflixintro" letter="F">
 				<div className="helper-1">
 					<div className="effect-brush">
 						<span className="fur-31"></span>
@@ -174,7 +174,7 @@ const Animation = () => {
 						<span className="fur-1"></span>
 					</div>
 				</div>
-			</netflixintro>
+			</div>
 		</div>
 	)
 }

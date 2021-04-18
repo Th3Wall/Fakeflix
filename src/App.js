@@ -11,6 +11,7 @@ import SignIn from "./pages/SignIn/SignIn"
 import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
+// import Animation from "./components/Animation/Animation";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -43,6 +44,7 @@ const App = () => {
                 <>
                     <Navbar />
                     <DetailModal />
+                    {/*<Animation />*/}
                 </>
             )}
             <Switch>
