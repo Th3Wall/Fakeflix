@@ -20,6 +20,13 @@ const romanceMoviesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case moviesActionTypes.LOAD_MORE_ROMANCE_MOVIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case moviesActionTypes.FETCH_ROMANCE_MOVIES_FAILURE:
             return {
                 ...state,

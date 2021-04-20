@@ -20,6 +20,13 @@ const horrorMoviesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case moviesActionTypes.LOAD_MORE_HORROR_MOVIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case moviesActionTypes.FETCH_HORROR_MOVIES_FAILURE:
             return {
                 ...state,
