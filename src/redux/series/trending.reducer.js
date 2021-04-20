@@ -20,6 +20,13 @@ const trendingSeriesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case seriesActionTypes.LOAD_MORE_TRENDING_SERIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case seriesActionTypes.FETCH_TRENDING_SERIES_FAILURE:
             return {
                 ...state,

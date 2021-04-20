@@ -20,6 +20,13 @@ const actionAdventureSeriesReducer = (state = initialState, {type, payload}) => 
                 loading: false,
                 error: ''
             }
+        case seriesActionTypes.LOAD_MORE_ACTIONADVENTURE_SERIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case seriesActionTypes.FETCH_ACTIONADVENTURE_SERIES_FAILURE:
             return {
                 ...state,

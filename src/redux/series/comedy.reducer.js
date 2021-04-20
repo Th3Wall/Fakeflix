@@ -20,6 +20,13 @@ const comedySeriesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case seriesActionTypes.LOAD_MORE_COMEDY_SERIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case seriesActionTypes.FETCH_COMEDY_SERIES_FAILURE:
             return {
                 ...state,

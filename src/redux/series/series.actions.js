@@ -44,8 +44,10 @@ export const fetchActionAdventureSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_ACTIONADVENTURE_SERIES_REQUEST
 })
 
-export const fetchActionAdventureSeriesSuccess = actionAdventureSeries => ({
-    type: seriesActionTypes.FETCH_ACTIONADVENTURE_SERIES_SUCCESS,
+export const fetchActionAdventureSeriesSuccess = (actionAdventureSeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_ACTIONADVENTURE_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_ACTIONADVENTURE_SERIES_SUCCESS,
     payload: actionAdventureSeries
 })
 
@@ -54,7 +56,7 @@ export const fetchActionAdventureSeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchActionAdventureSeriesAsync = fetchUrl => {
+export const fetchActionAdventureSeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchActionAdventureSeriesRequest());
         axios.get(fetchUrl)
@@ -63,7 +65,9 @@ export const fetchActionAdventureSeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchActionAdventureSeriesSuccess(actionAdventureSeries));
+                if (isPage) {
+                    dispatch(fetchActionAdventureSeriesSuccess(actionAdventureSeries, isPage));
+                } else dispatch(fetchActionAdventureSeriesSuccess(actionAdventureSeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -78,8 +82,10 @@ export const fetchAnimationSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_ANIMATION_SERIES_REQUEST
 })
 
-export const fetchAnimationSeriesSuccess = animationSeries => ({
-    type: seriesActionTypes.FETCH_ANIMATION_SERIES_SUCCESS,
+export const fetchAnimationSeriesSuccess = (animationSeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_ANIMATION_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_ANIMATION_SERIES_SUCCESS,
     payload: animationSeries
 })
 
@@ -88,7 +94,7 @@ export const fetchAnimationSeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchAnimationSeriesAsync = fetchUrl => {
+export const fetchAnimationSeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchAnimationSeriesRequest());
         axios.get(fetchUrl)
@@ -97,7 +103,9 @@ export const fetchAnimationSeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchAnimationSeriesSuccess(animationSeries));
+                if (isPage) {
+                    dispatch(fetchAnimationSeriesSuccess(animationSeries, isPage));
+                } else dispatch(fetchAnimationSeriesSuccess(animationSeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -112,8 +120,10 @@ export const fetchComedySeriesRequest = () => ({
     type: seriesActionTypes.FETCH_COMEDY_SERIES_REQUEST
 })
 
-export const fetchComedySeriesSuccess = comedySeries => ({
-    type: seriesActionTypes.FETCH_COMEDY_SERIES_SUCCESS,
+export const fetchComedySeriesSuccess = (comedySeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_COMEDY_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_COMEDY_SERIES_SUCCESS,
     payload: comedySeries
 })
 
@@ -122,7 +132,7 @@ export const fetchComedySeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchComedySeriesAsync = fetchUrl => {
+export const fetchComedySeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchComedySeriesRequest());
         axios.get(fetchUrl)
@@ -131,7 +141,9 @@ export const fetchComedySeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchComedySeriesSuccess(comedySeries));
+                if (isPage) {
+                    dispatch(fetchComedySeriesSuccess(comedySeries, isPage));
+                } else dispatch(fetchComedySeriesSuccess(comedySeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -146,8 +158,10 @@ export const fetchCrimeSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_CRIME_SERIES_REQUEST
 })
 
-export const fetchCrimeSeriesSuccess = crimeSeries => ({
-    type: seriesActionTypes.FETCH_CRIME_SERIES_SUCCESS,
+export const fetchCrimeSeriesSuccess = (crimeSeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_CRIME_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_CRIME_SERIES_SUCCESS,
     payload: crimeSeries
 })
 
@@ -156,7 +170,7 @@ export const fetchCrimeSeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchCrimeSeriesAsync = fetchUrl => {
+export const fetchCrimeSeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchCrimeSeriesRequest());
         axios.get(fetchUrl)
@@ -165,7 +179,9 @@ export const fetchCrimeSeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchCrimeSeriesSuccess(crimeSeries));
+                if (isPage) {
+                    dispatch(fetchCrimeSeriesSuccess(crimeSeries, isPage));
+                } else dispatch(fetchCrimeSeriesSuccess(crimeSeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -180,8 +196,10 @@ export const fetchDocumentarySeriesRequest = () => ({
     type: seriesActionTypes.FETCH_DOCUMENTARY_SERIES_REQUEST
 })
 
-export const fetchDocumentarySeriesSuccess = documentarySeries => ({
-    type: seriesActionTypes.FETCH_DOCUMENTARY_SERIES_SUCCESS,
+export const fetchDocumentarySeriesSuccess = (documentarySeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_DOCUMENTARY_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_DOCUMENTARY_SERIES_SUCCESS,
     payload: documentarySeries
 })
 
@@ -190,7 +208,7 @@ export const fetchDocumentarySeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchDocumentarySeriesAsync = fetchUrl => {
+export const fetchDocumentarySeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchDocumentarySeriesRequest());
         axios.get(fetchUrl)
@@ -199,7 +217,9 @@ export const fetchDocumentarySeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchDocumentarySeriesSuccess(documentarySeries));
+                if (isPage) {
+                    dispatch(fetchDocumentarySeriesSuccess(documentarySeries, isPage));
+                } else dispatch(fetchDocumentarySeriesSuccess(documentarySeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -214,8 +234,10 @@ export const fetchFamilySeriesRequest = () => ({
     type: seriesActionTypes.FETCH_FAMILY_SERIES_REQUEST
 })
 
-export const fetchFamilySeriesSuccess = familySeries => ({
-    type: seriesActionTypes.FETCH_FAMILY_SERIES_SUCCESS,
+export const fetchFamilySeriesSuccess = (familySeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_FAMILY_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_FAMILY_SERIES_SUCCESS,
     payload: familySeries
 })
 
@@ -224,7 +246,7 @@ export const fetchFamilySeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchFamilySeriesAsync = fetchUrl => {
+export const fetchFamilySeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchFamilySeriesRequest());
         axios.get(fetchUrl)
@@ -233,7 +255,9 @@ export const fetchFamilySeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchFamilySeriesSuccess(familySeries));
+                if (isPage) {
+                    dispatch(fetchFamilySeriesSuccess(familySeries, isPage));
+                } else dispatch(fetchFamilySeriesSuccess(familySeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -248,8 +272,10 @@ export const fetchKidsSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_KIDS_SERIES_REQUEST
 })
 
-export const fetchKidsSeriesSuccess = kidsSeries => ({
-    type: seriesActionTypes.FETCH_KIDS_SERIES_SUCCESS,
+export const fetchKidsSeriesSuccess = (kidsSeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_KIDS_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_KIDS_SERIES_SUCCESS,
     payload: kidsSeries
 })
 
@@ -258,7 +284,7 @@ export const fetchKidsSeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchKidsSeriesAsync = fetchUrl => {
+export const fetchKidsSeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchKidsSeriesRequest());
         axios.get(fetchUrl)
@@ -267,7 +293,9 @@ export const fetchKidsSeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchKidsSeriesSuccess(kidsSeries));
+                if (isPage) {
+                    dispatch(fetchKidsSeriesSuccess(kidsSeries, isPage));
+                } else dispatch(fetchKidsSeriesSuccess(kidsSeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -282,8 +310,10 @@ export const fetchSciFiFantasySeriesRequest = () => ({
     type: seriesActionTypes.FETCH_SCIFIFANTASY_SERIES_REQUEST
 })
 
-export const fetchSciFiFantasySeriesSuccess = sciFiFantasySeries => ({
-    type: seriesActionTypes.FETCH_SCIFIFANTASY_SERIES_SUCCESS,
+export const fetchSciFiFantasySeriesSuccess = (sciFiFantasySeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_SCIFIFANTASY_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_SCIFIFANTASY_SERIES_SUCCESS,
     payload: sciFiFantasySeries
 })
 
@@ -292,7 +322,7 @@ export const fetchSciFiFantasySeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchSciFiFantasySeriesAsync = fetchUrl => {
+export const fetchSciFiFantasySeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchSciFiFantasySeriesRequest());
         axios.get(fetchUrl)
@@ -301,7 +331,9 @@ export const fetchSciFiFantasySeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchSciFiFantasySeriesSuccess(sciFiFantasySeries));
+                if (isPage) {
+                    dispatch(fetchSciFiFantasySeriesSuccess(sciFiFantasySeries, isPage));
+                } else dispatch(fetchSciFiFantasySeriesSuccess(sciFiFantasySeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -316,8 +348,10 @@ export const fetchTrendingSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_TRENDING_SERIES_REQUEST
 })
 
-export const fetchTrendingSeriesSuccess = trendingSeries => ({
-    type: seriesActionTypes.FETCH_TRENDING_SERIES_SUCCESS,
+export const fetchTrendingSeriesSuccess = (trendingSeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_TRENDING_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_TRENDING_SERIES_SUCCESS,
     payload: trendingSeries
 })
 
@@ -326,7 +360,7 @@ export const fetchTrendingSeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchTrendingSeriesAsync = fetchUrl => {
+export const fetchTrendingSeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchTrendingSeriesRequest());
         axios.get(fetchUrl)
@@ -335,7 +369,9 @@ export const fetchTrendingSeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchTrendingSeriesSuccess(trendingSeries));
+                if (isPage) {
+                    dispatch(fetchTrendingSeriesSuccess(trendingSeries, isPage));
+                } else dispatch(fetchTrendingSeriesSuccess(trendingSeries));
             })
             .catch(error => {
                 const errorMessage = error.message;

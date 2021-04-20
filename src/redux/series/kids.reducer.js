@@ -20,6 +20,13 @@ const kidsSeriesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case seriesActionTypes.LOAD_MORE_KIDS_SERIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case seriesActionTypes.FETCH_KIDS_SERIES_FAILURE:
             return {
                 ...state,
