@@ -20,6 +20,13 @@ const netflixSeriesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case seriesActionTypes.LOAD_MORE_NETFLIX_SERIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case seriesActionTypes.FETCH_NETFLIX_SERIES_FAILURE:
             return {
                 ...state,

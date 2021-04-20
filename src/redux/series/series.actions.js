@@ -6,8 +6,10 @@ export const fetchNetflixSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_NETFLIX_SERIES_REQUEST
 })
 
-export const fetchNetflixSeriesSuccess = netflixSeries => ({
-    type: seriesActionTypes.FETCH_NETFLIX_SERIES_SUCCESS,
+export const fetchNetflixSeriesSuccess = (netflixSeries, isPage) => ({
+    type: isPage
+        ? seriesActionTypes.FETCH_NETFLIX_SERIES_SUCCESS
+        : seriesActionTypes.LOAD_MORE_NETFLIX_SERIES_SUCCESS,
     payload: netflixSeries
 })
 
@@ -16,7 +18,7 @@ export const fetchNetflixSeriesFailure = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchNetflixSeriesAsync = fetchUrl => {
+export const fetchNetflixSeriesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchNetflixSeriesRequest());
         axios.get(fetchUrl)
@@ -25,7 +27,9 @@ export const fetchNetflixSeriesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchNetflixSeriesSuccess(netflixSeries));
+                if (isPage) {
+                    dispatch(fetchNetflixSeriesSuccess(netflixSeries, isPage));
+                } else dispatch(fetchNetflixSeriesSuccess(netflixSeries));
             })
             .catch(error => {
                 const errorMessage = error.message;
