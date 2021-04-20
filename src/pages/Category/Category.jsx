@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const Category = ({match}) => {
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(2);
     const { url } = match;
     const slicedUrl = url.split("/");
     const { categoryName } = useParams();

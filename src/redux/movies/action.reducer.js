@@ -20,6 +20,13 @@ const actionMoviesReducer = (state = initialState, {type, payload}) => {
                 loading: false,
                 error: ''
             }
+        case moviesActionTypes.LOAD_MORE_ACTION_MOVIES_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data, ...payload],
+                loading: false,
+                error: ''
+            }
         case moviesActionTypes.FETCH_ACTION_MOVIES_FAILURE:
             return {
                 ...state,

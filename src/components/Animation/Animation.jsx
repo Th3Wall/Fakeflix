@@ -13,7 +13,7 @@ const Animation = () => {
 	}, [history])
 
 	return (
-		<div id="container" className='Animation'>
+		<div id="Animation__wrp" className='Animation'>
 			<div className="netflixintro" letter="F">
 				<div className="helper-1">
 					<div className="effect-brush">

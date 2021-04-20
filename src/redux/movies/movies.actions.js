@@ -6,8 +6,8 @@ export const fetchActionMoviesRequest = () => ({
     type: moviesActionTypes.FETCH_ACTION_MOVIES_REQUEST
 })
 
-export const fetchActionMoviesSuccess = actionMovies => ({
-    type: moviesActionTypes.FETCH_ACTION_MOVIES_SUCCESS,
+export const fetchActionMoviesSuccess = (actionMovies, isPage) => ({
+    type: isPage ? moviesActionTypes.FETCH_ACTION_MOVIES_SUCCESS : moviesActionTypes.LOAD_MORE_ACTION_MOVIES_SUCCESS,
     payload: actionMovies
 })
 
@@ -16,7 +16,7 @@ export const fetchActionMoviesFailure = error => ({
     payload: error
 })
 
-export const fetchActionMoviesAsync = fetchUrl => {
+export const fetchActionMoviesAsync = (fetchUrl, isPage) => {
     return dispatch => {
         dispatch(fetchActionMoviesRequest())
         axios.get(fetchUrl)
@@ -25,7 +25,9 @@ export const fetchActionMoviesAsync = fetchUrl => {
                     ...el,
                     isFavourite: false
                 }));
-                dispatch(fetchActionMoviesSuccess(actionMovies))
+                if (isPage) {
+                    dispatch(fetchActionMoviesSuccess(actionMovies, isPage))
+                } else dispatch(fetchActionMoviesSuccess(actionMovies));
             })
             .catch(error => {
                 const errorMessage = error.message;
