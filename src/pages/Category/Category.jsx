@@ -1,12 +1,14 @@
 import "./category.scss"
 import Poster from "../../components/Poster/Poster";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import useLazyLoad from "../../hooks/useLazyLoad";
 
 const Category = ({match}) => {
     const [page, setPage] = useState(2);
+    const endPageRef = useRef(null)
     const { url } = match;
     const slicedUrl = url.split("/");
     const { categoryName } = useParams();
@@ -14,25 +16,8 @@ const Category = ({match}) => {
     const preventUndefinedSelector = () => undefined;
     const selector = categoryData ? categoryData.selector : preventUndefinedSelector;
     const selectedGenre = useSelector(selector);
-
-    const containerRef = useRef(null)
-    const currentExtractedRef = containerRef.current;
-
-    const callbackFunction = useCallback((entries) => {
-        const [ entry ] = entries;
-        if (entry.isIntersecting) {
-            setPage(page => page + 1);
-        }
-    }, [])
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(callbackFunction)
-        if (currentExtractedRef) observer.observe(currentExtractedRef)
-
-        return () => {
-            if(currentExtractedRef) observer.unobserve(currentExtractedRef)
-        }
-    }, [currentExtractedRef, callbackFunction])
+    const handleLoadMore = () => setPage(page => page + 1);
+    const isIntersecting = useLazyLoad(endPageRef, handleLoadMore);
 
     return (
         <div className="Category">
@@ -52,7 +37,7 @@ const Category = ({match}) => {
                         }
                         {selectedGenre.loading && <div className='Category__subtitle'>Loading...</div>}
                         {selectedGenre.error && <div className='Category__subtitle'>Error occurred.</div>}
-                        <div className="box" ref={containerRef} />
+                        <div className={`Category__endPage ${isIntersecting ? 'intersected' : null}`} ref={endPageRef} />
                     </div>
                 </>
             )}

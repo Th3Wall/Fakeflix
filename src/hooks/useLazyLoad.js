@@ -1,30 +1,28 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react";
 
-const useLazyLoad = (options) => {
-    const containerRef = useRef(null)
-    const [ isVisible, setIsVisible ] = useState(false)
+const useLazyLoad = (domRef, customCallback) => {
+    const [ isIntersecting, setIsIntersecting ] = useState(false)
+    const currentRef = domRef.current;
 
-    const callbackFunction = (entries) => {
+    const callbackFunction = useCallback((entries) => {
         const [ entry ] = entries;
+        setIsIntersecting(entry.isIntersecting)
 
-        console.log("entry", entry);
-
-        setIsVisible(entry.isIntersecting)
-    }
+        if (entry.isIntersecting) {
+            customCallback()
+        }
+    }, [customCallback])
 
     useEffect(() => {
-        if (containerRef.current) {
+        const observer = new IntersectionObserver(callbackFunction)
+        if (currentRef) observer.observe(currentRef)
 
-            console.log("containerRef", containerRef.current);
-
-            const observer = new IntersectionObserver(callbackFunction, options);
-            observer.observe(containerRef.current);
-
-            return () => observer.unobserve(containerRef.current)
+        return () => {
+            if(currentRef) observer.unobserve(currentRef)
         }
-    }, [containerRef, options])
+    }, [currentRef, callbackFunction])
 
-    return [containerRef, isVisible]
+    return isIntersecting;
 }
 
 export default useLazyLoad;
