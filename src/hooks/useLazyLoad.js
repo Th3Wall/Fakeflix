@@ -1,16 +1,16 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
-const useLazyLoad = (domRef, customCallback) => {
-    const [ isIntersecting, setIsIntersecting ] = useState(false)
-    const currentRef = domRef.current;
+const useLazyLoad = (customCallback) => {
+    const endPageRef = useRef(null);
+    const [ isIntersecting, setIsIntersecting ] = useState(false);
+    const currentRef = endPageRef.current;
 
     const callbackFunction = useCallback((entries) => {
         const [ entry ] = entries;
-        setIsIntersecting(entry.isIntersecting)
+        setIsIntersecting(entry.isIntersecting);
 
-        if (entry.isIntersecting) {
-            customCallback()
-        }
+        if (entry.isIntersecting) customCallback();
+
     }, [customCallback])
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const useLazyLoad = (domRef, customCallback) => {
         }
     }, [currentRef, callbackFunction])
 
-    return isIntersecting;
+    return [endPageRef, isIntersecting];
 }
 
 export default useLazyLoad;

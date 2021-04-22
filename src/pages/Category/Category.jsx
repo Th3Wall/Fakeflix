@@ -1,6 +1,6 @@
 import "./category.scss"
 import Poster from "../../components/Poster/Poster";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,6 @@ import useLazyLoad from "../../hooks/useLazyLoad";
 
 const Category = ({match}) => {
     const [page, setPage] = useState(2);
-    const endPageRef = useRef(null)
     const { url } = match;
     const slicedUrl = url.split("/");
     const { categoryName } = useParams();
@@ -17,7 +16,7 @@ const Category = ({match}) => {
     const selector = categoryData ? categoryData.selector : preventUndefinedSelector;
     const selectedGenre = useSelector(selector);
     const handleLoadMore = () => setPage(page => page + 1);
-    const isIntersecting = useLazyLoad(endPageRef, handleLoadMore);
+    const [endPageRef, isIntersecting] = useLazyLoad(handleLoadMore);
 
     return (
         <div className="Category">
