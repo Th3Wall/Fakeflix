@@ -29,6 +29,7 @@ const DetailModal = () => {
 	const handleRemove = (event) => {
 		event.stopPropagation();
 		dispatch(removeFromFavourites(result));
+		if (!modalClosed) handleModalClose();
 	}
 	useOutsideClick(modalRef, () => {
 		if (!modalClosed) handleModalClose();
