@@ -62,7 +62,7 @@ const Navbar = () => {
 		if (value.length > 0) {
 			history.push(`/search?q=${value}`);
 			dispatch(fetchSearchResultsAsync(value));
-		} else history.push("/");
+		} else history.push("/browse");
 	};
 
 	return (
