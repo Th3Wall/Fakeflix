@@ -77,7 +77,7 @@ export const fetchActionAdventureSeriesAsync = (fetchUrl, isPage) => {
 }
 
 
-// Animation
+// SplashAnimation
 export const fetchAnimationSeriesRequest = () => ({
     type: seriesActionTypes.FETCH_ANIMATION_SERIES_REQUEST
 })

@@ -1,8 +1,8 @@
-import "./animation.scss"
+import "./splashAnimation.scss"
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-const Animation = () => {
+const SplashAnimation = () => {
 
 	let history = useHistory();
 
@@ -13,7 +13,7 @@ const Animation = () => {
 	}, [history])
 
 	return (
-		<div id="Animation__wrp" className='Animation'>
+		<div id="SplashAnimation__wrp" className='SplashAnimation'>
 			<div className="netflixintro" letter="F">
 				<div className="helper-1">
 					<div className="effect-brush">
@@ -190,4 +190,4 @@ const Animation = () => {
 	)
 }
 
-export default Animation
+export default SplashAnimation

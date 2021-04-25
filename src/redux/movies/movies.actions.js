@@ -77,7 +77,7 @@ export const fetchAdventureMoviesAsync = (fetchUrl, isPage) => {
 	};
 };
 
-// Animation
+// SplashAnimation
 export const fetchAnimationMoviesRequest = () => ({
 	type: moviesActionTypes.FETCH_ANIMATION_MOVIES_REQUEST,
 });

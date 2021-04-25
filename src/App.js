@@ -11,7 +11,7 @@ import SignIn from "./pages/SignIn/SignIn"
 import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
-import Animation from "./components/Animation/Animation";
+import SplashAnimation from "./components/SplashAnimation/SplashAnimation";
 import PlayAnimation from "./components/PlayAnimation/PlayAnimation";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
@@ -56,7 +56,7 @@ const App = () => {
                 </Route>
                 <Route
                     path="/spash"
-                    component={Animation}
+                    component={SplashAnimation}
                 />
                 <Route
                     path="/play"
