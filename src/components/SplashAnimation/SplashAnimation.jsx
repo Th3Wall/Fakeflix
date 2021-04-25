@@ -1,12 +1,21 @@
 import "./splashAnimation.scss"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { TADUM_SOUND_URL } from "../../requests";
 
 const SplashAnimation = () => {
 
 	let history = useHistory();
+	const soundRef = useRef(null);
+	const handleTadum = () => {
+		soundRef.current.currentTime = 0;
+		soundRef.current.play();
+	}
 
 	useEffect(() => {
+		setTimeout(() => {
+			handleTadum();
+		}, 200)
 		setTimeout(() => {
 			history.push('/browse')
 		}, 5700)
@@ -14,6 +23,7 @@ const SplashAnimation = () => {
 
 	return (
 		<div id="SplashAnimation__wrp" className='SplashAnimation'>
+			<audio ref={soundRef} src={TADUM_SOUND_URL} />
 			<div className="netflixintro" letter="F">
 				<div className="helper-1">
 					<div className="effect-brush">

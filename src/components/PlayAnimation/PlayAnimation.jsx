@@ -1,12 +1,19 @@
 import "./playAnimation.scss"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { TADUM_SOUND_URL } from "../../requests";
 
 const PlayAnimation = () => {
 
 	let history = useHistory();
+	const soundRef = useRef(null);
+	const handleTadum = () => {
+		soundRef.current.currentTime = 0.3;
+		soundRef.current.play();
+	}
 
 	useEffect(() => {
+		handleTadum();
 		setTimeout(() => {
 			history.push('/browse')
 		}, 3800)
@@ -14,6 +21,7 @@ const PlayAnimation = () => {
 
 	return (
 		<div className='PlayAnimation__wrp'>
+			<audio ref={soundRef} src={TADUM_SOUND_URL} />
 			<span className="PlayAnimation__text">
 				FAKEFLIX
 			</span>
