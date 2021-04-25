@@ -5,6 +5,7 @@ import useGenreConversion from "../../hooks/useGenreConversion";
 import { showModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch } from "react-redux";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
+import { Link } from "react-router-dom";
 
 const Poster = result => {
     const { item, item: { title, original_name, original_title, name, genre_ids, backdrop_path }, isFavourite } = result;
@@ -46,12 +47,13 @@ const Poster = result => {
             )}
             <div className="Poster__info">
                 <div className="Poster__info--iconswrp">
-                    <button
+                    <Link
                         className="Poster__info--icon icon--play"
                         onClick={handlePlayAction}
+                        to={'/play'}
                     >
                         <FaPlay />
-                    </button>
+                    </Link>
                     {!isFavourite
                         ? (
                             <button className='Poster__info--icon icon--favourite' onClick={handleAdd}>

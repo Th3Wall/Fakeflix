@@ -1,5 +1,6 @@
 import './detailModal.scss'
 import { useRef } from 'react';
+import { Link } from "react-router-dom";
 import { hideModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
@@ -31,6 +32,10 @@ const DetailModal = () => {
 		dispatch(removeFromFavourites(result));
 		if (!modalClosed) handleModalClose();
 	}
+	const handlePlayAnimation = event => {
+		event.stopPropagation();
+		handleModalClose();
+	};
 	useOutsideClick(modalRef, () => {
 		if (!modalClosed) handleModalClose();
 	});
@@ -55,10 +60,14 @@ const DetailModal = () => {
 								alt={fallbackTitle}
 							/>
 							<div className="Modal__image--buttonswrp">
-								<button className="Modal__image--button">
+								<Link
+									className="Modal__image--button"
+									onClick={handlePlayAnimation}
+									to={'/play'}
+								>
 									<FaPlay />
 									<span>Play</span>
-								</button>
+								</Link>
 								{!isFavourite
 									? (
 										<button className='Modal__image--button-circular' onClick={handleAdd}>

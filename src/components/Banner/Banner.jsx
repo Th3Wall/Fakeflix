@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
 import { randomize, truncate } from "../../utils";
+import { Link } from "react-router-dom";
 
 const { fetchNetflixOriginals, discoverMovies, discoverSeries } = requests;
 
@@ -34,6 +35,10 @@ const Banner = ({ type }) => {
 		fetchBannerData();
 	}, [fetchReq]);
 
+	const handlePlayAnimation = event => {
+		event.stopPropagation();
+	};
+
 	return (
 		<>
 			<header
@@ -47,10 +52,14 @@ const Banner = ({ type }) => {
 						<div className="Banner__content">
 							<h1 className="Banner__content--title">{banner.title || banner.name || banner.original_name}</h1>
 							<div className="Banner__buttons">
-								<button className="Banner__button">
+								<Link
+									className="Banner__button"
+									onClick={handlePlayAnimation}
+									to={'/play'}
+								>
 									<FaPlay />
 									<span>Play</span>
-								</button>
+								</Link>
 								<button className="Banner__button">
 									<BiInfoCircle size={"1.5em"}/>
 									<span>More info</span>

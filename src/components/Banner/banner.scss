@@ -70,10 +70,11 @@
         border-radius: 6px;
         border: 0;
         margin-top: 1em;
-        font-family: 'Inter';
+        font-family: $main-font;
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
+        text-decoration: none;
         transition: all 0.2s ease-out;
 
         &:hover {
