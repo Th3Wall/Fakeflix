@@ -12,6 +12,7 @@ import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
 import Animation from "./components/Animation/Animation";
+import PlayAnimation from "./components/PlayAnimation/PlayAnimation";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
 import { setCurrentUser } from "./redux/user/user.actions"
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -56,6 +57,10 @@ const App = () => {
                 <Route
                     path="/spash"
                     component={Animation}
+                />
+                <Route
+                    path="/play"
+                    component={PlayAnimation}
                 />
                 <Route
                     path="/search"

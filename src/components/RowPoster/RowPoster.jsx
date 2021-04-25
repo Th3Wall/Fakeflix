@@ -5,6 +5,7 @@ import { addToFavourites, removeFromFavourites } from "../../redux/favourites/fa
 import { FaPlus, FaMinus, FaPlay, FaChevronDown } from "react-icons/fa";
 import useGenreConversion from "../../hooks/useGenreConversion";
 import { showModalDetail } from "../../redux/modal/modal.actions";
+import { Link } from "react-router-dom";
 
 const RowPoster = result => {
 	const { item, item: { title, original_name, original_title, name, genre_ids, poster_path, backdrop_path }, isLarge, isFavourite } = result;
@@ -25,6 +26,7 @@ const RowPoster = result => {
 	}
 	const handlePlayAction = event => {
 		event.stopPropagation();
+
 	};
 
 	return (
@@ -48,12 +50,13 @@ const RowPoster = result => {
 			)}
 			<div className="Row__poster-info">
 				<div className="Row__poster-info--iconswrp">
-					<button
+					<Link
 						className="Row__poster-info--icon icon--play"
 						onClick={handlePlayAction}
+						to={'/play'}
 					>
 						<FaPlay />
-					</button>
+					</Link>
 					{!isFavourite
 						? (
 							<button className='Row__poster-info--icon icon--favourite' onClick={handleAdd}>

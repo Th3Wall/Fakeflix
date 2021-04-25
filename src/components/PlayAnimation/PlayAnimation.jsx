@@ -9,11 +9,15 @@ const PlayAnimation = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			history.push('/browse')
-		}, 4100)
+		}, 3800)
 	}, [history])
 
 	return (
-		<span className="PlayAnimation__text">FAKEFLIX</span>
+		<div className='PlayAnimation__wrp'>
+			<span className="PlayAnimation__text">
+				FAKEFLIX
+			</span>
+		</div>
 	)
 }
 

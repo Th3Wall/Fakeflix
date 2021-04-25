@@ -1,11 +1,27 @@
 @import "../../scss/variables";
 
+@function makelongshadow($length,$angle) {
+	$val: 0px 0px transparent;
+	@for $i from 1 through $length {
+		$val: #{$val}, #{$i}px #{$i*$angle}px #aaa;
+	}
+	@return $val;
+}
+
 .PlayAnimation {
 	&__wrp {
-		background: radial-gradient(#fff, #aaa);
-		background-size: 100vw 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
 		overflow: hidden;
-		padding-top: 40vh;
+		z-index: 800;
+		background: radial-gradient(#fff, #aaa);
 	}
 
 	&__text {
@@ -50,12 +66,4 @@
 	100% {
 		opacity: 0;
 	}
-}
-
-@function makelongshadow($length,$angle) {
-	$val: 0px 0px transparent;
-	@for $i from 1 through $length {
-		$val: #{$val}, #{$i}px #{$i*$angle}px #aaa;
-	}
-	@return $val;
 }
