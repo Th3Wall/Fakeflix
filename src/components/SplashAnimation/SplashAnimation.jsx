@@ -7,14 +7,19 @@ const SplashAnimation = () => {
 
 	let history = useHistory();
 	const soundRef = useRef(null);
-	const handleTadum = () => {
-		soundRef.current.currentTime = 0;
-		soundRef.current.play();
+
+	const soundNotification = () => {
+		const sound = new Audio(TADUM_SOUND_URL);
+		const promise = sound.play();
+
+		if (promise !== undefined) {
+			promise.then(() => {}).catch(error => console.error(error));
+		}
 	}
 
 	useEffect(() => {
 		setTimeout(() => {
-			handleTadum();
+			soundNotification();
 		}, 200)
 		setTimeout(() => {
 			history.push('/browse')
