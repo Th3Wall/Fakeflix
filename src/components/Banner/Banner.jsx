@@ -9,7 +9,7 @@ import { selectNetflixSeries } from "../../redux/series/series.selectors";
 import { useSelector } from "react-redux";
 
 const Banner = ({ type }) => {
-	let selector = null;
+	let selector;
 	switch (type) {
 		case "movies":
 			selector = selectNetflixMovies;
@@ -25,7 +25,8 @@ const Banner = ({ type }) => {
 	const myData = useSelector(selector);
 	const { loading, error, data: results } = myData;
 	const finalData = results[randomize(results)];
-	let fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
+	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
+	const description = truncate(finalData?.overview, 280);
 
 	const handlePlayAnimation = event => {
 		event.stopPropagation();
@@ -33,42 +34,44 @@ const Banner = ({ type }) => {
 
 	return (
 		<>
-			{loading && <div className='Banner'>Loading...</div>}
-			{error && <div className='Row__not-loaded'>Error occurred.</div>}
+			<section className="Banner__loadsection">
+				{loading && <div className="loading">Loading...</div>}
+				{error && <div className="errored">Error occurred.</div>}
+			</section>
 
-			{!loading &&
-				finalData && (
-					<header
-						className="Banner"
-						style={{
-							backgroundImage: `url(${BASE_IMG_URL}/${finalData.backdrop_path})`,
-						}}
-					>
-						<div className="Banner__content">
-							<h1 className="Banner__content--title">{fallbackTitle}</h1>
-							<div className="Banner__buttons">
-								<Link
-									className="Banner__button"
-									onClick={handlePlayAnimation}
-									to={'/play'}
-								>
-									<FaPlay />
-									<span>Play</span>
-								</Link>
-								<button className="Banner__button">
-									<BiInfoCircle size={"1.5em"}/>
-									<span>More info</span>
-								</button>
-							</div>
-							<p className="Banner__content--description">{truncate(finalData.overview, 280)}</p>
+			{!loading && finalData && (
+				<header
+					className="Banner"
+					style={{
+						backgroundImage: `url(${BASE_IMG_URL}/${finalData.backdrop_path})`,
+					}}
+				>
+					<div className="Banner__content">
+						<h1 className="Banner__content--title">{fallbackTitle}</h1>
+						<div className="Banner__buttons">
+							<Link
+								className="Banner__button"
+								onClick={handlePlayAnimation}
+								to={"/play"}
+							>
+								<FaPlay />
+								<span>Play</span>
+							</Link>
+							<button className="Banner__button">
+								<BiInfoCircle size={"1.5em"} />
+								<span>More info</span>
+							</button>
 						</div>
-						<div className="Banner__panel" />
-						<div className="Banner__bottom-shadow" />
-					</header>
-				)
-			}
+						<p className="Banner__content--description">
+							{description}
+						</p>
+					</div>
+					<div className="Banner__panel" />
+					<div className="Banner__bottom-shadow" />
+				</header>
+			)}
 		</>
-	);
-};
+	)
+}
 
 export default Banner;

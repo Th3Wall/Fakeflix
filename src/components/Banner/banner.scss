@@ -12,6 +12,22 @@
     background-repeat: no-repeat;
     background-position: top center;
 
+    &__loadsection {
+        .loading,
+        .errored {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            background: $black;
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
+        }
+    }
+
     &__content {
         width: 100%;
         display: flex;
