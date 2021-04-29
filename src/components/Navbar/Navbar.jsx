@@ -1,5 +1,5 @@
 import "./navbar.scss";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import useViewport from "../../hooks/useViewport";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
@@ -15,12 +15,13 @@ import {
 	clearSearchInputValue,
 	fetchSearchResultsAsync,
 } from "../../redux/search/search.actions";
+import useScroll from "../../hooks/useScroll";
 
 const Navbar = () => {
 	let history = useHistory();
 	const dispatch = useDispatch();
 	const { width } = useViewport();
-	const [fixedNav, setFixedNav] = useState(false);
+	const isScrolled = useScroll(70);
 	const [genresNav, setGenresNav] = useState(false);
 	const [profileNav, setProfileNav] = useState(false);
 	const [searchInputToggle, setSearchInputToggle] = useState(false);
@@ -28,14 +29,6 @@ const Navbar = () => {
 	const genresNavRef = useRef();
 	const profileNavRef = useRef();
 	const currentUser = useSelector(selectCurrentUser);
-
-	const checkScroll = () => {
-		window.scrollY > 70 ? setFixedNav(true) : setFixedNav(false);
-	};
-	useEffect(() => {
-		window.addEventListener("scroll", checkScroll);
-		return () => window.removeEventListener("scroll", checkScroll);
-	}, []);
 
 	useOutsideClick(genresNavRef, () => {
 		if (genresNav) setGenresNav(false);
@@ -66,7 +59,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className={`Navbar ${fixedNav ? "Navbar__fixed" : ""}`}>
+		<nav className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}>
 			<Link to="/">
 				<img className="Navbar__logo" src={LOGO_URL} alt="Logo" />
 			</Link>
