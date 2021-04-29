@@ -18,7 +18,6 @@ const Searchbar = () => {
     useOutsideClick(searchbarRef, () => {
         if (searchInputToggle) {
             setSearchInput("");
-            dispatch(clearSearchInputValue());
             setSearchInputToggle(false);
         }
     });
