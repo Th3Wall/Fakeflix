@@ -1,0 +1,49 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.Searchbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    cursor: pointer;
+
+    &--search {
+      background-color: rgba($color: $black, $alpha: 0.25);
+      border: 1px solid $white;
+      padding: 7px 30px 7px 7px;
+      font-size: 14px;
+      color: $white;
+      outline: none;
+      border-radius: 6px;
+      width: 0;
+      opacity: 0;
+      transition: all 0.2s ease-out;
+    }
+
+    &--toggler {
+      margin-left: 0.5rem;
+    }
+
+    &--clear {
+      position: absolute;
+      right: 18%;
+      top: 55%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease-in-out;
+
+      &.typing {
+        opacity: 1;
+        pointer-events: all;
+        transition-delay: 0.1s;
+      }
+    }
+
+    &--active {
+      width: 200px;
+      opacity: 1;
+    }
+}

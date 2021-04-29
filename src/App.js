@@ -55,7 +55,7 @@ const App = () => {
                     <Redirect to="/login" />
                 </Route>
                 <Route
-                    path="/spash"
+                    path="/splash"
                     component={SplashAnimation}
                 />
                 <Route
@@ -126,7 +126,7 @@ const App = () => {
                 <Route
                     exact
                     path="/login"
-                    render={() => currentUser ? <Redirect to="/spash"/> : <SignIn />}
+                    render={() => currentUser ? <Redirect to="/splash"/> : <SignIn />}
                 />
                 <Route path="*">
                     <Redirect to="/" />
