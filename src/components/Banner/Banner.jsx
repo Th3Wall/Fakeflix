@@ -42,9 +42,7 @@ const Banner = ({ type }) => {
 			{!loading && finalData && (
 				<header
 					className="Banner"
-					style={{
-						backgroundImage: `url(${BASE_IMG_URL}/${finalData.backdrop_path})`,
-					}}
+					style={{backgroundImage: `url(${BASE_IMG_URL}/${finalData.backdrop_path})`}}
 				>
 					<div className="Banner__content">
 						<h1 className="Banner__content--title">{fallbackTitle}</h1>
