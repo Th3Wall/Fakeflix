@@ -26,9 +26,10 @@
 
 	&__text {
 		text-align: center;
-		font-family: $main-font;
+		font-family: $fakeflix-font;
 		font-size: 12vmin;
-		font-weight: 700;
+		//font-weight: 700;
+		//letter-spacing: 6px;
 		animation: netflix_style 4s infinite;
 		outline: none;
 		white-space: nowrap;
