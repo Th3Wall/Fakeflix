@@ -7,7 +7,7 @@ import Movies from "./pages/Movies/Movies"
 import TVSeries from './pages/TVSeries/TVSeries';
 import Popular from "./pages/Popular/Popular";
 import MyList from './pages/MyList/MyList';
-import SignIn from "./pages/SignIn/SignIn"
+import Auth from "./pages/Auth/Auth";
 import Search from "./pages/Search/Search";
 import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
@@ -126,7 +126,7 @@ const App = () => {
                 <Route
                     exact
                     path="/login"
-                    render={() => currentUser ? <Redirect to="/splash"/> : <SignIn />}
+                    render={() => currentUser ? <Redirect to="/splash"/> : <Auth />}
                 />
                 <Route path="*">
                     <Redirect to="/" />
