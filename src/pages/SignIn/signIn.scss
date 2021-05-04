@@ -87,7 +87,6 @@
 
             &:focus {
                 outline: none;
-                transform: scale(0.95);
             }
 
             &:nth-of-type(1) {
@@ -106,6 +105,7 @@
                     
                     &:hover {
                         background-color: darken($color: $red, $amount: 8);
+                        transform: scale(0.95);
                     }
                 }
                 &__google {
@@ -117,6 +117,7 @@
                         background-color: $black;
                         color: $white;
                         border: 1px solid $white;
+                        transform: scale(0.95);
                     }
                 }
             }
