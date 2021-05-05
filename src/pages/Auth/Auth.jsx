@@ -1,7 +1,8 @@
 import "./auth.scss"
 import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js"
 import { Link } from "react-router-dom"
-import SignIn from "../../components/SignIn/SignIn";
+// import SignIn from "../../components/SignIn/SignIn";
+import SignUp from "../../components/SignUp/SignUp";
 
 const Auth = () => {
     return (
@@ -11,7 +12,8 @@ const Auth = () => {
             <Link to="/" className="Auth__logo">
                 <img className="Auth__logo--img" src={LOGO_URL} />
             </Link>
-            <SignIn />
+            {/*<SignIn />*/}
+            <SignUp />
         </div>
     )
 }
