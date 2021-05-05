@@ -14,6 +14,7 @@ const Searchbar = () => {
     const [searchInputToggle, setSearchInputToggle] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const searchbarRef = useRef();
+    const searchInputRef = useRef();
 
     useOutsideClick(searchbarRef, () => {
         if (searchInputToggle) {
@@ -23,6 +24,7 @@ const Searchbar = () => {
     });
 
     const handleSearchInputToggle = () => {
+        searchInputRef.current.focus();
         setSearchInputToggle(!searchInputToggle);
     };
 
@@ -50,6 +52,7 @@ const Searchbar = () => {
                 placeholder="Search titles, people"
                 value={searchInput}
                 onChange={handleSearchInput}
+                ref={searchInputRef}
                 className={`Searchbar--search ${searchInputToggle ? "Searchbar--active" : ""}`}
             />
             <div

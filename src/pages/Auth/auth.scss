@@ -49,13 +49,13 @@
         transform: translate(-50%, -50%);
         z-index: 2;
         width: 100%;
-        max-width: 500px;
+        max-width: 90%;
         padding: 3.75em 3em;
         border-radius: 8px;
         background-color: rgba($color: $pure-black, $alpha: 0.75);
 
-        @media screen and (max-width: 768px) {
-            max-width: 90%;
+        @include mq(md) {
+            max-width: 500px;
         }
 
         &--title {
@@ -79,7 +79,7 @@
                 display: inline-block;
                 color: $red;
                 font-weight: bold;
-                font-size: 16px;
+                font-size: 14px;
                 line-height: 1.4;
                 cursor: pointer;
                 transition: all 0.2s ease-out;
@@ -88,6 +88,14 @@
                     color: darken($red, 5);
                     transform: scale(0.95);
                 }
+
+                @include mq(md) {
+                    font-size: 16px;
+                }
+            }
+
+            @include mq(md) {
+                font-size: 16px;
             }
         }
     }
