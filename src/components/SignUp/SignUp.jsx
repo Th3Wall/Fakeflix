@@ -4,7 +4,6 @@ import { auth } from "../../firebase/firebaseUtils";
 import { useForm } from "react-hook-form";
 
 const SignUp = () => {
-
 	const { register, handleSubmit, errors, getValues } = useForm({
 		mode: "onTouched"
 	})
@@ -53,11 +52,11 @@ const SignUp = () => {
 					type="password"
 					name="password"
 					placeholder="Password"
-					validationMessage="The password should have a length between 4 and 60 characters."
+					validationMessage="The password should have a length between 6 and 30 characters."
 					validation={register({
 						required: true,
-						minLength: 4,
-						maxLength: 60,
+						minLength: 6,
+						maxLength: 30,
 					})}
 					errors={errors}
 				/>

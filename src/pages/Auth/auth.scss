@@ -76,6 +76,7 @@
             text-align: center;
 
             .toggler {
+                display: inline-block;
                 color: $red;
                 font-weight: bold;
                 font-size: 16px;
@@ -85,6 +86,7 @@
 
                 &:hover {
                     color: darken($red, 5);
+                    transform: scale(0.95);
                 }
             }
         }

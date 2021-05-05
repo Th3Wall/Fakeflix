@@ -5,14 +5,13 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 
 const SignIn = () => {
-
 	const { register, handleSubmit, errors } = useForm({
 		mode: "onTouched"
 	})
 
 	const onSubmit = data => {
 		const { email, password } = data;
-		auth.createUserWithEmailAndPassword(email, password)
+		auth.signInWithEmailAndPassword(email, password)
 			.then(authUser =>{
 				console.log(authUser)
 				// Set authUser to store
@@ -40,11 +39,11 @@ const SignIn = () => {
 					type="password"
 					name="password"
 					placeholder="Password"
-					validationMessage="The password should have a length between 4 and 60 characters."
+					validationMessage="The password should have a length between 6 and 30 characters."
 					validation={register({
 						required: true,
-						minLength: 4,
-						maxLength: 60,
+						minLength: 6,
+						maxLength: 30,
 					})}
 					errors={errors}
 				/>
