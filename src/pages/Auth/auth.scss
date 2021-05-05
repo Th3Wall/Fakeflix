@@ -1,3 +1,6 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
 .Auth {
     position: relative;
     height: 100vh;
@@ -36,6 +39,54 @@
         &--img {
             width: 100%;
             max-width: 160px;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 100%;
+        max-width: 500px;
+        padding: 3.75em 3em;
+        border-radius: 8px;
+        background-color: rgba($color: $pure-black, $alpha: 0.75);
+
+        @media screen and (max-width: 768px) {
+            max-width: 90%;
+        }
+
+        &--title {
+            font-size: 1.5rem;
+            margin-bottom: 1em;
+        }
+
+        &--divider {
+            margin: 1.5em;
+            border-color: #777777;
+        }
+
+        &--toggleView {
+            display: inherit;
+            font-family: $main-font;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+
+            .toggler {
+                color: $red;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 1.4;
+                cursor: pointer;
+                transition: all 0.2s ease-out;
+
+                &:hover {
+                    color: darken($red, 5);
+                }
+            }
         }
     }
 }

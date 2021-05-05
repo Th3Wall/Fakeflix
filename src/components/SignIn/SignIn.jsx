@@ -21,53 +21,49 @@ const SignIn = () => {
 	}
 
 	return (
-		<div className="SignIn__content">
-			<h2 className="SignIn__content--title">Sign In</h2>
-
-			<form className="SignIn__form" onSubmit={handleSubmit(onSubmit)}>
-				<div className="SignIn__form--inputwrp">
-					<InputField
-						type="text"
-						name="email"
-						placeholder="E-mail"
-						validationMessage="Please enter a valid email address."
-						validation={register({
-							required: true,
-							pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-						})}
-						errors={errors}
-					/>
-				</div>
-				<div className="SignIn__form--inputwrp">
-					<InputField
-						type="password"
-						name="password"
-						placeholder="Password"
-						validationMessage="The password should have a length between 4 and 60 characters."
-						validation={register({
-							required: true,
-							minLength: 4,
-							maxLength: 60,
-						})}
-						errors={errors}
-					/>
-				</div>
-				<button
-					type="submit"
-					className="SignIn__form--button button__submit"
-				>
-					Sign in
-				</button>
-				<button
-					type="button"
-					className="SignIn__form--button button__google"
-					onClick={signInWithGoogle}
-				>
-					<FcGoogle />
-					Sign in with Google
-				</button>
-			</form>
-		</div>
+		<form className="SignIn__form" onSubmit={handleSubmit(onSubmit)}>
+			<div className="SignIn__form--inputwrp">
+				<InputField
+					type="text"
+					name="email"
+					placeholder="E-mail"
+					validationMessage="Please enter a valid email address."
+					validation={register({
+						required: true,
+						pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+					})}
+					errors={errors}
+				/>
+			</div>
+			<div className="SignIn__form--inputwrp">
+				<InputField
+					type="password"
+					name="password"
+					placeholder="Password"
+					validationMessage="The password should have a length between 4 and 60 characters."
+					validation={register({
+						required: true,
+						minLength: 4,
+						maxLength: 60,
+					})}
+					errors={errors}
+				/>
+			</div>
+			<button
+				type="submit"
+				className="SignIn__form--button button__submit"
+			>
+				Sign in
+			</button>
+			<button
+				type="button"
+				className="SignIn__form--button button__google"
+				onClick={signInWithGoogle}
+			>
+				<FcGoogle />
+				Sign in with Google
+			</button>
+		</form>
 	)
 }
 

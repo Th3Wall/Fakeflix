@@ -2,28 +2,6 @@
 @import '../../scss/variables';
 
 .SignIn {
-  &__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 100%;
-    max-width: 500px;
-    padding: 3.75em 3em;
-    border-radius: 8px;
-    background-color: rgba($color: $pure-black, $alpha: 0.75);
-
-    &--title {
-      font-size: 1.5rem;
-      margin-bottom: 1em;
-    }
-
-    @media screen and (max-width: 768px) {
-      max-width: 90%;
-    }
-  }
-
   &__form {
     &--inputwrp {
       margin: 1em 0;
