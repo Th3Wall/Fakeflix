@@ -14,12 +14,12 @@ import DetailModal from "./components/DetailModal/DetailModal";
 import SplashAnimation from "./components/SplashAnimation/SplashAnimation";
 import PlayAnimation from "./components/PlayAnimation/PlayAnimation";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
-import { setCurrentUser } from "./redux/user/user.actions"
+import { signInFailure, signInSuccess } from "./redux/user/user.actions";
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { selectSearchResults } from "./redux/search/search.selectors";
 
 const App = () => {
-    
+
     const currentUser = useSelector(selectCurrentUser);
     const searchResults = useSelector(selectSearchResults);
     const dispatch = useDispatch();
@@ -29,12 +29,12 @@ const App = () => {
             if (userAuth) {
                 const userRef = await createUserProfileDocument(userAuth)
                 userRef.onSnapshot(snapShot => {
-                    dispatch(setCurrentUser({
+                    dispatch(signInSuccess({
                         id: snapShot.id,
                         ...snapShot.data(),
                     }))
                 })
-            } else dispatch(setCurrentUser(userAuth))
+            } else dispatch(signInFailure(null))
         })
         return () => unsubscribeFromAuth()
     }, [dispatch])

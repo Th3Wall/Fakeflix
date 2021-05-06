@@ -3,20 +3,21 @@ import InputField from "../InputField/InputField";
 import { auth, signInWithGoogle } from "../../firebase/firebaseUtils";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
+import { signInFailure, signInStart, signInSuccess } from "../../redux/user/user.actions";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
+	const dispatch = useDispatch();
 	const { register, handleSubmit, errors } = useForm({
 		mode: "onTouched"
 	})
 
 	const onSubmit = data => {
 		const { email, password } = data;
+		dispatch(signInStart());
 		auth.signInWithEmailAndPassword(email, password)
-			.then(authUser =>{
-				console.log(authUser)
-				// Set authUser to store
-			})
-			.catch((error)=> console.log(error.message))
+			.then(authUser => dispatch(signInSuccess(authUser)))
+			.catch((error) => dispatch(signInFailure(error.message)))
 	}
 
 	return (
