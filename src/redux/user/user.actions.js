@@ -1,11 +1,6 @@
 import { userActionTypes } from "./user.types"
 import { auth } from "../../firebase/firebaseUtils";
 
-export const setCurrentUser = user => ({
-    type: userActionTypes.SET_CURRENT_USER,
-    payload: user,
-})
-
 export const emailSignInStart = emailAndPassword => ({
     type: userActionTypes.EMAIL_SIGN_IN_START,
     payload: emailAndPassword
@@ -13,10 +8,6 @@ export const emailSignInStart = emailAndPassword => ({
 
 export const googleSignInStart = () => ({
     type: userActionTypes.GOOGLE_SIGN_IN_START
-})
-
-export const signInStart = () => ({
-    type: userActionTypes.SIGN_IN_START
 })
 
 export const signInSuccess = user => ({
@@ -55,15 +46,6 @@ export const signOutFailure = error => ({
     type: userActionTypes.SIGN_OUT_FAILURE,
     payload: error
 })
-
-export const handleSignInAsync = (email, password) => {
-    return dispatch => {
-        dispatch(signInStart());
-        auth.signInWithEmailAndPassword(email, password)
-            .then(authUser => dispatch(signInSuccess(authUser)))
-            .catch((error) => dispatch(signInFailure(error.message)))
-    }
-}
 
 export const handleSignUpAsync = (email, password, name) => {
     return dispatch => {
