@@ -1,4 +1,5 @@
 import { userActionTypes } from "./user.types"
+import { auth } from "../../firebase/firebaseUtils";
 
 export const setCurrentUser = user => ({
     type: userActionTypes.SET_CURRENT_USER,
@@ -28,6 +29,20 @@ export const signInFailure = error => ({
     payload: error
 })
 
+export const signUpStart = () => ({
+    type: userActionTypes.SIGN_UP_START
+})
+
+export const signUpSuccess = ({ user, additionalData }) => ({
+    type: userActionTypes.SIGN_UP_SUCCESS,
+    payload: { user, additionalData }
+})
+
+export const signUpFailure = error => ({
+    type: userActionTypes.SIGN_UP_FAILURE,
+    payload: error
+})
+
 export const signOutStart = () => ({
     type: userActionTypes.SIGN_OUT_START
 })
@@ -40,3 +55,30 @@ export const signOutFailure = error => ({
     type: userActionTypes.SIGN_OUT_FAILURE,
     payload: error
 })
+
+export const handleSignInAsync = (email, password) => {
+    return dispatch => {
+        dispatch(signInStart());
+        auth.signInWithEmailAndPassword(email, password)
+            .then(authUser => dispatch(signInSuccess(authUser)))
+            .catch((error) => dispatch(signInFailure(error.message)))
+    }
+}
+
+export const handleSignUpAsync = (email, password, name) => {
+    return dispatch => {
+        dispatch(signUpStart());
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(({ user }) => dispatch(signUpSuccess({user, additionalData: name})))
+            .catch((error)=> dispatch(signUpFailure(error.message)))
+    }
+}
+
+export const handleSignOutAsync = () => {
+    return dispatch => {
+        dispatch(signOutStart());
+        auth.signOut()
+            .then(() => dispatch(signOutSuccess()))
+            .catch((error) => dispatch(signOutFailure(error.message)))
+    }
+}

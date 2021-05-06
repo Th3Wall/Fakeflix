@@ -6,11 +6,10 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-import { auth } from "../../firebase/firebaseUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import Searchbar from "../Searchbar/Searchbar";
-import { signOutFailure, signOutStart, signOutSuccess } from "../../redux/user/user.actions";
+import { handleSignOutAsync } from "../../redux/user/user.actions";
 
 const Navbar = () => {
 	const { width } = useViewport();
@@ -28,13 +27,6 @@ const Navbar = () => {
 	useOutsideClick(profileNavRef, () => {
 		if (profileNav) setProfileNav(false);
 	});
-
-	const handleSignOut = () => {
-		dispatch(signOutStart());
-		auth.signOut()
-			.then(() => dispatch(signOutSuccess()))
-			.catch((error) => dispatch(signOutFailure(error.message)))
-	}
 
 	return (
 		<nav className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}>
@@ -138,7 +130,7 @@ const Navbar = () => {
 									{currentUser && (
 										<li
 											className="Navbar__navlinks--link"
-											onClick={handleSignOut}
+											onClick={() => dispatch(handleSignOutAsync())}
 										>
 											Sign Out
 										</li>

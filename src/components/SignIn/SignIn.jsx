@@ -1,9 +1,9 @@
 import './signIn.scss';
 import InputField from "../InputField/InputField";
-import { auth, signInWithGoogle } from "../../firebase/firebaseUtils";
+import { signInWithGoogle } from "../../firebase/firebaseUtils";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import { signInFailure, signInStart, signInSuccess } from "../../redux/user/user.actions";
+import { handleSignInAsync } from "../../redux/user/user.actions";
 import { useDispatch } from "react-redux";
 
 const SignIn = () => {
@@ -14,10 +14,7 @@ const SignIn = () => {
 
 	const onSubmit = data => {
 		const { email, password } = data;
-		dispatch(signInStart());
-		auth.signInWithEmailAndPassword(email, password)
-			.then(authUser => dispatch(signInSuccess(authUser)))
-			.catch((error) => dispatch(signInFailure(error.message)))
+		dispatch(handleSignInAsync(email, password));
 	}
 
 	return (

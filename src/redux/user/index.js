@@ -8,6 +8,7 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case userActionTypes.SIGN_IN_SUCCESS:
+        case userActionTypes.SIGN_UP_SUCCESS:
             return {
                 ...state,
                 currentUser: action.payload,
@@ -20,6 +21,7 @@ const userReducer = (state = initialState, action) => {
                 error: null
             }
         case userActionTypes.SIGN_IN_FAILURE:
+        case userActionTypes.SIGN_UP_FAILURE:
         case userActionTypes.SIGN_OUT_FAILURE:
             return {
                 ...state,

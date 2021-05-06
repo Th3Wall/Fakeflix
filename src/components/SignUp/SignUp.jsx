@@ -1,21 +1,18 @@
 import './signUp.scss';
 import InputField from "../InputField/InputField";
-import { auth } from "../../firebase/firebaseUtils";
 import { useForm } from "react-hook-form";
+import { handleSignUpAsync } from "../../redux/user/user.actions";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+	const dispatch = useDispatch();
 	const { register, handleSubmit, errors, getValues } = useForm({
 		mode: "onTouched"
 	})
 
 	const onSubmit = data => {
-		const { email, password } = data;
-		auth.createUserWithEmailAndPassword(email, password)
-			.then(authUser =>{
-				console.log(authUser)
-				// Set authUser to store
-			})
-			.catch((error)=> console.log(error.message))
+		const { name, email, password } = data;
+		dispatch(handleSignUpAsync(email, password, name));
 	}
 
 	return (
