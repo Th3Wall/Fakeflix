@@ -1,6 +1,10 @@
 import { userActionTypes } from "./user.types"
 import { auth } from "../../firebase/firebaseUtils";
 
+export const checkUserSession = () => ({
+    type: userActionTypes.CHECK_USER_SESSION
+})
+
 export const emailSignInStart = emailAndPassword => ({
     type: userActionTypes.EMAIL_SIGN_IN_START,
     payload: emailAndPassword
