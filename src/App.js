@@ -1,5 +1,5 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+// import { useEffect } from "react"
+import { useSelector } from "react-redux"
 import { Route, Switch, Redirect } from "react-router-dom"
 import Navbar from "./components/Navbar/Navbar"
 import Homepage from "./pages/Homepage/Homepage"
@@ -13,8 +13,8 @@ import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
 import SplashAnimation from "./components/SplashAnimation/SplashAnimation";
 import PlayAnimation from "./components/PlayAnimation/PlayAnimation";
-import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
-import { signInFailure, signInSuccess } from "./redux/user/user.actions";
+// import { auth, createUserProfileDocument } from "./firebase/firebaseUtils"
+// import { signInFailure, signInSuccess } from "./redux/user/user.actions";
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { selectSearchResults } from "./redux/search/search.selectors";
 
@@ -22,22 +22,22 @@ const App = () => {
 
     const currentUser = useSelector(selectCurrentUser);
     const searchResults = useSelector(selectSearchResults);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        let unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-            if (userAuth) {
-                const userRef = await createUserProfileDocument(userAuth)
-                userRef.onSnapshot(snapShot => {
-                    dispatch(signInSuccess({
-                        id: snapShot.id,
-                        ...snapShot.data(),
-                    }))
-                })
-            } else dispatch(signInFailure(null))
-        })
-        return () => unsubscribeFromAuth()
-    }, [dispatch])
+    // useEffect(() => {
+    //     let unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //         if (userAuth) {
+    //             const userRef = await createUserProfileDocument(userAuth)
+    //             userRef.onSnapshot(snapShot => {
+    //                 dispatch(signInSuccess({
+    //                     id: snapShot.id,
+    //                     ...snapShot.data(),
+    //                 }))
+    //             })
+    //         } else dispatch(signInFailure(null))
+    //     })
+    //     return () => unsubscribeFromAuth()
+    // }, [dispatch])
 
     return (
         <div className="App">

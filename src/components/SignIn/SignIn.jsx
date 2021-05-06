@@ -1,9 +1,8 @@
 import './signIn.scss';
 import InputField from "../InputField/InputField";
-import { signInWithGoogle } from "../../firebase/firebaseUtils";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import { handleSignInAsync } from "../../redux/user/user.actions";
+import { emailSignInStart, googleSignInStart } from "../../redux/user/user.actions";
 import { useDispatch } from "react-redux";
 
 const SignIn = () => {
@@ -14,7 +13,7 @@ const SignIn = () => {
 
 	const onSubmit = data => {
 		const { email, password } = data;
-		dispatch(handleSignInAsync(email, password));
+		dispatch(emailSignInStart({ email, password }));
 	}
 
 	return (
@@ -55,7 +54,7 @@ const SignIn = () => {
 			<button
 				type="button"
 				className="SignIn__form--button button__google"
-				onClick={signInWithGoogle}
+				onClick={() => dispatch(googleSignInStart())}
 			>
 				<FcGoogle />
 				Sign in with Google
