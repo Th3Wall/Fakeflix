@@ -1,7 +1,7 @@
 import { takeLatest, all, put, call } from "redux-saga/effects";
 import { userActionTypes } from "./user.types";
 import { auth, createUserProfileDocument, getCurrentUser, googleProvider } from "../../firebase/firebaseUtils";
-import { signInFailure, signInSuccess } from "./user.actions";
+import { signInFailure, signInSuccess, signOutFailure, signOutSuccess } from "./user.actions";
 
 export function* getSnapshotFromUserAuth(userAuth) {
 	try {
@@ -41,6 +41,15 @@ export function* checkIfUserIsAuthenticated(){
 	}
 }
 
+export function* signOut(){
+	try {
+		yield auth.signOut();
+		yield put(signOutSuccess());
+	} catch (e) {
+		yield put(signOutFailure(e.message));
+	}
+}
+
 export function* onCheckUserSession(){
 	yield takeLatest(userActionTypes.CHECK_USER_SESSION, checkIfUserIsAuthenticated);
 }
@@ -53,10 +62,15 @@ export function* onEmailSignInStart(){
 	yield takeLatest(userActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
+export function* onSignOutStart(){
+	yield takeLatest(userActionTypes.SIGN_OUT_START, signOut);
+}
+
 export function* userSagas() {
 	yield all([
 		call(onCheckUserSession),
 		call(onGoogleSignInStart),
 		call(onEmailSignInStart),
+		call(onSignOutStart)
 	]);
 }

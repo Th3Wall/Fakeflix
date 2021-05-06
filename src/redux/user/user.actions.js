@@ -59,12 +59,3 @@ export const handleSignUpAsync = (email, password, name) => {
             .catch((error)=> dispatch(signUpFailure(error.message)))
     }
 }
-
-export const handleSignOutAsync = () => {
-    return dispatch => {
-        dispatch(signOutStart());
-        auth.signOut()
-            .then(() => dispatch(signOutSuccess()))
-            .catch((error) => dispatch(signOutFailure(error.message)))
-    }
-}
