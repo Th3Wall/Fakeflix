@@ -2,7 +2,7 @@ import { combineReducers } from "redux"
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from 'redux-persist/lib/storage';
 
-import user from "./user";
+import auth from "./auth";
 import movies from "./movies";
 import series from "./series";
 import favourites from "./favourites";
@@ -17,7 +17,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     search,
-    user,
+    auth,
     movies,
     series,
     favourites,

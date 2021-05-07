@@ -13,9 +13,9 @@ import Category from "./pages/Category/Category";
 import DetailModal from "./components/DetailModal/DetailModal";
 import SplashAnimation from "./components/SplashAnimation/SplashAnimation";
 import PlayAnimation from "./components/PlayAnimation/PlayAnimation";
-import { selectCurrentUser } from './redux/user/user.selectors';
+import { selectCurrentUser } from './redux/auth/auth.selectors';
 import { selectSearchResults } from "./redux/search/search.selectors";
-import { checkUserSession } from "./redux/user/user.actions";
+import { checkUserSession } from "./redux/auth/auth.actions";
 
 const App = () => {
 

@@ -5,7 +5,7 @@ import SignUp from "../../components/SignUp/SignUp";
 import { Link } from "react-router-dom";
 import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js";
 import { useSelector } from "react-redux";
-import { selectAuthErrors } from "../../redux/user/user.selectors";
+import { selectAuthErrors } from "../../redux/auth/auth.selectors";
 
 const Auth = () => {
 	const [isSignedUp, setIsSignedUp] = useState(true);

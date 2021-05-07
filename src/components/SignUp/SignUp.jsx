@@ -2,7 +2,7 @@ import './signUp.scss';
 import InputField from "../InputField/InputField";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { signUpStart } from "../../redux/user/user.actions";
+import { signUpStart } from "../../redux/auth/auth.actions";
 
 const SignUp = () => {
 	const dispatch = useDispatch();

@@ -8,8 +8,8 @@ import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { signOutStart } from "../../redux/user/user.actions";
+import { selectCurrentUser } from "../../redux/auth/auth.selectors";
+import { signOutStart } from "../../redux/auth/auth.actions";
 
 const Navbar = () => {
 	const { width } = useViewport();

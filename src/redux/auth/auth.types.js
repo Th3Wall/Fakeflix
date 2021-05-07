@@ -1,4 +1,4 @@
-export const userActionTypes = {
+export const authActionTypes = {
     CHECK_USER_SESSION: "CHECK_USER_SESSION",
 
     EMAIL_SIGN_IN_START: "EMAIL_SIGN_IN_START",

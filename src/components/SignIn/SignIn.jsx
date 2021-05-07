@@ -2,7 +2,7 @@ import './signIn.scss';
 import InputField from "../InputField/InputField";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import { emailSignInStart, googleSignInStart } from "../../redux/user/user.actions";
+import { emailSignInStart, googleSignInStart } from "../../redux/auth/auth.actions";
 import { useDispatch } from "react-redux";
 
 const SignIn = () => {
