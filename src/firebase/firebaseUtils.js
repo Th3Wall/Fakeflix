@@ -10,18 +10,18 @@ const firebaseConfig = {
     storageBucket: "fakeflix-c0203.appspot.com",
     messagingSenderId: "589912771675",
     appId: "1:589912771675:web:9fb1e0684f7bf68103837e",
-    measurementId: "G-DSYVJQ0MWN",
+    measurementId: "G-DSYVJQ0MWN"
 }
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if (!userAuth) return
+    if (!userAuth) return;
 
-    const userRef = firestore.doc(`users/${userAuth.uid}`)
-    const snapShot = await userRef.get()
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapShot = await userRef.get();
 
     if (!snapShot.exists) {
-        const { displayName, email, photoURL } = userAuth
-        const createdAt = new Date()
+        const { displayName, email, photoURL } = userAuth;
+        const createdAt = new Date();
         try {
             await userRef.set({
                 displayName,
@@ -35,7 +35,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         }
     }
 
-    return userRef
+    return userRef;
 }
 
 export const getCurrentUser = () => {

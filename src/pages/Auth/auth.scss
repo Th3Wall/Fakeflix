@@ -98,5 +98,19 @@
                 font-size: 16px;
             }
         }
+
+        &--errors {
+            display: inherit;
+            margin-top: 1.5em;
+            font-family: $main-font;
+            font-size: 14px;
+            line-height: 1.4;
+            color: orange;
+            text-align: center;
+
+            @include mq(md) {
+                font-size: 16px;
+            }
+        }
     }
 }
