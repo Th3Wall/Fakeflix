@@ -1,8 +1,8 @@
 import './signUp.scss';
 import InputField from "../InputField/InputField";
 import { useForm } from "react-hook-form";
-import { handleSignUpAsync } from "../../redux/user/user.actions";
 import { useDispatch } from "react-redux";
+import { signUpStart } from "../../redux/user/user.actions";
 
 const SignUp = () => {
 	const dispatch = useDispatch();
@@ -11,8 +11,8 @@ const SignUp = () => {
 	})
 
 	const onSubmit = data => {
-		const { name, email, password } = data;
-		dispatch(handleSignUpAsync(email, password, name));
+		const { displayName, email, password } = data;
+		dispatch(signUpStart({ displayName, email, password }));
 	}
 
 	return (
@@ -20,7 +20,7 @@ const SignUp = () => {
 			<div className="SignUp__form--inputwrp">
 				<InputField
 					type="text"
-					name="name"
+					name="displayName"
 					placeholder="Your name"
 					validationMessage="Please enter your name."
 					validation={register({
