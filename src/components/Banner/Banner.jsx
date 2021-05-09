@@ -4,7 +4,7 @@ import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
 import { randomize, truncate } from "../../utils";
 import { Link } from "react-router-dom";
-import { selectNetflixMovies } from "../../redux/movies/movies.selectors";
+import { selectTrendingMovies, selectNetflixMovies } from "../../redux/movies/movies.selectors";
 import { selectNetflixSeries } from "../../redux/series/series.selectors";
 import { useSelector } from "react-redux";
 
@@ -12,7 +12,7 @@ const Banner = ({ type }) => {
 	let selector;
 	switch (type) {
 		case "movies":
-			selector = selectNetflixMovies;
+			selector = selectTrendingMovies;
 			break;
 		case "series":
 			selector = selectNetflixSeries;
