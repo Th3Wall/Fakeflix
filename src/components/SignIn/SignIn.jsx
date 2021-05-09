@@ -31,6 +31,7 @@ const SignIn = () => {
 						pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 					})}
 					errors={errors}
+					disabled={isLoading}
 				/>
 			</div>
 			<div className="SignIn__form--inputwrp">
@@ -45,6 +46,7 @@ const SignIn = () => {
 						maxLength: 30,
 					})}
 					errors={errors}
+					disabled={isLoading}
 				/>
 			</div>
 			<button

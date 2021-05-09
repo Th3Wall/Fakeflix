@@ -8,6 +8,7 @@ const InputField = ({
     validationMessage,
     validation,
     errors,
+    disabled
 }) => {
     return (
         <>
@@ -19,6 +20,7 @@ const InputField = ({
                     additionalClass ? additionalClass : ""
                 }`}
                 ref={validation}
+                disabled={disabled}
             />
             {errors?.[name] && (
                 <p className="InputField__label">{validationMessage}</p>

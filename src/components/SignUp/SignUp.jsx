@@ -31,6 +31,7 @@ const SignUp = () => {
 						maxLength: 60
 					})}
 					errors={errors}
+					disabled={isLoading}
 				/>
 			</div>
 			<div className="SignUp__form--inputwrp">
@@ -44,6 +45,7 @@ const SignUp = () => {
 						pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 					})}
 					errors={errors}
+					disabled={isLoading}
 				/>
 			</div>
 			<div className="SignUp__form--inputwrp">
@@ -58,6 +60,7 @@ const SignUp = () => {
 						maxLength: 30,
 					})}
 					errors={errors}
+					disabled={isLoading}
 				/>
 			</div>
 			<div className="SignUp__form--inputwrp">
@@ -75,6 +78,7 @@ const SignUp = () => {
 						}
 					})}
 					errors={errors}
+					disabled={isLoading}
 				/>
 			</div>
 			<button

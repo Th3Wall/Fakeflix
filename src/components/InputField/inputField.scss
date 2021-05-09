@@ -24,4 +24,10 @@
         font-size: 13px;
         color: orange;
     }
+
+    &:disabled {
+        background-color: #1f1f1f;
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
 }
