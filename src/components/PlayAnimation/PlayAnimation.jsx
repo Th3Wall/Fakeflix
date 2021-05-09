@@ -8,7 +8,7 @@ const PlayAnimation = () => {
 	let history = useHistory();
 	const soundRef = useRef(null);
 	const handleTadum = () => {
-		soundRef.current.currentTime = 0.3;
+		soundRef.current.currentTime = 0;
 		soundRef.current.play();
 	}
 

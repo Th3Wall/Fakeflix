@@ -1,11 +1,13 @@
 import './signUp.scss';
 import InputField from "../InputField/InputField";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUpStart } from "../../redux/auth/auth.actions";
+import { selectAuthLoadingState } from "../../redux/auth/auth.selectors";
 
 const SignUp = () => {
 	const dispatch = useDispatch();
+	const isLoading = useSelector(selectAuthLoadingState);
 	const { register, handleSubmit, errors, getValues } = useForm({
 		mode: "onTouched"
 	})
@@ -77,9 +79,10 @@ const SignUp = () => {
 			</div>
 			<button
 				type="submit"
-				className="SignUp__form--button button__submit"
+				className={`SignUp__form--button button__submit ${isLoading && 'loading'}`}
+				disabled={isLoading}
 			>
-				Sign Up
+				{isLoading ? 'Loading...' : 'Sign Up'}
 			</button>
 		</form>
 	)

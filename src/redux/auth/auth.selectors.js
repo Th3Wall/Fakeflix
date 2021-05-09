@@ -7,6 +7,11 @@ export const selectCurrentUser = createSelector(
     auth => auth.currentUser
 );
 
+export const selectAuthLoadingState = createSelector(
+	[selectUser],
+	auth => auth.loading
+);
+
 export const selectAuthErrors = createSelector(
     [selectUser],
     auth => auth.error

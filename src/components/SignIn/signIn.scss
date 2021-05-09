@@ -11,6 +11,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
+      min-height: 60px;
       box-shadow: none;
       border: 1px solid transparent;
       padding: 1.2em 0.8em;
@@ -57,6 +58,15 @@
             border: 1px solid $white;
             transform: scale(0.95);
           }
+        }
+      }
+      &.loading {
+        background-color: #333;
+        border: 1px solid $white;
+        cursor: progress;
+        &:hover {
+          background-color: #333;
+          transform: none;
         }
       }
     }
