@@ -4,6 +4,7 @@ import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
 import { randomize, truncate } from "../../utils";
 import { Link } from "react-router-dom";
+import SkeletonElement from "../SkeletonElement/SkeletonElement";
 import { selectTrendingMovies, selectNetflixMovies } from "../../redux/movies/movies.selectors";
 import { selectNetflixSeries } from "../../redux/series/series.selectors";
 import { useSelector } from "react-redux";
@@ -35,7 +36,7 @@ const Banner = ({ type }) => {
 	return (
 		<>
 			<section className="Banner__loadsection">
-				{loading && <div className="loading">Loading...</div>}
+				{loading && <div className="loading"><SkeletonElement type="text" /></div>}
 				{error && <div className="errored">Error occurred.</div>}
 			</section>
 
