@@ -1,5 +1,6 @@
 import './signIn.scss';
 import InputField from "../InputField/InputField";
+import Loader from "../Loader/Loader";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { emailSignInStart, googleSignInStart } from "../../redux/auth/auth.actions";
@@ -54,7 +55,7 @@ const SignIn = () => {
 				className={`SignIn__form--button button__submit ${isLoading && 'loading'}`}
 				disabled={isLoading}
 			>
-				{isLoading ? 'Loading...' : 'Sign in'}
+				{isLoading ? <Loader /> : 'Sign in'}
 			</button>
 			<button
 				type="button"
@@ -62,8 +63,8 @@ const SignIn = () => {
 				onClick={() => dispatch(googleSignInStart())}
 				disabled={isLoading}
 			>
-				<FcGoogle />
-				{isLoading ? 'Loading...' : 'Sign in with Google'}
+				{!isLoading && <FcGoogle />}
+				{isLoading ? <Loader /> : 'Sign in with Google'}
 			</button>
 		</form>
 	)

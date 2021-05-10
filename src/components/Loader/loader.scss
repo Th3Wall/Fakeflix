@@ -1,0 +1,30 @@
+@import '../../scss/variables';
+$base: #333;
+$size: 26px;
+
+.Loader{
+  width : $size;
+  height: $size;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(0deg, rgba($red, 0.2) 33%, rgba($red, 1) 100%);
+  animation: rotation 1s linear infinite;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    width : $size - 4px;
+    height: $size - 4px;
+    border-radius: 50%;
+    background: $base
+  }
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}

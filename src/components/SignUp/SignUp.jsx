@@ -1,5 +1,6 @@
 import './signUp.scss';
 import InputField from "../InputField/InputField";
+import Loader from "../Loader/Loader";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpStart } from "../../redux/auth/auth.actions";
@@ -86,7 +87,7 @@ const SignUp = () => {
 				className={`SignUp__form--button button__submit ${isLoading && 'loading'}`}
 				disabled={isLoading}
 			>
-				{isLoading ? 'Loading...' : 'Sign Up'}
+				{isLoading ? <Loader /> : 'Sign Up'}
 			</button>
 		</form>
 	)
