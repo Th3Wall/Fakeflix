@@ -1,0 +1,16 @@
+@import '../../scss/variables';
+
+.Skeleton__Banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 80vh;
+  padding: 0 4vw;
+  background: $black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}

@@ -3,6 +3,12 @@
   margin: 10px 0;
   border-radius: 4px;
 
+  &__inline {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+  }
+
   &.title {
     width: 25%;
     height: 40px;
@@ -12,8 +18,8 @@
   &.button {
     display: inline-block;
     width: 8%;
-    height: 35px;
-    margin-bottom: 10px;
+    height: 45px;
+    margin-bottom: 20px;
     margin-right: 15px;
   }
 
