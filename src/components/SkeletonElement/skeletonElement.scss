@@ -1,12 +1,12 @@
+@import '../../scss/mixin';
+
 $base-color: rgba(#6d6d6e, 0.4);
 $shine-color: rgba(255,255,255,0.2);
 $animation-duration: 2s;
 
 @mixin background-gradient {
-  background: linear-gradient(to right, rgba(#6d6d6e, 0.1), rgba(#6d6d6e, 0.5) 50%, rgba(#6d6d6e, 0.1) 80%), rgba(#6d6d6e, 0.8);
-  background-repeat: repeat-y;
+  background: rgba(#6d6d6e, 0.8) linear-gradient(to right, rgba(#6d6d6e, 0.1), rgba(#6d6d6e, 0.5) 50%, rgba(#6d6d6e, 0.1) 80%) repeat-y 0 0;
   background-size: 50px 500px;
-  background-position: 0 0;
 }
 
 .Skeleton {
@@ -21,31 +21,45 @@ $animation-duration: 2s;
   }
 
   &.title {
-    width: 25%;
-    height: 40px;
-    margin-bottom: 20px;
-
+    width: 50%;
+    height: 35px;
+    margin-bottom: 15px;
     @include background-gradient;
     animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+
+    @include mq('md') {
+      width: 25%;
+      height: 40px;
+      margin-bottom: 20px;
+    }
   }
 
   &.button {
     display: inline-block;
-    width: 10%;
-    height: 45px;
-    margin-bottom: 20px;
+    width: 20%;
+    height: 40px;
+    margin-bottom: 15px;
     margin-right: 15px;
-
     @include background-gradient;
     animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+
+    @include mq('md') {
+      width: 10%;
+      height: 45px;
+      margin-bottom: 20px;
+    }
   }
 
   &.text {
-    width: 40%;
-    height: 20px;
-
+    width: 70%;
+    height: 15px;
     @include background-gradient;
     animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+
+    @include mq('md') {
+      width: 40%;
+      height: 20px;
+    }
   }
 }
 
