@@ -21,6 +21,7 @@
 	}
 
 	img {
+		display: inline-block;
 		height: 100%;
 		width: 100%;
 		min-height: 100px;
@@ -148,22 +149,25 @@
 }
 
 .swiper-slide {
+	.Row__poster {
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 5px;
+			background: linear-gradient(360deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 65%);
+			z-index: 0;
+			opacity: 0;
+			transition: opacity 0.2s ease-out;
+		}
+	}
 	&:hover {
 		.Row__poster {
 			&::after {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-                border-radius: 5px;
-                background: linear-gradient(
-                                360deg,
-                                rgba(0, 0, 0, 0.6) 0%,
-                                rgba(255, 255, 255, 0) 65%
-                );
-				z-index: 0;
+				opacity: 1;
 			}
 
             &-info {
