@@ -12,7 +12,6 @@ const SkeletonBanner = () => {
 			<SkeletonElement type="text" />
 			<SkeletonElement type="text" />
 			<SkeletonElement type="text" />
-			<SkeletonElement type="text" />
 		</div>
 	);
 };

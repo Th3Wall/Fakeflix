@@ -1,5 +1,5 @@
 import "./skeletonElement.scss"
 
-const SkeletonElement = ({ type }) => <div className={`Skeleton ${type}`} />;
+const SkeletonElement = ({ type }) => <div className={`Skeleton ${type}`} />
 
 export default SkeletonElement
