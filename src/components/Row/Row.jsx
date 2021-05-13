@@ -1,5 +1,6 @@
 import "./row.scss";
 import RowPoster from "../RowPoster/RowPoster";
+import SkeletonPoster from "../SkeletonPoster/SkeletonPoster";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -36,7 +37,7 @@ const Row = ({ selector, title, genre, isLarge }) => {
 				</Link>
 			</h3>
 
-			{loading && <div className='Row__not-loaded'>Loading...</div>}
+			{loading && <div className='Row__not-loaded'><SkeletonPoster /></div>}
 			{error && <div className='Row__not-loaded'>Error occurred.</div>}
 			{!loading && !error && (
 				<div className="Row__poster--wrp">

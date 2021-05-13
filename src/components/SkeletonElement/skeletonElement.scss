@@ -1,4 +1,5 @@
 @import '../../scss/mixin';
+@import '../../scss/variables';
 
 $base-color: rgba(#6d6d6e, 0.4);
 $shine-color: rgba(255,255,255,0.2);
@@ -61,10 +62,58 @@ $animation-duration: 2s;
       height: 20px;
     }
   }
+
+  &.poster {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-height: 130px;
+    background-color: #2d2d2d;
+    white-space: normal;
+    vertical-align: top;
+    border-left: 2px solid $black;
+    border-right: 2px solid $black;
+    margin-bottom: 4vw;
+    border-radius: 5px;
+    animation: 2.5s ease-in-out 0s pulse infinite;
+    transition: background-color 0.1s ease-in-out;
+    cursor: pointer;
+
+    @include mq(330px) {
+      width: 50%;
+    }
+    @include mq(625px) {
+      width: 33.3%;
+    }
+    @include mq(998px) {
+      width: 25%;
+    }
+    @include mq(1378px) {
+      width: 16.6%;
+    }
+  }
+
+  @for $i from 1 through 6 {
+    &.poster {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * (2.5s / 18);
+      }
+    }
+  }
 }
 
 @keyframes shine {
   to {
     background-position: 140% -10%;
+  }
+}
+
+@keyframes pulse {
+  25% {
+    background-color: $shine-color;
+  }
+
+  50% {
+    background-color: #2d2d2d;
   }
 }
