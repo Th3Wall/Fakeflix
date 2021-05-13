@@ -3,7 +3,6 @@ import Row from "../../components/Row/Row"
 import { useRetrieveData } from "../../hooks/useRetrieveData";
 
 const Popular = () => {
-
 	const rows = useRetrieveData('popular');
 
 	return (

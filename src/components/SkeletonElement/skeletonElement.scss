@@ -67,7 +67,7 @@ $animation-duration: 2s;
     position: relative;
     display: inline-block;
     width: 100%;
-    min-height: 130px;
+    min-height: 110px;
     background-color: #2d2d2d;
     white-space: normal;
     vertical-align: top;
@@ -81,9 +81,11 @@ $animation-duration: 2s;
 
     @include mq(330px) {
       width: 50%;
+      min-height: 130px;
     }
     @include mq(625px) {
       width: 33.3%;
+      min-height: 150px;
     }
     @include mq(998px) {
       width: 25%;
