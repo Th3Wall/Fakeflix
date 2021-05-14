@@ -6,7 +6,6 @@ const SkeletonPoster = () => {
 
 	const { width } = useViewport();
 	const numberOfTiles = width >= 1378 ? 6 : width >= 998 ? 4 : width >= 625 ? 3 : 2;
-	console.log("numberOfTiles => ", numberOfTiles);
 
 	return (
 		<div className="Skeleton__Poster">

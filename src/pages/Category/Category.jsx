@@ -1,12 +1,14 @@
 import "./category.scss"
 import Poster from "../../components/Poster/Poster";
+import SkeletonPage from "../../components/SkeletonPage/SkeletonPage";
+import SkeletonPoster from "../../components/SkeletonPoster/SkeletonPoster";
 import { useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import useLazyLoad from "../../hooks/useLazyLoad";
 
-const Category = ({match}) => {
+const Category = ({ match }) => {
     const [page, setPage] = useState(2);
     const { url } = match;
     const slicedUrl = url.split("/");
@@ -20,7 +22,7 @@ const Category = ({match}) => {
 
     return (
         <div className="Category">
-            {categoryData && (
+            {categoryData ? (
                 <>
                     <h2 className="Category__title">{categoryData.title}</h2>
 
@@ -34,12 +36,12 @@ const Category = ({match}) => {
                                 />
                             ))
                         }
-                        {selectedGenre.loading && <div className='Category__subtitle'>Loading...</div>}
+                        {selectedGenre.loading && <div className='Category__subtitle'><SkeletonPoster /></div>}
                         {selectedGenre.error && <div className='Category__subtitle'>Error occurred.</div>}
                         <div className={`Category__endPage ${isIntersecting ? 'intersected' : null}`} ref={endPageRef} />
                     </div>
                 </>
-            )}
+            ) : <SkeletonPage />}
         </div>
     )
 }
