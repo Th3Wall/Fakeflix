@@ -1,0 +1,14 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+.Skeleton__Page {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 80vh;
+  margin-top: 1.5vw;
+  background: $black;
+}

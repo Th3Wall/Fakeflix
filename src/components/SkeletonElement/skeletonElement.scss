@@ -3,10 +3,10 @@
 
 $base-color: rgba(#6d6d6e, 0.4);
 $shine-color: rgba(255,255,255,0.2);
-$animation-duration: 2s;
+$animation-duration: 2.5s;
 
 @mixin background-gradient {
-  background: rgba(#6d6d6e, 0.8) linear-gradient(to right, rgba(#6d6d6e, 0.1), rgba(#6d6d6e, 0.5) 50%, rgba(#6d6d6e, 0.1) 80%) repeat-y 0 0;
+  background: #2d2d2d linear-gradient(to right, rgba(#424242, 0.2), rgba(#424242, 0.6) 50%, rgba(#424242, 0.2) 80%) repeat-y 0 0;
   background-size: 50px 500px;
 }
 
@@ -34,6 +34,7 @@ $animation-duration: 2s;
       margin-bottom: 20px;
     }
   }
+
 
   &.button {
     display: inline-block;
@@ -63,6 +64,22 @@ $animation-duration: 2s;
     }
   }
 
+  &__Page {
+    .title {
+      width: 45%;
+
+      @include mq('sm') {
+        width: 35%;
+      }
+      @include mq('md') {
+        width: 33%;
+      }
+      @include mq('lg') {
+        width: 25%;
+      }
+    }
+  }
+
   &.poster {
     position: relative;
     display: inline-block;
@@ -77,7 +94,6 @@ $animation-duration: 2s;
     border-radius: 5px;
     animation: 2.5s ease-in-out 0s pulse infinite;
     transition: background-color 0.1s ease-in-out;
-    cursor: pointer;
 
     @include mq(330px) {
       width: 50%;
