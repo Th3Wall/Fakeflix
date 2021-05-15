@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { API_KEY, LANG } from "../requests";
+import { LANG } from "../requests";
 import axios from "../axiosInstance";
 
 export const useRetrieveCredits = (type, id) => {
@@ -16,7 +16,7 @@ export const useRetrieveCredits = (type, id) => {
             case "movie":
                 {
                     axios
-                        .get(`/movie/${id}/credits?api_key=${API_KEY}&page=1&language=${LANG}`)
+                        .get(`/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&page=1&language=${LANG}`)
                         .then(response => {
                             const { data } = response;
                             setCredits(data);
@@ -29,7 +29,7 @@ export const useRetrieveCredits = (type, id) => {
             case "tv":
                 {
                     axios
-                        .get(`/tv/${id}/aggregate_credits?api_key=${API_KEY}&page=1&language=${LANG}`)
+                        .get(`/tv/${id}/aggregate_credits?api_key=${process.env.REACT_APP_API_KEY}&page=1&language=${LANG}`)
                         .then(response => {
                             const { data } = response;
                             setCredits(data);
