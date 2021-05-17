@@ -14,7 +14,6 @@
     opacity: 1;
     pointer-events: all;
     z-index: 98;
-    transition: all 0.8s ease-out;
 
     &.Modal__invisible {
       opacity: 0;
@@ -24,7 +23,7 @@
   }
 
   &__wrp {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
