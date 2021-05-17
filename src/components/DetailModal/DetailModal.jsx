@@ -67,9 +67,9 @@ const DetailModal = () => {
 				<>
 					<motion.div
 						variants={overlayVariants}
-						initial={"hidden"}
-						animate={"visible"}
-						exit={"hidden"}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
 						key="modalOverlay"
 						className={`Modal__overlay ${modalClosed ? 'Modal__invisible': ''}`}
 					>

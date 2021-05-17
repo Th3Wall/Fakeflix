@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import useViewport from "../../hooks/useViewport";
 import useScroll from "../../hooks/useScroll";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { motion } from "framer-motion";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
@@ -28,120 +29,133 @@ const Navbar = () => {
 		if (profileNav) setProfileNav(false);
 	});
 
+	const slideInVariants = {
+		hidden: { opacity: 0, transition: { duration: .2 }},
+		visible: { opacity: 1, transition: { duration: .2 }}
+	}
+
 	return (
-		<nav className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}>
-			<Link to="/">
-				<img className="Navbar__logo" src={LOGO_URL} alt="Logo" />
-			</Link>
-			{width >= 1024 ? (
-				<ul className="Navbar__primarynav Navbar__navlinks">
-					<li className="Navbar__navlinks--link">
-						<NavLink to="/browse" activeClassName="activeNavLink">
-							Home
-						</NavLink>
-					</li>
-					<li className="Navbar__navlinks--link">
-						<NavLink to="/tvseries" activeClassName="activeNavLink">
-							TV Series
-						</NavLink>
-					</li>
-					<li className="Navbar__navlinks--link">
-						<NavLink to="/movies" activeClassName="activeNavLink">
-							Movies
-						</NavLink>
-					</li>
-					<li className="Navbar__navlinks--link">
-						<NavLink to="/popular" activeClassName="activeNavLink">
-							New & Popular
-						</NavLink>
-					</li>
-					<li className="Navbar__navlinks--link">
-						<NavLink to="/mylist" activeClassName="activeNavLink">
-							My list
-						</NavLink>
-					</li>
-				</ul>
-			) : (
-				<div
-					className={`Navbar__primarynav Navbar__navlinks ${genresNav ? "active" : ""}`}
-					onClick={() => setGenresNav(!genresNav)}
-				>
-					<span className="Navbar__navlinks--link">Discover</span>
-					<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
+		<>
+			<motion.nav
+				className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}
+				variants={slideInVariants}
+				initial="hidden"
+				animate="visible"
+				exit="hidden"
+			>
+				<Link to="/">
+					<img className="Navbar__logo" src={LOGO_URL} alt="Logo" />
+				</Link>
+				{width >= 1024 ? (
+					<ul className="Navbar__primarynav Navbar__navlinks">
+						<li className="Navbar__navlinks--link">
+							<NavLink to="/browse" activeClassName="activeNavLink">
+								Home
+							</NavLink>
+						</li>
+						<li className="Navbar__navlinks--link">
+							<NavLink to="/tvseries" activeClassName="activeNavLink">
+								TV Series
+							</NavLink>
+						</li>
+						<li className="Navbar__navlinks--link">
+							<NavLink to="/movies" activeClassName="activeNavLink">
+								Movies
+							</NavLink>
+						</li>
+						<li className="Navbar__navlinks--link">
+							<NavLink to="/popular" activeClassName="activeNavLink">
+								New & Popular
+							</NavLink>
+						</li>
+						<li className="Navbar__navlinks--link">
+							<NavLink to="/mylist" activeClassName="activeNavLink">
+								My list
+							</NavLink>
+						</li>
+					</ul>
+				) : (
 					<div
-						className={`Navbar__primarynav--content ${genresNav ? "active" : ""}`}
+						className={`Navbar__primarynav Navbar__navlinks ${genresNav ? "active" : ""}`}
+						onClick={() => setGenresNav(!genresNav)}
 					>
-						{genresNav && (
-							<ul
-								className="Navbar__primarynav--content-wrp"
-								ref={genresNavRef}
-							>
-								<li className="Navbar__navlinks--link">
-									<NavLink to="/browse" activeClassName="activeNavLink">
-										Home
-									</NavLink>
-								</li>
-								<li className="Navbar__navlinks--link">
-									<NavLink to="/tvseries" activeClassName="activeNavLink">
-										TV Series
-									</NavLink>
-								</li>
-								<li className="Navbar__navlinks--link">
-									<NavLink to="/movies" activeClassName="activeNavLink">
-										Movies
-									</NavLink>
-								</li>
-								<li className="Navbar__navlinks--link">
-									<NavLink to="/popular" activeClassName="activeNavLink">
-										New & Popular
-									</NavLink>
-								</li>
-								<li className="Navbar__navlinks--link">
-									<NavLink to="/mylist" activeClassName="activeNavLink">
-										My list
-									</NavLink>
-								</li>
-							</ul>
-						)}
-					</div>
-				</div>
-			)}
-			<div className="Navbar__secondarynav">
-				<div className="Navbar__navitem">
-					<Searchbar />
-				</div>
-				<div className="Navbar__navitem">
-					<div
-						className={`Navbar__navprofile ${profileNav ? "active" : ""}`}
-						onClick={() => setProfileNav(!profileNav)}
-					>
-						<img
-							className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
-							src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
-							alt="Profile Picture"
-						/>
-						<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />
-						<div className={`Navbar__navprofile--content ${profileNav ? "active" : ""}`}>
-							{profileNav && (
+						<span className="Navbar__navlinks--link">Discover</span>
+						<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
+						<div
+							className={`Navbar__primarynav--content ${genresNav ? "active" : ""}`}
+						>
+							{genresNav && (
 								<ul
-									className="Navbar__navprofile--content-wrp"
-									ref={profileNavRef}
+									className="Navbar__primarynav--content-wrp"
+									ref={genresNavRef}
 								>
-									{currentUser && (
-										<li
-											className="Navbar__navlinks--link"
-											onClick={() => dispatch(signOutStart())}
-										>
-											Sign Out
-										</li>
-									)}
+									<li className="Navbar__navlinks--link">
+										<NavLink to="/browse" activeClassName="activeNavLink">
+											Home
+										</NavLink>
+									</li>
+									<li className="Navbar__navlinks--link">
+										<NavLink to="/tvseries" activeClassName="activeNavLink">
+											TV Series
+										</NavLink>
+									</li>
+									<li className="Navbar__navlinks--link">
+										<NavLink to="/movies" activeClassName="activeNavLink">
+											Movies
+										</NavLink>
+									</li>
+									<li className="Navbar__navlinks--link">
+										<NavLink to="/popular" activeClassName="activeNavLink">
+											New & Popular
+										</NavLink>
+									</li>
+									<li className="Navbar__navlinks--link">
+										<NavLink to="/mylist" activeClassName="activeNavLink">
+											My list
+										</NavLink>
+									</li>
 								</ul>
 							)}
 						</div>
 					</div>
+				)}
+				<div className="Navbar__secondarynav">
+					<div className="Navbar__navitem">
+						<Searchbar />
+					</div>
+					<div className="Navbar__navitem">
+						<div
+							className={`Navbar__navprofile ${profileNav ? "active" : ""}`}
+							onClick={() => setProfileNav(!profileNav)}
+						>
+							<img
+								className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
+								src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
+								alt="Profile Picture"
+							/>
+							<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />
+							<div className={`Navbar__navprofile--content ${profileNav ? "active" : ""}`}>
+								{profileNav && (
+									<ul
+										className="Navbar__navprofile--content-wrp"
+										ref={profileNavRef}
+									>
+										{currentUser && (
+											<li
+												className="Navbar__navlinks--link"
+												onClick={() => dispatch(signOutStart())}
+											>
+												Sign Out
+											</li>
+										)}
+									</ul>
+								)}
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-		</nav>
+			</motion.nav>
+		</>
 	);
 };
 
