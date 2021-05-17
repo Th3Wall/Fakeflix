@@ -41,14 +41,25 @@ const DetailModal = () => {
 		if (!modalClosed) handleModalClose();
 	});
 
+	let easing = [0.6, -0.05, 0.01, 0.99];
+
 	const overlayVariants = {
-		hidden: { opacity: 0, transition: { duration: .4, delay: .2 }},
-		visible: { opacity: 1, transition: { duration: .4 }}
+		hidden: { opacity: 0, transition: { duration: .2, delay: .2 }},
+		visible: { opacity: 1, transition: { duration: .2 }}
 	}
 	const modalVariants = {
-		hidden: { opacity: 0, top: "100%" },
-		visible: { opacity: 1, top: "50%", transition: { delay: .4 }}
+		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
+		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
 	}
+
+	const stagger = {
+		animate: { transition: { staggerChildren: .1 }}
+	};
+
+	const fadeInUp = {
+		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: easing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
+	};
 
 	return (
 		<AnimatePresence exitBeforeEnter>
@@ -68,12 +79,12 @@ const DetailModal = () => {
 							ref={modalRef}
 							className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}
 						>
-							<button
+							<motion.button
 								className="Modal__closebtn"
 								onClick={handleModalClose}
 							>
 								<VscChromeClose />
-							</button>
+							</motion.button>
 							<div className="Modal__image--wrp">
 								<div className="Modal__image--shadow" />
 								<img
@@ -102,34 +113,34 @@ const DetailModal = () => {
 										)}
 								</div>
 							</div>
-							<div className="Modal__info--wrp">
-								<h3 className="Modal__info--title">{fallbackTitle}</h3>
-								<p className="Modal__info--description">{overview}</p>
-								<hr className="Modal__info--line"/>
-								<h4 className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></h4>
-								<div className="Modal__info--row">
+							<motion.div variants={stagger} initial="initial" animate="animate" exit="exit" className="Modal__info--wrp">
+								<motion.h3 variants={fadeInUp} className="Modal__info--title">{fallbackTitle}</motion.h3>
+								<motion.p variants={fadeInUp} className="Modal__info--description">{overview}</motion.p>
+								<motion.hr variants={fadeInUp} className="Modal__info--line"/>
+								<motion.h4 variants={fadeInUp} className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></motion.h4>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Genres: </span>
 									<span className="Modal__info--row-description">{joinedGenres}</span>
-								</div>
-								<div className="Modal__info--row">
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
 									<span className='Modal__info--row-label'>
 										{release_date ? "Release date: " : "First air date: "}
 									</span>
 									<span className="Modal__info--row-description">{reducedDate}</span>
-								</div>
-								<div className="Modal__info--row">
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Average vote: </span>
 									<span className="Modal__info--row-description">{vote_average || "Not available"}</span>
-								</div>
-								<div className="Modal__info--row">
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Original language: </span>
 									<span className="Modal__info--row-description">{capitalizeFirstLetter(original_language)}</span>
-								</div>
-								<div className="Modal__info--row">
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Age classification: </span>
 									<span className="Modal__info--row-description">{maturityRating}</span>
-								</div>
-							</div>
+								</motion.div>
+							</motion.div>
 						</motion.div>
 					</motion.div>
 				</>
