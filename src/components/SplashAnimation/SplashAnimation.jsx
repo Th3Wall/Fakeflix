@@ -2,6 +2,7 @@ import "./splashAnimation.scss"
 import { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { TADUM_SOUND_URL } from "../../requests";
+import { motion } from "framer-motion";
 
 const SplashAnimation = () => {
 
@@ -27,7 +28,13 @@ const SplashAnimation = () => {
 	}, [history])
 
 	return (
-		<div id="SplashAnimation__wrp" className='SplashAnimation'>
+		<motion.div
+			id="SplashAnimation__wrp"
+			className='SplashAnimation'
+			initial={{opacity: 0}}
+			animate={{opacity: 1}}
+			exit={{opacity: 0}}
+		>
 			<audio ref={soundRef} src={TADUM_SOUND_URL} />
 			<div className="netflixintro" letter="F">
 				<div className="helper-1">
@@ -201,7 +208,7 @@ const SplashAnimation = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 
