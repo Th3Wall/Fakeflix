@@ -1,6 +1,7 @@
 import './signUp.scss';
 import InputField from "../InputField/InputField";
 import Loader from "../Loader/Loader";
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpStart } from "../../redux/auth/auth.actions";
@@ -18,9 +19,25 @@ const SignUp = () => {
 		dispatch(signUpStart({ displayName, email, password }));
 	}
 
+	let easing = [0.6, -0.05, 0.01, 0.99];
+	const fadeInUp = {
+		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: easing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
+	};
+	const stagger = {
+		animate: { transition: { staggerChildren: .1 }}
+	}
+
 	return (
-		<form className="SignUp__form" onSubmit={handleSubmit(onSubmit)}>
-			<div className="SignUp__form--inputwrp">
+		<motion.form
+			variants={stagger}
+			initial="initial"
+			animate="animate"
+			exit="exit"
+			className="SignUp__form"
+			onSubmit={handleSubmit(onSubmit)}
+		>
+			<motion.div variants={fadeInUp} className="SignUp__form--inputwrp">
 				<InputField
 					type="text"
 					name="displayName"
@@ -34,8 +51,8 @@ const SignUp = () => {
 					errors={errors}
 					disabled={isLoading}
 				/>
-			</div>
-			<div className="SignUp__form--inputwrp">
+			</motion.div>
+			<motion.div variants={fadeInUp} className="SignUp__form--inputwrp">
 				<InputField
 					type="text"
 					name="email"
@@ -48,8 +65,8 @@ const SignUp = () => {
 					errors={errors}
 					disabled={isLoading}
 				/>
-			</div>
-			<div className="SignUp__form--inputwrp">
+			</motion.div>
+			<motion.div variants={fadeInUp} className="SignUp__form--inputwrp">
 				<InputField
 					type="password"
 					name="password"
@@ -63,8 +80,8 @@ const SignUp = () => {
 					errors={errors}
 					disabled={isLoading}
 				/>
-			</div>
-			<div className="SignUp__form--inputwrp">
+			</motion.div>
+			<motion.div variants={fadeInUp} className="SignUp__form--inputwrp">
 				<InputField
 					type="password"
 					name="check_password"
@@ -81,15 +98,16 @@ const SignUp = () => {
 					errors={errors}
 					disabled={isLoading}
 				/>
-			</div>
-			<button
+			</motion.div>
+			<motion.button
 				type="submit"
+				variants={fadeInUp}
 				className={`SignUp__form--button button__submit ${isLoading && 'loading'}`}
 				disabled={isLoading}
 			>
 				{isLoading ? <Loader /> : 'Sign Up'}
-			</button>
-		</form>
+			</motion.button>
+		</motion.form>
 	)
 }
 

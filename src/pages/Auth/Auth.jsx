@@ -3,6 +3,7 @@ import { useState } from "react";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js";
 import { useSelector } from "react-redux";
 import { selectAuthErrors } from "../../redux/auth/auth.selectors";
@@ -11,30 +12,56 @@ const Auth = () => {
 	const [isSignedUp, setIsSignedUp] = useState(true);
 	const authError = useSelector(selectAuthErrors);
 
+	let easing = [0.6, -0.05, 0.01, 0.99];
+	const modalVariants = {
+		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
+		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
+	}
+	const fadeInUp = {
+		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: easing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
+	};
+	const stagger = {
+		animate: { transition: { staggerChildren: .1 }}
+	}
+
 	return (
-		<div className="Auth">
+		<motion.div
+			className="Auth"
+			initial={{opacity: 0}}
+			animate={{opacity: 1}}
+			exit={{opacity: 0}}
+		>
 			<div className="Auth__opacityLayer" />
 			<div className="Auth__bgLayer" style={{ backgroundImage: `url(${SIGNIN_BGIMG_URL})` }} />
 			<Link to="/" className="Auth__logo">
 				<img className="Auth__logo--img" src={LOGO_URL} alt="Fakeflix_logo" />
 			</Link>
-			<div className="Auth__content">
-				<h2 className="Auth__content--title">
-					{isSignedUp ? "Sign In" : "Sign Up"}
-				</h2>
-				{isSignedUp ? <SignIn /> : <SignUp />}
-				{authError && <p className='Auth__content--errors'>{authError}</p>}
-				<hr className="Auth__content--divider" />
-				<small className="Auth__content--toggleView">
-					{isSignedUp
-						? `Haven't you registered yet? `
-						: "Do you already have an account? "}
-					<span className="toggler" onClick={() => setIsSignedUp(!isSignedUp)}>
-						{isSignedUp ? "Sign Up" : "Sign In"}
-					</span>
-				</small>
-			</div>
-		</div>
+			<motion.div
+				className="Auth__content"
+				variants={modalVariants}
+				initial="hidden"
+				animate="visible"
+				exit="hidden"
+			>
+				<motion.div variants={stagger} initial="initial" animate="animate" exit="exit">
+					<motion.h2 variants={fadeInUp} className="Auth__content--title">
+						{isSignedUp ? "Sign In" : "Sign Up"}
+					</motion.h2>
+					{isSignedUp ? <SignIn /> : <SignUp />}
+					{authError && <motion.p variants={fadeInUp} className='Auth__content--errors'>{authError}</motion.p>}
+					<motion.hr variants={fadeInUp} className="Auth__content--divider" />
+					<motion.small variants={fadeInUp} className="Auth__content--toggleView">
+						{isSignedUp
+							? `Haven't you registered yet? `
+							: "Do you already have an account? "}
+						<span className="toggler" onClick={() => setIsSignedUp(!isSignedUp)}>
+							{isSignedUp ? "Sign Up" : "Sign In"}
+						</span>
+					</motion.small>
+				</motion.div>
+			</motion.div>
+		</motion.div>
 	);
 };
 
