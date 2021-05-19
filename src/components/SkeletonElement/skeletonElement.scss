@@ -53,10 +53,14 @@ $animation-duration: 2.5s;
   }
 
   &.text {
-    width: 70%;
+    width: 90%;
     height: 15px;
     @include background-gradient;
     animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+
+    @include mq('md') {
+      width: 70%;
+    }
 
     @include mq('lg') {
       width: 40%;
