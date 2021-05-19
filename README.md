@@ -1,8 +1,30 @@
 ![Image of Fakeflix Project](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png)
 
-# Getting Started with Create React App
+# Fakeflix
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## 🎯 About
+
+Lorem Ipsum Dolor Sit Amet Consecteur Discipit elit.
+
+### ▶️ Demo
+
+Lorem Ipsum Dolor Sit Amet.
+
+## :sparkles: Features
+
+:heavy_check_mark: Lorem Ipsum Dolor Sit Amet<br />
+
+## :rocket: Technologies
+
+-   [React](https://reactjs.org/)
+-   [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+-   [Sass](https://sass-lang.com/)
+
+## :white_check_mark: Requirements
+
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
 ## Available Scripts
 
