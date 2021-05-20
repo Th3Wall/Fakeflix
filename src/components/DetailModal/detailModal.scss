@@ -38,6 +38,14 @@
     background: $light-black;
     border-radius: 5px;
 
+    @include mq('sm') {
+      width: 80vw;
+    }
+
+    @include mq('md') {
+      width: 65vw;
+    }
+
     @include mq('lg') {
       width: 55vw;
     }
