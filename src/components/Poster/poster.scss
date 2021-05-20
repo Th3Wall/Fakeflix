@@ -200,23 +200,21 @@
         transition: opacity 0.2s ease-out;
     }
 
-    &:hover {
-        transform: scale(1.3) !important;
-        transition-delay: 0.3s;
-        z-index: 1;
-        opacity: 1;
-
-        //~ .Poster {
-        //    transform: translateX(15%);
-        //}
-
-        &::after {
+    @include mq('md') {
+        &:hover {
+            transform: scale(1.3) !important;
+            transition-delay: 0.3s;
+            z-index: 1;
             opacity: 1;
-        }
 
-        .Poster__info {
-            opacity: 1;
-            transform: translateY(0);
+            &::after {
+                opacity: 1;
+            }
+
+            .Poster__info {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     }
 }

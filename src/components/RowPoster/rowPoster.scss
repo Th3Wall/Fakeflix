@@ -1,3 +1,4 @@
+@import "../../scss/mixin";
 @import "../../scss/variables";
 
 .Row__poster {
@@ -165,15 +166,17 @@
 		}
 	}
 	&:hover {
-		.Row__poster {
-			&::after {
-				opacity: 1;
-			}
+		@include mq('md') {
+			.Row__poster {
+				&::after {
+					opacity: 1;
+				}
 
-            &-info {
-                opacity: 1;
-                transform: translateY(0);
-            }
+				&-info {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
 		}
 	}
 }
