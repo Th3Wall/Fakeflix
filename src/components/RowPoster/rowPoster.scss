@@ -3,6 +3,7 @@
 
 .Row__poster {
 	position: relative;
+	overflow: hidden;
 	margin-right: 0.5rem;
 	cursor: pointer;
 
@@ -79,17 +80,35 @@
 
 		&--icon {
 			display: inline-flex;
-			padding: 8px;
+			padding: 6px;
 			border-radius: 50%;
-			font-size: 14px;
+			font-size: 12px;
 			cursor: pointer;
 			margin: 0 5px;
-			margin-bottom: 0.8em;
+			margin-bottom: 0.6em;
 			background: transparent;
 			color: $white;
 			border: 1px solid $white;
 			transition: all 0.3s ease-out;
 			outline: none;
+
+			@include mq('lg') {
+				font-size: 14px;
+				padding: 8px;
+				margin-bottom: 0.8em;
+			}
+
+			@include mq(1378px, 1680px) {
+				font-size: 12px;
+				padding: 6px;
+				margin-bottom: 0.6em;
+			}
+
+			@include mq(1680px) {
+				font-size: 14px;
+				padding: 8px;
+				margin-bottom: 0.8em;
+			}
 
 			&:hover {
 				background: $white;
@@ -110,15 +129,39 @@
 
 		&--title {
 			h3 {
-				font-size: 15px;
+				font-size: 12px;
 				font-weight: 600;
 				text-transform: none;
+
+				@include mq('lg') {
+					font-size: 15px;
+				}
+
+				@include mq(1378px, 1680px) {
+					font-size: 12px;
+				}
+
+				@include mq(1680px) {
+					font-size: 15px;
+				}
 			}
 
 			p {
-				font-size: 13px;
+				font-size: 10px;
 				margin-top: 0.3vw;
 				margin-bottom: 0;
+
+				@include mq('lg') {
+					font-size: 13px;
+				}
+
+				@include mq(1378px, 1680px) {
+					font-size: 10px;
+				}
+
+				@include mq(1680px) {
+					font-size: 13px;
+				}
 			}
 		}
 
@@ -129,8 +172,20 @@
 			.genre-title {
 				display: inline-block;
 				width: auto;
-				font-size: 10px;
+				font-size: 8px;
 				margin: 0 0.3vw 0 0;
+
+				@include mq('lg') {
+					font-size: 10px;
+				}
+
+				@include mq(1378px, 1680px) {
+					font-size: 8px;
+				}
+
+				@include mq(1680px) {
+					font-size: 10px;
+				}
 
 				&:after {
 					content: "●";
@@ -165,8 +220,8 @@
 			transition: opacity 0.2s ease-out;
 		}
 	}
-	&:hover {
-		@include mq('md') {
+	@include mq('md') {
+		&:hover {
 			.Row__poster {
 				&::after {
 					opacity: 1;
