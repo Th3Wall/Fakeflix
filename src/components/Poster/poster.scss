@@ -71,7 +71,6 @@
         display: inline-block;
         height: 100%;
         width: 100%;
-        min-height: 110px;
         border-radius: 5px;
     }
 
@@ -108,7 +107,12 @@
         opacity: 0;
         z-index: 2;
         border-radius: 5px;
+        pointer-events: none;
         transition: all .4s ease .15s;
+
+        @include mq('md') {
+            pointer-events: all;
+        }
 
         &--iconswrp {
             display: flex;
