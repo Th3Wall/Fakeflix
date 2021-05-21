@@ -1,4 +1,5 @@
 import "./poster.scss"
+import { motion } from "framer-motion";
 import { BASE_IMG_URL, FALLBACK_IMG_URL } from "../../requests";
 import { FaChevronDown, FaMinus, FaPlay, FaPlus } from "react-icons/fa";
 import useGenreConversion from "../../hooks/useGenreConversion";
@@ -30,8 +31,15 @@ const Poster = result => {
         event.stopPropagation();
     };
 
+    let easing = [0.6, -0.05, 0.01, 0.99];
+    const fadeIn = {
+        initial: { y: 20, opacity: 0, transition: { duration: .5, ease: easing }},
+        animate: { y: 0, opacity: 1, transition: { duration: .5, ease: easing }}
+    };
+
     return (
-        <div
+        <motion.div
+            variants={fadeIn}
             className='Poster'
             onClick={handleModalOpening}
         >
@@ -77,7 +85,7 @@ const Poster = result => {
                     ))}
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

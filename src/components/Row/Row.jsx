@@ -21,12 +21,33 @@ const Row = ({ selector, title, genre, isLarge }) => {
 	const rowData = useSelector(selector);
 	const { loading, error, data: results } = rowData;
 	const { pathname } = useLocation();
+
+	//Custom Swiper config
+	const navigationPrevRef = useRef(null);
+	const navigationNextRef = useRef(null);
     const customSwiperParams = {
         observer: true,
         observeParents: true,
+		navigation: {
+			prevEl: navigationPrevRef.current,
+			nextEl: navigationNextRef.current,
+		},
+		breakpoints:{
+			1378: { slidesPerView: 6, slidesPerGroup: 6 },
+			998: { slidesPerView: 4, slidesPerGroup: 4 },
+			625: { slidesPerView: 3, slidesPerGroup: 3 },
+			330: { slidesPerView: 2, slidesPerGroup: 2 },
+			0: { slidesPerView: 1.5, slidesPerGroup: 1.5 }
+		},
+		loopAdditionalSlides: width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2,
+		pagination: true,
+		loop: false,
+		grabCursor: false,
+		draggable: false,
+		preventClicksPropagation: true,
+		preventClicks: true,
+		slideToClickedSlide: false
     };
-	const navigationPrevRef = useRef(null);
-	const navigationNextRef = useRef(null);
 
 	return (
 		<div className="Row">
@@ -49,29 +70,10 @@ const Row = ({ selector, title, genre, isLarge }) => {
 					</div>
 					<Swiper
 						{...customSwiperParams}
-						navigation={{
-							prevEl: navigationPrevRef.current,
-							nextEl: navigationNextRef.current,
-						}}
 						onBeforeInit={(swiper) => {
 							swiper.params.navigation.prevEl = navigationPrevRef.current;
 							swiper.params.navigation.nextEl = navigationNextRef.current;
 						}}
-						breakpoints={{
-							1378: { slidesPerView: 6, slidesPerGroup: 6 },
-							998: { slidesPerView: 4, slidesPerGroup: 4 },
-							625: { slidesPerView: 3, slidesPerGroup: 3 },
-							330: { slidesPerView: 2, slidesPerGroup: 2 },
-							0: { slidesPerView: 1.5, slidesPerGroup: 1.5 },
-						}}
-						loopAdditionalSlides={width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2}
-						pagination
-						loop={false}
-						grabCursor={false}
-						draggable={false}
-						preventClicksPropagation={true}
-						preventClicks={true}
-						slideToClickedSlide={false}
 					>
 						{!loading &&
 							results &&
@@ -81,6 +83,7 @@ const Row = ({ selector, title, genre, isLarge }) => {
 										item={result}
 										isLarge={isLarge}
 										isFavourite={result.isFavourite}
+										key={result.id}
 									/>
 								</SwiperSlide>
 							))

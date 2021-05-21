@@ -1,18 +1,28 @@
 import "./myList.scss"
 import Poster from "../../components/Poster/Poster";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
 
 const MyList = () => {
 
     const favs = useSelector(selectFavouritesList);
+    const stagger = {
+        animate: { transition: { staggerChildren: .05 }}
+    }
     
     return (
         <div className="MyList">
             {favs && favs.length > 0 && (
                 <h2 className="MyList__title">My List</h2>
             )}
-            <div className="MyList__wrp">
+            <motion.div
+                className="MyList__wrp"
+                variants={stagger}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+            >
                 {favs && favs.length > 0
                     ? favs.map(result => (
                         <Poster
@@ -27,7 +37,7 @@ const MyList = () => {
                         </h2>
                     )
                 }
-            </div>
+            </motion.div>
         </div>
     )
 }
