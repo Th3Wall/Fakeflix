@@ -1,5 +1,6 @@
 import "./row.scss";
 import RowPoster from "../RowPoster/RowPoster";
+import SkeletonElement from "../SkeletonElement/SkeletonElement";
 import SkeletonPoster from "../SkeletonPoster/SkeletonPoster";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
@@ -51,15 +52,22 @@ const Row = ({ selector, title, genre, isLarge }) => {
 
 	return (
 		<div className="Row">
-			<h3 className="Row__title">
-				<Link to={`${pathname}/${genre}`}>
-					<span>{title}</span>
-					<span className='Row__showmore'>Show all <FiChevronRight/></span>
-				</Link>
-			</h3>
-
-			{loading && <div className='Row__not-loaded'><SkeletonPoster /></div>}
-			{error && <div className='Row__not-loaded'>Error occurred.</div>}
+			{error && <div className='Row__not-loaded'>Oops, an error occurred.</div>}
+			{loading ?
+				(
+					<div className='Row__not-loaded'>
+						<SkeletonElement type="title" />
+						<SkeletonPoster />
+					</div>
+				) : (
+					<h3 className="Row__title">
+						<Link to={`${pathname}/${genre}`}>
+							<span>{title}</span>
+							<span className='Row__showmore'>Show all <FiChevronRight/></span>
+						</Link>
+					</h3>
+				)
+			}
 			{!loading && !error && (
 				<div className="Row__poster--wrp">
 					<div className="Row__slider--mask left" ref={navigationPrevRef}>

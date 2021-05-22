@@ -37,7 +37,7 @@ const Banner = ({ type }) => {
 		<>
 			<section className="Banner__loadsection">
 				{loading && <SkeletonBanner />}
-				{error && <div className="errored">Error occurred.</div>}
+				{error && <div className="errored">Oops, an error occurred.</div>}
 			</section>
 
 			{!loading && finalData && (

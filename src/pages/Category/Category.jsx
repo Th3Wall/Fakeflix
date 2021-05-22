@@ -48,7 +48,7 @@ const Category = ({ match }) => {
                             ))
                         }
                         {selectedGenre.loading && <div className='Category__subtitle'><SkeletonPoster /></div>}
-                        {selectedGenre.error && <div className='Category__subtitle'>Error occurred.</div>}
+                        {selectedGenre.error && <div className='Category__subtitle'>Oops, an error occurred.</div>}
                         <div className={`Category__endPage ${isIntersecting ? 'intersected' : null}`} ref={endPageRef} />
                     </motion.div>
                 </>
