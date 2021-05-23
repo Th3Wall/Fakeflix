@@ -20,7 +20,17 @@ Lorem Ipsum Dolor Sit Amet.
 
 -   [React](https://reactjs.org/)
 -   [React Hooks](https://reactjs.org/docs/hooks-intro.html)
--   [Sass](https://sass-lang.com/)
+-   [React Hooks Form](https://react-hook-form.com/)
+-   [React Router](https://reactrouter.com/web/guides/quick-start)
+-   [Redux](https://redux.js.org/)
+-   [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+-   [Redux Saga](https://redux-saga.js.org/)
+-   [Redux Persist](https://github.com/rt2zz/redux-persist)
+-   [Redux Logger](https://github.com/LogRocket/redux-logger)
+-   [Reselect](https://github.com/reduxjs/reselect)
+-   [Firebase](https://firebase.google.com/)
+-   [SCSS](https://sass-lang.com/)
+-   [Framer Motion](https://www.framer.com/motion/)
 
 ## :white_check_mark: Requirements
 
