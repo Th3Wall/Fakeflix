@@ -7,12 +7,24 @@ import { selectFavouritesList } from "../../redux/favourites/favourites.selector
 const MyList = () => {
 
     const favs = useSelector(selectFavouritesList);
+    let easing = [0.6, -0.05, 0.01, 0.99];
+    const fadeIn = {
+        initial: { opacity: 0, transition: { duration: .6, ease: easing }, willChange: "opacity, transform" },
+        animate: { opacity: 1, transition: { duration: .6, ease: easing }, willChange: "opacity, transform" },
+        exit: { opacity: 0, transition: { duration: .6, ease: easing }, willChange: "opacity, transform" }
+    };
     const stagger = {
         animate: { transition: { staggerChildren: .05 }}
     }
-    
+
     return (
-        <div className="MyList">
+        <motion.div
+            className="MyList"
+            variants={fadeIn}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+        >
             {favs && favs.length > 0 && (
                 <h2 className="MyList__title">My List</h2>
             )}
@@ -38,7 +50,7 @@ const MyList = () => {
                     )
                 }
             </motion.div>
-        </div>
+        </motion.div>
     )
 }
 
