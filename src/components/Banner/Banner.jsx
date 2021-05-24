@@ -1,4 +1,5 @@
 import "./banner.scss";
+import { motion } from "framer-motion";
 import { BASE_IMG_URL } from "../../requests";
 import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
@@ -27,27 +28,63 @@ const Banner = ({ type }) => {
 	const { loading, error, data: results } = myData;
 	const finalData = results[randomize(results)];
 	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
-	const description = truncate(finalData?.overview, 280);
+	const description = truncate(finalData?.overview, 150);
 
 	const handlePlayAnimation = event => {
 		event.stopPropagation();
 	};
 
+	let easing = [0.6, -0.05, 0.01, 0.99];
+	const fadeIn = {
+		initial: { opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" },
+		animate: { opacity: 1, transition: { delay: .8, duration: .8, ease: easing }, willChange: "opacity, transform" },
+		exit: { opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" }
+	};
+	const fadeInLoadSection = {
+		initial: { opacity: 0, transition: { duration: .2, ease: easing }},
+		animate: { opacity: 1, transition: { duration: .2, ease: easing }},
+		exit: { opacity: 0, transition: { duration: .2, ease: easing }}
+	};
+	const fadeInUp = {
+		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" },
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" },
+		exit: { y: 60, opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" }
+	};
+	const stagger = {
+		animate: { transition: { staggerChildren: .1 }}
+	}
+
 	return (
 		<>
-			<section className="Banner__loadsection">
+			<motion.section
+				variants={fadeInLoadSection}
+				initial='initial'
+				animate='animate'
+				exit='exit'
+				className="Banner__loadsection"
+			>
 				{loading && <SkeletonBanner />}
 				{error && <div className="errored">Oops, an error occurred.</div>}
-			</section>
+			</motion.section>
 
 			{!loading && finalData && (
-				<header
+				<motion.header
+					variants={fadeIn}
+					initial='initial'
+					animate='animate'
+					exit='exit'
 					className="Banner"
 					style={{backgroundImage: `url(${BASE_IMG_URL}/${finalData.backdrop_path})`}}
 				>
-					<div className="Banner__content">
-						<h1 className="Banner__content--title">{fallbackTitle}</h1>
-						<div className="Banner__buttons">
+					<motion.div
+						className="Banner__content"
+						variants={stagger}
+						initial='initial'
+						animate='animate'
+						exit='exit'
+					>
+						<motion.h1 variants={fadeInUp} className="Banner__content--title">{fallbackTitle}</motion.h1>
+						<motion.div variants={fadeInUp} className="Banner__buttons">
 							<Link
 								className="Banner__button"
 								onClick={handlePlayAnimation}
@@ -57,17 +94,15 @@ const Banner = ({ type }) => {
 								<span>Play</span>
 							</Link>
 							<button className="Banner__button">
-								<BiInfoCircle size={"1.5em"} />
+								<BiInfoCircle size="1.5em" />
 								<span>More info</span>
 							</button>
-						</div>
-						<p className="Banner__content--description">
-							{description}
-						</p>
-					</div>
+						</motion.div>
+						<motion.p variants={fadeInUp} className="Banner__content--description">{description}</motion.p>
+					</motion.div>
 					<div className="Banner__panel" />
 					<div className="Banner__bottom-shadow" />
-				</header>
+				</motion.header>
 			)}
 		</>
 	)
