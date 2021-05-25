@@ -3,9 +3,12 @@
 
 .Auth {
     position: relative;
-    height: 100vh;
     width: 100%;
-    
+    height: 100vh;
+    min-height: 100vh;
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+
     &__bgLayer {
         position: absolute;
         width: 100%;
@@ -80,12 +83,8 @@
         }
 
         &--divider {
-            margin: 1em;
+            margin: 1.5em;
             border-color: #777777;
-
-            @include mq(xs) {
-                margin: 1.5em;
-            }
         }
 
         &--toggleView {
