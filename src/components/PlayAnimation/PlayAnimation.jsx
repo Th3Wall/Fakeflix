@@ -16,7 +16,7 @@ const PlayAnimation = () => {
 		handleTadum();
 		setTimeout(() => {
 			history.push('/browse')
-		}, 3800)
+		}, 4200)
 	}, [history])
 
 	return (

@@ -17,6 +17,11 @@ const Auth = () => {
 		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
 		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
 	}
+	const fadeIn = {
+		initial: { opacity: 0, transition: { duration: .6, ease: easing }},
+		animate: { opacity: 1, transition: { duration: .6, ease: easing }},
+		exit: { opacity: 0, transition: { duration: .6, ease: easing }}
+	};
 	const fadeInUp = {
 		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: easing }},
 		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
@@ -28,9 +33,10 @@ const Auth = () => {
 	return (
 		<motion.div
 			className="Auth"
-			initial={{opacity: 0}}
-			animate={{opacity: 1}}
-			exit={{opacity: 0}}
+			variants={fadeIn}
+			initial="initial"
+			animate="animate"
+			exit="exit"
 		>
 			<div className="Auth__opacityLayer" />
 			<div className="Auth__bgLayer" style={{ backgroundImage: `url(${SIGNIN_BGIMG_URL})` }} />
