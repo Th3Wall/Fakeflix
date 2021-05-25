@@ -4,21 +4,26 @@
 .SignIn {
   &__form {
     &--inputwrp {
-      margin: 1em 0;
+      margin: 0.6em 0;
+
+      @include mq(xs) {
+        margin: 1em 0;
+      }
     }
+
     &--button {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
-      min-height: 60px;
+      min-height: 45px;
       box-shadow: none;
       border: 1px solid transparent;
       padding: 1.2em 0.8em;
       margin-top: 0.5em;
       border-radius: 5px;
       font-family: $main-font;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 500;
       line-height: 1;
       transition: all 0.2s ease-out;
@@ -29,7 +34,16 @@
       }
 
       &:nth-of-type(1) {
-        margin-top: 2em;
+        margin-top: 1em;
+
+        @include mq(xs) {
+          margin-top: 2em;
+        }
+      }
+
+      @include mq(xs) {
+        min-height: 60px;
+        font-size: 15px;
       }
 
       svg {
@@ -47,6 +61,7 @@
             transform: scale(0.95);
           }
         }
+
         &__google {
           background-color: $blue-google;
           color: $white;
@@ -60,6 +75,7 @@
           }
         }
       }
+
       &.loading {
         background-color: #333;
         border: 1px solid $white;
@@ -69,6 +85,7 @@
           transform: none;
         }
       }
+
     }
   }
 }

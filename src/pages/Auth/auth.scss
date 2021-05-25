@@ -30,15 +30,19 @@
     }
 
     &__logo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        padding: 2em;
+        display: none;
+        @include mq(xs) {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            padding: 2em;
 
-        &--img {
-            width: 100%;
-            max-width: 160px;
+            &--img {
+                width: 100%;
+                max-width: 160px;
+            }
         }
     }
 
@@ -50,22 +54,38 @@
         z-index: 2;
         width: 100%;
         max-width: 90%;
-        padding: 3.75em 3em;
+        padding: 2em 1.8em;
         border-radius: 8px;
         background-color: rgba($color: $pure-black, $alpha: 0.75);
+
+        @include mq(xs) {
+            padding: 2.25em 2em;
+        }
+
+        @include mq(sm) {
+            padding: 3.75em 3em;
+        }
 
         @include mq(md) {
             max-width: 500px;
         }
 
         &--title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 1em;
+
+            @include mq(xs) {
+                font-size: 1.5rem;
+            }
         }
 
         &--divider {
-            margin: 1.5em;
+            margin: 1em;
             border-color: #777777;
+
+            @include mq(xs) {
+                margin: 1.5em;
+            }
         }
 
         &--toggleView {
