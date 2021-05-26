@@ -38,10 +38,16 @@
         z-index: 1;
 
         &--title {
-            font-size: 40px;
+            font-size: 30px;
             line-height: 1;
             text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
 
+            @include mq('xs'){
+                font-size: 35px;
+            }
+            @include mq('sm'){
+                font-size: 40px;
+            }
             @include mq('md'){
                 font-size: 60px;
             }
@@ -51,18 +57,21 @@
         }
         
         &--description {
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.6;
             text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
             margin-top: 1rem;
-            
+
+            @include mq('sm'){
+                font-size: 16px;
+            }
             @include mq('md'){
                 font-size: 2vw;
                 max-width: 60vw;
             }
             @include mq('lg'){
-                max-width: 30vw;
                 font-size: 1.2vw;
+                max-width: 30vw;
                 margin-top: 1vw;
             }
         }
@@ -78,20 +87,29 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        min-width: 150px;
-        background-color: rgba(#6d6d6e, 0.7);
-        color: $white;
-        padding: 12px 20px;
+        min-width: 120px;
+        background-color: rgba(109, 109, 110, 0.7);
+        color: #f2f2f2;
+        padding: 10px 16px;
         margin-left: 10px;
         border-radius: 6px;
         border: 0;
         margin-top: 1em;
         font-family: $main-font;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 500;
         cursor: pointer;
         text-decoration: none;
         transition: all 0.2s ease-out;
+
+        @include mq('xs'){
+            min-width: 150px;
+            font-size: 14px;
+            padding: 12px 20px;
+        }
+        @include mq('md'){
+            font-size: 15px;
+        }
 
         &:hover {
             background-color: rgba(#6d6d6e, 1);
@@ -105,10 +123,6 @@
             &:hover {
                 background-color: darken($red, 5);
             }
-        }
-        
-        @include mq('md'){
-            font-size: 15px;
         }
 
         span {
