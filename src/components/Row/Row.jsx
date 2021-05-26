@@ -47,7 +47,8 @@ const Row = ({ selector, title, genre, isLarge }) => {
 		draggable: false,
 		preventClicksPropagation: true,
 		preventClicks: true,
-		slideToClickedSlide: false
+		slideToClickedSlide: false,
+		allowTouchMove: true
     };
 
 	return (
