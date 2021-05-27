@@ -14,7 +14,6 @@
     opacity: 1;
     pointer-events: all;
     z-index: 98;
-    transition: all 0.8s ease-out;
 
     &.Modal__invisible {
       opacity: 0;
@@ -24,7 +23,7 @@
   }
 
   &__wrp {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -39,11 +38,19 @@
     background: $light-black;
     border-radius: 5px;
 
-    @include mq(lg) {
+    @include mq('sm') {
+      width: 80vw;
+    }
+
+    @include mq('md') {
+      width: 65vw;
+    }
+
+    @include mq('lg') {
       width: 55vw;
     }
 
-    @include mq(ll) {
+    @include mq('ll') {
       max-width: 750px;
       width: 100%;
     }
@@ -103,35 +110,45 @@
     &--buttonswrp {
       position: absolute;
       bottom: 10%;
-      left: 2em;
+      left: 1.5em;
       display: flex;
       align-items: center;
+
+      @include mq('sm') {
+        left: 2em;
+      }
     }
 
     &--button {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      min-width: 150px;
+      min-width: 120px;
       background-color: $red;
       color: $white;
-      padding: 12px 20px;
+      padding: 10px 16px;
       margin-left: 0;
       border-radius: 6px;
       border: 0;
       font-family: $main-font;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease-out;
 
-      &:hover {
-        background-color: darken($red, 5);
+      @include mq('xs'){
+        min-width: 150px;
+        font-size: 14px;
+        padding: 12px 20px;
       }
 
       @include mq('md'){
         font-size: 15px;
+      }
+
+      &:hover {
+        background-color: darken($red, 5);
       }
 
       span {
@@ -142,7 +159,7 @@
         display: inline-flex;
         padding: 10px;
         border-radius: 50%;
-        font-size: 14px;
+        font-size: 13px;
         cursor: pointer;
         margin: 0 5px;
         margin-left: 0.8em;
@@ -151,6 +168,10 @@
         border: 1px solid $white;
         transition: all 0.3s ease-out;
         outline: none;
+
+        @include mq('xs'){
+          font-size: 14px;
+        }
 
         &:hover {
           background: $white;
@@ -173,39 +194,72 @@
 
   &__info {
     &--wrp {
-      padding: 1.5em 2em;
+      padding: 1em 1.5em;
+
+      @include mq('sm') {
+        padding: 1.5em 2em;
+      }
     }
+
     &--title {
-      font-size: 26px;
-      line-height: 1;
+      font-size: 22px;
+      line-height: 1.4;
       font-weight: 600;
       margin-bottom: 15px;
+
+      @include mq('sm') {
+        font-size: 26px;
+      }
     }
+
     &--description {
-      font-size: 16px;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.7;
+
+      @include mq('sm') {
+        font-size: 16px;
+        line-height: 1.5;
+      }
     }
+
     &--line {
       border-color: rgba(121,121,121,0.7);
-      margin: 1.5em 0;
+      margin: 1em 0;
+
+      @include mq('sm') {
+        margin: 1.5em 0;
+      }
     }
+
     &--otherTitle {
-      font-size: 20px;
-      line-height: 1;
+      font-size: 16px;
+      line-height: 1.4;
       font-weight: 400;
       margin-bottom: 15px;
+
+      @include mq('sm') {
+        font-size: 20px;
+      }
     }
+
     &--row {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 12px;
+      line-height: 1.6;
       margin: .5em;
       margin-left: 0;
       word-break: break-word;
+
       &-label {
         color: #777;
       }
+
       &-description {
         color: #ddd;
+      }
+
+      @include mq('sm') {
+        font-size: 14px;
+        line-height: 1.5;
       }
     }
   }

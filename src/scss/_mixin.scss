@@ -1,7 +1,7 @@
 /*
 * VARIABLES
 */
-$breakpoints: (ll: 1450px, lg: 1024px, md: 768px, sm: 640px) !default;
+$breakpoints: (ll: 1450px, lg: 1024px, md: 768px, sm: 640px, xs: 400px) !default;
 
 /*
 * MIXINS
@@ -11,7 +11,10 @@ $breakpoints: (ll: 1450px, lg: 1024px, md: 768px, sm: 640px) !default;
     $max-type: type-of($max);
 
     @if $min-type==string {
-        @if $min==sm {
+        @if $min==xs {
+            $min: "(min-width: #{map-get($breakpoints, xs)})";
+        }
+        @else if $min==sm {
             $min: "(min-width: #{map-get($breakpoints, sm)})";
         }
         @else if $min==md {
@@ -32,7 +35,10 @@ $breakpoints: (ll: 1450px, lg: 1024px, md: 768px, sm: 640px) !default;
     }
 
     @if $max-type==string {
-        @if $max==sm {
+        @if $max==xs {
+            $max: "(max-width: #{map-get($breakpoints, xs) - 1})";
+        }
+        @else if $max==sm {
             $max: "(max-width: #{map-get($breakpoints, sm) - 1})";
         }
         @else if $max==md {
@@ -45,7 +51,7 @@ $breakpoints: (ll: 1450px, lg: 1024px, md: 768px, sm: 640px) !default;
             $max: "(max-width: #{map-get($breakpoints, ll) - 1})";
         }
         @else {
-            @warn "mq mixin supports: sm, md, lg, ll";
+            @warn "mq mixin supports: xs, sm, md, lg, ll";
         }
     }
 

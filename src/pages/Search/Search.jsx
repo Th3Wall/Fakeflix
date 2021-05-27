@@ -1,5 +1,7 @@
 import "./search.scss"
 import Poster from "../../components/Poster/Poster";
+import { motion } from "framer-motion";
+import { staggerHalf } from "../../motionUtils";
 import { useSelector } from "react-redux";
 import { selectSearchInputValue } from "../../redux/search/search.selectors";
 
@@ -12,7 +14,13 @@ const Search = searchResults => {
 			{results && results.length > 0 && (
 				<h2 className="Search__title">Search results for: {selectInputValue}</h2>
 			)}
-			<div className="MyList__wrp">
+			<motion.div
+				className="MyList__wrp"
+				variants={staggerHalf}
+				initial="initial"
+				animate="animate"
+				exit="exit"
+			>
 				{results && results.length > 0
 					? results.map(result => (
 						<Poster
@@ -27,7 +35,7 @@ const Search = searchResults => {
 						</h2>
 					)
 				}
-			</div>
+			</motion.div>
 		</div>
 	);
 }

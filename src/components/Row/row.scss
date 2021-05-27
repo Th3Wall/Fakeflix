@@ -3,7 +3,11 @@
 
 .Row {
     display: block;
-    padding: 3vh 0;
+    padding: 1.5vh 0;
+
+    @include mq('md'){
+        padding: 3vh 0;
+    }
 
     &__title {
         margin-bottom: 1rem;
@@ -59,18 +63,20 @@
     }
 
     .swiper-wrapper {
-        &:hover {
-            .swiper-slide {
-                transform: translateX(-15%);
-                opacity: 0.3;
+        @include mq('md') {
+            &:hover {
+                .swiper-slide {
+                    transform: translateX(-15%);
+                    opacity: 0.3;
 
-                &:hover {
-                    transform: scale(1.3) !important;
-                    z-index: 1;
-                    opacity: 1;
+                    &:hover {
+                        transform: scale(1.3) !important;
+                        z-index: 1;
+                        opacity: 1;
 
-                    ~ .swiper-slide {
-                        transform: translateX(15%);
+                        ~ .swiper-slide {
+                            transform: translateX(15%);
+                        }
                     }
                 }
             }

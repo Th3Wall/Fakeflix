@@ -1,5 +1,6 @@
 import "./row.scss";
 import RowPoster from "../RowPoster/RowPoster";
+import SkeletonElement from "../SkeletonElement/SkeletonElement";
 import SkeletonPoster from "../SkeletonPoster/SkeletonPoster";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
@@ -21,12 +22,34 @@ const Row = ({ selector, title, genre, isLarge }) => {
 	const rowData = useSelector(selector);
 	const { loading, error, data: results } = rowData;
 	const { pathname } = useLocation();
+
+	//Custom Swiper config
+	const navigationPrevRef = useRef(null);
+	const navigationNextRef = useRef(null);
     const customSwiperParams = {
         observer: true,
         observeParents: true,
+		navigation: {
+			prevEl: navigationPrevRef.current,
+			nextEl: navigationNextRef.current,
+		},
+		breakpoints:{
+			1378: { slidesPerView: 6, slidesPerGroup: 6 },
+			998: { slidesPerView: 4, slidesPerGroup: 4 },
+			625: { slidesPerView: 3, slidesPerGroup: 3 },
+			330: { slidesPerView: 2, slidesPerGroup: 2 },
+			0: { slidesPerView: 1.5, slidesPerGroup: 1.5 }
+		},
+		loopAdditionalSlides: width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2,
+		pagination: true,
+		loop: false,
+		grabCursor: false,
+		draggable: false,
+		preventClicksPropagation: true,
+		preventClicks: true,
+		slideToClickedSlide: false,
+		allowTouchMove: true
     };
-	const navigationPrevRef = useRef(null);
-	const navigationNextRef = useRef(null);
 
     function rightMouseOver(e) {
         if (e.currentTarget.classList.contains('right')) {e.currentTarget.parentElement.classList.add('is-right')} else if (e.currentTarget.classList.contains('left')) {e.currentTarget.parentElement.classList.add('is-left')}
@@ -51,15 +74,22 @@ const Row = ({ selector, title, genre, isLarge }) => {
     }
 	return (
 		<div className="Row">
-			<h3 className="Row__title">
-				<Link to={`${pathname}/${genre}`}>
-					<span>{title}</span>
-					<span className='Row__showmore'>Show all <FiChevronRight/></span>
-				</Link>
-			</h3>
-
-			{loading && <div className='Row__not-loaded'><SkeletonPoster /></div>}
-			{error && <div className='Row__not-loaded'>Error occurred.</div>}
+			{error && <div className='Row__not-loaded'>Oops, an error occurred.</div>}
+			{loading ?
+				(
+					<div className='Row__not-loaded'>
+						<SkeletonElement type="title" />
+						<SkeletonPoster />
+					</div>
+				) : (
+					<h3 className="Row__title">
+						<Link to={`${pathname}/${genre}`}>
+							<span>{title}</span>
+							<span className='Row__showmore'>Show all <FiChevronRight/></span>
+						</Link>
+					</h3>
+				)
+			}
 			{!loading && !error && (
 				<div className="Row__poster--wrp">
 					<div className="Row__slider--mask left" ref={navigationPrevRef}>
@@ -70,29 +100,10 @@ const Row = ({ selector, title, genre, isLarge }) => {
 					</div>
 					<Swiper
 						{...customSwiperParams}
-						navigation={{
-							prevEl: navigationPrevRef.current,
-							nextEl: navigationNextRef.current,
-						}}
 						onBeforeInit={(swiper) => {
 							swiper.params.navigation.prevEl = navigationPrevRef.current;
 							swiper.params.navigation.nextEl = navigationNextRef.current;
 						}}
-						breakpoints={{
-							1378: { slidesPerView: 6, slidesPerGroup: 6 },
-							998: { slidesPerView: 4, slidesPerGroup: 4 },
-							625: { slidesPerView: 3, slidesPerGroup: 3 },
-							330: { slidesPerView: 2, slidesPerGroup: 2 },
-							0: { slidesPerView: 1.5, slidesPerGroup: 1.5 },
-						}}
-						loopAdditionalSlides={width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2}
-						pagination
-						loop={false}
-						grabCursor={false}
-						draggable={false}
-						preventClicksPropagation={true}
-						preventClicks={true}
-						slideToClickedSlide={false}
 					>
 						{!loading &&
 							results &&
@@ -102,6 +113,7 @@ const Row = ({ selector, title, genre, isLarge }) => {
 										item={result}
 										isLarge={isLarge}
 										isFavourite={result.isFavourite}
+										key={result.id}
 									/>
 								</SwiperSlide>
 							))

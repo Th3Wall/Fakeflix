@@ -1,6 +1,8 @@
 import './detailModal.scss'
 import { useRef } from 'react';
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion"
+import { defaultEasing, staggerOne } from "../../motionUtils";
 import { hideModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
@@ -40,78 +42,105 @@ const DetailModal = () => {
 		if (!modalClosed) handleModalClose();
 	});
 
+	const overlayVariants = {
+		hidden: { opacity: 0, transition: { duration: .2, delay: .2 }},
+		visible: { opacity: 1, transition: { duration: .2 }}
+	}
+	const modalVariants = {
+		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
+		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
+	}
+
+	const fadeInUp = {
+		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
+	};
+
 	return (
-		<>
+		<AnimatePresence exitBeforeEnter>
 			{!modalClosed && (
 				<>
-					<div className={`Modal__overlay ${modalClosed ? 'Modal__invisible': ''}`} />
-					<div ref={modalRef} className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}>
-						<button
-							className="Modal__closebtn"
-							onClick={handleModalClose}
+					<motion.div
+						variants={overlayVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+						key="modalOverlay"
+						className={`Modal__overlay ${modalClosed ? 'Modal__invisible': ''}`}
+					>
+						<motion.div
+							key="modal"
+							variants={modalVariants}
+							ref={modalRef}
+							className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}
 						>
-							<VscChromeClose />
-						</button>
-						<div className="Modal__image--wrp">
-							<div className="Modal__image--shadow" />
-							<img
-								className="Modal__image--img"
-								src={backdrop_path ? `${BASE_IMG_URL}/${backdrop_path}` : FALLBACK_IMG_URL}
-								alt={fallbackTitle}
-							/>
-							<div className="Modal__image--buttonswrp">
-								<Link
-									className="Modal__image--button"
-									onClick={handlePlayAnimation}
-									to={'/play'}
-								>
-									<FaPlay />
-									<span>Play</span>
-								</Link>
-								{!isFavourite
-									? (
-										<button className='Modal__image--button-circular' onClick={handleAdd}>
-											<FaPlus />
-										</button>
-									): (
-										<button className='Modal__image--button-circular' onClick={handleRemove}>
-											<FaMinus />
-										</button>
-									)}
+							<motion.button
+								className="Modal__closebtn"
+								onClick={handleModalClose}
+							>
+								<VscChromeClose />
+							</motion.button>
+							<div className="Modal__image--wrp">
+								<div className="Modal__image--shadow" />
+								<img
+									className="Modal__image--img"
+									src={backdrop_path ? `${BASE_IMG_URL}/${backdrop_path}` : FALLBACK_IMG_URL}
+									alt={fallbackTitle}
+								/>
+								<div className="Modal__image--buttonswrp">
+									<Link
+										className="Modal__image--button"
+										onClick={handlePlayAnimation}
+										to={'/play'}
+									>
+										<FaPlay />
+										<span>Play</span>
+									</Link>
+									{!isFavourite
+										? (
+											<button className='Modal__image--button-circular' onClick={handleAdd}>
+												<FaPlus />
+											</button>
+										): (
+											<button className='Modal__image--button-circular' onClick={handleRemove}>
+												<FaMinus />
+											</button>
+										)}
+								</div>
 							</div>
-						</div>
-						<div className="Modal__info--wrp">
-							<h3 className="Modal__info--title">{fallbackTitle}</h3>
-							<p className="Modal__info--description">{overview}</p>
-							<hr className="Modal__info--line"/>
-							<h4 className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></h4>
-							<div className="Modal__info--row">
-								<span className='Modal__info--row-label'>Genres: </span>
-								<span className="Modal__info--row-description">{joinedGenres}</span>
-							</div>
-							<div className="Modal__info--row">
-								<span className='Modal__info--row-label'>
-									{release_date ? "Release date: " : "First air date: "}
-								</span>
-								<span className="Modal__info--row-description">{reducedDate}</span>
-							</div>
-							<div className="Modal__info--row">
-								<span className='Modal__info--row-label'>Average vote: </span>
-								<span className="Modal__info--row-description">{vote_average || "Not available"}</span>
-							</div>
-							<div className="Modal__info--row">
-								<span className='Modal__info--row-label'>Original language: </span>
-								<span className="Modal__info--row-description">{capitalizeFirstLetter(original_language)}</span>
-							</div>
-							<div className="Modal__info--row">
-								<span className='Modal__info--row-label'>Age classification: </span>
-								<span className="Modal__info--row-description">{maturityRating}</span>
-							</div>
-						</div>
-					</div>
+							<motion.div variants={staggerOne} initial="initial" animate="animate" exit="exit" className="Modal__info--wrp">
+								<motion.h3 variants={fadeInUp} className="Modal__info--title">{fallbackTitle}</motion.h3>
+								<motion.p variants={fadeInUp} className="Modal__info--description">{overview}</motion.p>
+								<motion.hr variants={fadeInUp} className="Modal__info--line"/>
+								<motion.h4 variants={fadeInUp} className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></motion.h4>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
+									<span className='Modal__info--row-label'>Genres: </span>
+									<span className="Modal__info--row-description">{joinedGenres}</span>
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
+									<span className='Modal__info--row-label'>
+										{release_date ? "Release date: " : "First air date: "}
+									</span>
+									<span className="Modal__info--row-description">{reducedDate}</span>
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
+									<span className='Modal__info--row-label'>Average vote: </span>
+									<span className="Modal__info--row-description">{vote_average || "Not available"}</span>
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
+									<span className='Modal__info--row-label'>Original language: </span>
+									<span className="Modal__info--row-description">{capitalizeFirstLetter(original_language)}</span>
+								</motion.div>
+								<motion.div variants={fadeInUp} className="Modal__info--row">
+									<span className='Modal__info--row-label'>Age classification: </span>
+									<span className="Modal__info--row-description">{maturityRating}</span>
+								</motion.div>
+							</motion.div>
+						</motion.div>
+					</motion.div>
 				</>
 			)}
-		</>
+		</AnimatePresence>
 	)
 }
 

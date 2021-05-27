@@ -1,13 +1,15 @@
 @import '../../scss/mixin';
 @import '../../scss/variables';
 
-$base-color: rgba(#6d6d6e, 0.4);
 $shine-color: rgba(255,255,255,0.2);
-$animation-duration: 2.5s;
+$animation-duration: 5s;
+$easing-function: ease-in-out;
+$iteration-count: infinite;
 
 @mixin background-gradient {
-  background: #2d2d2d linear-gradient(to right, rgba(#424242, 0.2), rgba(#424242, 0.6) 50%, rgba(#424242, 0.2) 80%) repeat-y 0 0;
-  background-size: 50px 500px;
+  background-image: linear-gradient(270deg, #333, rgba(#424242, 0.2), rgba(#424242, 0.2), #333);
+  background-size: 400% 100%;
+  border-radius: 5px;
 }
 
 .Skeleton {
@@ -22,11 +24,15 @@ $animation-duration: 2.5s;
   }
 
   &.title {
-    width: 50%;
+    width: 70%;
     height: 35px;
     margin-bottom: 15px;
     @include background-gradient;
-    animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+    animation: shine $animation-duration $easing-function $iteration-count;
+
+    @include mq('md') {
+      width: 55%;
+    }
 
     @include mq('lg') {
       width: 25%;
@@ -43,7 +49,7 @@ $animation-duration: 2.5s;
     margin-bottom: 15px;
     margin-right: 15px;
     @include background-gradient;
-    animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+    animation: shine $animation-duration $easing-function $iteration-count;
 
     @include mq('lg') {
       width: 10%;
@@ -53,10 +59,14 @@ $animation-duration: 2.5s;
   }
 
   &.text {
-    width: 70%;
+    width: 90%;
     height: 15px;
     @include background-gradient;
-    animation: shine $animation-duration infinite cubic-bezier(0.76, 0, 0.24, 1);
+    animation: shine $animation-duration $easing-function $iteration-count;
+
+    @include mq('md') {
+      width: 70%;
+    }
 
     @include mq('lg') {
       width: 40%;
@@ -92,8 +102,8 @@ $animation-duration: 2.5s;
     border-right: 2px solid $black;
     margin-bottom: 4vw;
     border-radius: 5px;
-    animation: 2.5s ease-in-out 0s pulse infinite;
-    transition: background-color 0.1s ease-in-out;
+    animation: 2.5s $easing-function 0s pulse $iteration-count;
+    transition: background-color 0.1s $easing-function;
 
     @include mq(330px) {
       width: 50%;
@@ -121,8 +131,11 @@ $animation-duration: 2.5s;
 }
 
 @keyframes shine {
+  0% {
+    background-position: 200% 0;
+  }
   to {
-    background-position: 140% -10%;
+    background-position: -200% 0;
   }
 }
 

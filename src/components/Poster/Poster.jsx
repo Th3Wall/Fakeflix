@@ -1,4 +1,5 @@
 import "./poster.scss"
+import { motion } from "framer-motion";
 import { BASE_IMG_URL, FALLBACK_IMG_URL } from "../../requests";
 import { FaChevronDown, FaMinus, FaPlay, FaPlus } from "react-icons/fa";
 import useGenreConversion from "../../hooks/useGenreConversion";
@@ -6,6 +7,7 @@ import { showModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch } from "react-redux";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import { Link } from "react-router-dom";
+import { defaultEasing } from "../../motionUtils";
 
 const Poster = result => {
     const { item, item: { title, original_name, original_title, name, genre_ids, backdrop_path }, isFavourite } = result;
@@ -30,8 +32,15 @@ const Poster = result => {
         event.stopPropagation();
     };
 
+    const fadeIn = {
+        initial: { y: 20, opacity: 0, transition: { duration: .5, ease: defaultEasing }},
+        animate: { y: 0, opacity: 1, transition: { duration: .5, ease: defaultEasing }},
+        exit: { y: 20, opacity: 0, transition: { duration: .5, ease: defaultEasing }}
+    };
+
     return (
-        <div
+        <motion.div
+            variants={fadeIn}
             className='Poster'
             onClick={handleModalOpening}
         >
@@ -77,7 +86,7 @@ const Poster = result => {
                     ))}
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

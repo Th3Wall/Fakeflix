@@ -1,6 +1,8 @@
 import './signIn.scss';
 import InputField from "../InputField/InputField";
 import Loader from "../Loader/Loader";
+import { motion } from "framer-motion";
+import { defaultEasing, staggerOne } from "../../motionUtils";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { emailSignInStart, googleSignInStart } from "../../redux/auth/auth.actions";
@@ -19,9 +21,21 @@ const SignIn = () => {
 		dispatch(emailSignInStart({ email, password }));
 	}
 
+	const fadeInUp = {
+		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
+	};
+
 	return (
-		<form className="SignIn__form" onSubmit={handleSubmit(onSubmit)}>
-			<div className="SignIn__form--inputwrp">
+		<motion.form
+			variants={staggerOne}
+			initial="initial"
+			animate="animate"
+			exit="exit"
+			className="SignIn__form"
+			onSubmit={handleSubmit(onSubmit)}
+		>
+			<motion.div variants={fadeInUp} className="SignIn__form--inputwrp">
 				<InputField
 					type="text"
 					name="email"
@@ -34,8 +48,8 @@ const SignIn = () => {
 					errors={errors}
 					disabled={isLoading}
 				/>
-			</div>
-			<div className="SignIn__form--inputwrp">
+			</motion.div>
+			<motion.div variants={fadeInUp} className="SignIn__form--inputwrp">
 				<InputField
 					type="password"
 					name="password"
@@ -49,24 +63,26 @@ const SignIn = () => {
 					errors={errors}
 					disabled={isLoading}
 				/>
-			</div>
-			<button
+			</motion.div>
+			<motion.button
 				type="submit"
+				variants={fadeInUp}
 				className={`SignIn__form--button button__submit ${isLoading && 'loading'}`}
 				disabled={isLoading}
 			>
 				{isLoading ? <Loader /> : 'Sign in'}
-			</button>
-			<button
+			</motion.button>
+			<motion.button
 				type="button"
+				variants={fadeInUp}
 				className={`SignIn__form--button button__google ${isLoading && 'loading'}`}
 				onClick={() => dispatch(googleSignInStart())}
 				disabled={isLoading}
 			>
 				{!isLoading && <FcGoogle />}
 				{isLoading ? <Loader /> : 'Sign in with Google'}
-			</button>
-		</form>
+			</motion.button>
+		</motion.form>
 	)
 }
 

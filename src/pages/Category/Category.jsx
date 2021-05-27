@@ -2,6 +2,8 @@ import "./category.scss"
 import Poster from "../../components/Poster/Poster";
 import SkeletonPage from "../../components/SkeletonPage/SkeletonPage";
 import SkeletonPoster from "../../components/SkeletonPoster/SkeletonPoster";
+import { motion } from "framer-motion";
+import { staggerHalf } from "../../motionUtils";
 import { useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
 import { useSelector } from "react-redux";
@@ -26,7 +28,13 @@ const Category = ({ match }) => {
                 <>
                     <h2 className="Category__title">{categoryData.title}</h2>
 
-                    <div className="Category__wrp">
+                    <motion.div
+                        className="Category__wrp"
+                        variants={staggerHalf}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                    >
                         {selectedGenre.data && selectedGenre.data.length > 0
                             && selectedGenre.data.map(result => (
                                 <Poster
@@ -37,9 +45,9 @@ const Category = ({ match }) => {
                             ))
                         }
                         {selectedGenre.loading && <div className='Category__subtitle'><SkeletonPoster /></div>}
-                        {selectedGenre.error && <div className='Category__subtitle'>Error occurred.</div>}
+                        {selectedGenre.error && <div className='Category__subtitle'>Oops, an error occurred.</div>}
                         <div className={`Category__endPage ${isIntersecting ? 'intersected' : null}`} ref={endPageRef} />
-                    </div>
+                    </motion.div>
                 </>
             ) : <SkeletonPage />}
         </div>
