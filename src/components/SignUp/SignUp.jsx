@@ -2,11 +2,11 @@ import './signUp.scss';
 import InputField from "../InputField/InputField";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
+import { defaultEasing, staggerOne } from "../../motionUtils";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpStart } from "../../redux/auth/auth.actions";
 import { selectAuthLoadingState } from "../../redux/auth/auth.selectors";
-import { defaultEasing } from "../../motionUtils";
 
 const SignUp = () => {
 	const dispatch = useDispatch();
@@ -24,13 +24,10 @@ const SignUp = () => {
 		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
 		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
 	};
-	const stagger = {
-		animate: { transition: { staggerChildren: .1 }}
-	}
 
 	return (
 		<motion.form
-			variants={stagger}
+			variants={staggerOne}
 			initial="initial"
 			animate="animate"
 			exit="exit"

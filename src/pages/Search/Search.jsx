@@ -1,16 +1,13 @@
 import "./search.scss"
 import Poster from "../../components/Poster/Poster";
 import { motion } from "framer-motion";
+import { staggerHalf } from "../../motionUtils";
 import { useSelector } from "react-redux";
 import { selectSearchInputValue } from "../../redux/search/search.selectors";
 
 const Search = searchResults => {
 	const { results } = searchResults;
 	const selectInputValue = useSelector(selectSearchInputValue);
-
-	const stagger = {
-		animate: { transition: { staggerChildren: .05 }}
-	}
 
 	return (
 		<div className="Search">
@@ -19,7 +16,7 @@ const Search = searchResults => {
 			)}
 			<motion.div
 				className="MyList__wrp"
-				variants={stagger}
+				variants={staggerHalf}
 				initial="initial"
 				animate="animate"
 				exit="exit"

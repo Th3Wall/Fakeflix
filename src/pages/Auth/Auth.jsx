@@ -4,10 +4,10 @@ import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { defaultEasing, staggerOne } from "../../motionUtils";
 import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js";
 import { useSelector } from "react-redux";
 import { selectAuthErrors } from "../../redux/auth/auth.selectors";
-import { defaultEasing } from "../../motionUtils";
 
 const Auth = () => {
 	const [isSignedUp, setIsSignedUp] = useState(true);
@@ -26,9 +26,6 @@ const Auth = () => {
 		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
 		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
 	};
-	const stagger = {
-		animate: { transition: { staggerChildren: .1 }}
-	}
 
 	return (
 		<motion.div
@@ -50,7 +47,7 @@ const Auth = () => {
 				animate="visible"
 				exit="hidden"
 			>
-				<motion.div variants={stagger} initial="initial" animate="animate" exit="exit">
+				<motion.div variants={staggerOne} initial="initial" animate="animate" exit="exit">
 					<motion.h2 variants={fadeInUp} className="Auth__content--title">
 						{isSignedUp ? "Sign In" : "Sign Up"}
 					</motion.h2>

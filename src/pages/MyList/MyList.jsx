@@ -1,9 +1,9 @@
 import "./myList.scss"
 import Poster from "../../components/Poster/Poster";
 import { motion } from "framer-motion";
+import { defaultEasing, staggerHalf } from "../../motionUtils";
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
-import { defaultEasing } from "../../motionUtils";
 
 const MyList = () => {
 
@@ -13,9 +13,6 @@ const MyList = () => {
         animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
         exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" }
     };
-    const stagger = {
-        animate: { transition: { staggerChildren: .05 }}
-    }
 
     return (
         <motion.div
@@ -30,7 +27,7 @@ const MyList = () => {
             )}
             <motion.div
                 className="MyList__wrp"
-                variants={stagger}
+                variants={staggerHalf}
                 initial="initial"
                 animate="animate"
                 exit="exit"

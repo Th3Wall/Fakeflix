@@ -2,6 +2,7 @@ import './detailModal.scss'
 import { useRef } from 'react';
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"
+import { defaultEasing, staggerOne } from "../../motionUtils";
 import { hideModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
@@ -11,7 +12,6 @@ import { capitalizeFirstLetter, dateToYearOnly } from "../../utils";
 import { FaMinus, FaPlay, FaPlus } from "react-icons/fa";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { defaultEasing } from "../../motionUtils";
 
 const DetailModal = () => {
 
@@ -50,10 +50,6 @@ const DetailModal = () => {
 		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
 		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
 	}
-
-	const stagger = {
-		animate: { transition: { staggerChildren: .1 }}
-	};
 
 	const fadeInUp = {
 		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
@@ -112,7 +108,7 @@ const DetailModal = () => {
 										)}
 								</div>
 							</div>
-							<motion.div variants={stagger} initial="initial" animate="animate" exit="exit" className="Modal__info--wrp">
+							<motion.div variants={staggerOne} initial="initial" animate="animate" exit="exit" className="Modal__info--wrp">
 								<motion.h3 variants={fadeInUp} className="Modal__info--title">{fallbackTitle}</motion.h3>
 								<motion.p variants={fadeInUp} className="Modal__info--description">{overview}</motion.p>
 								<motion.hr variants={fadeInUp} className="Modal__info--line"/>

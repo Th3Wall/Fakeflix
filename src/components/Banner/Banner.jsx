@@ -1,5 +1,6 @@
 import "./banner.scss";
 import { motion } from "framer-motion";
+import { defaultEasing, staggerOne } from "../../motionUtils";
 import { BASE_IMG_URL } from "../../requests";
 import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
@@ -9,7 +10,6 @@ import SkeletonBanner from "../SkeletonBanner/SkeletonBanner";
 import { selectTrendingMovies, selectNetflixMovies } from "../../redux/movies/movies.selectors";
 import { selectNetflixSeries } from "../../redux/series/series.selectors";
 import { useSelector } from "react-redux";
-import { defaultEasing } from "../../motionUtils";
 
 const Banner = ({ type }) => {
 	let selector;
@@ -50,9 +50,6 @@ const Banner = ({ type }) => {
 		animate: { y: 0, opacity: 1, transition: { delay: .8, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
 		exit: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" }
 	};
-	const stagger = {
-		animate: { transition: { staggerChildren: .1 }}
-	}
 
 	return (
 		<>
@@ -78,7 +75,7 @@ const Banner = ({ type }) => {
 				>
 					<motion.div
 						className="Banner__content"
-						variants={stagger}
+						variants={staggerOne}
 						initial='initial'
 						animate='animate'
 						exit='exit'

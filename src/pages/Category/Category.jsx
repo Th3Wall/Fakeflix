@@ -3,6 +3,7 @@ import Poster from "../../components/Poster/Poster";
 import SkeletonPage from "../../components/SkeletonPage/SkeletonPage";
 import SkeletonPoster from "../../components/SkeletonPoster/SkeletonPoster";
 import { motion } from "framer-motion";
+import { staggerHalf } from "../../motionUtils";
 import { useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
 import { useSelector } from "react-redux";
@@ -21,10 +22,6 @@ const Category = ({ match }) => {
     const handleLoadMore = () => setPage(page => page + 1);
     const [endPageRef, isIntersecting] = useLazyLoad(handleLoadMore);
 
-    const stagger = {
-        animate: { transition: { staggerChildren: .05 }}
-    }
-
     return (
         <div className="Category">
             {categoryData ? (
@@ -33,7 +30,7 @@ const Category = ({ match }) => {
 
                     <motion.div
                         className="Category__wrp"
-                        variants={stagger}
+                        variants={staggerHalf}
                         initial="initial"
                         animate="animate"
                         exit="exit"
