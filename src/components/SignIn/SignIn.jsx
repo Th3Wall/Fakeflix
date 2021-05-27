@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { emailSignInStart, googleSignInStart } from "../../redux/auth/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthLoadingState } from "../../redux/auth/auth.selectors";
+import { defaultEasing } from "../../motionUtils";
 
 const SignIn = () => {
 	const dispatch = useDispatch();
@@ -20,10 +21,9 @@ const SignIn = () => {
 		dispatch(emailSignInStart({ email, password }));
 	}
 
-	let easing = [0.6, -0.05, 0.01, 0.99];
 	const fadeInUp = {
-		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: easing }},
-		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
+		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
 	};
 	const stagger = {
 		animate: { transition: { staggerChildren: .1 }}

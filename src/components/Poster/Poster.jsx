@@ -7,6 +7,7 @@ import { showModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch } from "react-redux";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import { Link } from "react-router-dom";
+import { defaultEasing } from "../../motionUtils";
 
 const Poster = result => {
     const { item, item: { title, original_name, original_title, name, genre_ids, backdrop_path }, isFavourite } = result;
@@ -31,11 +32,10 @@ const Poster = result => {
         event.stopPropagation();
     };
 
-    let easing = [0.6, -0.05, 0.01, 0.99];
     const fadeIn = {
-        initial: { y: 20, opacity: 0, transition: { duration: .5, ease: easing }},
-        animate: { y: 0, opacity: 1, transition: { duration: .5, ease: easing }},
-        exit: { y: 20, opacity: 0, transition: { duration: .5, ease: easing }}
+        initial: { y: 20, opacity: 0, transition: { duration: .5, ease: defaultEasing }},
+        animate: { y: 0, opacity: 1, transition: { duration: .5, ease: defaultEasing }},
+        exit: { y: 20, opacity: 0, transition: { duration: .5, ease: defaultEasing }}
     };
 
     return (

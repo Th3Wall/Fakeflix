@@ -7,24 +7,24 @@ import { motion } from "framer-motion";
 import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js";
 import { useSelector } from "react-redux";
 import { selectAuthErrors } from "../../redux/auth/auth.selectors";
+import { defaultEasing } from "../../motionUtils";
 
 const Auth = () => {
 	const [isSignedUp, setIsSignedUp] = useState(true);
 	const authError = useSelector(selectAuthErrors);
 
-	let easing = [0.6, -0.05, 0.01, 0.99];
 	const modalVariants = {
 		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
 		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
 	}
 	const fadeIn = {
-		initial: { opacity: 0, transition: { duration: .6, ease: easing }},
-		animate: { opacity: 1, transition: { duration: .6, ease: easing }},
-		exit: { opacity: 0, transition: { duration: .6, ease: easing }}
+		initial: { opacity: 0, transition: { duration: .6, ease: defaultEasing }},
+		animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }},
+		exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }}
 	};
 	const fadeInUp = {
-		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: easing }},
-		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
+		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
 	};
 	const stagger = {
 		animate: { transition: { staggerChildren: .1 }}

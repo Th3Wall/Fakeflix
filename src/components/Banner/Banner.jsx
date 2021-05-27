@@ -9,6 +9,7 @@ import SkeletonBanner from "../SkeletonBanner/SkeletonBanner";
 import { selectTrendingMovies, selectNetflixMovies } from "../../redux/movies/movies.selectors";
 import { selectNetflixSeries } from "../../redux/series/series.selectors";
 import { useSelector } from "react-redux";
+import { defaultEasing } from "../../motionUtils";
 
 const Banner = ({ type }) => {
 	let selector;
@@ -34,21 +35,20 @@ const Banner = ({ type }) => {
 		event.stopPropagation();
 	};
 
-	let easing = [0.6, -0.05, 0.01, 0.99];
 	const fadeIn = {
-		initial: { opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" },
-		animate: { opacity: 1, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" },
-		exit: { opacity: 0, transition: { delay: .4, duration: .8, ease: easing }, willChange: "opacity, transform" }
+		initial: { opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
+		animate: { opacity: 1, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
+		exit: { opacity: 0, transition: { delay: .4, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" }
 	};
 	const fadeInLoadSection = {
-		initial: { opacity: 0, transition: { duration: .4, ease: easing }},
-		animate: { opacity: 1, transition: { duration: .4, ease: easing }},
-		exit: { opacity: 0, transition: { duration: .4, ease: easing }}
+		initial: { opacity: 0, transition: { duration: .4, ease: defaultEasing }},
+		animate: { opacity: 1, transition: { duration: .4, ease: defaultEasing }},
+		exit: { opacity: 0, transition: { duration: .4, ease: defaultEasing }}
 	};
 	const fadeInUp = {
-		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" },
-		animate: { y: 0, opacity: 1, transition: { delay: .8, duration: .8, ease: easing }, willChange: "opacity, transform" },
-		exit: { y: 60, opacity: 0, transition: { duration: .8, ease: easing }, willChange: "opacity, transform" }
+		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
+		animate: { y: 0, opacity: 1, transition: { delay: .8, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
+		exit: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" }
 	};
 	const stagger = {
 		animate: { transition: { staggerChildren: .1 }}

@@ -3,15 +3,15 @@ import Poster from "../../components/Poster/Poster";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
+import { defaultEasing } from "../../motionUtils";
 
 const MyList = () => {
 
     const favs = useSelector(selectFavouritesList);
-    let easing = [0.6, -0.05, 0.01, 0.99];
     const fadeIn = {
-        initial: { opacity: 0, transition: { duration: .6, ease: easing }, willChange: "opacity, transform" },
-        animate: { opacity: 1, transition: { duration: .6, ease: easing }, willChange: "opacity, transform" },
-        exit: { opacity: 0, transition: { duration: .6, ease: easing }, willChange: "opacity, transform" }
+        initial: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
+        animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
+        exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" }
     };
     const stagger = {
         animate: { transition: { staggerChildren: .05 }}

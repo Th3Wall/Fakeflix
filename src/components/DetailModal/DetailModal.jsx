@@ -11,6 +11,7 @@ import { capitalizeFirstLetter, dateToYearOnly } from "../../utils";
 import { FaMinus, FaPlay, FaPlus } from "react-icons/fa";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { defaultEasing } from "../../motionUtils";
 
 const DetailModal = () => {
 
@@ -41,8 +42,6 @@ const DetailModal = () => {
 		if (!modalClosed) handleModalClose();
 	});
 
-	let easing = [0.6, -0.05, 0.01, 0.99];
-
 	const overlayVariants = {
 		hidden: { opacity: 0, transition: { duration: .2, delay: .2 }},
 		visible: { opacity: 1, transition: { duration: .2 }}
@@ -57,8 +56,8 @@ const DetailModal = () => {
 	};
 
 	const fadeInUp = {
-		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: easing }},
-		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: easing }}
+		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
+		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
 	};
 
 	return (
