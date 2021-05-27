@@ -47,7 +47,7 @@ const Banner = ({ type }) => {
 	};
 	const fadeInUp = {
 		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
-		animate: { y: 0, opacity: 1, transition: { delay: .8, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
+		animate: { y: 0, opacity: 1, transition: { delayChildren: .4, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
 		exit: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" }
 	};
 
