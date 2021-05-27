@@ -81,6 +81,37 @@
                 }
             }
         }
+
+        &.is-left {
+            &:hover {
+                .swiper-slide {
+                    &:hover {
+                        ~ .swiper-slide {
+                            transform: translateX(28%);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.is-right {
+            &:hover {
+                .swiper-slide {
+                    transform: translateX(-30%);
+                    opacity: 0.3;
+
+                    &:hover {
+                        transform: scale(1.3) !important;
+                        z-index: 1;
+                        opacity: 1;
+
+                        ~ .swiper-slide {
+                            transform: translateX(0%);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .swiper-slide {
