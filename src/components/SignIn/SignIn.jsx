@@ -2,7 +2,7 @@ import './signIn.scss';
 import InputField from "../InputField/InputField";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
-import { defaultEasing, staggerOne } from "../../motionUtils";
+import { authFadeInUpVariants, staggerOne } from "../../motionUtils";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { emailSignInStart, googleSignInStart } from "../../redux/auth/auth.actions";
@@ -21,11 +21,6 @@ const SignIn = () => {
 		dispatch(emailSignInStart({ email, password }));
 	}
 
-	const fadeInUp = {
-		initial: { y: 30, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
-		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
-	};
-
 	return (
 		<motion.form
 			variants={staggerOne}
@@ -35,7 +30,7 @@ const SignIn = () => {
 			className="SignIn__form"
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<motion.div variants={fadeInUp} className="SignIn__form--inputwrp">
+			<motion.div variants={authFadeInUpVariants} className="SignIn__form--inputwrp">
 				<InputField
 					type="text"
 					name="email"
@@ -49,7 +44,7 @@ const SignIn = () => {
 					disabled={isLoading}
 				/>
 			</motion.div>
-			<motion.div variants={fadeInUp} className="SignIn__form--inputwrp">
+			<motion.div variants={authFadeInUpVariants} className="SignIn__form--inputwrp">
 				<InputField
 					type="password"
 					name="password"
@@ -66,7 +61,7 @@ const SignIn = () => {
 			</motion.div>
 			<motion.button
 				type="submit"
-				variants={fadeInUp}
+				variants={authFadeInUpVariants}
 				className={`SignIn__form--button button__submit ${isLoading && 'loading'}`}
 				disabled={isLoading}
 			>
@@ -74,7 +69,7 @@ const SignIn = () => {
 			</motion.button>
 			<motion.button
 				type="button"
-				variants={fadeInUp}
+				variants={authFadeInUpVariants}
 				className={`SignIn__form--button button__google ${isLoading && 'loading'}`}
 				onClick={() => dispatch(googleSignInStart())}
 				disabled={isLoading}

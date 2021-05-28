@@ -2,7 +2,7 @@ import './detailModal.scss'
 import { useRef } from 'react';
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"
-import { defaultEasing, staggerOne } from "../../motionUtils";
+import { staggerOne, modalOverlayVariants, modalVariants, modalFadeInUpVariants } from "../../motionUtils";
 import { hideModalDetail } from "../../redux/modal/modal.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectModalContent, selectModalState } from "../../redux/modal/modal.selectors";
@@ -42,26 +42,12 @@ const DetailModal = () => {
 		if (!modalClosed) handleModalClose();
 	});
 
-	const overlayVariants = {
-		hidden: { opacity: 0, transition: { duration: .2, delay: .2 }},
-		visible: { opacity: 1, transition: { duration: .2 }}
-	}
-	const modalVariants = {
-		hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
-		visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 }}
-	}
-
-	const fadeInUp = {
-		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }},
-		animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing }}
-	};
-
 	return (
 		<AnimatePresence exitBeforeEnter>
 			{!modalClosed && (
 				<>
 					<motion.div
-						variants={overlayVariants}
+						variants={modalOverlayVariants}
 						initial="hidden"
 						animate="visible"
 						exit="hidden"
@@ -109,29 +95,29 @@ const DetailModal = () => {
 								</div>
 							</div>
 							<motion.div variants={staggerOne} initial="initial" animate="animate" exit="exit" className="Modal__info--wrp">
-								<motion.h3 variants={fadeInUp} className="Modal__info--title">{fallbackTitle}</motion.h3>
-								<motion.p variants={fadeInUp} className="Modal__info--description">{overview}</motion.p>
-								<motion.hr variants={fadeInUp} className="Modal__info--line"/>
-								<motion.h4 variants={fadeInUp} className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></motion.h4>
-								<motion.div variants={fadeInUp} className="Modal__info--row">
+								<motion.h3 variants={modalFadeInUpVariants} className="Modal__info--title">{fallbackTitle}</motion.h3>
+								<motion.p variants={modalFadeInUpVariants} className="Modal__info--description">{overview}</motion.p>
+								<motion.hr variants={modalFadeInUpVariants} className="Modal__info--line"/>
+								<motion.h4 variants={modalFadeInUpVariants} className="Modal__info--otherTitle">Info on <b>{fallbackTitle}</b></motion.h4>
+								<motion.div variants={modalFadeInUpVariants} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Genres: </span>
 									<span className="Modal__info--row-description">{joinedGenres}</span>
 								</motion.div>
-								<motion.div variants={fadeInUp} className="Modal__info--row">
+								<motion.div variants={modalFadeInUpVariants} className="Modal__info--row">
 									<span className='Modal__info--row-label'>
 										{release_date ? "Release date: " : "First air date: "}
 									</span>
 									<span className="Modal__info--row-description">{reducedDate}</span>
 								</motion.div>
-								<motion.div variants={fadeInUp} className="Modal__info--row">
+								<motion.div variants={modalFadeInUpVariants} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Average vote: </span>
 									<span className="Modal__info--row-description">{vote_average || "Not available"}</span>
 								</motion.div>
-								<motion.div variants={fadeInUp} className="Modal__info--row">
+								<motion.div variants={modalFadeInUpVariants} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Original language: </span>
 									<span className="Modal__info--row-description">{capitalizeFirstLetter(original_language)}</span>
 								</motion.div>
-								<motion.div variants={fadeInUp} className="Modal__info--row">
+								<motion.div variants={modalFadeInUpVariants} className="Modal__info--row">
 									<span className='Modal__info--row-label'>Age classification: </span>
 									<span className="Modal__info--row-description">{maturityRating}</span>
 								</motion.div>

@@ -4,6 +4,7 @@ import useViewport from "../../hooks/useViewport";
 import useScroll from "../../hooks/useScroll";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { motion } from "framer-motion";
+import { navbarSlideInVariants } from "../../motionUtils";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
@@ -29,16 +30,11 @@ const Navbar = () => {
 		if (profileNav) setProfileNav(false);
 	});
 
-	const slideInVariants = {
-		hidden: { opacity: 0, transition: { duration: .2 }},
-		visible: { opacity: 1, transition: { duration: .2 }}
-	}
-
 	return (
 		<>
 			<motion.nav
 				className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}
-				variants={slideInVariants}
+				variants={navbarSlideInVariants}
 				initial="hidden"
 				animate="visible"
 				exit="hidden"

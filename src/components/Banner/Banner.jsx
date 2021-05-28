@@ -1,6 +1,6 @@
 import "./banner.scss";
 import { motion } from "framer-motion";
-import { defaultEasing, staggerOne } from "../../motionUtils";
+import { staggerOne, bannerFadeInLoadSectionVariants, bannerFadeInVariants, bannerFadeInUpVariants } from "../../motionUtils";
 import { BASE_IMG_URL } from "../../requests";
 import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
@@ -35,26 +35,10 @@ const Banner = ({ type }) => {
 		event.stopPropagation();
 	};
 
-	const fadeIn = {
-		initial: { opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
-		animate: { opacity: 1, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
-		exit: { opacity: 0, transition: { delay: .4, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" }
-	};
-	const fadeInLoadSection = {
-		initial: { opacity: 0, transition: { duration: .4, ease: defaultEasing }},
-		animate: { opacity: 1, transition: { duration: .4, ease: defaultEasing }},
-		exit: { opacity: 0, transition: { duration: .4, ease: defaultEasing }}
-	};
-	const fadeInUp = {
-		initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
-		animate: { y: 0, opacity: 1, transition: { delayChildren: .4, duration: .8, ease: defaultEasing }, willChange: "opacity, transform" },
-		exit: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }, willChange: "opacity, transform" }
-	};
-
 	return (
 		<>
 			<motion.section
-				variants={fadeInLoadSection}
+				variants={bannerFadeInLoadSectionVariants}
 				initial='initial'
 				animate='animate'
 				exit='exit'
@@ -66,7 +50,7 @@ const Banner = ({ type }) => {
 
 			{!loading && finalData && (
 				<motion.header
-					variants={fadeIn}
+					variants={bannerFadeInVariants}
 					initial='initial'
 					animate='animate'
 					exit='exit'
@@ -80,8 +64,8 @@ const Banner = ({ type }) => {
 						animate='animate'
 						exit='exit'
 					>
-						<motion.h1 variants={fadeInUp} className="Banner__content--title">{fallbackTitle}</motion.h1>
-						<motion.div variants={fadeInUp} className="Banner__buttons">
+						<motion.h1 variants={bannerFadeInUpVariants} className="Banner__content--title">{fallbackTitle}</motion.h1>
+						<motion.div variants={bannerFadeInUpVariants} className="Banner__buttons">
 							<Link
 								className="Banner__button"
 								onClick={handlePlayAnimation}
@@ -95,7 +79,7 @@ const Banner = ({ type }) => {
 								<span>More info</span>
 							</button>
 						</motion.div>
-						<motion.p variants={fadeInUp} className="Banner__content--description">{description}</motion.p>
+						<motion.p variants={bannerFadeInUpVariants} className="Banner__content--description">{description}</motion.p>
 					</motion.div>
 					<div className="Banner__panel" />
 					<div className="Banner__bottom-shadow" />
