@@ -51,27 +51,33 @@ const Row = ({ selector, title, genre, isLarge }) => {
 		allowTouchMove: true
     };
 
-    function rightMouseOver(e) {
-        if (e.currentTarget.classList.contains('right')) {e.currentTarget.parentElement.classList.add('is-right')} else if (e.currentTarget.classList.contains('left')) {e.currentTarget.parentElement.classList.add('is-left')}
-    }
+	const rightMouseOver = (e) => {
+		if (e.currentTarget.classList.contains('right')) {e.currentTarget.parentElement.classList.add('is-right')}
+		else if (e.currentTarget.classList.contains('left')) {e.currentTarget.parentElement.classList.add('is-left')}
+	}
 
-    function rightMouseOut(e) {
-        e.currentTarget.parentElement.classList.remove('is-right', 'is-left')
-    }
+	const rightMouseOut = (e) => {
+		e.currentTarget.parentElement.classList.remove('is-right', 'is-left')
+	}
 
-    function insertPositionClassName(index) {
-        const i = index + 1
+	const insertPositionClassName = (index) => {
+		const i = index + 1
 
-        if (i === 1) {
-            return 'left'
-        } else if (i === 2) {
-            return ''
-        } else if (i % 7 === 0) {
-            return 'left'
-        } else if (i % 6 === 0) {
-            return 'right'
-        }
-    }
+		if (i === 1) return 'left'
+		else if (i === 20) return 'right'
+
+		if (width >= 1378) {
+			if ([7, 13, 19].includes(i)) return 'left'
+			else if ([6, 12, 18].includes(i)) return 'right'
+		} else if (width >= 998) {
+			if ([5, 9, 13, 17].includes(i)) return 'left'
+			else if ([4, 8, 12, 16].includes(i)) return 'right'
+		} else if (width >= 768) {
+			if ([4, 7, 10, 13, 16].includes(i)) return 'left'
+			else if ([3, 6, 9, 12, 15, 18].includes(i)) return 'right'
+		}
+	}
+
 	return (
 		<div className="Row">
 			{error && <div className='Row__not-loaded'>Oops, an error occurred.</div>}
@@ -108,7 +114,12 @@ const Row = ({ selector, title, genre, isLarge }) => {
 						{!loading &&
 							results &&
 							results.map((result, i) => (
-								<SwiperSlide key={result.id} className={insertPositionClassName(i)} onMouseOver={rightMouseOver} onMouseOut={rightMouseOut}>
+								<SwiperSlide
+									key={result.id}
+									className={insertPositionClassName(i)}
+									onMouseOver={rightMouseOver}
+									onMouseOut={rightMouseOut}
+								>
 									<RowPoster
 										item={result}
 										isLarge={isLarge}
