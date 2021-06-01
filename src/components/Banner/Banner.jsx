@@ -1,4 +1,5 @@
 import "./banner.scss";
+import React from "react";
 import { motion } from "framer-motion";
 import { staggerOne, bannerFadeInLoadSectionVariants, bannerFadeInVariants, bannerFadeInUpVariants } from "../../motionUtils";
 import { BASE_IMG_URL } from "../../requests";
@@ -89,4 +90,4 @@ const Banner = ({ type }) => {
 	)
 }
 
-export default Banner;
+export default React.memo(Banner);
