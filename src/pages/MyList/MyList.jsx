@@ -1,23 +1,17 @@
 import "./myList.scss"
 import Poster from "../../components/Poster/Poster";
 import { motion } from "framer-motion";
-import { defaultEasing, staggerHalf } from "../../motionUtils";
+import { staggerHalf, defaultPageFadeInVariants } from "../../motionUtils";
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
 
 const MyList = () => {
-
     const favs = useSelector(selectFavouritesList);
-    const fadeIn = {
-        initial: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
-        animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
-        exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" }
-    };
 
     return (
         <motion.div
             className="MyList"
-            variants={fadeIn}
+            variants={defaultPageFadeInVariants}
             initial="initial"
             animate="animate"
             exit="exit"

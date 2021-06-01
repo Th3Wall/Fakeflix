@@ -4,7 +4,7 @@ import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { defaultEasing, staggerOne, authFadeInUpVariants, modalVariants } from "../../motionUtils";
+import { staggerOne, authFadeInUpVariants, modalVariants, authPageFadeInVariants } from "../../motionUtils";
 import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js";
 import { useSelector } from "react-redux";
 import { selectAuthErrors } from "../../redux/auth/auth.selectors";
@@ -13,16 +13,10 @@ const Auth = () => {
 	const [isSignedUp, setIsSignedUp] = useState(true);
 	const authError = useSelector(selectAuthErrors);
 
-	const fadeIn = {
-		initial: { opacity: 0, transition: { duration: .6, ease: defaultEasing }},
-		animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }},
-		exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }}
-	};
-
 	return (
 		<motion.div
 			className="Auth"
-			variants={fadeIn}
+			variants={authPageFadeInVariants}
 			initial="initial"
 			animate="animate"
 			exit="exit"
