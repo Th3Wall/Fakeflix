@@ -8,9 +8,10 @@ import { BiInfoCircle } from "react-icons/bi";
 import { randomize, truncate } from "../../utils";
 import { Link } from "react-router-dom";
 import SkeletonBanner from "../SkeletonBanner/SkeletonBanner";
+import { useDispatch, useSelector } from "react-redux";
+import { showModalDetail } from "../../redux/modal/modal.actions";
 import { selectTrendingMovies, selectNetflixMovies } from "../../redux/movies/movies.selectors";
 import { selectNetflixSeries } from "../../redux/series/series.selectors";
-import { useSelector } from "react-redux";
 
 const Banner = ({ type }) => {
 	let selector;
@@ -31,10 +32,15 @@ const Banner = ({ type }) => {
 	const finalData = results[randomize(results)];
 	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
 	const description = truncate(finalData?.overview, 150);
+	const dispatch = useDispatch();
 
 	const handlePlayAnimation = event => {
 		event.stopPropagation();
 	};
+
+	const handleModalOpening = () => {
+		dispatch(showModalDetail({ fallbackTitle, ...finalData }));
+	}
 
 	return (
 		<>
@@ -56,7 +62,7 @@ const Banner = ({ type }) => {
 					animate='animate'
 					exit='exit'
 					className="Banner"
-					style={{backgroundImage: `url(${BASE_IMG_URL}/${finalData.backdrop_path})`}}
+					style={{backgroundImage: `url(${BASE_IMG_URL}/${finalData?.backdrop_path})`}}
 				>
 					<motion.div
 						className="Banner__content"
@@ -75,7 +81,10 @@ const Banner = ({ type }) => {
 								<FaPlay />
 								<span>Play</span>
 							</Link>
-							<button className="Banner__button">
+							<button
+								className="Banner__button"
+								onClick={handleModalOpening}
+							>
 								<BiInfoCircle size="1.5em" />
 								<span>More info</span>
 							</button>
