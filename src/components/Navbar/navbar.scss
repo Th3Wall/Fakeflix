@@ -42,11 +42,17 @@
             font-size: 14px;
             text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
             
+            @include mq('sm'){
+                font-size: 16px;
+            }
             @include mq('md'){
-                font-size: 1vw;
+                font-size: 1.8vw;
+            }
+            @include mq('lg'){
+                font-size: 1.2vw;
             }
             @include mq(1330px){
-                font-size: 0.8vw;
+                font-size: 18px;
             }
             
             a {
