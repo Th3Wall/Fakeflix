@@ -19,7 +19,7 @@ const DetailModal = () => {
 	const modalClosed = useSelector(selectModalState);
 	const modalContent = useSelector(selectModalContent);
 	const handleModalClose = () => dispatch(hideModalDetail());
-	const {result, overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, original_language, adult, genresConverted, isFavourite} = modalContent;
+	const { overview, fallbackTitle, backdrop_path, release_date, first_air_date, vote_average, original_language, adult, genresConverted, isFavourite } = modalContent;
 	const joinedGenres = genresConverted ? genresConverted.join(', ') : "Not available";
 	const maturityRating = adult === undefined ? "Not available" : adult ? "Suitable for adults only" : "Suitable for all ages";
 	const reducedDate = release_date ? dateToYearOnly(release_date) : first_air_date ? dateToYearOnly(first_air_date) : "Not Available";
@@ -27,11 +27,11 @@ const DetailModal = () => {
 
 	const handleAdd = (event) => {
 		event.stopPropagation();
-		dispatch(addToFavourites(result));
+		dispatch(addToFavourites({ ...modalContent, isFavourite }));
 	}
 	const handleRemove = (event) => {
 		event.stopPropagation();
-		dispatch(removeFromFavourites(result));
+		dispatch(removeFromFavourites({ ...modalContent, isFavourite }));
 		if (!modalClosed) handleModalClose();
 	}
 	const handlePlayAnimation = event => {

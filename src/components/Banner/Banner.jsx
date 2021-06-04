@@ -39,7 +39,7 @@ const Banner = ({ type }) => {
 	};
 
 	const handleModalOpening = () => {
-		dispatch(showModalDetail({ fallbackTitle, ...finalData }));
+		dispatch(showModalDetail({ ...finalData, fallbackTitle }));
 	}
 
 	return (

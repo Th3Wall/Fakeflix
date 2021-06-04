@@ -15,14 +15,14 @@ const RowPoster = result => {
 
 	const handleAdd = event => {
 		event.stopPropagation();
-		dispatch(addToFavourites(result));
+		dispatch(addToFavourites({ ...item, isFavourite }));
 	};
 	const handleRemove = event => {
 		event.stopPropagation();
-		dispatch(removeFromFavourites(result));
+		dispatch(removeFromFavourites({ ...item, isFavourite }));
 	};
 	const handleModalOpening = () => {
-		dispatch(showModalDetail({ ...item, fallbackTitle, genresConverted, isFavourite, result }));
+		dispatch(showModalDetail({ ...item, fallbackTitle, genresConverted, isFavourite }));
 	}
 	const handlePlayAction = event => {
 		event.stopPropagation();
