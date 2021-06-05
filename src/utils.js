@@ -6,13 +6,11 @@ export const getOneMonthAgoReleaseDate = () => {
     return formattedDate;
 }
 
-export const dateToYearOnly = date => {
-    return date.slice(0,4);
-}
+export const dateToYearOnly = date => date.slice(0,4);
 
-export const capitalizeFirstLetter = text => {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-}
+export const capitalizeFirstLetter = text => (
+    text.charAt(0).toUpperCase() + text.slice(1)
+);
 
 export const randomize = data => (
     Math.floor(Math.random() * data.length - 1)
