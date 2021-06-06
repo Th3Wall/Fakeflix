@@ -1,5 +1,27 @@
-@import '../../scss/variables';
+@import "../../scss/variables";
 
 .Credits {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 3vh 0;
+	font-size: 15px;
 
+    &__wrp {
+      display: flex;
+      align-items: center;
+    }
+
+	&__link {
+		color: inherit;
+		font-weight: bold;
+        margin-left: 5px;
+	}
+
+	&__avatar {
+		display: inline-block;
+		max-width: 40px;
+		width: 100%;
+	}
 }
