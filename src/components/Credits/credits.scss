@@ -1,4 +1,5 @@
 @import "../../scss/variables";
+@import "../../scss/mixin";
 
 .Credits {
 	display: flex;
@@ -7,7 +8,17 @@
 	text-align: center;
 	margin: 2.5vh 0;
 	color: #969696;
-	font-size: 15px;
+	font-size: 13px;
+
+	@include mq('sm'){
+		font-size: 14px;
+	}
+	@include mq('md'){
+		font-size: 15px;
+	}
+	@include mq(1920px){
+		font-size: 16px;
+	}
 
 	&__linkwrp {
 	  	display: flex;
@@ -20,13 +31,24 @@
 
 		&:hover {
 			color: $white;
+			cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='35' height='42' viewport='0 0 100 100' style='fill:black;font-size:21px;'><text y='50%'>🧑🏻‍💻</text></svg>") 16 0, auto;
 		}
 	}
 
 	&__avatar {
 		display: inline-block;
-		max-width: 40px;
+		max-width: 30px;
 		width: 100%;
 		margin-left: 5px;
+
+		@include mq('sm'){
+			max-width: 35px;
+		}
+		@include mq('md'){
+			max-width: 40px;
+		}
+		@include mq(1920px){
+			max-width: 45px;
+		}
 	}
 }
