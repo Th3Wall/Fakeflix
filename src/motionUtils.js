@@ -63,6 +63,12 @@ export const authPageFadeInVariants = {
 	exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }}
 };
 
+export const creditsFadeInUpVariants = {
+	initial: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing } },
+	animate: { y: 0, opacity: 1, transition: { delay: .8, duration: .8, ease: defaultEasing } },
+	exit: { y: 60, opacity: 0, transition: { duration: .8, ease: defaultEasing }  }
+};
+
 export const defaultPageFadeInVariants = {
 	initial: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
 	animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },

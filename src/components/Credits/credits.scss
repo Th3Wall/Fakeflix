@@ -5,23 +5,28 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	margin: 3vh 0;
+	margin: 2.5vh 0;
+	color: #969696;
 	font-size: 15px;
 
-    &__wrp {
-      display: flex;
-      align-items: center;
-    }
-
-	&__link {
+	&__linkwrp {
+	  	display: flex;
+	  	align-items: center;
 		color: inherit;
 		font-weight: bold;
         margin-left: 5px;
+		text-decoration: none;
+		transition: color 0.4s cubic-bezier(0.6, -0.05, 0.01, 0.99);
+
+		&:hover {
+			color: $white;
+		}
 	}
 
 	&__avatar {
 		display: inline-block;
 		max-width: 40px;
 		width: 100%;
+		margin-left: 5px;
 	}
 }

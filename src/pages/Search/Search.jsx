@@ -15,7 +15,7 @@ const Search = searchResults => {
 				<h2 className="Search__title">Search results for: {selectInputValue}</h2>
 			)}
 			<motion.div
-				className="MyList__wrp"
+				className="Search__wrp"
 				variants={staggerHalf}
 				initial="initial"
 				animate="animate"
