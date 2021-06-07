@@ -9,8 +9,8 @@ export const staggerOne = {
 }
 
 export const modalVariants = {
-	hidden: { opacity: 0, top: "100%", transition: { type: "spring", stiffness: 210, damping: 25 } },
-	visible: { opacity: 1, top: "50%", transition: { type: "spring", stiffness: 210, damping: 30 } }
+	hidden: { opacity: 0, top: "100%", transition: { duration: .8, ease: defaultEasing } },
+	visible: { opacity: 1, top: "50%", transition: { duration: .8, ease: defaultEasing } }
 }
 
 export const modalOverlayVariants = {
