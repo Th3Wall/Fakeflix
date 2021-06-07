@@ -2,15 +2,17 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 import "firebase/auth"
 
+const { REACT_APP_FIREBASE_API_KEY, REACT_APP_FIREBASE_AUTH_DOMAIN, REACT_APP_FIREBASE_PROJECT_ID, REACT_APP_FIREBASE_STORAGE_BUCKET, REACT_APP_FIREBASE_MESSAGING_SENDER_ID, REACT_APP_FIREBASE_APP_ID, REACT_APP_FIREBASE_MEASUREMEMT_ID } = process.env;
+
 // Firebase Configuration Object
 const firebaseConfig = {
-    apiKey: "AIzaSyCyLFoPkZEGUM5Jbo2HKQgMxjfBN26MpAI",
-    authDomain: "fakeflix-c0203.firebaseapp.com",
-    projectId: "fakeflix-c0203",
-    storageBucket: "fakeflix-c0203.appspot.com",
-    messagingSenderId: "589912771675",
-    appId: "1:589912771675:web:9fb1e0684f7bf68103837e",
-    measurementId: "G-DSYVJQ0MWN"
+    apiKey: REACT_APP_FIREBASE_API_KEY,
+    authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: REACT_APP_FIREBASE_APP_ID,
+    measurementId: REACT_APP_FIREBASE_MEASUREMEMT_ID
 }
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {

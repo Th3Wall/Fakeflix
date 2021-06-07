@@ -1,5 +1,7 @@
 import { getOneMonthAgoReleaseDate } from "./utils";
 
+export const GITHUB_BASE_URL = "https://github.com/Th3Wall";
+export const GITHUB_AVATAR_URL = "https://avatars.githubusercontent.com/u/25078541?v=4";
 const GITHUB_ASSETS_BASE_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix";
 export const LANG = "en-US";
 export const REGION = "US";
