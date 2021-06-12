@@ -7,14 +7,33 @@
 ## 🎯 About
 
 Lorem Ipsum Dolor Sit Amet Consecteur Discipit elit.
+<br/>
 
-### ▶️ Demo
+## ▶️ Demo
 
-Lorem Ipsum Dolor Sit Amet.
+Here you can find the demo links:
+
+-   [Vercel](http://fakeflixapp.vercel.app/)
+-   [Netlify](http://fakeflixapp.netlify.app/)
+    <br/>
 
 ## :sparkles: Features
 
-:heavy_check_mark: Lorem Ipsum Dolor Sit Amet<br />
+:heavy_check_mark: &nbsp;&nbsp;Display movies and series, old and upcoming, also from the real Netflix<br />
+:heavy_check_mark: &nbsp;&nbsp;Category related page with infinite scroll<br />
+:heavy_check_mark: &nbsp;&nbsp;Search by title, actor, movie director<br />
+:heavy_check_mark: &nbsp;&nbsp;Add to "My list"<br />
+:heavy_check_mark: &nbsp;&nbsp;Detail modal with extra infos<br />
+:heavy_check_mark: &nbsp;&nbsp;Splash animation (credits: [Claudio Bonfati's pen](https://codepen.io/claudio_bonfati/pen/mdryxPv)) with characteristic Netflix sound<br />
+:heavy_check_mark: &nbsp;&nbsp;Play animation with characteristic Netflix sound<br />
+:heavy_check_mark: &nbsp;&nbsp;Google login<br />
+:heavy_check_mark: &nbsp;&nbsp;User Sign In & User Sign Up<br />
+:heavy_check_mark: &nbsp;&nbsp;Use of React hooks and custom hooks<br />
+:heavy_check_mark: &nbsp;&nbsp;Favourites list persistence (session storage)<br />
+:heavy_check_mark: &nbsp;&nbsp;Responsive layout<br />
+:heavy_check_mark: &nbsp;&nbsp;Swipeable movies list<br />
+:heavy_check_mark: &nbsp;&nbsp;Loading skeletons<br />
+:heavy_check_mark: &nbsp;&nbsp;Route animations and micro-interactions (handled with Framer Motion)<br />
 
 ## :rocket: Technologies
 
@@ -30,11 +49,27 @@ Lorem Ipsum Dolor Sit Amet.
 -   [Reselect](https://github.com/reduxjs/reselect)
 -   [Firebase](https://firebase.google.com/)
 -   [SCSS](https://sass-lang.com/)
+-   [SwiperJS](https://swiperjs.com/react)
 -   [Framer Motion](https://www.framer.com/motion/)
+-   [Netlify (have a look below)](https://www.netlify.com) and [Vercel](https://vercel.com/) for the deploy and CI.
+
+## Netlify deploy & configuration
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/14a32bbb-d899-445d-8fa6-8bed739c0296/deploy-status)](https://app.netlify.com/sites/fakeflixapp/deploys)
+
+### Deploy configuration steps
+
+1. Connect your GitHub account to Netlify
+2. Select the project
+3. In Settings → Build & Deploy → Set **Build command** to : **_npm run build_**
+4. In Settings → Build & Deploy → Set **Publish directory** to : **_build_**
+5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBD API key, Firebase configuration).
+   <br/>
 
 ## :white_check_mark: Requirements
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+<br/>
 
 ## Available Scripts
 
