@@ -51,7 +51,8 @@ Here you can find the demo links:
 -   [SCSS](https://sass-lang.com/)
 -   [SwiperJS](https://swiperjs.com/react)
 -   [Framer Motion](https://www.framer.com/motion/)
--   [Netlify (have a look below)](https://www.netlify.com) and [Vercel](https://vercel.com/) for the deploy and CI.
+-   [React Icons](https://react-icons.github.io/react-icons/)
+-   [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deploy and CI.
 
 ## Netlify deploy & configuration
 
