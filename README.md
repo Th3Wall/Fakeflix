@@ -22,9 +22,9 @@ Here you can find the demo links:
 :heavy_check_mark: &nbsp;&nbsp;Display movies and series, old and upcoming, also from the real Netflix<br />
 :heavy_check_mark: &nbsp;&nbsp;Category related page with infinite scroll<br />
 :heavy_check_mark: &nbsp;&nbsp;Search by title, actor, movie director<br />
-:heavy_check_mark: &nbsp;&nbsp;Add to "My list"<br />
-:heavy_check_mark: &nbsp;&nbsp;Detail modal with extra infos<br />
-:heavy_check_mark: &nbsp;&nbsp;Splash animation (credits: [Claudio Bonfati's pen](https://codepen.io/claudio_bonfati/pen/mdryxPv)) with characteristic Netflix sound<br />
+:heavy_check_mark: &nbsp;&nbsp;Add/Remove to/from "My list" functionality<br />
+:heavy_check_mark: &nbsp;&nbsp;Detail modal with extra informations about the selected movie/series<br />
+:heavy_check_mark: &nbsp;&nbsp;Customized splash animation (credits: [Claudio Bonfati's pen](https://codepen.io/claudio_bonfati/pen/mdryxPv)) with characteristic Netflix sound<br />
 :heavy_check_mark: &nbsp;&nbsp;Play animation with characteristic Netflix sound<br />
 :heavy_check_mark: &nbsp;&nbsp;Google login<br />
 :heavy_check_mark: &nbsp;&nbsp;User Sign In & User Sign Up<br />
@@ -37,6 +37,7 @@ Here you can find the demo links:
 
 ## :rocket: Technologies
 
+-   [TMDb API's](https://www.themoviedb.org/)
 -   [React](https://reactjs.org/)
 -   [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 -   [React Hooks Form](https://react-hook-form.com/)
@@ -64,7 +65,7 @@ Here you can find the demo links:
 2. Select the project
 3. In Settings → Build & Deploy → Set **Build command** to : **_npm run build_**
 4. In Settings → Build & Deploy → Set **Publish directory** to : **_build_**
-5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBD API key, Firebase configuration).
+5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBd's API key, Firebase configuration).
    <br/>
 
 ## :white_check_mark: Requirements
