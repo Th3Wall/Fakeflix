@@ -28,7 +28,7 @@ export const authFadeInUpVariants = {
 	animate: { y: 0, opacity: 1, transition: { duration: .8, ease: defaultEasing } }
 };
 
-export const navbarSlideInVariants = {
+export const navbarFadeInVariants = {
 	hidden: { opacity: 0, transition: { duration: .2 } },
 	visible: { opacity: 1, transition: { duration: .2 } }
 }

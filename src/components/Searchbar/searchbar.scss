@@ -5,14 +5,18 @@
     position: relative;
     display: flex;
     align-items: center;
-    margin-right: 2rem;
+    margin-right: 1.2rem;
     cursor: pointer;
+
+    @include mq(sm) {
+      margin-right: 2rem;
+    }
 
     &--search {
       background-color: rgba($color: $black, $alpha: 0.25);
       border: 1px solid $white;
       padding: 7px 30px 7px 7px;
-      font-size: 14px;
+      font-size: 12px;
       color: $white;
       outline: none;
       border-radius: 6px;
@@ -20,6 +24,9 @@
       opacity: 0;
       transition: all 0.2s ease-out;
 
+      @include mq(sm) {
+        font-size: 14px;
+      }
 
       &::-webkit-input-placeholder,
       &::-moz-placeholder,
@@ -31,6 +38,16 @@
 
     &--toggler {
       margin-left: 0.5rem;
+
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+
+        @include mq(sm) {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
     }
 
     &--clear {
@@ -51,7 +68,11 @@
     }
 
     &--active {
-      width: 200px;
+      width: 160px;
       opacity: 1;
+
+      @include mq(sm) {
+        width: 200px;
+      }
     }
 }

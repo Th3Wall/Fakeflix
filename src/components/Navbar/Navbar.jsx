@@ -4,7 +4,7 @@ import useViewport from "../../hooks/useViewport";
 import useScroll from "../../hooks/useScroll";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { motion } from "framer-motion";
-import { navbarSlideInVariants } from "../../motionUtils";
+import { navbarFadeInVariants } from "../../motionUtils";
 import { LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
@@ -34,7 +34,7 @@ const Navbar = () => {
 		<>
 			<motion.nav
 				className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}
-				variants={navbarSlideInVariants}
+				variants={navbarFadeInVariants}
 				initial="hidden"
 				animate="visible"
 				exit="hidden"
