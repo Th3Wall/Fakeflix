@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 .eslintcache
+.prettierrc
 .idea
 .env
