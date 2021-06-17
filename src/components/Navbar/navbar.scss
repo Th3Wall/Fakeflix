@@ -18,13 +18,17 @@
     &__fixed {
         background-image: none;
         background-color: $black;
+
+        .Navbar__primarynav {
+            background-color: $black;
+        }
     }
 
     &__logo {
-        max-width: 45px;
+        max-width: 40px;
         width: 100%;
 
-        @include mq(sm) {
+        @include mq(600px) {
             max-width: 130px;
         }
     }
@@ -85,11 +89,30 @@
     }
 
     &__primarynav {
-        position: relative;
-        display: flex;
-        align-items: center;
-        min-height: 40px;
-        cursor: pointer;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        margin: 0 auto;
+        width: 100%;
+        height: 45px;
+        justify-content: center;
+        pointer-events: none;
+        transition: all 0.2s ease-in-out;
+
+        @include mq(lg) {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+            cursor: pointer;
+            width: unset;
+            height: unset;
+            top: unset;
+            left: unset;
+            margin: unset;
+            margin-left: 2rem;
+            pointer-events: all;
+        }
 
         &.active {
             .Navbar__primarynav--caret {
@@ -97,33 +120,53 @@
             }
         }
 
+        .Navbar__navlinks--link {
+            pointer-events: all;
+            cursor: pointer;
+        }
+
         &--caret {
+            pointer-events: all;
+            cursor: pointer;
             transition: transform 0.2s ease-out;
         }
 
         &--content {
-            display: block;
-            pointer-events: none;
-            position: absolute;
-            opacity: 0;
-            top: 100px;
-            right: 0;
-            padding: 10px 0;
-            min-width: auto;
-            white-space: nowrap;
-            border: 1px solid rgba(255,255,255,0.5);
-            background-color: rgba(0,0,0,0.9);
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             z-index: 1;
+            background-color: rgba(0,0,0,0.9);
+            opacity: 0;
             transition: all 0.2s ease-out;
 
             @include mq(sm) {
                 min-width: 180px;
             }
 
+            @include mq(lg) {
+                display: block;
+                pointer-events: none;
+                position: absolute;
+                opacity: 0;
+                top: 100px;
+                right: 0;
+                padding: 10px 0;
+                min-width: auto;
+                white-space: nowrap;
+                border: 1px solid rgba(255,255,255,0.5);
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
             &.active {
                 opacity: 1;
-                top: 55px;
                 pointer-events: all;
             }
             
