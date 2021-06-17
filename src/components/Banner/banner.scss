@@ -5,12 +5,17 @@
     position: relative;
     width: 100%;
     display: flex;
-    align-items: center;
-    height: 80vh;
+    align-items: flex-end;
+    height: 90vh;
     background: $black;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
+
+    @include mq(lg) {
+        height: 80vh;
+        align-items: center;
+    }
 
     &__loadsection {
         .loading,
@@ -32,10 +37,17 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        align-items: center;
+        text-align: center;
         padding: 0 4vw;
+        padding-bottom: 10vh;
         z-index: 1;
+
+        @include mq(lg) {
+            align-items: flex-start;
+            padding-bottom: unset;
+            text-align: left;
+        }
 
         &--title {
             font-size: 30px;
