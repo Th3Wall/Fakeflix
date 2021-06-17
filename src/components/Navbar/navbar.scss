@@ -48,8 +48,8 @@
             display: inline-block;
             margin: 0 12px;
             font-size: 14px;
-            text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
-            
+            text-shadow: 2px 2px 6px rgba($color: $pure-black, $alpha: 0.9);
+
             @include mq('sm'){
                 font-size: 16px;
             }
@@ -172,7 +172,7 @@
             
             li {
                 color: #e5e5e5;
-                padding: 5px 15px;
+                padding: 4vw 0;
                 text-decoration: none;
                 display: block;
                 cursor: pointer;
@@ -185,6 +185,10 @@
                 a {
                     display: block;
                 }
+
+                @include mq(lg) {
+                    padding: 5px 15px;
+                }
             }
 
             .activeNavLink {
@@ -194,6 +198,25 @@
 
                 &:hover {
                     color: $white;
+                }
+            }
+
+            &-wrp {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: inherit;
+                height: inherit;
+
+                .Navbar__navlinks--link {
+                    font-size: 16px;
+
+                    @include mq('md') {
+                        font-size: 1.8vw;
+                    }
+                    @include mq('lg') {
+                        font-size: 1.2vw;
+                    }
                 }
             }
         }
