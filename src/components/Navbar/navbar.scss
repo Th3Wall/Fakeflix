@@ -143,7 +143,9 @@
             align-items: center;
             text-align: center;
             z-index: 1;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0, 0, 0, 0.65);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
             opacity: 0;
             transition: all 0.2s ease-out;
 
