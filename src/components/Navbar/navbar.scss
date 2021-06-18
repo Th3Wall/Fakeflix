@@ -18,10 +18,6 @@
     &__fixed {
         background-image: none;
         background-color: $black;
-
-        .Navbar__primarynav {
-            background-color: $black;
-        }
     }
 
     &__logo {
@@ -112,6 +108,10 @@
             margin: unset;
             margin-left: 2rem;
             pointer-events: all;
+        }
+
+        &--scrolled {
+            background-color: $black;
         }
 
         &.active {

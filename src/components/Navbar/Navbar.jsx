@@ -72,7 +72,7 @@ const Navbar = () => {
 					</ul>
 				) : (
 					<div
-						className={`Navbar__primarynav Navbar__navlinks ${genresNav ? "active" : ""}`}
+						className={`Navbar__primarynav Navbar__navlinks ${isScrolled ? "Navbar__primarynav--scrolled" : ""}`}
 						onClick={() => setGenresNav(!genresNav)}
 					>
 						<span className="Navbar__navlinks--link">Discover</span>
