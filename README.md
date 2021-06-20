@@ -22,7 +22,11 @@ Here you can find the demo links:
 
 -   [Vercel](http://fakeflixapp.vercel.app/)
 -   [Netlify](http://fakeflixapp.netlify.app/)
-    <br/>
+
+### Test credentials (for lazy users 😓)
+
+> Email: fakeflixuser@test.com<br/>
+> Password: FakeflixTest<br/>
 
 ## :sparkles: Features
 
