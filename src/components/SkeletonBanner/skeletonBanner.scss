@@ -17,6 +17,7 @@
   background-position: top center;
 
   @include mq(lg) {
+    align-items: flex-start;
     justify-content: center;
     height: 80vh;
     padding-bottom: unset;
