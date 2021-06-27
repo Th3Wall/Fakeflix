@@ -102,6 +102,13 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 ![Screenshot of Fakeflix Modal Detail](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_DetailModal.jpg)
 <br/>
 
+**Mobile Play**
+
+https://user-images.githubusercontent.com/25078541/123543831-b8a35700-d750-11eb-84dc-b53e5a9a997a.mp4
+
+<br/>
+
+
 ## Available Scripts
 
 In the project directory, you can run:
