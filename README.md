@@ -83,11 +83,6 @@ Here you can find the demo links:
 5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBd's API key, Firebase configuration).
    <br/>
 
-## :white_check_mark: Requirements
-
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
-<br/>
-
 ## 📸 Screenshots
 	
 **Sign In**
@@ -116,6 +111,11 @@ https://user-images.githubusercontent.com/25078541/123543831-b8a35700-d750-11eb-
 
 https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-83ba-66cded3f321f.mp4
 
+<br/>
+
+## :white_check_mark: Requirements
+
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 <br/>
 
 ## Available Scripts
