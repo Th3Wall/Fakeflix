@@ -1,8 +1,12 @@
-![Image of Fakeflix Project](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png)
-
 # Fakeflix
 
 > Not the usual clone that you can find on the web.
+
+![Image of Fakeflix Project](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png)
+
+https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-83ba-66cded3f321f.mp4
+
+<br/>
 
 ## 🎯 About
 
@@ -102,12 +106,17 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 ![Screenshot of Fakeflix Modal Detail](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_DetailModal.jpg)
 <br/>
 
-**Mobile Play**
+**Mobile Experience**
 
 https://user-images.githubusercontent.com/25078541/123543831-b8a35700-d750-11eb-84dc-b53e5a9a997a.mp4
 
 <br/>
 
+**Desktop Experience**
+
+https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-83ba-66cded3f321f.mp4
+
+<br/>
 
 ## Available Scripts
 
