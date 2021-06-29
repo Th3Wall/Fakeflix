@@ -113,6 +113,34 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 
 <br/>
 
+
+## 👨🏻‍💻 Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Th3Wall/Fakeflix
+```
+
+Go to the project directory
+
+```bash
+  cd fakeflix
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+<br/>
+
 ## :white_check_mark: Requirements
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
