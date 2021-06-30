@@ -116,25 +116,40 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 
 ## 👨🏻‍💻 Run Locally
 
-Clone the project
+- Clone the project
 
 ```bash
   git clone https://github.com/Th3Wall/Fakeflix
 ```
 
-Go to the project directory
+- Go to the project directory
 
 ```bash
   cd fakeflix
 ```
 
-Install dependencies
+- Install dependencies
 
 ```bash
   npm install
 ```
 
-Start the server
+- Create a .env file
+
+- Request an API key from TMDB and them add it to the .env file
+
+- Create a project inside Google Firebase and export the configuration
+```
+REACT_APP_FIREBASE_API_KEY=REACT_APP_FIREBASE_API_KEY
+REACT_APP_FIREBASE_AUTH_DOMAIN=REACT_APP_FIREBASE_AUTH_DOMAIN
+REACT_APP_FIREBASE_PROJECT_ID=REACT_APP_FIREBASE_PROJECT_ID
+REACT_APP_FIREBASE_STORAGE_BUCKET=REACT_APP_FIREBASE_STORAGE_BUCKET
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=REACT_APP_FIREBASE_MESSAGING_SENDER_ID
+REACT_APP_FIREBASE_APP_ID=REACT_APP_FIREBASE_APP_ID
+REACT_APP_FIREBASE_MEASUREMEMT_ID=REACT_APP_FIREBASE_MEASUREMEMT_ID
+```
+
+- Start the server
 
 ```bash
   npm start
