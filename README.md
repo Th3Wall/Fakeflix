@@ -22,10 +22,9 @@ Go try it and please let me know if you enjoyed it with a ⭐️, I would apprec
 
 ## ▶️ Demo
 
-Here you can find the demo links:
+Here you can find the demo link:
 
 -   [Vercel](http://fakeflixapp.vercel.app/)
--   [Netlify](http://fakeflixapp.netlify.app/)
 
 ### Test credentials (for lazy users 😓)
 
