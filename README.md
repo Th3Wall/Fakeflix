@@ -17,7 +17,7 @@ The Web App redirects you to an authentication page, in which you can choose to 
 Each row represents a movie/series category: you can click on it and you will be redirected to the selected category, a page that loads thousands of movies with an infinite scroll. You can also navigate to the movies page, series page, new & popular page (that contains the upcoming movies/series and the most popular ones) or you can navigate to your favorites page.<br/>
 You can add/remove movies/series through the plus and minus buttons that you can find hovering each poster or opening a single movie's detail modal. If you click on the play button you can enjoy a custom CSS-only play animation with Fakeflix's brand name.<br/>
 You have also the option to search through TMDd's catalogue using the search functionality inside the fixed navbar: you can search by movie name, actor or movie director.<br/><br/>
-Go try it and please let me know if enjoyed it with a ⭐️, I would appreciate it a lot.
+Go try it and please let me know if you enjoyed it with a ⭐️, I would appreciate it a lot.
 <br/>
 
 ## ▶️ Demo
@@ -137,8 +137,13 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 - Create a .env file
 
 - Request an API key from TMDB and them add it to the .env file
+```
+REACT_APP_TMDB_API_KEY=REACT_APP_TMDB_API_KEY
+```
 
 - Create a project inside Google Firebase and export the configuration
+
+- Add the configuration inside the .env file created previously
 ```
 REACT_APP_FIREBASE_API_KEY=REACT_APP_FIREBASE_API_KEY
 REACT_APP_FIREBASE_AUTH_DOMAIN=REACT_APP_FIREBASE_AUTH_DOMAIN
