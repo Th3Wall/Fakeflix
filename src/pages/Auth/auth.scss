@@ -116,6 +116,17 @@
             }
         }
 
+        &--disclaimer {
+            display: inherit;
+            font-family: $main-font;
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 600;
+            color: $red;
+            text-align: center;
+            margin-top: 1.5em;
+        }
+
         &--errors {
             display: inherit;
             margin-top: 1.5em;
