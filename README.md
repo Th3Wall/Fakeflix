@@ -1,4 +1,3 @@
-
 <h1 align="center">Fakeflix</h1>
 <h5 align="center">Not the usual clone that you can find on the web.</h5><br/>
 
@@ -24,7 +23,7 @@ Go try it and please let me know if you enjoyed it with a ⭐️, I would apprec
 
 Here you can find the demo link:
 
--   [Vercel](http://fakeflixapp.vercel.app/)
+- [Vercel](https://fakeflix-clone.vercel.app/)
 
 ### Test credentials (for lazy users 😓)
 
@@ -51,23 +50,23 @@ Here you can find the demo link:
 
 ## :rocket: Technologies
 
--   [TMDb API's](https://www.themoviedb.org/)
--   [React](https://reactjs.org/)
--   [React Hooks](https://reactjs.org/docs/hooks-intro.html)
--   [React Hooks Form](https://react-hook-form.com/)
--   [React Router](https://reactrouter.com/web/guides/quick-start)
--   [Redux](https://redux.js.org/)
--   [Redux Thunk](https://github.com/reduxjs/redux-thunk)
--   [Redux Saga](https://redux-saga.js.org/)
--   [Redux Persist](https://github.com/rt2zz/redux-persist)
--   [Redux Logger](https://github.com/LogRocket/redux-logger)
--   [Reselect](https://github.com/reduxjs/reselect)
--   [Firebase](https://firebase.google.com/)
--   [SCSS](https://sass-lang.com/)
--   [SwiperJS](https://swiperjs.com/react)
--   [Framer Motion](https://www.framer.com/motion/)
--   [React Icons](https://react-icons.github.io/react-icons/)
--   [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deploy and CI.
+- [TMDb API's](https://www.themoviedb.org/)
+- [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [React Hooks Form](https://react-hook-form.com/)
+- [React Router](https://reactrouter.com/web/guides/quick-start)
+- [Redux](https://redux.js.org/)
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+- [Redux Saga](https://redux-saga.js.org/)
+- [Redux Persist](https://github.com/rt2zz/redux-persist)
+- [Redux Logger](https://github.com/LogRocket/redux-logger)
+- [Reselect](https://github.com/reduxjs/reselect)
+- [Firebase](https://firebase.google.com/)
+- [SCSS](https://sass-lang.com/)
+- [SwiperJS](https://swiperjs.com/react)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deploy and CI.
 
 ## Netlify deploy & configuration
 
@@ -83,7 +82,7 @@ Here you can find the demo link:
    <br/>
 
 ## 📸 Screenshots
-	
+
 **Sign In**
 ![Screenshot of Fakeflix Sign In](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_SignIn.jpg)
 <br/>
@@ -112,7 +111,6 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 
 <br/>
 
-
 ## 👨🏻‍💻 Run Locally
 
 - Clone the project
@@ -136,6 +134,7 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 - Create a .env file
 
 - Request an API key from TMDB and them add it to the .env file
+
 ```
 REACT_APP_TMDB_API_KEY=REACT_APP_TMDB_API_KEY
 ```
@@ -143,6 +142,7 @@ REACT_APP_TMDB_API_KEY=REACT_APP_TMDB_API_KEY
 - Create a project inside Google Firebase and export the configuration
 
 - Add the configuration inside the .env file created previously
+
 ```
 REACT_APP_FIREBASE_API_KEY=REACT_APP_FIREBASE_API_KEY
 REACT_APP_FIREBASE_AUTH_DOMAIN=REACT_APP_FIREBASE_AUTH_DOMAIN
@@ -163,7 +163,6 @@ REACT_APP_FIREBASE_MEASUREMEMT_ID=REACT_APP_FIREBASE_MEASUREMEMT_ID
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 <br/>
-
 
 ## 📝 License
 
