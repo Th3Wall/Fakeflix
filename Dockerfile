@@ -1,5 +1,5 @@
 # Step 1: Build React
-FROM node:latest as build
+FROM node:current-alpine3.11 as build
 
 RUN mkdir /app
 WORKDIR /app
@@ -19,7 +19,7 @@ FROM nginx:latest
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy NGINX file
-COPY nginx/nginx.conf /etc/nginx
+COPY nginx/nginx.config /etc/nginx
 
 # Expose port 80
 EXPOSE 80
