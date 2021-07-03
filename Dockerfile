@@ -1,5 +1,5 @@
 # Step 1: Build React
-FROM node:current-alpine3.11 as build
+FROM node:14 as build
 
 RUN mkdir /app
 WORKDIR /app
@@ -8,7 +8,9 @@ WORKDIR /app
 COPY ./ /app
 
 # Install all the dependencies && Generate the build of the application
-RUN npm install && npm run build
+RUN npm install 
+RUN npm rebuild node-sass
+RUN npm run build
 
 
 # Stage 2: Serve app with nginx server
