@@ -30,6 +30,8 @@ Here you can find the demo link:
 > Email: fakeflixuser@test.com<br/>
 > Password: FakeflixTest<br/>
 
+I have also added a button that lets you sign in anonymously.
+
 ## :sparkles: Features
 
 :heavy_check_mark: &nbsp;&nbsp;Display movies and series, old and upcoming, also from the real Netflix<br />
