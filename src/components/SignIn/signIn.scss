@@ -74,6 +74,18 @@
             transform: scale(0.95);
           }
         }
+
+        &__anonymous {
+          background-color: transparent;
+          color: darken($white, 10%);
+          border: 1px solid darken($white, 10%);
+
+          &:hover {
+            color: $red;
+            border: 1px solid $red;
+            transform: scale(0.95);
+          }
+        }
       }
 
       &.loading {

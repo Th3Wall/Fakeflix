@@ -13,6 +13,10 @@ export const googleSignInStart = () => ({
     type: authActionTypes.GOOGLE_SIGN_IN_START
 })
 
+export const anonymousSignInStart = () => ({
+    type: authActionTypes.ANONYMOUS_SIGN_IN_START
+})
+
 export const signInSuccess = user => ({
     type: authActionTypes.SIGN_IN_SUCCESS,
     payload: user

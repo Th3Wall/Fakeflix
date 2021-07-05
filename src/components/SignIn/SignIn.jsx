@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { authFadeInUpVariants, staggerOne } from "../../motionUtils";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import { emailSignInStart, googleSignInStart } from "../../redux/auth/auth.actions";
+import { emailSignInStart, googleSignInStart, anonymousSignInStart } from "../../redux/auth/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthLoadingState } from "../../redux/auth/auth.selectors";
 
@@ -76,6 +76,15 @@ const SignIn = () => {
 			>
 				{!isLoading && <FcGoogle />}
 				{isLoading ? <Loader /> : 'Sign in with Google'}
+			</motion.button>
+			<motion.button
+				type="button"
+				variants={authFadeInUpVariants}
+				className={`SignIn__form--button button__anonymous ${isLoading && 'loading'}`}
+				onClick={() => dispatch(anonymousSignInStart())}
+				disabled={isLoading}
+			>
+				{isLoading ? <Loader /> : 'Sign in anonymously'}
 			</motion.button>
 		</motion.form>
 	)

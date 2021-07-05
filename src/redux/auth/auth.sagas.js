@@ -31,6 +31,15 @@ export function* signInWithEmail({payload: { email, password }}) {
 	}
 }
 
+export function* signInAnonymously() {
+	try {
+		const { user } = yield auth.signInAnonymously();
+		yield getSnapshotFromUserAuth(user);
+	} catch (e) {
+		yield put(signInFailure(e.message));
+	}
+}
+
 export function* checkIfUserIsAuthenticated(){
 	try {
 		const userAuth = yield getCurrentUser();
@@ -75,6 +84,10 @@ export function* onEmailSignInStart(){
 	yield takeLatest(authActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
+export function* onAnonymousSignInStart(){
+	yield takeLatest(authActionTypes.ANONYMOUS_SIGN_IN_START, signInAnonymously);
+}
+
 export function* onSignOutStart(){
 	yield takeLatest(authActionTypes.SIGN_OUT_START, signOut);
 }
@@ -92,6 +105,7 @@ export function* authSagas() {
 		call(onCheckUserSession),
 		call(onGoogleSignInStart),
 		call(onEmailSignInStart),
+		call(onAnonymousSignInStart),
 		call(onSignOutStart),
 		call(onSignUpStart),
 		call(onSignUpSuccess),
