@@ -25,8 +25,6 @@ Here you can find the demo link:
 
 - [Vercel](https://fakeflix-clone.vercel.app/)
 
-I have also added a button that lets you sign in anonymously.
-
 ### Test credentials (for lazy users 😓)
 
 > Email: fakeflixuser@test.com<br/>
