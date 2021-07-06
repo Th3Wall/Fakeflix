@@ -138,7 +138,7 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 - Request an API key from TMDB and them add it to the .env file
 
 ```
-REACT_APP_TMDB_API_KEY=REACT_APP_TMDB_API_KEY
+REACT_APP_API_KEY=REACT_APP_TMDB_API_KEY
 ```
 
 - Create a project inside Google Firebase and export the configuration
