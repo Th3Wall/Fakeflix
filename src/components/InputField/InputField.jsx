@@ -16,9 +16,10 @@ const InputField = ({
                 type={type}
                 name={name}
                 placeholder={placeholder}
-                className={`InputField ${errors?.[name] ? "Input--error" : ""} ${
-                    additionalClass ? additionalClass : ""
-                }`}
+                className={`InputField
+                    ${errors?.[name] && "Input--error"}
+                    ${additionalClass && additionalClass}
+                `}
                 ref={validation}
                 disabled={disabled}
             />

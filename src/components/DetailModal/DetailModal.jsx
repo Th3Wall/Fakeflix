@@ -52,13 +52,13 @@ const DetailModal = () => {
 						animate="visible"
 						exit="hidden"
 						key="modalOverlay"
-						className={`Modal__overlay ${modalClosed ? 'Modal__invisible': ''}`}
+						className={`Modal__overlay ${modalClosed && 'Modal__invisible'}`}
 					>
 						<motion.div
 							key="modal"
 							variants={modalVariants}
 							ref={modalRef}
-							className={`Modal__wrp ${modalClosed ? 'Modal__invisible': ''}`}
+							className={`Modal__wrp ${modalClosed && 'Modal__invisible'}`}
 						>
 							<motion.button
 								className="Modal__closebtn"

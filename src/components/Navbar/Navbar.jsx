@@ -33,7 +33,7 @@ const Navbar = () => {
 	return (
 		<>
 			<motion.nav
-				className={`Navbar ${isScrolled ? "Navbar__fixed" : ""}`}
+				className={`Navbar ${isScrolled && "Navbar__fixed"}`}
 				variants={navbarFadeInVariants}
 				initial="hidden"
 				animate="visible"
@@ -72,7 +72,7 @@ const Navbar = () => {
 					</ul>
 				) : (
 					<div
-						className={`Navbar__primarynav Navbar__navlinks ${isScrolled ? "Navbar__primarynav--scrolled" : ""}`}
+						className={`Navbar__primarynav Navbar__navlinks ${isScrolled && "Navbar__primarynav--scrolled"}`}
 						onClick={() => setGenresNav(!genresNav)}
 					>
 						<span className="Navbar__navlinks--link">Discover</span>
@@ -121,7 +121,7 @@ const Navbar = () => {
 					</div>
 					<div className="Navbar__navitem">
 						<div
-							className={`Navbar__navprofile ${profileNav ? "active" : ""}`}
+							className={`Navbar__navprofile ${profileNav && "active"}`}
 							onClick={() => setProfileNav(!profileNav)}
 						>
 							<img

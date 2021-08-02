@@ -53,7 +53,7 @@ const Searchbar = () => {
                 value={searchInput}
                 onChange={handleSearchInput}
                 ref={searchInputRef}
-                className={`Searchbar--search ${searchInputToggle ? "Searchbar--active" : ""}`}
+                className={`Searchbar--search ${searchInputToggle && "Searchbar--active"}`}
             />
             <div
                 className="Searchbar--toggler"
@@ -62,7 +62,7 @@ const Searchbar = () => {
                 <FiSearch size="1.5em" />
             </div>
             <div
-                className={`Searchbar--clear ${searchInputToggle && searchInput.length ? "typing" : ""}`}
+                className={`Searchbar--clear ${searchInputToggle && searchInput.length && "typing"}`}
                 onClick={clearSearchInputToggle}
             >
                 <RiCloseFill />

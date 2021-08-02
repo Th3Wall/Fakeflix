@@ -31,7 +31,7 @@ const RowPoster = result => {
 
 	return (
 		<div
-			className={`Row__poster ${isLarge ? "Row__poster--big" : ""}`}
+			className={`Row__poster ${isLarge && "Row__poster--big"}`}
 			onClick={handleModalOpening}
 		>
 			{isLarge ? (
