@@ -171,4 +171,4 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 [MIT](https://github.com/Th3Wall/Fakeflix/blob/main/LICENSE)
 
-<a href="https://www.buymeacoffee.com/th3wall" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height:60px !important;" ></a>
+<a href="https://www.buymeacoffee.com/th3wall" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="41" width="174" alt="Buy Me A Coffee" /></a>
