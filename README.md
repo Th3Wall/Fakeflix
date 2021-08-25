@@ -24,7 +24,7 @@ Go try it and please let me know if you enjoyed it with a ⭐️, I would apprec
 Here you can find the demo links:
 
 - [Vercel](https://fakeflix-clone.vercel.app/)
-- [Netlify](https://fakeflix-clone.netlify.app/)
+- [Netlify](https://fakeflix-app.netlify.app/)
 
 ### Test credentials (for lazy users 😓)
 
