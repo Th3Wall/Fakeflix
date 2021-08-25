@@ -73,7 +73,7 @@ I have also added a button that lets you sign in anonymously.
 
 ## Netlify deploy & configuration
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14a32bbb-d899-445d-8fa6-8bed739c0296/deploy-status)](https://app.netlify.com/sites/fakeflixapp/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/14a32bbb-d899-445d-8fa6-8bed739c0296/deploy-status)](https://app.netlify.com/sites/fakeflix-app/deploys)
 
 ### Deploy configuration steps
 
