@@ -5,13 +5,27 @@ import useScroll from "../../hooks/useScroll";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { motion } from "framer-motion";
 import { navbarFadeInVariants } from "../../motionUtils";
-import { LOGO_URL, MOBILE_LOGO_URL, PROFILE_PIC_URL } from "../../requests";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/auth/auth.selectors";
 import { signOutStart } from "../../redux/auth/auth.actions";
+import flowtys from "../../assets/flowtys.webp";
+import avatar1 from "../../assets/avatar/Flowtys_Dead.jpg";
+import avatar2 from "../../assets/avatar/Flowtys_FuckedUp.jpg";
+import avatar3 from "../../assets/avatar/Flowtys_Grin.jpg";
+import avatar4 from "../../assets/avatar/Flowtys_HeartEyes.jpg";
+import avatar5 from "../../assets/avatar/Flowtys_Idk.jpg";
+import avatar6 from "../../assets/avatar/Flowtys_LOL.jpg";
+import avatar7 from "../../assets/avatar/Flowtys_Peter.jpg";
+import avatar8 from "../../assets/avatar/Flowtys_Puzzled.jpg";
+import avatar9 from "../../assets/avatar/Flowtys_StarEyes.jpg";
+import avatar10 from "../../assets/avatar/Flowtys_Wink.jpg";
+import avatar11 from "../../assets/avatar/Flowtys_Wubldbeldbsofpe.jpg";
+import avatar12 from "../../assets/avatar/Flowtys_YouDontSay.jpg";
+import avatar13 from "../../assets/avatar/Flowtys_Yum.jpg";
+import { randomize } from "../../utils";
 
 const Navbar = () => {
 	const { width } = useViewport();
@@ -21,6 +35,8 @@ const Navbar = () => {
 	const genresNavRef = useRef();
 	const profileNavRef = useRef();
 	const currentUser = useSelector(selectCurrentUser);
+  const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13];
+  const avatar = avatars[randomize(avatars)];
 	const dispatch = useDispatch();
 
 	useOutsideClick(genresNavRef, () => {
@@ -40,7 +56,7 @@ const Navbar = () => {
 				exit="hidden"
 			>
 				<Link to="/">
-					<img className="Navbar__logo" src={width >= 600 ? LOGO_URL : MOBILE_LOGO_URL} alt="" />
+					<img className="Navbar__logo" src={flowtys} alt="" />
 				</Link>
 				{width >= 1024 ? (
 					<ul className="Navbar__primarynav Navbar__navlinks">
@@ -51,24 +67,19 @@ const Navbar = () => {
 						</li>
 						<li className="Navbar__navlinks--link">
 							<NavLink to="/tvseries" activeClassName="activeNavLink">
-								TV Series
+                Cartoons
 							</NavLink>
 						</li>
 						<li className="Navbar__navlinks--link">
 							<NavLink to="/movies" activeClassName="activeNavLink">
-								Movies
+                Classics
 							</NavLink>
 						</li>
-						<li className="Navbar__navlinks--link">
-							<NavLink to="/popular" activeClassName="activeNavLink">
-								New & Popular
-							</NavLink>
-						</li>
-						<li className="Navbar__navlinks--link">
+						{/* <li className="Navbar__navlinks--link">
 							<NavLink to="/mylist" activeClassName="activeNavLink">
 								My list
 							</NavLink>
-						</li>
+						</li> */}
 					</ul>
 				) : (
 					<div
@@ -126,7 +137,7 @@ const Navbar = () => {
 						>
 							<img
 								className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
-								src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
+								src={avatar}
 								alt="Profile Picture"
 							/>
 							<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />

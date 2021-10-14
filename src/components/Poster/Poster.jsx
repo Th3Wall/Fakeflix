@@ -1,7 +1,7 @@
 import "./poster.scss"
 import { motion } from "framer-motion";
 import { posterFadeInVariants } from "../../motionUtils";
-import { BASE_IMG_URL, FALLBACK_IMG_URL } from "../../requests";
+import { FALLBACK_IMG_URL } from "../../requests";
 import { FaChevronDown, FaMinus, FaPlay, FaPlus } from "react-icons/fa";
 import useGenreConversion from "../../hooks/useGenreConversion";
 import { showModalDetail } from "../../redux/modal/modal.actions";
@@ -10,7 +10,7 @@ import { addToFavourites, removeFromFavourites } from "../../redux/favourites/fa
 import { Link } from "react-router-dom";
 
 const Poster = result => {
-    const { item, item: { title, original_name, original_title, name, genre_ids, backdrop_path }, isFavourite } = result;
+    const { item, item: { id, title, original_name, original_title, name, genre_ids, backdrop_path }, isFavourite } = result;
     let fallbackTitle = title || original_title || name || original_name;
     const genresConverted = useGenreConversion(genre_ids);
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Poster = result => {
             onClick={handleModalOpening}
         >
             {backdrop_path ? (
-                <img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} />
+                <img src={`${backdrop_path}`} alt={fallbackTitle} />
             ) : (
                 <>
                     <img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
@@ -53,8 +53,8 @@ const Poster = result => {
                     <Link
                         className="Poster__info--icon icon--play"
                         onClick={handlePlayAction}
-                        to={'/play'}
-                    >
+                        to={{pathname: `/play`, search: `?file=${id}&title=${encodeURIComponent(title)}`}}
+                        >
                         <FaPlay />
                     </Link>
                     {!isFavourite

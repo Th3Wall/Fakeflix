@@ -1,116 +1,43 @@
 import axios from "../../axiosInstance";
 import { moviesActionTypes } from "./movies.types";
 
-// Action
-export const fetchActionMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_ACTION_MOVIES_REQUEST,
-});
-
-export const fetchActionMoviesSuccess = (actionMovies, isPage) => ({
-	type: isPage
-		? moviesActionTypes.FETCH_ACTION_MOVIES_SUCCESS
-		: moviesActionTypes.LOAD_MORE_ACTION_MOVIES_SUCCESS,
-	payload: actionMovies,
-});
-
-export const fetchActionMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_ACTION_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchActionMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchActionMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const actionMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-				if (isPage) {
-					dispatch(fetchActionMoviesSuccess(actionMovies, isPage));
-				} else dispatch(fetchActionMoviesSuccess(actionMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchActionMoviesFailure(errorMessage));
-			});
-	};
+const reduceJWItem = (data, isLarge = false) => {
+	return { 
+    id: data.mediaid,
+    title: data.title,
+    overview: data.description,
+    original_name: '',
+    original_title: '',
+    name: '',
+    genre_ids: [],
+    poster_path: data.image,
+    backdrop_path: data.image,
+    release_date: data['Release Date'], 
+    cast: data['Cast'], 
+    status: data['Status'],  
+    genres: data['Genres'],  
+    link: data.link,
+    isLarge
+  }
 };
 
-// Adventure
-export const fetchAdventureMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_ADVENTURE_MOVIES_REQUEST,
-});
-
-export const fetchAdventureMoviesSuccess = (adventureMovies, isPage) => ({
-	type: isPage
-        ? moviesActionTypes.FETCH_ADVENTURE_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_ADVENTURE_MOVIES_SUCCESS,
-	payload: adventureMovies,
-});
-
-export const fetchAdventureMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_ADVENTURE_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchAdventureMoviesAsync = (fetchUrl, isPage) => {
+export const fetchGenericMoviesAsync = (fetchMoviesRequest, fetchMoviesSuccess, fetchMoviesFailure, fetchUrl, isPage, isLarge = false) => {
 	return dispatch => {
-		dispatch(fetchAdventureMoviesRequest());
+		dispatch(fetchMoviesRequest());
 		axios
 			.get(fetchUrl)
 			.then(res => {
-				const adventureMovies = res.data.results.map(el => ({
-					...el,
+				const comedyMovies = res.data.playlist.map(el => ({
+					...reduceJWItem(el, isLarge),
 					isFavourite: false,
 				}));
-                if (isPage) {
-                    dispatch(fetchAdventureMoviesSuccess(adventureMovies, isPage));
-                } else dispatch(fetchAdventureMoviesSuccess(adventureMovies));
+        if (isPage) {
+            dispatch(fetchMoviesSuccess(comedyMovies, isPage));
+        } else dispatch(fetchMoviesSuccess(comedyMovies));
 			})
 			.catch(error => {
 				const errorMessage = error.message;
-				dispatch(fetchAdventureMoviesFailure(errorMessage));
-			});
-	};
-};
-
-// SplashAnimation
-export const fetchAnimationMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_ANIMATION_MOVIES_REQUEST,
-});
-
-export const fetchAnimationMoviesSuccess = (animationMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_ANIMATION_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_ANIMATION_MOVIES_SUCCESS,
-	payload: animationMovies,
-});
-
-export const fetchAnimationMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_ANIMATION_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchAnimationMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchAnimationMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const animationMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchAnimationMoviesSuccess(animationMovies, isPage));
-                } else dispatch(fetchAnimationMoviesSuccess(animationMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchAnimationMoviesFailure(errorMessage));
+				dispatch(fetchMoviesFailure(errorMessage));
 			});
 	};
 };
@@ -133,24 +60,13 @@ export const fetchComedyMoviesFailure = error => ({
 });
 
 export const fetchComedyMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchComedyMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const comedyMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchComedyMoviesSuccess(comedyMovies, isPage));
-                } else dispatch(fetchComedyMoviesSuccess(comedyMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchComedyMoviesFailure(errorMessage));
-			});
-	};
+  return fetchGenericMoviesAsync(
+    fetchComedyMoviesRequest,
+    fetchComedyMoviesSuccess,
+    fetchComedyMoviesFailure,
+    fetchUrl,
+    isPage
+  )
 };
 
 // Horror
@@ -171,250 +87,68 @@ export const fetchHorrorMoviesFailure = error => ({
 });
 
 export const fetchHorrorMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchHorrorMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const horrorMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchHorrorMoviesSuccess(horrorMovies, isPage));
-                } else dispatch(fetchHorrorMoviesSuccess(horrorMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchHorrorMoviesFailure(errorMessage));
-			});
-	};
+  return fetchGenericMoviesAsync(
+    fetchHorrorMoviesRequest,
+    fetchHorrorMoviesSuccess,
+    fetchHorrorMoviesFailure,
+    fetchUrl,
+    isPage
+  )
 };
 
-// Netflix
-export const fetchNetflixMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_NETFLIX_MOVIES_REQUEST,
+// Timesless Classics 
+export const fetchFeaturedMoviesRequest = () => ({
+	type: moviesActionTypes.FETCH_FEATURED_MOVIES_REQUEST,
 });
 
-export const fetchNetflixMoviesSuccess = (netflixMovies, isPage) => ({
+export const fetchFeaturedMoviesSuccess = (horrorMovies, isPage) => ({
     type: isPage
-        ? moviesActionTypes.FETCH_NETFLIX_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_NETFLIX_MOVIES_SUCCESS,
-	payload: netflixMovies,
+        ? moviesActionTypes.FETCH_FEATURED_MOVIES_SUCCESS
+        : moviesActionTypes.LOAD_MORE_FEATURED_MOVIES_SUCCESS,
+	payload: horrorMovies,
 });
 
-export const fetchNetflixMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_NETFLIX_MOVIES_FAILURE,
+export const fetchFeaturedMoviesFailure = error => ({
+	type: moviesActionTypes.FETCH_FEATURED_MOVIES_FAILURE,
 	payload: error,
 });
 
-export const fetchNetflixMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchNetflixMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const netflixMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchNetflixMoviesSuccess(netflixMovies, isPage));
-                } else dispatch(fetchNetflixMoviesSuccess(netflixMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchNetflixMoviesFailure(errorMessage));
-			});
-	};
+export const fetchFeaturedMoviesAsync = (fetchUrl, isPage) => {
+  return fetchGenericMoviesAsync(
+    fetchFeaturedMoviesRequest,
+    fetchFeaturedMoviesSuccess,
+    fetchFeaturedMoviesFailure,
+    fetchUrl,
+    isPage,
+    true
+  )
 };
 
-// Romance
-export const fetchRomanceMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_ROMANCE_MOVIES_REQUEST,
+
+// Banner
+export const fetchBannerMoviesRequest = () => ({
+	type: moviesActionTypes.FETCH_BANNER_MOVIES_REQUEST,
 });
 
-export const fetchRomanceMoviesSuccess = (romanceMovies, isPage) => ({
+export const fetchBannerMoviesSuccess = (bannerMovies, isPage) => ({
     type: isPage
-        ? moviesActionTypes.FETCH_ROMANCE_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_ROMANCE_MOVIES_SUCCESS,
-	payload: romanceMovies,
+        ? moviesActionTypes.FETCH_BANNER_MOVIES_SUCCESS
+        : moviesActionTypes.LOAD_MORE_BANNER_MOVIES_SUCCESS,
+	payload: bannerMovies,
 });
 
-export const fetchRomanceMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_ROMANCE_MOVIES_FAILURE,
+export const fetchBannerMoviesFailure = error => ({
+	type: moviesActionTypes.FETCH_BANNER_MOVIES_FAILURE,
 	payload: error,
 });
 
-export const fetchRomanceMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchRomanceMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const romanceMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchRomanceMoviesSuccess(romanceMovies, isPage));
-                } else dispatch(fetchRomanceMoviesSuccess(romanceMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchRomanceMoviesFailure(errorMessage));
-			});
-	};
+export const fetchBannerMoviesAsync = (fetchUrl, isPage) => {
+  return fetchGenericMoviesAsync(
+    fetchBannerMoviesRequest,
+    fetchBannerMoviesSuccess,
+    fetchBannerMoviesFailure,
+    fetchUrl,
+    isPage
+  )
 };
 
-// Top Rated
-export const fetchTopRatedMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_TOP_RATED_MOVIES_REQUEST,
-});
-
-export const fetchTopRatedMoviesSuccess = (topRatedMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_TOP_RATED_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_TOP_RATED_MOVIES_SUCCESS,
-	payload: topRatedMovies,
-});
-
-export const fetchTopRatedMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_TOP_RATED_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchTopRatedMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchTopRatedMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const topRatedMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchTopRatedMoviesSuccess(topRatedMovies, isPage));
-                } else dispatch(fetchTopRatedMoviesSuccess(topRatedMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchTopRatedMoviesFailure(errorMessage));
-			});
-	};
-};
-
-// Trending
-export const fetchTrendingMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_TRENDING_MOVIES_REQUEST,
-});
-
-export const fetchTrendingMoviesSuccess = (trendingMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_TRENDING_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_TRENDING_MOVIES_SUCCESS,
-	payload: trendingMovies,
-});
-
-export const fetchTrendingMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_TRENDING_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchTrendingMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchTrendingMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const trendingMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchTrendingMoviesSuccess(trendingMovies, isPage));
-                } else dispatch(fetchTrendingMoviesSuccess(trendingMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchTrendingMoviesFailure(errorMessage));
-			});
-	};
-};
-
-// Upcoming
-export const fetchUpcomingMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_UPCOMING_MOVIES_REQUEST,
-});
-
-export const fetchUpcomingMoviesSuccess = (upcomingMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_UPCOMING_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_UPCOMING_MOVIES_SUCCESS,
-	payload: upcomingMovies,
-});
-
-export const fetchUpcomingTrendingMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_UPCOMING_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchUpcomingMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchUpcomingMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const upcomingMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchUpcomingMoviesSuccess(upcomingMovies, isPage));
-                } else dispatch(fetchUpcomingMoviesSuccess(upcomingMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchUpcomingTrendingMoviesFailure(errorMessage));
-			});
-	};
-};
-
-// Latest
-export const fetchLatestMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_LATEST_MOVIES_REQUEST,
-});
-
-export const fetchLatestMoviesSuccess = (latestMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_LATEST_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_LATEST_MOVIES_SUCCESS,
-	payload: latestMovies,
-});
-
-export const fetchLatestTrendingMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_LATEST_MOVIES_FAILURE,
-	payload: error,
-});
-
-export const fetchLatestMoviesAsync = (fetchUrl, isPage) => {
-	return dispatch => {
-		dispatch(fetchLatestMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const latestMovies = res.data.results.map(el => ({
-					...el,
-					isFavourite: false,
-				}));
-                if (isPage) {
-                    dispatch(fetchLatestMoviesSuccess(latestMovies, isPage));
-                } else dispatch(fetchLatestMoviesSuccess(latestMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchLatestTrendingMoviesFailure(errorMessage));
-			});
-	};
-};

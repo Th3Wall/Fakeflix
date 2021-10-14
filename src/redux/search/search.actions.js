@@ -2,6 +2,25 @@ import { searchActionTypes } from "./search.types";
 import axios from "../../axiosInstance";
 import requests from "../../requests";
 
+const reduceJWItem = (data) => {
+	return { 
+    id: data.mediaid,
+    title: data.title,
+    overview: data.description,
+    original_name: '',
+    original_title: '',
+    name: '',
+    genre_ids: [],
+    poster_path: data.image,
+    backdrop_path: data.image,
+    release_date: data['Release Date'], 
+    cast: data['Cast'], 
+    status: data['Status'],  
+    genres: data['Genres'],  
+    link: data.link
+  }
+};
+
 export const changeSearchInputValue = inputValue => ({
 	type: searchActionTypes.CHANGE_SEARCH_INPUT_VALUE,
 	payload: inputValue
@@ -31,9 +50,10 @@ export const fetchSearchResultsAsync = searchQuery => {
 		dispatch(fetchSearchResultsRequest(searchQuery));
 		axios.get(`${requests.fetchSearchQuery}${searchQuery}`)
 			.then(response => {
-				const { data: { results } } = response;
-				const filteredResults = results.filter(result => result.media_type !== 'person');
-				dispatch(fetchSearchResultsSuccess(filteredResults));
+				const res = response.data.playlist.map(el => ({
+					...reduceJWItem(el)
+				}));
+				dispatch(fetchSearchResultsSuccess(res));
 			})
 			.catch(err => {
 				dispatch(fetchSearchResultsFailure(err.message));

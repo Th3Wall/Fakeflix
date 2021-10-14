@@ -1,5 +1,5 @@
 import "./rowPoster.scss";
-import { BASE_IMG_URL, FALLBACK_IMG_URL } from "../../requests";
+import { FALLBACK_IMG_URL } from "../../requests";
 import { useDispatch } from "react-redux";
 import { addToFavourites, removeFromFavourites } from "../../redux/favourites/favourites.actions";
 import { FaPlus, FaMinus, FaPlay, FaChevronDown } from "react-icons/fa";
@@ -8,7 +8,7 @@ import { showModalDetail } from "../../redux/modal/modal.actions";
 import { Link } from "react-router-dom";
 
 const RowPoster = result => {
-	const { item, item: { title, original_name, original_title, name, genre_ids, poster_path, backdrop_path }, isLarge, isFavourite } = result;
+	const { item, item: { id, title, original_name, original_title, name, genre_ids, poster_path, backdrop_path }, isLarge, isFavourite } = result;
 	let fallbackTitle = title || original_title || name || original_name;
 	const genresConverted = useGenreConversion(genre_ids);
 	const dispatch = useDispatch();
@@ -36,10 +36,10 @@ const RowPoster = result => {
 		>
 			{isLarge ? (
 				poster_path ? (
-					<img src={`${BASE_IMG_URL}/${poster_path}`} alt={fallbackTitle} />
+					<img src={`${poster_path}`} alt={fallbackTitle} />
 				) : ""
 			) : backdrop_path ? (
-				<img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} />
+				<img src={`${backdrop_path}`} alt={fallbackTitle} />
 			) : (
 				<>
 					<img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
@@ -53,8 +53,8 @@ const RowPoster = result => {
 					<Link
 						className="Row__poster-info--icon icon--play"
 						onClick={handlePlayAction}
-						to={'/play'}
-					>
+            to={{pathname: `/play`, search: `?file=${id}&title=${encodeURIComponent(title)}`}}
+            >
 						<FaPlay />
 					</Link>
 					{!isFavourite

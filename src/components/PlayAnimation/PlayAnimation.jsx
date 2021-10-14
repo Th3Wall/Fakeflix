@@ -1,31 +1,91 @@
 import "./playAnimation.scss"
-import { useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import { TADUM_SOUND_URL } from "../../requests";
+import { useEffect, useState, useRef } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import ReactJWPlayer from "../ReactJW/react-jw-player";
+import { FiX } from 'react-icons/fi';
+import {Animated} from "react-animated-css";
+import flowtys from "../../assets/flowtys.webp";
 
 const PlayAnimation = () => {
-
 	let history = useHistory();
-	const soundRef = useRef(null);
-	const handleTadum = () => {
-		soundRef.current.currentTime = 0;
-		soundRef.current.play();
-	}
+  const timerRef = useRef(null);
+  const { search } = useLocation(); 
+  const file = new URLSearchParams(search).get('file');
+  const title = new URLSearchParams(search).get('title')
+  const [ready, setReady] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+
+  const onReady = () => {
+    setReady(true);
+    document.getElementsByClassName("jw-player-wrapper")[0].id =
+      "video-container"; // Need id to target the wx container
+  };
+
+  const onCrossClick = () => {
+    history.push('/browse')
+  };
+
+  const controlScreenTimeOut = () => {
+    console.log('controlScreenTimeOut')
+    setShowControls(false);
+  };
+
+  const hoverScreen = () => {
+    console.log('hoverScreen')
+    setShowControls(true);
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(controlScreenTimeOut, 2000);
+  };
 
 	useEffect(() => {
-		handleTadum();
-		setTimeout(() => {
-			history.push('/browse')
-		}, 4200)
+		if (ready) {
+      const script = document.createElement("script");
+      console.log(showControls)
+      script.src =
+        "//edge-player.wirewax.com/ww4release/javascripts/wirewax-jwplayer.js";
+      script.async = true;
+
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
 	}, [history])
 
 	return (
-		<div className='PlayAnimation__wrp'>
-			<audio ref={soundRef} src={TADUM_SOUND_URL} />
-			<span className="PlayAnimation__text">
-				FAKEFLIX
-			</span>
-		</div>
+    <div className="PlayAnimation__wrp" onMouseMove={hoverScreen}>
+      <div className="PlayAnimation__shadow"></div>
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={showControls} animationInDuration={500} animationOutDuration={500} className="PlayAnimation__wrpHeader">
+        <div className="PlayAnimation__controls">
+            <header>
+              <div>
+                <img className="PlayAnimation__logo" src={flowtys} alt="" />
+              </div>
+              <div className="title">
+                <h1>{title}</h1>
+              </div>
+              <FiX onClick={onCrossClick} />
+            </header>
+        </div>
+      </Animated>
+			<ReactJWPlayer
+        playerId='my-unique-id'
+        playerScript='https://cdn.jwplayer.com/libraries/85Wlrlzb.js'
+        className="PlayAnimation__box"
+        onReady={onReady}
+        width = "100%"
+        height= "100%"
+        playlist={[{
+          file: `https://cdn.jwplayer.com/manifests/${file}.m3u8`,
+          image: `https://cdn.jwplayer.com/v2/media/${file}/poster.jpg?width=720`,
+        }]}
+      />
+      </div>
 	)
 }
 

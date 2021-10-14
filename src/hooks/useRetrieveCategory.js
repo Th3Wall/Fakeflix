@@ -1,34 +1,32 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchMovieDataConfig, fetchPopularDataConfig, fetchSeriesDataConfig } from "../dataConfig";
 
-export const useRetrieveCategory = (slicedUrl, categoryName, page) => {
-
-	const dispatch = useDispatch();
-	const [categoryData, setCategoryData] = useState();
-
-	useEffect(() => {
-		let selectedConfigArray = null;
-		switch (slicedUrl) {
-			case "browse":
-			case "movies":
-				selectedConfigArray = fetchMovieDataConfig;
+export const useRetrieveCategory = (slicedUrl, categoryName) => {
+  let selected;
+	switch (slicedUrl) {
+        case "browse":
+        case "movies":
+          selected = fetchMovieDataConfig;
 				break;
 			case "tvseries":
-				selectedConfigArray = fetchSeriesDataConfig;
+				selected = fetchSeriesDataConfig;
 				break;
 			case "popular":
-				selectedConfigArray = fetchPopularDataConfig;
+				selected = fetchPopularDataConfig;
 				break;
 			default:
 				break;
-		}
-
-		const [data] = selectedConfigArray.filter(el => el.genre === categoryName);
-		dispatch(data.thunk(`${data.url}&page=${page}`));
+	}
+  const [data] = selected.filter(el => el.genre === categoryName);
+  const selectedGenre = useSelector(data.selector);
+	const dispatch = useDispatch();
+	const [categoryData, setCategoryData] = useState();
+  
+	useEffect(() => {
+		dispatch(data.thunk(`${data.url}?page_limit=500&page_offset=${selectedGenre.data.length + 1}`));
 		setCategoryData(data);
-
-	}, [dispatch, categoryName, slicedUrl, page])
+	}, [dispatch, categoryName, slicedUrl])
 
 	return categoryData;
 }

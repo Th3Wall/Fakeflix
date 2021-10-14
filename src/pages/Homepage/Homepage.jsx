@@ -18,7 +18,7 @@ const Homepage = () => {
             exit="exit"
         >
             <Banner />
-            {rows && rows.map(props => (
+            {rows && rows.filter(el => el.genre !== 'banner' ).map(props => (
                 <Row key={props.id} {...props} />
             ))}
             <Credits />

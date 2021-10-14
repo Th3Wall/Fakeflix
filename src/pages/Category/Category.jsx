@@ -4,23 +4,18 @@ import SkeletonPage from "../../components/SkeletonPage/SkeletonPage";
 import SkeletonPoster from "../../components/SkeletonPoster/SkeletonPoster";
 import { motion } from "framer-motion";
 import { staggerHalf } from "../../motionUtils";
-import { useState } from "react";
 import { useRetrieveCategory } from "../../hooks/useRetrieveCategory";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import useLazyLoad from "../../hooks/useLazyLoad";
 
 const Category = ({ match }) => {
-    const [page, setPage] = useState(2);
     const { url } = match;
     const slicedUrl = url.split("/");
     const { categoryName } = useParams();
-    const categoryData = useRetrieveCategory(slicedUrl[1], categoryName, page);
+    const categoryData = useRetrieveCategory(slicedUrl[1], categoryName);
     const preventUndefinedSelector = () => undefined;
     const selector = categoryData ? categoryData.selector : preventUndefinedSelector;
     const selectedGenre = useSelector(selector);
-    const handleLoadMore = () => setPage(page => page + 1);
-    const [endPageRef, isIntersecting] = useLazyLoad(handleLoadMore);
 
     return (
         <div className="Category">
@@ -46,7 +41,7 @@ const Category = ({ match }) => {
                         }
                         {selectedGenre.loading && <div className='Category__subtitle'><SkeletonPoster /></div>}
                         {selectedGenre.error && <div className='Category__subtitle'>Oops, an error occurred.</div>}
-                        <div className={`Category__endPage ${isIntersecting ? 'intersected' : null}`} ref={endPageRef} />
+                        <div className='Category__endPage'/>
                     </motion.div>
                 </>
             ) : <SkeletonPage />}

@@ -3,12 +3,12 @@
 
 .Credits {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
+  padding: 0 4%;
 	margin: 2.5vh 0;
 	color: #969696;
 	font-size: 13px;
+  display: flex;
+  flex-direction: column;
 
 	@include mq('sm'){
 		font-size: 14px;
@@ -20,35 +20,298 @@
 		font-size: 16px;
 	}
 
-	&__linkwrp {
-	  	display: flex;
-	  	align-items: center;
-		color: inherit;
-		font-weight: bold;
-        margin-left: 5px;
-		text-decoration: none;
-		transition: color 0.4s cubic-bezier(0.6, -0.05, 0.01, 0.99);
+  &__about {
+    width: 30%;
+  }
 
-		&:hover {
-			color: $white;
-			cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='35' height='42' viewport='0 0 100 100' style='fill:black;font-size:21px;'><text y='50%'>🧑🏻‍💻</text></svg>") 16 0, auto;
-		}
-	}
+  &__logo {
+    width: 136px;
+    height: 76px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+  }
 
-	&__avatar {
-		display: inline-block;
-		max-width: 30px;
-		width: 100%;
-		margin-left: 5px;
+  &__logoBox {
+    display: flex;
+    align-items: center;
+  }
 
-		@include mq('sm'){
-			max-width: 35px;
-		}
-		@include mq('md'){
-			max-width: 40px;
-		}
-		@include mq(1920px){
-			max-width: 45px;
-		}
-	}
+  &__aboutText {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: $main-font;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #888;
+  }
+
+  &__primarynav,
+  &__secondarynav {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+  }
+  
+  &__navlinks {
+
+      &--link {
+          display: inline-block;
+          margin-right: 22px;
+         
+          @include mq('sm'){
+              font-size: 16px;
+          }
+          @include mq('md'){
+              font-size: 1.8vw;
+          }
+          @include mq('lg'){
+              font-size: 1.2vw;
+              text-shadow: 2px 2px 2px rgba($color: $black, $alpha: 0.45);
+          }
+          @include mq(1330px){
+              font-size: 18px;
+          }
+          
+          a {
+              font-family: $main-font;
+              font-size: 20px;
+              font-weight: 500;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              color: #888;
+              will-change: font-weight;
+              transition: color .2s ease-in-out;
+              text-decoration: none;
+
+              &:hover {
+                  color: #b3b3b3;
+                  text-decoration: underline;
+              }
+          }
+
+          .activeNavLink {
+              color: #888;
+              cursor: default;
+
+              &:hover {
+                  color: $white;
+              }
+          }
+      }
+  }
+
+  &__primarynav {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 45px;
+      pointer-events: none;
+      transition: all 0.2s ease-in-out;
+
+      @include mq(lg) {
+          position: relative;
+          display: flex;
+          align-items: center;
+          min-height: 40px;
+          cursor: pointer;
+          width: unset;
+          height: unset;
+          top: unset;
+          left: unset;
+          margin: unset;
+    
+          pointer-events: all;
+      }
+
+      &--scrolled {
+          background-color: $black;
+      }
+
+      &.active {
+          .Navbar__primarynav--caret {
+              transform: rotate(180deg);
+          }
+      }
+
+      .Navbar__navlinks--link {
+          pointer-events: all;
+          cursor: pointer;
+      }
+
+      &--caret {
+          pointer-events: all;
+          cursor: pointer;
+          transition: transform 0.2s ease-out;
+      }
+
+      &--content {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          border: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          z-index: 1;
+          background-color: rgba(0, 0, 0, 0.65);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          transition: all 0.2s ease-out;
+
+          @include mq(sm) {
+              min-width: 180px;
+          }
+
+          @include mq(lg) {
+              display: block;
+              pointer-events: none;
+              position: absolute;
+              opacity: 0;
+              top: 100px;
+              right: 0;
+              padding: 10px 0;
+              min-width: auto;
+              white-space: nowrap;
+              border: 1px solid rgba(255,255,255,0.5);
+              box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          }
+
+          &.active {
+              opacity: 1;
+              pointer-events: all;
+          }
+          
+          li {
+              color: #e5e5e5;
+              padding: 4vw 0;
+              text-decoration: none;
+              display: block;
+              cursor: pointer;
+              transition: color .2s ease-in-out;
+
+              &:hover {
+                  color: #b3b3b3;
+              }
+
+              a {
+                  display: block;
+              }
+
+              @include mq(lg) {
+                  padding: 5px 15px;
+              }
+          }
+
+          .activeNavLink {
+              color: $white;
+              font-weight: 700;
+              cursor: default;
+
+              &:hover {
+                  color: $white;
+              }
+          }
+
+          &-wrp {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              width: inherit;
+              height: inherit;
+
+              .Navbar__navlinks--link {
+                  font-size: 16px;
+
+                  @include mq('md') {
+                      font-size: 1.8vw;
+                  }
+                  @include mq('lg') {
+                      font-size: 1.2vw;
+                  }
+              }
+          }
+      }
+  }
+  
+
+  &__navprofile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &.active {
+          .Navbar__navprofile--caret {
+              transform: rotate(180deg);
+          }
+      }
+      
+      &--avatar {
+          max-width: 30px;
+          width: 100%;
+          margin-right: 8px;
+
+          @include mq(sm) {
+              max-width: 40px;
+          }
+      }
+
+      &--caret {
+          transition: transform 0.2s ease-out;
+      }
+
+      &--content {
+          display: block;
+          pointer-events: none;
+          position: absolute;
+          opacity: 0;
+          top: 100px;
+          right: 0;
+          padding: 10px 0;
+          min-width: auto;
+          white-space: nowrap;
+          border: 1px solid rgba(255,255,255,0.5);
+          background-color: rgba(0,0,0,0.9);
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+          transition: all 0.2s ease-out;
+
+          @include mq(sm) {
+              min-width: 180px;
+          }
+
+          &.active {
+              opacity: 1;
+              top: 55px;
+              pointer-events: all;
+          }
+          
+          li {
+              color: $white;
+              padding: 5px 15px;
+              text-decoration: none;
+              display: block;
+      
+              &:hover {
+                  text-decoration: underline;
+              }
+              a {
+                  display: block;
+              }
+          }
+      }
+  }
 }

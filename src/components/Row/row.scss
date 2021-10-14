@@ -12,8 +12,14 @@
     &__title {
         margin-bottom: 1rem;
         padding: 0 4%;
-        font-size: 16px;
-        line-height: 1.25vw;
+        font-family: $main-font;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #fff;
         text-align: left;
         display: inline-block;
 

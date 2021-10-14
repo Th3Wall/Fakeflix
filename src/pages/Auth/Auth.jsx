@@ -1,16 +1,13 @@
 import "./auth.scss";
-import { useState } from "react";
 import SignIn from "../../components/SignIn/SignIn";
-import SignUp from "../../components/SignUp/SignUp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { staggerOne, authFadeInUpVariants, modalVariants, authPageFadeInVariants } from "../../motionUtils";
-import { LOGO_URL, SIGNIN_BGIMG_URL } from "../../requests.js";
 import { useSelector } from "react-redux";
 import { selectAuthErrors } from "../../redux/auth/auth.selectors";
+import flowtys from "../../assets/flowtys.webp";
 
 const Auth = () => {
-	const [isSignedUp, setIsSignedUp] = useState(true);
 	const authError = useSelector(selectAuthErrors);
 
 	return (
@@ -21,11 +18,19 @@ const Auth = () => {
 			animate="animate"
 			exit="exit"
 		>
-			<div className="Auth__opacityLayer" />
-			<div className="Auth__bgLayer" style={{ backgroundImage: `url(${SIGNIN_BGIMG_URL})` }} />
-			<Link to="/" className="Auth__logo">
-				<img className="Auth__logo--img" src={LOGO_URL} alt="Fakeflix_logo" />
-			</Link>
+			<div className="Auth__bgLayer"/>
+		
+      <motion.div className="Auth__topBox" initial="hidden" animate="animate" exit="exit">
+        <Link to="/" className="Auth__logo">
+          <img className="Auth__logo" src={flowtys} alt="" />
+        </Link>
+        <div className="Auth__topAboutBox">
+          <motion.h2 className="Auth__topAbout">
+            A free streaming service for owners of a Non-fungible Token created by Flowty.
+					</motion.h2>
+        </div>
+					
+      </motion.div>
 			<motion.div
 				className="Auth__content"
 				variants={modalVariants}
@@ -35,22 +40,14 @@ const Auth = () => {
 			>
 				<motion.div variants={staggerOne} initial="initial" animate="animate" exit="exit">
 					<motion.h2 variants={authFadeInUpVariants} className="Auth__content--title">
-						{isSignedUp ? "Sign In" : "Sign Up"}
+						Connect your Wallet
 					</motion.h2>
-					<motion.small variants={authFadeInUpVariants} className="Auth__content--disclaimer">
+					{/* <motion.small variants={authFadeInUpVariants} className="Auth__content--disclaimer">
 						{`Pay attention: this is not the original Netflix ${isSignedUp ? "sign in" : "sign up"}. Don't insert your real credentials here!`}
-					</motion.small>
-					{isSignedUp ? <SignIn /> : <SignUp />}
+					</motion.small> */}
+					<SignIn />
 					{authError && <motion.p variants={authFadeInUpVariants} className='Auth__content--errors'>{authError}</motion.p>}
 					<motion.hr variants={authFadeInUpVariants} className="Auth__content--divider" />
-					<motion.small variants={authFadeInUpVariants} className="Auth__content--toggleView">
-						{isSignedUp
-							? `Haven't you registered yet? `
-							: "Do you already have an account? "}
-						<span className="toggler" onClick={() => setIsSignedUp(!isSignedUp)}>
-							{isSignedUp ? "Sign Up" : "Sign In"}
-						</span>
-					</motion.small>
 				</motion.div>
 			</motion.div>
 		</motion.div>

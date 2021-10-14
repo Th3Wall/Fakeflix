@@ -5,6 +5,32 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    padding-left: 65px;
+
+    &__topBox {
+      display: flex;
+      flex-direction: column;
+      z-index: 200;
+    }
+
+    &__topAboutBox {
+      margin-top: 15px;
+      z-index: 200;
+      max-width: 400px;
+    }
+
+    &__topAbout {
+      font-family: $main-font;
+      font-size: 20px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #fff;
+      z-index: 200;
+      max-width: 400px;
+    }
 
     &__bgLayer {
         position: absolute;
@@ -17,6 +43,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        background-image: url("../../assets/login.jpeg");
     }
 
     &__opacityLayer {
@@ -30,41 +57,26 @@
     }
 
     &__logo {
-        display: none;
-        @include mq(xs) {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            padding: 2em;
-
-            &--img {
-                width: 100%;
-                max-width: 160px;
-            }
-        }
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        z-index: 200;
+        width: 128px;
+        height: 38px;
     }
 
     &__content {
         position: absolute;
+        margin-left: 65px;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        left: 0%;
+        transform: translate(0%, -50%);
         z-index: 2;
         width: 100%;
         max-width: 90%;
-        padding: 2em 1.8em;
+        max-width: 390px;
         border-radius: 8px;
-        background-color: rgba($color: $pure-black, $alpha: 0.75);
-
-        @include mq(xs) {
-            padding: 2.25em 2em;
-        }
-
-        @include mq(sm) {
-            padding: 3.75em 3em;
-        }
+        background-color: transparent;
 
         @include mq(md) {
             max-width: 500px;
@@ -73,7 +85,7 @@
         &--title {
             font-size: 1.2rem;
             margin-bottom: 1em;
-
+            font-family: $main-font;
             @include mq(xs) {
                 font-size: 1.5rem;
             }

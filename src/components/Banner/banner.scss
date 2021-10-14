@@ -50,9 +50,15 @@
         }
 
         &--title {
-            font-size: 30px;
-            line-height: 1;
-            text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: LucianCAT;
+            font-size: 80px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #fff;
 
             @include mq('xs'){
                 font-size: 35px;
@@ -69,9 +75,15 @@
         }
         
         &--description {
-            font-size: 14px;
-            line-height: 1.6;
-            text-shadow: 2px 2px 4px rgba($color: $black, $alpha: 0.45);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: $main-font;
+            font-size: 20px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #fff;
             margin-top: 1rem;
 
             @include mq('sm'){
@@ -130,11 +142,11 @@
 
         &:first-child {
             margin-left: 0;
-            background-color: $red;
-            color: $white;
+            background-color: $white;
+            color: $black;
 
             &:hover {
-                background-color: darken($red, 5);
+                background-color: darken($blue-flowty, 5);
             }
         }
 

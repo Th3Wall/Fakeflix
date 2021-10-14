@@ -2,37 +2,32 @@ import "./banner.scss";
 import React from "react";
 import { motion } from "framer-motion";
 import { staggerOne, bannerFadeInLoadSectionVariants, bannerFadeInVariants, bannerFadeInUpVariants } from "../../motionUtils";
-import { BASE_IMG_URL } from "../../requests";
 import { FaPlay } from "react-icons/fa";
 import { BiInfoCircle } from "react-icons/bi";
-import { randomize, truncate } from "../../utils";
+import { truncate } from "../../utils";
 import { Link } from "react-router-dom";
 import SkeletonBanner from "../SkeletonBanner/SkeletonBanner";
 import { useDispatch, useSelector } from "react-redux";
 import { showModalDetail } from "../../redux/modal/modal.actions";
-import { selectTrendingMovies, selectNetflixMovies } from "../../redux/movies/movies.selectors";
-import { selectNetflixSeries } from "../../redux/series/series.selectors";
+import { selectBannerMovies } from "../../redux/movies/movies.selectors";
+import { useEffect } from "react";
+import { fetchBannerMoviesAsync } from "../../redux/movies/movies.actions";
+import requests from "../../requests";
+const {
+  fetchBannerMovies,
+} = requests;
 
-const Banner = ({ type }) => {
-	let selector;
-	switch (type) {
-		case "movies":
-			selector = selectTrendingMovies;
-			break;
-		case "series":
-			selector = selectNetflixSeries;
-			break;
-		default:
-			selector = selectNetflixMovies;
-			break;
-	}
+const Banner = () => {
+	const myData = useSelector(selectBannerMovies);
+  // const allData = myData;
 
-	const myData = useSelector(selector);
+  const dispatch = useDispatch()
+  // const [finalData, setData] = useState(null)
+
 	const { loading, error, data: results } = myData;
-	const finalData = results[randomize(results)];
+	const finalData = results && results.length ? results[0] : null;
 	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
 	const description = truncate(finalData?.overview, 150);
-	const dispatch = useDispatch();
 
 	const handlePlayAnimation = event => {
 		event.stopPropagation();
@@ -41,6 +36,10 @@ const Banner = ({ type }) => {
 	const handleModalOpening = () => {
 		dispatch(showModalDetail({ ...finalData, fallbackTitle }));
 	}
+
+  useEffect(() => {
+    dispatch(fetchBannerMoviesAsync(fetchBannerMovies, false))
+  }, [dispatch])
 
 	return (
 		<>
@@ -62,7 +61,7 @@ const Banner = ({ type }) => {
 					animate='animate'
 					exit='exit'
 					className="Banner"
-					style={{backgroundImage: `url(${BASE_IMG_URL}/${finalData?.backdrop_path})`}}
+					style={{backgroundImage: `url(${finalData?.poster_path})`}}
 				>
 					<motion.div
 						className="Banner__content"
@@ -76,8 +75,8 @@ const Banner = ({ type }) => {
 							<Link
 								className="Banner__button"
 								onClick={handlePlayAnimation}
-								to={"/play"}
-							>
+                to={{pathname: `/play`, search: `?file=${finalData?.id}&title=${encodeURIComponent(finalData?.title)}`}}
+                >
 								<FaPlay />
 								<span>Play</span>
 							</Link>

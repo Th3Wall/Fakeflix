@@ -13,16 +13,23 @@
     }
 
     &--search {
-      background-color: rgba($color: $black, $alpha: 0.25);
-      border: 1px solid $white;
-      padding: 7px 30px 7px 7px;
-      font-size: 12px;
-      color: $white;
+      padding: 7px 30px 7px 17px;
       outline: none;
-      border-radius: 6px;
+      border-radius: 16px;
+      border: solid 1px #ccc;
+      background-color: rgba(0, 0, 0, 0.1);
       width: 0;
       opacity: 0;
       transition: all 0.2s ease-out;
+
+      font-family: $main-font;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #ccc;
 
       @include mq(sm) {
         font-size: 14px;

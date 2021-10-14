@@ -2,17 +2,9 @@ import requests from "./requests";
 import * as movieSelectors from "./redux/movies/movies.selectors";
 import * as seriesSelectors from "./redux/series/series.selectors";
 import {
-	fetchActionMoviesAsync,
-	fetchAdventureMoviesAsync,
-	fetchAnimationMoviesAsync,
 	fetchComedyMoviesAsync,
 	fetchHorrorMoviesAsync,
-	fetchLatestMoviesAsync,
-	fetchNetflixMoviesAsync,
-	fetchRomanceMoviesAsync,
-	fetchTopRatedMoviesAsync,
-	fetchTrendingMoviesAsync,
-	fetchUpcomingMoviesAsync,
+  fetchFeaturedMoviesAsync,
 } from "./redux/movies/movies.actions";
 import {
 	fetchActionAdventureSeriesAsync,
@@ -27,17 +19,9 @@ import {
 	fetchTrendingSeriesAsync,
 } from "./redux/series/series.actions";
 const {
-	fetchReleasedMoviesByOneMonth,
-	fetchTrendingMovies,
 	fetchNetflixOriginals,
-	fetchTopRated,
-	fetchActionMovies,
-	fetchAdventureMovies,
 	fetchComedyMovies,
 	fetchHorrorMovies,
-	fetchRomanceMovies,
-	fetchAnimationMovies,
-	fetchUpcomingMovies,
 	fetchActionAdventureSeries,
 	fetchAnimationSeries,
 	fetchComedySeries,
@@ -47,90 +31,38 @@ const {
 	fetchKidsSeries,
 	fetchSciFiFantasySeries,
 	fetchTrendingSeries,
+  fetchFeatureMovies,
 } = requests;
 
 export const fetchMovieDataConfig = [
 	{
-		id: 0,
-		thunk: fetchTopRatedMoviesAsync,
-		url: fetchTopRated,
-		title: "Top Rated on Fakeflix",
-		genre: "toprated",
-		selector: movieSelectors.selectTopRatedMovies,
-	},
-	{
 		id: 1,
-		thunk: fetchTrendingMoviesAsync,
-		url: fetchTrendingMovies,
-		title: "Trending Now",
-		genre: "trending",
-		selector: movieSelectors.selectTrendingMovies,
-	},
-	{
-		id: 2,
-		thunk: fetchNetflixMoviesAsync,
-		url: fetchNetflixOriginals,
-		title: "Fakeflix Originals",
-		genre: "fakeflix",
-		selector: movieSelectors.selectNetflixMovies,
-		isLarge: true,
-	},
-	{
-		id: 3,
-		thunk: fetchActionMoviesAsync,
-		url: fetchActionMovies,
-		title: "Action",
-		genre: "action",
-		selector: movieSelectors.selectActionMovies,
-	},
-	{
-		id: 4,
-		thunk: fetchAdventureMoviesAsync,
-		url: fetchAdventureMovies,
-		title: "Adventure",
-		genre: "adventure",
-		selector: movieSelectors.selectAdventureMovies,
-	},
-	{
-		id: 5,
 		thunk: fetchComedyMoviesAsync,
 		url: fetchComedyMovies,
 		title: "Comedy",
 		genre: "comedy",
 		selector: movieSelectors.selectComedyMovies,
 	},
+  {
+		id: 2,
+		thunk: fetchFeaturedMoviesAsync,
+		url: fetchFeatureMovies,
+		title: "Timesless Classics",
+		genre: "featured",
+		selector: movieSelectors.selectFeaturedMovies,
+	},
 	{
-		id: 6,
+		id: 3,
 		thunk: fetchHorrorMoviesAsync,
 		url: fetchHorrorMovies,
 		title: "Horror",
 		genre: "horror",
 		selector: movieSelectors.selectHorrorMovies,
 	},
-	{
-		id: 7,
-		thunk: fetchRomanceMoviesAsync,
-		url: fetchRomanceMovies,
-		title: "Romance",
-		genre: "romance",
-		selector: movieSelectors.selectRomanceMovies,
-	},
-	{
-		id: 8,
-		thunk: fetchAnimationMoviesAsync,
-		url: fetchAnimationMovies,
-		title: "Animation",
-		genre: "animation",
-		selector: movieSelectors.selectAnimationMovies,
-	},
-	{
-		id: 9,
-		thunk: fetchUpcomingMoviesAsync,
-		url: fetchUpcomingMovies,
-		title: "Upcoming",
-		genre: "upcoming",
-		selector: movieSelectors.selectUpcomingMovies,
-	},
+];
+
+export const fetchBannerDataConfig = [
+
 ];
 
 export const fetchSeriesDataConfig = [
@@ -218,30 +150,6 @@ export const fetchSeriesDataConfig = [
 ];
 
 export const fetchPopularDataConfig = [
-	{
-		id: 0,
-		thunk: fetchTopRatedMoviesAsync,
-		url: fetchTopRated,
-		title: "Top Rated in your country",
-		genre: "toprated",
-		selector: movieSelectors.selectTopRatedMovies,
-	},
-	{
-		id: 1,
-		thunk: fetchLatestMoviesAsync,
-		url: fetchReleasedMoviesByOneMonth,
-		title: "New on Fakeflix",
-		genre: "newin",
-		selector: movieSelectors.selectLatestMovies,
-	},
-	{
-		id: 2,
-		thunk: fetchUpcomingMoviesAsync,
-		url: fetchUpcomingMovies,
-		title: "Upcoming",
-		genre: "upcoming",
-		selector: movieSelectors.selectUpcomingMovies,
-	},
 ];
 
 export const genresList = [

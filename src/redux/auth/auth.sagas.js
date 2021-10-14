@@ -1,31 +1,43 @@
 import { takeLatest, all, put, call } from "redux-saga/effects";
 import { authActionTypes } from "./auth.types";
-import { auth, createUserProfileDocument, getCurrentUser, googleProvider } from "../../firebase/firebaseUtils";
-import { signInFailure, signInSuccess, signOutFailure, signOutSuccess, signUpFailure, signUpSuccess } from "./auth.actions";
+import { signInFailure, signInSuccess, signOutFailure, signOutSuccess } from "./auth.actions";
+import Web3 from "web3";
+import detectEthereumProvider from "@metamask/detect-provider";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import WalletLink from "walletlink";
 
-export function* getSnapshotFromUserAuth(userAuth, additionalData) {
-	try {
-		const userRef = yield call(createUserProfileDocument, userAuth, additionalData);
-		const userSnapshot = yield userRef.get();
-		yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
-	} catch (e) {
-		yield put(signInFailure(e.message));
-	}
-}
+const contractABI = require("../../contracts/Flowtys.json");
+let contractAddress = "0x52607cb9c342821ea41ad265B9Bb6a23BEa49468";
+const walletLink = new WalletLink({
+  appName: "Flowtys+",
+  appLogoUrl: "/favicon.ico",
+  darkMode: true,
+});
+const walletConnectProvider = new WalletConnectProvider({
+  infuraId: process.env.REACT_APP_INFURA_APP_ID,
+});
+// Initialize a Web3 Provider object
+const coinbaseProvider = walletLink.makeWeb3Provider(
+  `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_APP_ID}`,
+  1
+);
 
-export function* signInWithGoogle() {
+export function* getSnapshotFromUserAuth(address) {
 	try {
-		const { user } = yield auth.signInWithPopup(googleProvider);
-		yield getSnapshotFromUserAuth(user);
-	} catch (e) {
-		yield put(signInFailure(e.message));
-	}
-}
-
-export function* signInWithEmail({payload: { email, password }}) {
-	try {
-		const { user } = yield auth.signInWithEmailAndPassword(email, password);
-		yield getSnapshotFromUserAuth(user);
+    const web3Provider = new Web3(
+      `wss://mainnet.infura.io/ws/v3/${process.env.REACT_APP_INFURA_APP_ID}`
+    );
+    const contract = new web3Provider.eth.Contract(
+      contractABI.abi,
+      contractAddress
+    );
+    const balance = yield call(contract.methods.balanceOf(address).call);
+    console.log(`getSnapshotFromUserAuth ${address} ${balance}`)
+    if (!parseInt(balance)) {
+      yield put(signInFailure('You do not have Flowtys in your wallet, gent 🎩'));
+      return;
+    }
+		yield put(signInSuccess({ id: address }));
 	} catch (e) {
 		yield put(signInFailure(e.message));
 	}
@@ -33,8 +45,38 @@ export function* signInWithEmail({payload: { email, password }}) {
 
 export function* signInAnonymously() {
 	try {
-		const { user } = yield auth.signInAnonymously();
+		const user  = { id : 1 };
 		yield getSnapshotFromUserAuth(user);
+	} catch (e) {
+		yield put(signInFailure(e.message));
+	}
+}
+
+export function* connectMetamask() {
+	try {
+    yield call(detectEthereumProvider);
+    const accounts = yield call(window.ethereum.request, { method: "eth_requestAccounts" });
+    yield getSnapshotFromUserAuth(accounts[0]);
+	} catch (e) {
+		yield put(signInFailure(e.message));
+	}
+}
+
+export function* connectWalletConnect() {
+	try {
+    yield call(walletConnectProvider.enable);
+    const web3 = new Web3(walletConnectProvider);
+    const accounts = yield call(web3.eth.getAccounts);
+    yield getSnapshotFromUserAuth(accounts[0]);
+	} catch (e) {
+		yield put(signInFailure(e.message));
+	}
+}
+
+export function* connectCoinbaseConnect() {
+	try {
+    const accounts = yield call(coinbaseProvider.request, { method: "eth_requestAccounts" });
+    yield getSnapshotFromUserAuth(accounts[0]);
 	} catch (e) {
 		yield put(signInFailure(e.message));
 	}
@@ -42,9 +84,20 @@ export function* signInAnonymously() {
 
 export function* checkIfUserIsAuthenticated(){
 	try {
-		const userAuth = yield getCurrentUser();
-		if (!userAuth) return;
-		yield getSnapshotFromUserAuth(userAuth);
+    let web3;
+    if (window.ethereum) {
+      web3 = new Web3(window.ethereum);
+    } else if (window.web3) {
+      web3 = new Web3(window.web3.currentProvider);
+    }
+
+    // Check if User is already connected by retrieving the accounts
+    let accounts = yield call(web3.eth.getAccounts);
+    accounts = (!accounts || !accounts.length) ? yield call(coinbaseProvider.request, { method: "eth_requestAccounts" }) : accounts;
+    web3 = new Web3(walletConnectProvider);
+    accounts = (!accounts || !accounts.length) ? yield call(web3.eth.getAccounts) : accounts;
+		if (!accounts || !accounts.length) return;
+		yield getSnapshotFromUserAuth(accounts[0]);
 	} catch (e) {
 		yield put(signInFailure(e.message));
 	}
@@ -52,62 +105,38 @@ export function* checkIfUserIsAuthenticated(){
 
 export function* signOut(){
 	try {
-		yield auth.signOut();
 		yield put(signOutSuccess());
 	} catch (e) {
 		yield put(signOutFailure(e.message));
 	}
 }
 
-export function* signUp({payload: { displayName, email, password }}){
-	try {
-		const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-		yield put(signUpSuccess({ user, additionalData: { displayName } }))
-	} catch (e) {
-		yield put(signUpFailure(e.message));
-	}
-}
-
-export function* signInAfterSignUp({payload: { user, additionalData }}){
-	yield getSnapshotFromUserAuth(user, additionalData);
-}
-
 export function* onCheckUserSession(){
 	yield takeLatest(authActionTypes.CHECK_USER_SESSION, checkIfUserIsAuthenticated);
 }
 
-export function* onGoogleSignInStart(){
-	yield takeLatest(authActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+export function* onMetaMaskSignInStart(){
+	yield takeLatest(authActionTypes.METAMASK_SIGN_IN_START, connectMetamask);
 }
 
-export function* onEmailSignInStart(){
-	yield takeLatest(authActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+export function* onWalletConnectSignInStart(){
+	yield takeLatest(authActionTypes.WALLETCONNECT_SIGN_IN_START, connectWalletConnect);
 }
 
-export function* onAnonymousSignInStart(){
-	yield takeLatest(authActionTypes.ANONYMOUS_SIGN_IN_START, signInAnonymously);
+export function* onCoinbaseSignInStart(){
+	yield takeLatest(authActionTypes.COINBASE_SIGN_IN_START, connectCoinbaseConnect);
 }
 
 export function* onSignOutStart(){
 	yield takeLatest(authActionTypes.SIGN_OUT_START, signOut);
 }
 
-export function* onSignUpStart(){
-	yield takeLatest(authActionTypes.SIGN_UP_START, signUp);
-}
-
-export function* onSignUpSuccess(){
-	yield takeLatest(authActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
-}
-
 export function* authSagas() {
 	yield all([
 		call(onCheckUserSession),
-		call(onGoogleSignInStart),
-		call(onEmailSignInStart),
-		call(onAnonymousSignInStart),
+		call(onMetaMaskSignInStart),
+    call(onWalletConnectSignInStart),
+    call(onCoinbaseSignInStart),
 		call(onSignOutStart),
-		call(onSignUpStart),
-		call(onSignUpSuccess),
 	]);
 }

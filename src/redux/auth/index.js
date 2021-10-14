@@ -8,10 +8,7 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case authActionTypes.EMAIL_SIGN_IN_START:
-        case authActionTypes.GOOGLE_SIGN_IN_START:
-        case authActionTypes.ANONYMOUS_SIGN_IN_START:
-        case authActionTypes.SIGN_UP_START:
+        case authActionTypes.METAMASK_SIGN_IN_START:
             return {
                 ...state,
                 loading: true
@@ -31,7 +28,6 @@ const authReducer = (state = initialState, action) => {
                 error: null
             }
         case authActionTypes.SIGN_IN_FAILURE:
-        case authActionTypes.SIGN_UP_FAILURE:
         case authActionTypes.SIGN_OUT_FAILURE:
             return {
                 ...state,

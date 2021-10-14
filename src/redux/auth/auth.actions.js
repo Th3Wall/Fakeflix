@@ -4,17 +4,16 @@ export const checkUserSession = () => ({
     type: authActionTypes.CHECK_USER_SESSION
 })
 
-export const emailSignInStart = emailAndPassword => ({
-    type: authActionTypes.EMAIL_SIGN_IN_START,
-    payload: emailAndPassword
+export const metamaskSignInStart = () => ({
+    type: authActionTypes.METAMASK_SIGN_IN_START
 })
 
-export const googleSignInStart = () => ({
-    type: authActionTypes.GOOGLE_SIGN_IN_START
+export const walletConnectSignInStart = () => ({
+  type: authActionTypes.WALLETCONNECT_SIGN_IN_START
 })
 
-export const anonymousSignInStart = () => ({
-    type: authActionTypes.ANONYMOUS_SIGN_IN_START
+export const coinbaseSignInStart = () => ({
+  type: authActionTypes.COINBASE_SIGN_IN_START
 })
 
 export const signInSuccess = user => ({
@@ -37,20 +36,5 @@ export const signOutSuccess = () => ({
 
 export const signOutFailure = error => ({
     type: authActionTypes.SIGN_OUT_FAILURE,
-    payload: error
-})
-
-export const signUpStart = userCredentials => ({
-    type: authActionTypes.SIGN_UP_START,
-    payload: userCredentials
-})
-
-export const signUpSuccess = ({ user, additionalData }) => ({
-    type: authActionTypes.SIGN_UP_SUCCESS,
-    payload: { user, additionalData }
-})
-
-export const signUpFailure = error => ({
-    type: authActionTypes.SIGN_UP_FAILURE,
     payload: error
 })

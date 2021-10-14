@@ -14,3 +14,14 @@ body {
   background-color: $black;
   color: $white;
 }
+
+@font-face {
+  font-family: "Futura";
+  src: local("Futura"), url(./assets/futura/futur.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "LucianCAT";
+  src: local("Lucian"),
+    url(./assets/lucien-schoenschriftv-cat/LucianCAT.ttf) format("truetype");
+}

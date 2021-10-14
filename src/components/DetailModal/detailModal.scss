@@ -124,8 +124,8 @@
       justify-content: center;
       align-items: center;
       min-width: 120px;
-      background-color: $red;
-      color: $white;
+      background-color: $white;
+      color: $black;
       padding: 10px 16px;
       margin-left: 0;
       border-radius: 6px;
@@ -148,7 +148,7 @@
       }
 
       &:hover {
-        background-color: darken($red, 5);
+        background-color: darken($blue-flowty, 5);
       }
 
       span {
@@ -202,9 +202,15 @@
     }
 
     &--title {
-      font-size: 22px;
-      line-height: 1.4;
-      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: $main-font;
+      font-size: 25px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #fff;
       margin-bottom: 15px;
 
       @include mq('sm') {
@@ -213,8 +219,15 @@
     }
 
     &--description {
-      font-size: 14px;
-      line-height: 1.7;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: $main-font;
+      font-size: 18px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #fff;
 
       @include mq('sm') {
         font-size: 16px;
@@ -232,9 +245,14 @@
     }
 
     &--otherTitle {
-      font-size: 16px;
-      line-height: 1.4;
-      font-weight: 400;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: $main-font;
+      font-size: 22px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #fff;
       margin-bottom: 15px;
 
       @include mq('sm') {
@@ -250,11 +268,27 @@
       word-break: break-word;
 
       &-label {
-        color: #777;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        font-family: $main-font;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #888;
       }
 
       &-description {
-        color: #ddd;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        font-family: $main-font;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #fff;
       }
 
       @include mq('sm') {
