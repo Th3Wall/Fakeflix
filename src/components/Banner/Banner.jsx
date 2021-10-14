@@ -9,21 +9,39 @@ import { Link } from "react-router-dom";
 import SkeletonBanner from "../SkeletonBanner/SkeletonBanner";
 import { useDispatch, useSelector } from "react-redux";
 import { showModalDetail } from "../../redux/modal/modal.actions";
-import { selectBannerMovies } from "../../redux/movies/movies.selectors";
+import { selectBannerMovies, selectBannerCartoons, selectBannerClassics } from "../../redux/movies/movies.selectors";
 import { useEffect } from "react";
-import { fetchBannerMoviesAsync } from "../../redux/movies/movies.actions";
+import { fetchBannerMoviesAsync, fetchBannerCartoonsAsync, fetchBannerClassicsAsync } from "../../redux/movies/movies.actions";
 import requests from "../../requests";
 const {
   fetchBannerMovies,
+  fetchBannerCartoons,
+  fetchBannerClassics
 } = requests;
 
-const Banner = () => {
-	const myData = useSelector(selectBannerMovies);
-  // const allData = myData;
-
+const Banner = ({ type }) => {
+  let selector;
+  let request;
+  let requestAsync;
+  switch (type) {
+    case "movies":
+      requestAsync = fetchBannerClassicsAsync;
+      request = fetchBannerClassics;
+      selector = selectBannerClassics;
+      break;
+    case "cartoons":
+      requestAsync = fetchBannerCartoonsAsync;
+      request = fetchBannerCartoons;
+      selector = selectBannerCartoons;
+      break;
+    default:
+      requestAsync = fetchBannerMoviesAsync;
+      request = fetchBannerMovies;
+      selector = selectBannerMovies;
+      break;
+  } 
+	const myData = useSelector(selector);
   const dispatch = useDispatch()
-  // const [finalData, setData] = useState(null)
-
 	const { loading, error, data: results } = myData;
 	const finalData = results && results.length ? results[0] : null;
 	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
@@ -38,7 +56,7 @@ const Banner = () => {
 	}
 
   useEffect(() => {
-    dispatch(fetchBannerMoviesAsync(fetchBannerMovies, false))
+    dispatch(requestAsync(request, false))
   }, [dispatch])
 
 	return (

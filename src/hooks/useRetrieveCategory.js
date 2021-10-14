@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { fetchMovieDataConfig, fetchPopularDataConfig, fetchSeriesDataConfig } from "../dataConfig";
+import { fetchMovieDataConfig, fetchPopularDataConfig, fetchHomeDataConfig, fetchCartoonsDataConfig } from "../dataConfig";
 
 export const useRetrieveCategory = (slicedUrl, categoryName) => {
   let selected;
 	switch (slicedUrl) {
-        case "browse":
-        case "movies":
-          selected = fetchMovieDataConfig;
+      case "browse":
+        selected = fetchHomeDataConfig;
 				break;
-			case "tvseries":
-				selected = fetchSeriesDataConfig;
-				break;
+      case "movies":
+        selected = fetchMovieDataConfig;
+        break;
+      case "cartoons":
+        selected = fetchCartoonsDataConfig;
+        break;
 			case "popular":
 				selected = fetchPopularDataConfig;
 				break;

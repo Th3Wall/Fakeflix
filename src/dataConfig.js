@@ -1,151 +1,230 @@
 import requests from "./requests";
 import * as movieSelectors from "./redux/movies/movies.selectors";
-import * as seriesSelectors from "./redux/series/series.selectors";
-import {
-	fetchComedyMoviesAsync,
-	fetchHorrorMoviesAsync,
-  fetchFeaturedMoviesAsync,
-} from "./redux/movies/movies.actions";
-import {
-	fetchActionAdventureSeriesAsync,
-	fetchAnimationSeriesAsync,
-	fetchComedySeriesAsync,
-	fetchCrimeSeriesAsync,
-	fetchDocumentarySeriesAsync,
-	fetchFamilySeriesAsync,
-	fetchKidsSeriesAsync,
-	fetchNetflixSeriesAsync,
-	fetchSciFiFantasySeriesAsync,
-	fetchTrendingSeriesAsync,
-} from "./redux/series/series.actions";
-const {
-	fetchNetflixOriginals,
-	fetchComedyMovies,
-	fetchHorrorMovies,
-	fetchActionAdventureSeries,
-	fetchAnimationSeries,
-	fetchComedySeries,
-	fetchCrimeSeries,
-	fetchDocumentarySeries,
-	fetchFamilySeries,
-	fetchKidsSeries,
-	fetchSciFiFantasySeries,
-	fetchTrendingSeries,
-  fetchFeatureMovies,
-} = requests;
+import * as movieActions from "./redux/movies/movies.actions";
+
+export const fetchHomeDataConfig = [
+	{
+		id: 1,
+		thunk: movieActions.fetchGenericCartoonsMoviesAsync,
+		url: requests.cartoons,
+		title: "Cartoons",
+		genre: "cartoon",
+		selector: movieSelectors.selectGenericCartoons,
+	},
+  {
+		id: 2,
+		thunk: movieActions.fetchGenericMoviesMoviesAsync,
+		url: requests.movies,
+		title: "Movies",
+		genre: "movies",
+		selector: movieSelectors.selectGenericMovies,
+	},
+  {
+		id: 3,
+		thunk: movieActions.fetchFeaturedMoviesAsync,
+		url: requests.fetchFeatureMovies,
+		title: "Timeless Classics",
+		genre: "featured",
+		selector: movieSelectors.selectFeaturedMovies,
+	},
+  {
+		id: 4,
+		thunk: movieActions.fetchChaplinMoviesAsync,
+		url: requests.chaplin,
+		title: "Charlie Chaplin",
+		genre: "chaplin",
+		selector: movieSelectors.selectChaplinMovies,
+	},
+  {
+		id: 5,
+		thunk: movieActions.fetchThreeStoogesMoviesAsync,
+		url: requests.threeStooges,
+		title: "The Three Stooges",
+		genre: "stooges",
+		selector: movieSelectors.selectThreeStoogesMovies,
+	},
+
+  {
+		id: 6,
+		thunk: movieActions.fetchRomanceAsync,
+		url: requests.romance,
+		title: "Romance",
+		genre: "romance",
+		selector: movieSelectors.selectRomanceMovies,
+	},
+
+  {
+		id: 7,
+		thunk: movieActions.fetchPopeyeAsync,
+		url: requests.popeye,
+		title: "Popeye",
+		genre: "popeye",
+		selector: movieSelectors.selectPopeyeMovies,
+	},
+
+  {
+		id: 8,
+		thunk: movieActions.fetchFunnyAsync,
+		url: requests.funny,
+		title: "Funny",
+		genre: "funny",
+		selector: movieSelectors.selectFunnyMovies,
+	},
+
+  {
+		id: 9,
+		thunk: movieActions.fetchDramaAsync,
+		url: requests.drama,
+		title: "Drama",
+		genre: "drama",
+		selector: movieSelectors.selectDramaMovies,
+	},
+
+  {
+		id: 10,
+		thunk: movieActions.fetchOthersAsync,
+		url: requests.others,
+		title: "Others",
+		genre: "others",
+		selector: movieSelectors.selectOthersMovies,
+	},
+];
+
+export const fetchCartoonsDataConfig = [
+	{
+		id: 1,
+		thunk: movieActions.fetchPopeyeAsync,
+		url: requests.popeye,
+		title: "Popeye",
+		genre: "popeye",
+		selector: movieSelectors.selectPopeyeMovies,
+	},
+  {
+		id: 2,
+		thunk: movieActions.fetchLooneyAsync,
+		url: requests.looney,
+		title: "Looney Tunes",
+		genre: "looney",
+		selector: movieSelectors.selectLooneyMovies,
+	},
+	{
+		id: 3,
+		thunk: movieActions.fetchSupermanAsync,
+		url: requests.superman,
+		title: "Superman",
+		genre: "superman",
+		selector: movieSelectors.selectSupermanMovies,
+	},
+  {
+		id: 4,
+		thunk: movieActions.fetchBettyAsync,
+		url: requests.betty,
+		title: "Betty Boop",
+		genre: "betty",
+		selector: movieSelectors.selectBettyMovies,
+	},
+	{
+		id: 5,
+		thunk: movieActions.fetchOswaldAsync,
+		url: requests.oswald,
+		title: "Oswald and Felix",
+		genre: "oswald",
+		selector: movieSelectors.selectOswaldMovies,
+	},
+  {
+		id: 6,
+		thunk: movieActions.fetchMerrieAsync,
+		url: requests.merrie,
+		title: "Merrie Melodies",
+		genre: "merrie",
+		selector: movieSelectors.selectMerrieMovies,
+	},
+	{
+		id: 7,
+		thunk: movieActions.fetchOthersCartoonsAsync,
+		url: requests.othersCartoons,
+		title: "Other Cartoons",
+		genre: "othersCartoons",
+		selector: movieSelectors.selectOtherCartoonsMovies,
+	},
+];
+
 
 export const fetchMovieDataConfig = [
 	{
 		id: 1,
-		thunk: fetchComedyMoviesAsync,
-		url: fetchComedyMovies,
-		title: "Comedy",
-		genre: "comedy",
-		selector: movieSelectors.selectComedyMovies,
+		thunk: movieActions.fetchDramaAsync,
+		url: requests.drama,
+		title: "Drama",
+		genre: "drama",
+		selector: movieSelectors.selectDramaMovies,
 	},
   {
 		id: 2,
-		thunk: fetchFeaturedMoviesAsync,
-		url: fetchFeatureMovies,
-		title: "Timesless Classics",
-		genre: "featured",
-		selector: movieSelectors.selectFeaturedMovies,
+		thunk: movieActions.fetchRomanceAsync,
+		url: requests.romance,
+		title: "Romance",
+		genre: "romance",
+		selector: movieSelectors.selectRomanceMovies,
 	},
 	{
 		id: 3,
-		thunk: fetchHorrorMoviesAsync,
-		url: fetchHorrorMovies,
+		thunk: movieActions.fetchHorrorMoviesAsync,
+		url: requests.fetchHorrorMovies,
 		title: "Horror",
 		genre: "horror",
 		selector: movieSelectors.selectHorrorMovies,
 	},
-];
-
-export const fetchBannerDataConfig = [
-
-];
-
-export const fetchSeriesDataConfig = [
-	{
-		id: 0,
-		thunk: fetchTrendingSeriesAsync,
-		url: fetchTrendingSeries,
-		title: "Trending Now",
-		genre: "trending",
-		selector: seriesSelectors.selectTrendingSeries,
-	},
-	{
-		id: 1,
-		thunk: fetchNetflixSeriesAsync,
-		url: fetchNetflixOriginals,
-		title: "Fakeflix Originals",
-		genre: "fakeflix",
-		selector: seriesSelectors.selectNetflixSeries,
-		isLarge: true,
-	},
-	{
-		id: 2,
-		thunk: fetchActionAdventureSeriesAsync,
-		url: fetchActionAdventureSeries,
-		title: "Action & Adventure",
-		genre: "actionadventure",
-		selector: seriesSelectors.selectActionAdventureSeries,
-	},
-	{
-		id: 3,
-		thunk: fetchAnimationSeriesAsync,
-		url: fetchAnimationSeries,
-		title: "Animation",
-		genre: "animation",
-		selector: seriesSelectors.selectAnimationSeries,
-	},
-	{
+  {
 		id: 4,
-		thunk: fetchComedySeriesAsync,
-		url: fetchComedySeries,
+		thunk: movieActions.fetchComedyMoviesAsync,
+		url: requests.fetchComedyMovies,
 		title: "Comedy",
 		genre: "comedy",
-		selector: seriesSelectors.selectComedySeries,
+		selector: movieSelectors.selectComedyMovies,
 	},
-	{
+
+  {
 		id: 5,
-		thunk: fetchCrimeSeriesAsync,
-		url: fetchCrimeSeries,
+		thunk: movieActions.fetchAvantAsync,
+		url: requests.avant,
+		title: "Avant-garde",
+		genre: "avant",
+		selector: movieSelectors.selectAvantMovies,
+	},
+
+  {
+		id: 6,
+		thunk: movieActions.fetchCrimeAsync,
+		url: requests.crime,
 		title: "Crime",
 		genre: "crime",
-		selector: seriesSelectors.selectCrimeSeries,
+		selector: movieSelectors.selectCrimeMovies,
 	},
-	{
-		id: 6,
-		thunk: fetchDocumentarySeriesAsync,
-		url: fetchDocumentarySeries,
-		title: "Documentary",
-		genre: "documentary",
-		selector: seriesSelectors.selectDocumentarySeries,
-	},
-	{
+
+  {
 		id: 7,
-		thunk: fetchFamilySeriesAsync,
-		url: fetchFamilySeries,
-		title: "Family",
-		genre: "family",
-		selector: seriesSelectors.selectFamilySeries,
+		thunk: movieActions.fetchFantasyAsync,
+		url: requests.fantasy,
+		title: "Fantasy",
+		genre: "fantasy",
+		selector: movieSelectors.selectFantasyMovies,
 	},
-	{
+  {
 		id: 8,
-		thunk: fetchKidsSeriesAsync,
-		url: fetchKidsSeries,
-		title: "Kids",
-		genre: "kids",
-		selector: seriesSelectors.selectKidsSeries,
+		thunk: movieActions.fetchScienceAsync,
+		url: requests.science,
+		title: "Science Fiction",
+		genre: "science",
+		selector: movieSelectors.selectScienceMovies,
 	},
-	{
+  {
 		id: 9,
-		thunk: fetchSciFiFantasySeriesAsync,
-		url: fetchSciFiFantasySeries,
-		title: "Sci-Fi & Fantasy",
-		genre: "scififantasy",
-		selector: seriesSelectors.selectSciFiFantasySeries,
+		thunk: movieActions.fetchWesternAsync,
+		url: requests.western,
+		title: "Fantasy",
+		genre: "western",
+		selector: movieSelectors.selectWesternMovies,
 	},
 ];
 

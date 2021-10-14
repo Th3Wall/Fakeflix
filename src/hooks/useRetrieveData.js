@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { fetchMovieDataConfig, fetchPopularDataConfig, fetchSeriesDataConfig } from "../dataConfig";
+import { fetchMovieDataConfig, fetchPopularDataConfig, fetchCartoonsDataConfig, fetchHomeDataConfig } from "../dataConfig";
 
 export const useRetrieveData = (type) => {
 
@@ -10,11 +10,14 @@ export const useRetrieveData = (type) => {
     useEffect(() => {
         let selectedConfigArray = null;
         switch (type) {
+            case "browse":
+                selectedConfigArray = fetchHomeDataConfig;
+                break;
+            case "cartoons":
+                selectedConfigArray = fetchCartoonsDataConfig;
+                break;
             case "movies":
                 selectedConfigArray = fetchMovieDataConfig;
-                break;
-            case "series":
-                selectedConfigArray = fetchSeriesDataConfig;
                 break;
             case "popular":
                 selectedConfigArray = fetchPopularDataConfig;

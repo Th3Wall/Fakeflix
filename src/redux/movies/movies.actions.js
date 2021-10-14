@@ -1,154 +1,313 @@
-import axios from "../../axiosInstance";
 import { moviesActionTypes } from "./movies.types";
-
-const reduceJWItem = (data, isLarge = false) => {
-	return { 
-    id: data.mediaid,
-    title: data.title,
-    overview: data.description,
-    original_name: '',
-    original_title: '',
-    name: '',
-    genre_ids: [],
-    poster_path: data.image,
-    backdrop_path: data.image,
-    release_date: data['Release Date'], 
-    cast: data['Cast'], 
-    status: data['Status'],  
-    genres: data['Genres'],  
-    link: data.link,
-    isLarge
-  }
-};
-
-export const fetchGenericMoviesAsync = (fetchMoviesRequest, fetchMoviesSuccess, fetchMoviesFailure, fetchUrl, isPage, isLarge = false) => {
-	return dispatch => {
-		dispatch(fetchMoviesRequest());
-		axios
-			.get(fetchUrl)
-			.then(res => {
-				const comedyMovies = res.data.playlist.map(el => ({
-					...reduceJWItem(el, isLarge),
-					isFavourite: false,
-				}));
-        if (isPage) {
-            dispatch(fetchMoviesSuccess(comedyMovies, isPage));
-        } else dispatch(fetchMoviesSuccess(comedyMovies));
-			})
-			.catch(error => {
-				const errorMessage = error.message;
-				dispatch(fetchMoviesFailure(errorMessage));
-			});
-	};
-};
+import { fetchContentAsync } from "../utils"
 
 // Comedy
-export const fetchComedyMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_COMEDY_MOVIES_REQUEST,
-});
-
-export const fetchComedyMoviesSuccess = (comedyMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_COMEDY_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_COMEDY_MOVIES_SUCCESS,
-	payload: comedyMovies,
-});
-
-export const fetchComedyMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_COMEDY_MOVIES_FAILURE,
-	payload: error,
-});
-
 export const fetchComedyMoviesAsync = (fetchUrl, isPage) => {
-  return fetchGenericMoviesAsync(
-    fetchComedyMoviesRequest,
-    fetchComedyMoviesSuccess,
-    fetchComedyMoviesFailure,
+  return fetchContentAsync(
     fetchUrl,
-    isPage
+    isPage,
+    moviesActionTypes.FETCH_COMEDY_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_COMEDY_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_COMEDY_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_COMEDY_MOVIES_SUCCESS
   )
 };
 
 // Horror
-export const fetchHorrorMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_HORROR_MOVIES_REQUEST,
-});
-
-export const fetchHorrorMoviesSuccess = (horrorMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_HORROR_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_HORROR_MOVIES_SUCCESS,
-	payload: horrorMovies,
-});
-
-export const fetchHorrorMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_HORROR_MOVIES_FAILURE,
-	payload: error,
-});
-
 export const fetchHorrorMoviesAsync = (fetchUrl, isPage) => {
-  return fetchGenericMoviesAsync(
-    fetchHorrorMoviesRequest,
-    fetchHorrorMoviesSuccess,
-    fetchHorrorMoviesFailure,
+  return fetchContentAsync(
     fetchUrl,
-    isPage
+    isPage,
+    moviesActionTypes.FETCH_HORROR_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_HORROR_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_HORROR_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_HORROR_MOVIES_SUCCESS
   )
 };
 
-// Timesless Classics 
-export const fetchFeaturedMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_FEATURED_MOVIES_REQUEST,
-});
-
-export const fetchFeaturedMoviesSuccess = (horrorMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_FEATURED_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_FEATURED_MOVIES_SUCCESS,
-	payload: horrorMovies,
-});
-
-export const fetchFeaturedMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_FEATURED_MOVIES_FAILURE,
-	payload: error,
-});
-
+// Timeless Classics 
 export const fetchFeaturedMoviesAsync = (fetchUrl, isPage) => {
-  return fetchGenericMoviesAsync(
-    fetchFeaturedMoviesRequest,
-    fetchFeaturedMoviesSuccess,
-    fetchFeaturedMoviesFailure,
+  return fetchContentAsync(
     fetchUrl,
     isPage,
+    moviesActionTypes.FETCH_FEATURED_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_FEATURED_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_FEATURED_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_FEATURED_MOVIES_SUCCESS,
     true
   )
 };
 
-
-// Banner
-export const fetchBannerMoviesRequest = () => ({
-	type: moviesActionTypes.FETCH_BANNER_MOVIES_REQUEST,
-});
-
-export const fetchBannerMoviesSuccess = (bannerMovies, isPage) => ({
-    type: isPage
-        ? moviesActionTypes.FETCH_BANNER_MOVIES_SUCCESS
-        : moviesActionTypes.LOAD_MORE_BANNER_MOVIES_SUCCESS,
-	payload: bannerMovies,
-});
-
-export const fetchBannerMoviesFailure = error => ({
-	type: moviesActionTypes.FETCH_BANNER_MOVIES_FAILURE,
-	payload: error,
-});
-
+// Banner Home
 export const fetchBannerMoviesAsync = (fetchUrl, isPage) => {
-  return fetchGenericMoviesAsync(
-    fetchBannerMoviesRequest,
-    fetchBannerMoviesSuccess,
-    fetchBannerMoviesFailure,
+  return fetchContentAsync(
     fetchUrl,
-    isPage
+    isPage,
+    moviesActionTypes.FETCH_BANNER_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_BANNER_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_BANNER_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_BANNER_MOVIES_SUCCESS
   )
 };
 
+export const fetchBannerCartoonsAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_CARTOON_BANNER_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_CARTOON_BANNER_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_CARTOON_BANNER_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_CARTOON_MORE_BANNER_MOVIES_SUCCESS
+  )
+};
+
+export const fetchBannerClassicsAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_CLASSICS_BANNER_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_CLASSICS_BANNER_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_CLASSICS_BANNER_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_CLASSICS_MORE_BANNER_MOVIES_SUCCESS
+  )
+};
+
+// Generic Cartoons
+export const fetchGenericCartoonsMoviesAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_GENERIC_CARTOONS_REQUEST,
+    moviesActionTypes.FETCH_GENERIC_CARTOONS_SUCCESS,
+    moviesActionTypes.FETCH_GENERIC_CARTOONS_FAILURE,
+    moviesActionTypes.LOAD_MORE_GENERIC_CARTOONS_SUCCESS
+  )
+};
+
+// Generic Movies
+export const fetchGenericMoviesMoviesAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_GENERIC_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_GENERIC_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_GENERIC_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_GENERIC_MOVIES_SUCCESS
+  )
+};
+
+// Chaplin
+export const fetchChaplinMoviesAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_CHAPLIN_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_CHAPLIN_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_CHAPLIN_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_CHAPLIN_MOVIES_SUCCESS
+  )
+};
+
+// The Three Stooges
+export const fetchThreeStoogesMoviesAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_THREE_STOOGES_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_THREE_STOOGES_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_THREE_STOOGES_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_THREE_STOOGES_MOVIES_SUCCESS
+  )
+};
+
+// Romance
+export const fetchRomanceAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_ROMANCE_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_ROMANCE_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_ROMANCE_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_ROMANCE_STOOGES_MOVIES_SUCCESS
+  )
+};
+
+// Popeye
+export const fetchPopeyeAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_POPEYE_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_POPEYE_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_POPEYE_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_POPEYE_STOOGES_MOVIES_SUCCESS
+  )
+};
+
+// Funny
+export const fetchFunnyAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_FUNNY_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_FUNNY_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_FUNNY_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_FUNNY_MOVIES_SUCCESS
+  )
+};
+
+// Drama
+export const fetchDramaAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_DRAMA_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_DRAMA_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_DRAMA_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_DRAMA_MOVIES_SUCCESS
+  )
+};
+
+// Others
+export const fetchOthersAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_OTHERS_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_OTHERS_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_OTHERS_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_OTHERS_MOVIES_SUCCESS
+  )
+};
+
+// Looney Tunes
+export const fetchLooneyAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_LOONEY_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_LOONEY_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_LOONEY_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_LOONEY_MOVIES_SUCCESS
+  )
+};
+
+// Superman
+export const fetchSupermanAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_SUPERMAN_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_SUPERMAN_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_SUPERMAN_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_SUPERMAN_MOVIES_SUCCESS
+  )
+};
+
+// Betty
+export const fetchBettyAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_BETTY_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_BETTY_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_BETTY_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_BETTY_MOVIES_SUCCESS
+  )
+};
+
+// Oswald
+export const fetchOswaldAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_OSWALD_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_OSWALD_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_OSWALD_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_OSWALD_MOVIES_SUCCESS
+  )
+};
+
+// Merrie Melodies
+export const fetchMerrieAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_MERRIE_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_MERRIE_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_MERRIE_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_MERRIE_MOVIES_SUCCESS
+  )
+};
+
+// Other Cartoons:
+export const fetchOthersCartoonsAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_OTHERS_CARTOONS_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_OTHERS_CARTOONS_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_OTHERS_CARTOONS_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_OTHERS_CARTOONS_MOVIES_SUCCESS
+  )
+};
+
+// Avant
+export const fetchAvantAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_AVANT_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_AVANT_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_AVANT_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_AVANT_MOVIES_SUCCESS
+  )
+};
+
+// Crime
+export const fetchCrimeAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_CRIME_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_CRIME_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_CRIME_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_CRIME_MOVIES_SUCCESS
+  )
+};
+
+// Fantasy
+export const fetchFantasyAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_FANTASY_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_FANTASY_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_FANTASY_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_FANTASY_MOVIES_SUCCESS
+  )
+};
+
+// Science
+export const fetchScienceAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_SCIENCE_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_SCIENCE_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_SCIENCE_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_SCIENCE_MOVIES_SUCCESS
+  )
+};
+
+// Western
+export const fetchWesternAsync = (fetchUrl, isPage) => {
+  return fetchContentAsync(
+    fetchUrl,
+    isPage,
+    moviesActionTypes.FETCH_WESTERN_MOVIES_REQUEST,
+    moviesActionTypes.FETCH_WESTERN_MOVIES_SUCCESS,
+    moviesActionTypes.FETCH_WESTERN_MOVIES_FAILURE,
+    moviesActionTypes.LOAD_MORE_WESTERN_MOVIES_SUCCESS
+  )
+};

@@ -4,7 +4,6 @@ import storage from 'redux-persist/lib/storage';
 
 import auth from "./auth";
 import movies from "./movies";
-import series from "./series";
 import favourites from "./favourites";
 import search from "./search";
 import detailModal from "./modal";
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
     search,
     auth,
     movies,
-    series,
     favourites,
     detailModal
 })

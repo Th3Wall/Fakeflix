@@ -8,27 +8,37 @@ export const FALLBACK_IMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_readme.png`;
 export const MOBILE_LOGO_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_favicon_192.png`;
 export const PROFILE_PIC_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_profilepic.png`;
 export const SIGNIN_BGIMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_signin_bg.jpg`;
-const { REACT_APP_API_KEY } = process.env;
 
 const requests = {
 	fetchSearchQuery: `/playlists/wwPvmWH4?search=`,
   // Movies
   fetchFeatureMovies: `/playlists/l42uuCrX`,
   fetchBannerMovies: `/playlists/FjcoGbos`,
+  fetchBannerCartoons: `/playlists/uwEqNNKd`,
+  fetchBannerClassics: `/playlists/2zdOipXO`,
 	fetchComedyMovies: `/playlists/mtniErJ6`,
 	fetchHorrorMovies: `/playlists/kX6tTAjn`,
-  // Series
-	discoverSeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&sort_by=popularity.desc&language=${LANG}`,
-	fetchTrendingSeries: `/trending/tv/week?api_key=${REACT_APP_API_KEY}&sort_by=popularity.desc&language=${LANG}`,
-	fetchNetflixOriginals: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_networks=213&sort_by=popularity.desc&language=${LANG}`,
-	fetchActionAdventureSeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=10759&sort_by=popularity.desc&language=${LANG}`,
-	fetchAnimationSeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=16&sort_by=popularity.desc&language=${LANG}`,
-	fetchComedySeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=35&sort_by=popularity.desc&language=${LANG}`,
-	fetchCrimeSeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=80&sort_by=popularity.desc&language=${LANG}`,
-	fetchDocumentarySeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=99&sort_by=popularity.desc&language=${LANG}`,
-	fetchFamilySeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=10751&sort_by=popularity.desc&language=${LANG}`,
-	fetchKidsSeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=10762&sort_by=popularity.desc&language=${LANG}`,
-	fetchSciFiFantasySeries: `/discover/tv?api_key=${REACT_APP_API_KEY}&with_genres=10765&sort_by=popularity.desc&language=${LANG}`,
+
+  movies: `/playlists/hJ8hWhZ1`,
+  cartoons: `/playlists/hJ8hWhZ1`,
+  chaplin: `/playlists/m9MyN7gc`,
+  threeStooges: `/playlists/6mfskxRT`,
+  romance: `/playlists/OAYgvKTr`,
+  popeye: `/playlists/4Yuxof2b`,
+  funny: `/playlists/mtniErJ6`,
+  drama: `/playlists/fmQwpA8V`,
+  others: `/playlists/ujAyl6T7`,
+  looney: `/playlists/YymXtclG`,
+  superman: `/playlists/hTiVWlgq`,
+  betty: `/playlists/auOFTNmf`,
+  oswald: `/playlists/VvTeDSNs`,
+  merrie: `/playlists/o2q07vBO`,
+  othersCartoons: `/playlists/nrd6bOZa`,
+  avant: `/playlists/YWmeycg6`,
+  crime: `/playlists/6T3KIjQa`,
+  fantasy: `/playlists/38q7cyzC`,
+  science: `/playlists/JLThzdyB`,
+  western: `/playlists/V4oXbL1I`,
 };
 
 export default requests;

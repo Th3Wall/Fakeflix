@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar/Navbar"
 import Homepage from "./pages/Homepage/Homepage"
 import Movies from "./pages/Movies/Movies"
+import Cartoons from "./pages/Cartoons/Cartoons"
 import TVSeries from './pages/TVSeries/TVSeries';
 import Popular from "./pages/Popular/Popular";
 import MyList from './pages/MyList/MyList';
@@ -81,6 +82,18 @@ const App = () => {
                     <Route
                         exact
                         path="/tvseries/:categoryName"
+                        render={(props) => currentUser
+                            ? <Category {...props} />
+                            : <Redirect to="/login" />}
+                    />
+                    <Route
+                        exact
+                        path="/cartoons"
+                        render={() => currentUser ? <Cartoons /> : <Redirect to="/login" />}
+                    />
+                    <Route
+                        exact
+                        path="/cartoons/:categoryName"
                         render={(props) => currentUser
                             ? <Category {...props} />
                             : <Redirect to="/login" />}

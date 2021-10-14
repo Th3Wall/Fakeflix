@@ -93,7 +93,6 @@ export function* checkIfUserIsAuthenticated(){
 
     // Check if User is already connected by retrieving the accounts
     let accounts = yield call(web3.eth.getAccounts);
-    accounts = (!accounts || !accounts.length) ? yield call(coinbaseProvider.request, { method: "eth_requestAccounts" }) : accounts;
     web3 = new Web3(walletConnectProvider);
     accounts = (!accounts || !accounts.length) ? yield call(web3.eth.getAccounts) : accounts;
 		if (!accounts || !accounts.length) return;

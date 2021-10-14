@@ -39,6 +39,7 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"lint": "eslint .",
+    "deploy": "react-scripts build && aws s3 sync build/ s3://cinema-flowtys --profile flowtys",
 		"format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
 	},
 	"eslintConfig": {
