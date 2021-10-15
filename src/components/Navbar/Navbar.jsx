@@ -75,11 +75,11 @@ const Navbar = () => {
                 Classics
 							</NavLink>
 						</li>
-						{/* <li className="Navbar__navlinks--link">
+						<li className="Navbar__navlinks--link">
 							<NavLink to="/mylist" activeClassName="activeNavLink">
 								My list
 							</NavLink>
-						</li> */}
+						</li>
 					</ul>
 				) : (
 					<div

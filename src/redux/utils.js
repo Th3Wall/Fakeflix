@@ -1,5 +1,23 @@
 import axios from "../axiosInstance";
 
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 export const reduceJWItem = (data, isLarge = false) => {
 	return { 
     id: data.mediaid,
@@ -16,6 +34,7 @@ export const reduceJWItem = (data, isLarge = false) => {
     status: data['Status'],  
     genres: data['Genres'],  
     link: data.link,
+    poster: data.poster,
     isLarge
   }
 };
@@ -26,10 +45,10 @@ export const fetchGenericMoviesAsync = (fetchMoviesRequest, fetchMoviesSuccess, 
 		axios
 			.get(fetchUrl)
 			.then(res => {
-				const comedyMovies = res.data.playlist.map(el => ({
+				const comedyMovies = shuffle(res.data.playlist.map(el => ({
 					...reduceJWItem(el, isLarge),
 					isFavourite: false,
-				}));
+				})));
         if (isPage) {
             dispatch(fetchMoviesSuccess(comedyMovies, isPage));
         } else dispatch(fetchMoviesSuccess(comedyMovies));

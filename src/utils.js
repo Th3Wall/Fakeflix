@@ -13,7 +13,7 @@ export const capitalizeFirstLetter = text => (
 );
 
 export const randomize = data => (
-    Math.floor(Math.random() * data.length - 1)
+    Math.floor(Math.random() * data.length)
 );
 
 export const truncate = (text, n) => (

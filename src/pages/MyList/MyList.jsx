@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { staggerHalf, defaultPageFadeInVariants } from "../../motionUtils";
 import { useSelector } from "react-redux"
 import { selectFavouritesList } from "../../redux/favourites/favourites.selectors"
+import { BiInfoCircle } from "react-icons/bi";
+import Tooltip from "../../components/Tooltip/Tooltip"
 
 const MyList = () => {
     const favs = useSelector(selectFavouritesList);
@@ -18,7 +20,13 @@ const MyList = () => {
             exit="exit"
         >
             {favs && favs.length > 0 && (
-                <h2 className="MyList__title">My List</h2>
+              <Tooltip text="Stored locally on your Browser. If you clear your cache, your list will be gone. We are working on making in permanent!">
+                <div className="MyList__titleBox">
+                  <h2 className="MyList__title">My List</h2>
+                  <BiInfoCircle size="1.5em"/>
+                </div>
+              </Tooltip>
+
             )}
             <motion.div
                 className="MyList__wrp"

@@ -1,0 +1,30 @@
+@import "../../scss/mixin";
+@import "../../scss/variables";
+
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-box {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  top: calc(100% + 5px);
+  display: none;
+  font-size: 11px;
+}
+
+.tooltip-box.visible {
+  display: block;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+}

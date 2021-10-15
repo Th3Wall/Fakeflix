@@ -17,7 +17,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 SwiperCore.use([Navigation, Pagination]);
 
-const Row = ({ selector, title, genre, isLarge }) => {
+const Row = ({ selector, title, genre, isLarge, favs }) => {
 	const { width } = useViewport();
 	const rowData = useSelector(selector);
 	const { loading, error, data: results } = rowData;
@@ -123,7 +123,7 @@ const Row = ({ selector, title, genre, isLarge }) => {
 									<RowPoster
 										item={result}
 										isLarge={isLarge}
-										isFavourite={result.isFavourite}
+										isFavourite={favs.find(el => el.id === result.id)}
 										key={result.id}
 									/>
 								</SwiperSlide>

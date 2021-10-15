@@ -8,7 +8,7 @@ import { showModalDetail } from "../../redux/modal/modal.actions";
 import { Link } from "react-router-dom";
 
 const RowPoster = result => {
-	const { item, item: { id, title, original_name, original_title, name, genre_ids, poster_path, backdrop_path }, isLarge, isFavourite } = result;
+	const { item, item: { id, title, original_name, original_title, name, genre_ids, poster, backdrop_path, isLarge }, isFavourite} = result;
 	let fallbackTitle = title || original_title || name || original_name;
 	const genresConverted = useGenreConversion(genre_ids);
 	const dispatch = useDispatch();
@@ -35,9 +35,16 @@ const RowPoster = result => {
 			onClick={handleModalOpening}
 		>
 			{isLarge ? (
-				poster_path ? (
-					<img src={`${poster_path}`} alt={fallbackTitle} />
-				) : ""
+				poster ? (
+					<img src={`${poster}`} alt={fallbackTitle} />
+				) : (
+          <>
+            <img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
+            <div className="Row__poster__fallback">
+              <span>{fallbackTitle}</span>
+            </div>
+          </>
+          )
 			) : backdrop_path ? (
 				<img src={`${backdrop_path}`} alt={fallbackTitle} />
 			) : (
