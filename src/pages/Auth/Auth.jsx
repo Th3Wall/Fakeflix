@@ -18,8 +18,8 @@ const Auth = () => {
 			animate="animate"
 			exit="exit"
 		>
+      <div className="Auth__opacityLayer" />
 			<div className="Auth__bgLayer"/>
-		
       <motion.div className="Auth__topBox" initial="hidden" animate="animate" exit="exit">
         <Link to="/" className="Auth__logo">
           <img className="Auth__logo" src={flowtys} alt="" />

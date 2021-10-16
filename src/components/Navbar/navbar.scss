@@ -92,31 +92,30 @@
     }
 
     &__primarynav {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        margin: 0 auto;
-        width: 100%;
-        height: 45px;
-        justify-content: center;
-        pointer-events: none;
-        transition: all 0.2s ease-in-out;
-
-        @include mq(lg) {
-            position: relative;
-            display: flex;
-            align-items: center;
-            min-height: 40px;
-            cursor: pointer;
-            width: unset;
-            height: unset;
-            top: unset;
-            left: unset;
-            margin: unset;
-            margin-left: 2rem;
-            pointer-events: all;
-        }
-
+      position: absolute;
+      left: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 45px;
+      justify-content: center;
+      pointer-events: none;
+      transition: all 0.2s ease-in-out;
+      mix-blend-mode: lighten;
+      
+      @include mq(lg) {
+          position: relative;
+          display: flex;
+          align-items: center;
+          min-height: 40px;
+          cursor: pointer;
+          width: unset;
+          height: unset;
+          top: unset;
+          left: unset;
+          margin: unset;
+          margin-left: 2rem;
+          pointer-events: all;
+      }
         &--scrolled {
             background-color: $black;
         }

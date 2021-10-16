@@ -7,7 +7,7 @@ const requests = {
   fetchBannerMovies: `/playlists/FjcoGbos`,
   fetchBannerCartoons: `/playlists/uwEqNNKd`,
   fetchBannerClassics: `/playlists/2zdOipXO`,
-	fetchComedyMovies: `/playlists/mtniErJ6`,
+	fetchComedyMovies: `/playlists/6ZcKZpsI`,
 	fetchHorrorMovies: `/playlists/kX6tTAjn`,
 
   movies: `/playlists/cznhaGHd`,

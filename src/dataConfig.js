@@ -175,16 +175,6 @@ export const fetchMovieDataConfig = [
 		genre: "comedy",
 		selector: movieSelectors.selectComedyMovies,
 	},
-
-  {
-		id: 5,
-		thunk: movieActions.fetchAvantAsync,
-		url: requests.avant,
-		title: "Avant-garde",
-		genre: "avant",
-		selector: movieSelectors.selectAvantMovies,
-	},
-
   {
 		id: 6,
 		thunk: movieActions.fetchCrimeAsync,

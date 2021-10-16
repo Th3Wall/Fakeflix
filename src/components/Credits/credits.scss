@@ -21,7 +21,8 @@
 	}
 
   &__about {
-    width: 30%;
+    width: 100%;
+    max-width: 652px;
   }
 
   &__logo {
@@ -35,18 +36,27 @@
   &__logoBox {
     display: flex;
     align-items: center;
+    font-size: 12px;
+
+    @include mq('lg'){
+      font-size: 16px;
+    }
   }
 
   &__aboutText {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     font-family: $main-font;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     color: #888;
+
+    @include mq('lg'){
+      font-size: 16px;
+    }
   }
 
   &__primarynav,
@@ -61,14 +71,9 @@
 
       &--link {
           display: inline-block;
+          font-size: 12px;
           margin-right: 22px;
-         
-          @include mq('sm'){
-              font-size: 16px;
-          }
-          @include mq('md'){
-              font-size: 1.8vw;
-          }
+
           @include mq('lg'){
               font-size: 1.2vw;
               text-shadow: 2px 2px 2px rgba($color: $black, $alpha: 0.45);
@@ -79,7 +84,6 @@
           
           a {
               font-family: $main-font;
-              font-size: 20px;
               font-weight: 500;
               font-stretch: normal;
               font-style: normal;
@@ -108,7 +112,6 @@
   }
 
   &__primarynav {
-      position: absolute;
       top: 70px;
       left: 0;
       margin: 0 auto;
@@ -241,75 +244,6 @@
                   @include mq('lg') {
                       font-size: 1.2vw;
                   }
-              }
-          }
-      }
-  }
-  
-
-  &__navprofile {
-      position: relative;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &.active {
-          .Navbar__navprofile--caret {
-              transform: rotate(180deg);
-          }
-      }
-      
-      &--avatar {
-          max-width: 30px;
-          width: 100%;
-          margin-right: 8px;
-
-          @include mq(sm) {
-              max-width: 40px;
-          }
-      }
-
-      &--caret {
-          transition: transform 0.2s ease-out;
-      }
-
-      &--content {
-          display: block;
-          pointer-events: none;
-          position: absolute;
-          opacity: 0;
-          top: 100px;
-          right: 0;
-          padding: 10px 0;
-          min-width: auto;
-          white-space: nowrap;
-          border: 1px solid rgba(255,255,255,0.5);
-          background-color: rgba(0,0,0,0.9);
-          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-          z-index: 1;
-          transition: all 0.2s ease-out;
-
-          @include mq(sm) {
-              min-width: 180px;
-          }
-
-          &.active {
-              opacity: 1;
-              top: 55px;
-              pointer-events: all;
-          }
-          
-          li {
-              color: $white;
-              padding: 5px 15px;
-              text-decoration: none;
-              display: block;
-      
-              &:hover {
-                  text-decoration: underline;
-              }
-              a {
-                  display: block;
               }
           }
       }

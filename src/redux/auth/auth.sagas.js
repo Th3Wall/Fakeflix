@@ -7,7 +7,10 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import WalletLink from "walletlink";
 
 const contractABI = require("../../contracts/Flowtys.json");
-let contractAddress = "0x52607cb9c342821ea41ad265B9Bb6a23BEa49468";
+const contractAddress = "0x52607cb9c342821ea41ad265B9Bb6a23BEa49468";
+const contractABIPolygon = require("../../contracts/FlowtysCollabDrops.json");
+const contractAddressPolygon = "0xaFeb9f094207c78508eF5192AC25ab20CD4F4197";
+
 const walletLink = new WalletLink({
   appName: "Flowtys+",
   appLogoUrl: "/favicon.ico",
@@ -27,14 +30,22 @@ export function* getSnapshotFromUserAuth(address) {
     const web3Provider = new Web3(
       `wss://mainnet.infura.io/ws/v3/${process.env.REACT_APP_INFURA_APP_ID}`
     );
+    const web3ProviderPolygon = new Web3(
+      `https://polygon-rpc.com`
+    );
     const contract = new web3Provider.eth.Contract(
       contractABI.abi,
       contractAddress
     );
+    const contractPlygon = new web3ProviderPolygon.eth.Contract(
+      contractABIPolygon.abi,
+      contractAddressPolygon
+    );
     const balance = yield call(contract.methods.balanceOf(address).call);
-    console.log(`getSnapshotFromUserAuth ${address} ${balance}`)
-    if (!parseInt(balance)) {
-      yield put(signInFailure('You do not have Flowtys in your wallet, gent 🎩'));
+    const balanceTicket = yield call(contractPlygon.methods.balanceOf(address, 1).call);
+    const total = parseInt(balance) + parseInt(balanceTicket);
+    if (!parseInt(total)) {
+      yield put(signInFailure('You do not have Flowtys/Ticket in your wallet, gent 🎩'));
       return;
     }
 		yield put(signInSuccess({ id: address }));
@@ -92,7 +103,10 @@ export function* checkIfUserIsAuthenticated(){
     }
 
     // Check if User is already connected by retrieving the accounts
-    let accounts = yield call(web3.eth.getAccounts);
+    let accounts = [];
+    if (web3) {
+      accounts = yield call(web3.eth.getAccounts);
+    }
     web3 = new Web3(walletConnectProvider);
     accounts = (!accounts || !accounts.length) ? yield call(web3.eth.getAccounts) : accounts;
 		if (!accounts || !accounts.length) return;

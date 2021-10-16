@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { navbarFadeInVariants } from "../../motionUtils";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-import Searchbar from "../Searchbar/Searchbar";
+// import Searchbar from "../Searchbar/Searchbar";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/auth/auth.selectors";
 import { signOutStart } from "../../redux/auth/auth.actions";
@@ -26,6 +26,7 @@ import avatar11 from "../../assets/avatar/Flowtys_Wubldbeldbsofpe.jpg";
 import avatar12 from "../../assets/avatar/Flowtys_YouDontSay.jpg";
 import avatar13 from "../../assets/avatar/Flowtys_Yum.jpg";
 import { randomize } from "../../utils";
+import { useLocation } from 'react-router-dom'
 
 const Navbar = () => {
 	const { width } = useViewport();
@@ -38,6 +39,7 @@ const Navbar = () => {
   const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13];
   const avatar = avatars[randomize(avatars)];
 	const dispatch = useDispatch();
+  const location = useLocation();
 
 	useOutsideClick(genresNavRef, () => {
 		if (genresNav) setGenresNav(false);
@@ -45,6 +47,13 @@ const Navbar = () => {
 	useOutsideClick(profileNavRef, () => {
 		if (profileNav) setProfileNav(false);
 	});
+
+  const currentPage = (path) => {
+    if (path.startsWith('/movies')) { return 'Classics'; }
+    if (path.startsWith('/cartoons')) { return 'Cartoons'; }
+    if (path.startsWith('/mylist')) { return 'M	My List'; }
+    return 'Home';
+  }
 
 	return (
 		<>
@@ -77,7 +86,7 @@ const Navbar = () => {
 						</li>
 						<li className="Navbar__navlinks--link">
 							<NavLink to="/mylist" activeClassName="activeNavLink">
-								My list
+								My List
 							</NavLink>
 						</li>
 					</ul>
@@ -86,7 +95,7 @@ const Navbar = () => {
 						className={`Navbar__primarynav Navbar__navlinks ${isScrolled && "Navbar__primarynav--scrolled"}`}
 						onClick={() => setGenresNav(!genresNav)}
 					>
-						<span className="Navbar__navlinks--link">Discover</span>
+						<span className="Navbar__navlinks--link">{currentPage(location.pathname)}</span>
 						<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
 						<div
 							className={`Navbar__primarynav--content ${genresNav ? "active" : ""}`}
@@ -102,19 +111,14 @@ const Navbar = () => {
 										</NavLink>
 									</li>
 									<li className="Navbar__navlinks--link">
-										<NavLink to="/tvseries" activeClassName="activeNavLink">
-											TV Series
-										</NavLink>
+                    <NavLink to="/cartoons" activeClassName="activeNavLink">
+                      Cartoons
+                    </NavLink>
 									</li>
 									<li className="Navbar__navlinks--link">
-										<NavLink to="/movies" activeClassName="activeNavLink">
-											Movies
-										</NavLink>
-									</li>
-									<li className="Navbar__navlinks--link">
-										<NavLink to="/popular" activeClassName="activeNavLink">
-											New & Popular
-										</NavLink>
+                    <NavLink to="/movies" activeClassName="activeNavLink">
+                      Classics
+                    </NavLink>
 									</li>
 									<li className="Navbar__navlinks--link">
 										<NavLink to="/mylist" activeClassName="activeNavLink">
@@ -127,9 +131,9 @@ const Navbar = () => {
 					</div>
 				)}
 				<div className="Navbar__secondarynav">
-					<div className="Navbar__navitem">
+					{/* <div className="Navbar__navitem">
 						<Searchbar />
-					</div>
+					</div> */}
 					<div className="Navbar__navitem">
 						<div
 							className={`Navbar__navprofile ${profileNav && "active"}`}
