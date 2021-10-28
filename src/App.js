@@ -132,6 +132,11 @@ const App = () => {
                         path="/login"
                         render={() => currentUser ? <Redirect to="/splash"/> : <Auth />}
                     />
+                    <Route
+                        exact
+                        path="/callback"
+                        render={() => currentUser ? <Redirect to="/splash"/> : <Auth />}
+                    />
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>

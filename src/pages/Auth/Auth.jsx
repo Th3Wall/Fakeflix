@@ -6,9 +6,21 @@ import { staggerOne, authFadeInUpVariants, modalVariants, authPageFadeInVariants
 import { useSelector } from "react-redux";
 import { selectAuthErrors } from "../../redux/auth/auth.selectors";
 import flowtys from "../../assets/flowtys.webp";
+import { useEffect } from "react";
+import { niftyConnectSignInStart } from "../../redux/auth/auth.actions";
+import { useDispatch, } from "react-redux";
 
 const Auth = () => {
+  const dispatch = useDispatch();
 	const authError = useSelector(selectAuthErrors);
+  const fragment = new URLSearchParams(window.location.hash.slice(1));
+  const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+
+  useEffect(() => {
+		if (accessToken && tokenType) {
+      dispatch(niftyConnectSignInStart({ accessToken, tokenType }));
+    }
+	}, [])
 
 	return (
 		<motion.div

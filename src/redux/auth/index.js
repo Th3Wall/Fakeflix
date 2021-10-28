@@ -8,6 +8,9 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
+        case authActionTypes.NIFTYWALLET_SIGN_IN_START:
+        case authActionTypes.COINBASE_SIGN_IN_START:
+        case authActionTypes.WALLETCONNECT_SIGN_IN_START:
         case authActionTypes.METAMASK_SIGN_IN_START:
             return {
                 ...state,

@@ -12,6 +12,11 @@ export const walletConnectSignInStart = () => ({
   type: authActionTypes.WALLETCONNECT_SIGN_IN_START
 })
 
+export const niftyConnectSignInStart = tokenAndType => ({
+  type: authActionTypes.NIFTYWALLET_SIGN_IN_START,
+  payload: tokenAndType
+})
+
 export const coinbaseSignInStart = () => ({
   type: authActionTypes.COINBASE_SIGN_IN_START
 })

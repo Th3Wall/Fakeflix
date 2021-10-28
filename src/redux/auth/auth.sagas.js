@@ -93,6 +93,26 @@ export function* connectCoinbaseConnect() {
 	}
 }
 
+export function* signInWithNiftyWallet({payload: { accessToken, tokenType }}) {
+	try {
+		const { username } = yield (yield fetch('https://api.niftygateway.com/v1/me/', {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': `${tokenType} ${accessToken}`, 
+        'Content-Type': 'application/json'
+      }), 
+    })).json();
+		const { count } = yield (yield fetch(`https://api.niftygateway.com/v1/users/${username}/nifties/?contractAddress=0x52607cb9c342821ea41ad265b9bb6a23bea49468&limit=1`)).json();
+
+    if (count > 0) {
+      yield put(signInSuccess({ id: username }));
+    }
+	} catch (e) {
+    console.log(e)
+		yield put(signInFailure(e.message));
+	}
+}
+
 export function* checkIfUserIsAuthenticated(){
 	try {
     let web3;
@@ -144,12 +164,17 @@ export function* onSignOutStart(){
 	yield takeLatest(authActionTypes.SIGN_OUT_START, signOut);
 }
 
+export function* onNiftySignInStart(){
+	yield takeLatest(authActionTypes.NIFTYWALLET_SIGN_IN_START, signInWithNiftyWallet);
+}
+
 export function* authSagas() {
 	yield all([
 		call(onCheckUserSession),
 		call(onMetaMaskSignInStart),
     call(onWalletConnectSignInStart),
     call(onCoinbaseSignInStart),
+    call(onNiftySignInStart),
 		call(onSignOutStart),
 	]);
 }

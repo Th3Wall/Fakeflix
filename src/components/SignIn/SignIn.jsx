@@ -8,11 +8,16 @@ import metamask from "../../assets/metamask.svg";
 import walletConnect from "../../assets/walletc.svg";
 import coinbaseWallet from "../../assets/coibaseWallet.webp";
 import useViewport from "../../hooks/useViewport";
+import nifty from "../../assets/nifty.svg"
 
 const SignIn = () => {
   const { width } = useViewport();
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectAuthLoadingState);
+
+  const niftyLogin = () => {
+    window.location.href = `https://niftygateway.com/authorize?scope=profile:read&client_id=${process.env.REACT_APP_NIFTY_ID}&redirect_uri=${encodeURIComponent('https://cinema.flowtys.com/callback')}&response_type=token&response_mode=fragment`; 
+  }
 
 	return (
 		<motion.form
@@ -73,6 +78,24 @@ const SignIn = () => {
         /> 
         Coinbase Wallet
 			</motion.button>
+      <motion.hr variants={authFadeInUpVariants} className="Auth__content--divider" />
+			<motion.button
+				type="button"
+				variants={authFadeInUpVariants}
+				className={`SignIn__form--button button__wallet ${isLoading && 'loading'}`}
+				onClick={niftyLogin}
+				disabled={isLoading}
+			>
+				<img
+          alt=""
+          style={{ transition: "none" }}
+          src={nifty}
+          className="metamask-icon"
+        /> 
+        Nifty Gateway Wallet
+			</motion.button>
+
+      
 		</motion.form>
 	)
 }
