@@ -74,7 +74,7 @@ const Player = () => {
       </Animated>
 			<ReactJWPlayer
         playerId='my-unique-id'
-        playerScript='https://cdn.jwplayer.com/libraries/85Wlrlzb.js'
+        playerScript={`https://cdn.jwplayer.com/libraries/${process.env.REACT_APP_JWT_APP_ID}.js`}
         className="Player__box"
         onReady={onReady}
         width = "100%"

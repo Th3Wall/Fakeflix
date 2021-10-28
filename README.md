@@ -1,117 +1,62 @@
-<h1 align="center">Fakeflix</h1>
-<h5 align="center">Not the usual clone that you can find on the web.</h5><br/>
+<h1 align="center">Flowtys+</h1>
+<h5 align="center">A free streaming service for owners of a Non-fungible Token created by Flowty.</h5><br/>
 
-![Image of Fakeflix Project](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png)
+![Image of `Flowtys+` Project](https://cinema.flowtys.com/preview.jpeg)
 
-https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-83ba-66cded3f321f.mp4
+https://cinema.flowtys.com/about.mov
 
 <br/>
 
-## 🎯 About
+## 🎫 About
 
-I have started this project with the purpose of learning how to structure a Web App of a mid-level complexity integrating the Redux logic.<br/>
-I've tried to replicate the original layout as much as possible and I've also made some improvements in some sections inserting route animations and micro-interactions. I've also inserted a really close clone of Netflix's original splash animation (forked from a famous [codepen from Claudio Bonfati](https://codepen.io/claudio_bonfati/pen/mdryxPv)), made entirely with CSS, as well as the play animation. I have then sampled the original Netflix "ta-duummm" sound and I made it play along with the two animations.<br/>
-I put a lot of effort into it and I hope that you could like it.<br/><br/>
-The Web App redirects you to an authentication page, in which you can choose to sign up or to sign in: you can sign in with your custom account or with your Google account. Once you are logged in and after the splash animation, you will land on the homepage, in which you can find a mix of movies and series divided into rows.<br/>
-Each row represents a movie/series category: you can click on it and you will be redirected to the selected category, a page that loads thousands of movies with an infinite scroll. You can also navigate to the movies page, series page, new & popular page (that contains the upcoming movies/series and the most popular ones) or you can navigate to your favorites page.<br/>
-You can add/remove movies/series through the plus and minus buttons that you can find hovering each poster or opening a single movie's detail modal. If you click on the play button you can enjoy a custom CSS-only play animation with Fakeflix's brand name.<br/>
-You have also the option to search through TMDB's catalogue using the search functionality inside the fixed navbar: you can search by movie name, actor or movie director.<br/><br/>
-Go try it and please let me know if you enjoyed it with a ⭐️, I would appreciate it a lot.
+A free streaming service for owners of a Non-fungible Token created by Flowty.<br/>
+With pd cartoons & movies, accessible to all owners of Flowtys or Golden Ticket NFTs.
+
+## 🎩 Flowtys
+
+[Flowtys](https://flowtys.com) are 10k unique characters backed by non-fungible tokens (NFTs) on the Ethereum blockchain. All animation frames were drawn by hand. The ERC-721 verified Flowtys Smart Contract: [0x52607cb9c342821ea41ad265B9Bb6a23BEa49468](https://etherscan.io/address/0x52607cb9c342821ea41ad265B9Bb6a23BEa49468)
+
+### A stand for public domain<br/>
+
+This project is a love letter to the art and critique on the company spending Millions of Dollars to extend copyright terms while licensing public domain goods, exploiting our cultural heritage.
+
+Or as Wisecrack has put it correctly, D. „takes [once public domain] stories like Pinocchio, Sleeping Beauty or the Hunchback of Notre Dame and throws them into the commercial meat grinder. […] They’ve been doing this for the past hundred years.“
+
+Therefore, we do the opposite.
 <br/>
 
-## ▶️ Demo
+## ▶️ Live version
 
-Here you can find the demo links:
+In order to access to would need to connect your ETH wallet and have in it either one:
 
-- [Vercel](https://fakeflix-clone.vercel.app/)
-- [Netlify](https://fakeflix-app.netlify.app/)
+- [🎩 Flowtys OpenSea Collection](https://opensea.io/collection/flowtys)
+- [🎃 Morphys OpenSea Collection](https://opensea.io/collection/morphys)
+- [🎫 Golden Ticket](https://opensea.io/assets/matic/0xafeb9f094207c78508ef5192ac25ab20cd4f4197/1)
 
-### Test credentials (for lazy users 😓)
+## :sparkles: ToDo
 
-> Email: fakeflixuser@test.com<br/>
-> Password: FakeflixTest<br/>
-
-I have also added a button that lets you sign in anonymously.
-
-## :sparkles: Features
-
-:heavy_check_mark: &nbsp;&nbsp;Display movies and series, old and upcoming, also from the real Netflix<br />
-:heavy_check_mark: &nbsp;&nbsp;Category related page with infinite scroll<br />
-:heavy_check_mark: &nbsp;&nbsp;Search by title, actor, movie director<br />
-:heavy_check_mark: &nbsp;&nbsp;Add/Remove to/from "My list" functionality<br />
-:heavy_check_mark: &nbsp;&nbsp;Detail modal with extra informations about the selected movie/series<br />
-:heavy_check_mark: &nbsp;&nbsp;Customized splash animation (credits: [Claudio Bonfati's pen](https://codepen.io/claudio_bonfati/pen/mdryxPv)) with characteristic Netflix sound<br />
-:heavy_check_mark: &nbsp;&nbsp;Play animation with characteristic Netflix sound<br />
-:heavy_check_mark: &nbsp;&nbsp;Google login<br />
-:heavy_check_mark: &nbsp;&nbsp;User Sign In & User Sign Up<br />
-:heavy_check_mark: &nbsp;&nbsp;Use of React hooks and custom hooks<br />
-:heavy_check_mark: &nbsp;&nbsp;Favourites list persistence (session storage)<br />
-:heavy_check_mark: &nbsp;&nbsp;Responsive layout<br />
-:heavy_check_mark: &nbsp;&nbsp;Swipeable movies list<br />
-:heavy_check_mark: &nbsp;&nbsp;Loading skeletons<br />
-:heavy_check_mark: &nbsp;&nbsp;Route animations and micro-interactions (handled with Framer Motion)<br />
-
-## :rocket: Technologies
-
-- [TMDb API's](https://www.themoviedb.org/)
-- [React](https://reactjs.org/)
-- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-- [React Hooks Form](https://react-hook-form.com/)
-- [React Router](https://reactrouter.com/web/guides/quick-start)
-- [Redux](https://redux.js.org/)
-- [Redux Thunk](https://github.com/reduxjs/redux-thunk)
-- [Redux Saga](https://redux-saga.js.org/)
-- [Redux Persist](https://github.com/rt2zz/redux-persist)
-- [Redux Logger](https://github.com/LogRocket/redux-logger)
-- [Reselect](https://github.com/reduxjs/reselect)
-- [Firebase](https://firebase.google.com/)
-- [SCSS](https://sass-lang.com/)
-- [SwiperJS](https://swiperjs.com/react)
-- [Framer Motion](https://www.framer.com/motion/)
-- [React Icons](https://react-icons.github.io/react-icons/)
-- [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deploy and CI.
-
-## Netlify deploy & configuration
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14a32bbb-d899-445d-8fa6-8bed739c0296/deploy-status)](https://app.netlify.com/sites/fakeflix-app/deploys)
-
-### Deploy configuration steps
-
-1. Connect your GitHub account to Netlify
-2. Select the project
-3. In Settings → Build & Deploy → Set **Build command** to : **_npm run build_**
-4. In Settings → Build & Deploy → Set **Publish directory** to : **_build_**
-5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBd's API key, Firebase configuration).
-   <br/>
+⌛ &nbsp;&nbsp;Store MyList remotely and sync on login<br />
+⌛ &nbsp;&nbsp;Play next movies automatically<br />
+⌛ &nbsp;&nbsp;Support like/dislike<br />
+⌛ &nbsp;&nbsp;Change profile picture to one of your Flowty/Morphy<br />
+⌛ &nbsp;&nbsp;Submit movie form<br />
 
 ## 📸 Screenshots
 
 **Sign In**
-![Screenshot of Fakeflix Sign In](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_SignIn.jpg)
-<br/>
-
-**Sign Up**
-![Screenshot of Fakeflix Sign Up](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_SignUp.jpg)
+![Screenshot of Fakeflix Sign In](https://cinema.flowtys.com/login.jpeg)
 <br/>
 
 **Homepage**
-![Screenshot of Fakeflix Homepage](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_Home.jpg)
+![Screenshot of Fakeflix Homepage](https://cinema.flowtys.com/main.jpeg)
 <br/>
 
-**Modal Detail**
-![Screenshot of Fakeflix Modal Detail](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_DetailModal.jpg)
+**Movie Detail**
+![Screenshot of Fakeflix Modal Detail](https://cinema.flowtys.com/info.jpeg)
 <br/>
 
-**Mobile Experience**
-
-https://user-images.githubusercontent.com/25078541/123543831-b8a35700-d750-11eb-84dc-b53e5a9a997a.mp4
-
-<br/>
-
-**Desktop Experience**
-
-https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-83ba-66cded3f321f.mp4
-
+**Player**
+![Screenshot of Fakeflix Modal Detail](https://cinema.flowtys.com/player.jpeg)
 <br/>
 
 ## 👨🏻‍💻 Run Locally
@@ -119,13 +64,13 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 - Clone the project
 
 ```bash
-  git clone https://github.com/Th3Wall/Fakeflix
+  git clone https://github.com/flowtys/FlowtysPlus
 ```
 
 - Go to the project directory
 
 ```bash
-  cd fakeflix
+  cd FlowtysPlus
 ```
 
 - Install dependencies
@@ -136,24 +81,33 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 
 - Create a .env file
 
-- Request an API key from TMDB and them add it to the .env file
+- Request an API key from INFURA and them add it to the .env file
 
 ```
-REACT_APP_API_KEY=REACT_APP_API_KEY
+REACT_APP_INFURA_APP_ID=REACT_APP_INFURA_APP_ID
 ```
 
-- Create a project inside Google Firebase and export the configuration
+- Request an API key from JWTPlayer and them add it to the .env file
+
+```
+REACT_APP_JWT_APP_ID=REACT_APP_JWT_APP_ID
+```
+
+- `Optional` Request an OAth key from Nifty Gateway and them add it to the .env file
+
+```
+REACT_APP_NIFTY_ID=REACT_APP_NIFTY_ID
+```
 
 - Add the configuration inside the .env file created previously
 
 ```
-REACT_APP_FIREBASE_API_KEY=REACT_APP_FIREBASE_API_KEY
-REACT_APP_FIREBASE_AUTH_DOMAIN=REACT_APP_FIREBASE_AUTH_DOMAIN
-REACT_APP_FIREBASE_PROJECT_ID=REACT_APP_FIREBASE_PROJECT_ID
-REACT_APP_FIREBASE_STORAGE_BUCKET=REACT_APP_FIREBASE_STORAGE_BUCKET
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=REACT_APP_FIREBASE_MESSAGING_SENDER_ID
-REACT_APP_FIREBASE_APP_ID=REACT_APP_FIREBASE_APP_ID
-REACT_APP_FIREBASE_MEASUREMEMT_ID=REACT_APP_FIREBASE_MEASUREMEMT_ID
+REACT_APP_INFURA_APP_ID=
+REACT_APP_NIFTY_ID=
+REACT_APP_JWT_APP_ID=
+REACT_APP_CONTRACT_FLOWTYS=0x52607cb9c342821ea41ad265B9Bb6a23BEa49468
+REACT_APP_CONTRACT_FLOWTYS_DROPS=0xaFeb9f094207c78508eF5192AC25ab20CD4F4197
+REACT_APP_CONTRACT_MORPHYS=0x03b008eed21889fcd29e76b4d8f89394a1fc1497
 ```
 
 - Start the server
@@ -162,13 +116,12 @@ REACT_APP_FIREBASE_MEASUREMEMT_ID=REACT_APP_FIREBASE_MEASUREMEMT_ID
   npm start
 ```
 
-## :white_check_mark: Requirements
+## 📝 License & Credits
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
-<br/>
+Thanks to [Th3Wall](https://github.com/Th3Wall) for giving a great starting point with open source [Fakeflix](https://github.com/Th3Wall/Fakeflix)
 
-## 📝 License
+[MIT](https://github.com/flowtys/FlowtysPlus/blob/main/LICENSE)
 
-[MIT](https://github.com/Th3Wall/Fakeflix/blob/main/LICENSE)
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="kDNDbiD76O" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy him a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
 
-<a href="https://www.buymeacoffee.com/th3wall" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="41" width="174" alt="Buy Me A Coffee" /></a>
+<a href="https://www.buymeacoffee.com/kDNDbiD76O" target="_blank">But him a Coffee</a>
