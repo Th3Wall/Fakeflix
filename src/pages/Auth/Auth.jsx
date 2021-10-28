@@ -20,7 +20,7 @@ const Auth = () => {
 		if (accessToken && tokenType) {
       dispatch(niftyConnectSignInStart({ accessToken, tokenType }));
     }
-	}, [])
+	}, [accessToken, tokenType, dispatch])
 
 	return (
 		<motion.div

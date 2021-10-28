@@ -30,7 +30,7 @@ const DetailModal = () => {
 		dispatch(removeFromFavourites({ ...modalContent, isFavourite }));
 		if (!modalClosed) handleModalClose();
 	}
-	const handlePlayAnimation = event => {
+	const handlePlayer = event => {
 		event.stopPropagation();
 		handleModalClose();
 	};
@@ -72,7 +72,7 @@ const DetailModal = () => {
 								<div className="Modal__image--buttonswrp">
 									<Link
 										className="Modal__image--button"
-										onClick={handlePlayAnimation}
+										onClick={handlePlayer}
                     to={{pathname: `/play`, search: `?file=${id}&title=${encodeURIComponent(title)}`}}
 									>
 										<FaPlay />

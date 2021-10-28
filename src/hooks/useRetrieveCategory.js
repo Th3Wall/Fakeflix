@@ -28,7 +28,7 @@ export const useRetrieveCategory = (slicedUrl, categoryName) => {
 	useEffect(() => {
 		dispatch(data.thunk(`${data.url}?page_limit=500&page_offset=${selectedGenre.data.length + 1}`));
 		setCategoryData(data);
-	}, [dispatch, categoryName, slicedUrl])
+	}, [dispatch, categoryName, slicedUrl, data, selectedGenre])
 
 	return categoryData;
 }

@@ -47,7 +47,7 @@ const Banner = ({ type }) => {
 	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
 	const description = truncate(finalData?.overview, 150);
 
-	const handlePlayAnimation = event => {
+	const handlePlayer = event => {
 		event.stopPropagation();
 	};
 
@@ -57,7 +57,7 @@ const Banner = ({ type }) => {
 
   useEffect(() => {
     dispatch(requestAsync(request, false))
-  }, [dispatch])
+  }, [dispatch, requestAsync, request])
 
 	return (
 		<>
@@ -92,7 +92,7 @@ const Banner = ({ type }) => {
 						<motion.div variants={bannerFadeInUpVariants} className="Banner__buttons">
 							<Link
 								className="Banner__button"
-								onClick={handlePlayAnimation}
+								onClick={handlePlayer}
                 to={{pathname: `/play`, search: `?file=${finalData?.id}&title=${encodeURIComponent(finalData?.title)}`}}
                 >
 								<FaPlay />

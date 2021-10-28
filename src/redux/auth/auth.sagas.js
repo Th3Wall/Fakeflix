@@ -7,9 +7,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import WalletLink from "walletlink";
 
 const contractABI = require("../../contracts/Flowtys.json");
-const contractAddress = "0x52607cb9c342821ea41ad265B9Bb6a23BEa49468";
 const contractABIPolygon = require("../../contracts/FlowtysCollabDrops.json");
-const contractAddressPolygon = "0xaFeb9f094207c78508eF5192AC25ab20CD4F4197";
+const contractABIMorphys = require("../../contracts/Morphys.json");
 
 const walletLink = new WalletLink({
   appName: "Flowtys+",
@@ -35,17 +34,29 @@ export function* getSnapshotFromUserAuth(address) {
     );
     const contract = new web3Provider.eth.Contract(
       contractABI.abi,
-      contractAddress
+      process.env.REACT_APP_CONTRACT_FLOWTYS
     );
-    const contractPlygon = new web3ProviderPolygon.eth.Contract(
+    const contractPolygon = new web3ProviderPolygon.eth.Contract(
       contractABIPolygon.abi,
-      contractAddressPolygon
+      process.env.REACT_APP_CONTRACT_FLOWTYS_DROPS
+    );
+    const contractMorphys = new web3ProviderPolygon.eth.Contract(
+      contractABIMorphys.abi,
+      process.env.REACT_APP_CONTRACT_MORPHYS
     );
     const balance = yield call(contract.methods.balanceOf(address).call);
-    const balanceTicket = yield call(contractPlygon.methods.balanceOf(address, 1).call);
-    const total = parseInt(balance) + parseInt(balanceTicket);
-    if (!parseInt(total)) {
-      yield put(signInFailure('You do not have Flowtys/Ticket in your wallet, gent 🎩'));
+    if (parseInt(balance) > 0) {
+      yield put(signInSuccess({ id: address }));
+      return;
+    }
+    const balanceMorphys = yield call(contractMorphys.methods.balanceOf(address).call);
+    if (parseInt(balanceMorphys) > 0) {
+      yield put(signInSuccess({ id: address }));
+      return;
+    }
+    const balanceTicket = yield call(contractPolygon.methods.balanceOf(address, 1).call);
+    if (!parseInt(balanceTicket)) {
+      yield put(signInFailure('You do not have Flowtys/Morphys/Ticket in your wallet, gent 🎩'));
       return;
     }
 		yield put(signInSuccess({ id: address }));

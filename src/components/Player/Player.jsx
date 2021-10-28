@@ -1,4 +1,4 @@
-import "./playAnimation.scss"
+import "./player.scss"
 import { useEffect, useState, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import ReactJWPlayer from "../ReactJW/react-jw-player";
@@ -6,7 +6,7 @@ import { FiX } from 'react-icons/fi';
 import {Animated} from "react-animated-css";
 import flowtys from "../../assets/flowtys.webp";
 
-const PlayAnimation = () => {
+const Player = () => {
 	let history = useHistory();
   const timerRef = useRef(null);
   const { search } = useLocation(); 
@@ -44,7 +44,6 @@ const PlayAnimation = () => {
 	useEffect(() => {
 		if (ready) {
       const script = document.createElement("script");
-      console.log(showControls)
       script.src =
         "//edge-player.wirewax.com/ww4release/javascripts/wirewax-jwplayer.js";
       script.async = true;
@@ -55,16 +54,16 @@ const PlayAnimation = () => {
         document.body.removeChild(script);
       };
     }
-	}, [history])
+	}, [history, ready, ])
 
 	return (
-    <div className="PlayAnimation__wrp" onMouseMove={hoverScreen}>
-      <div className="PlayAnimation__shadow"></div>
-      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={showControls} animationInDuration={500} animationOutDuration={500} className="PlayAnimation__wrpHeader">
-        <div className="PlayAnimation__controls">
+    <div className="Player__wrp" onMouseMove={hoverScreen}>
+      <div className="Player__shadow"></div>
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={showControls} animationInDuration={500} animationOutDuration={500} className="Player__wrpHeader">
+        <div className="Player__controls">
             <header>
               <div>
-                <img className="PlayAnimation__logo" src={flowtys} alt="" />
+                <img className="Player__logo" src={flowtys} alt="" />
               </div>
               <div className="title">
                 <h1>{title}</h1>
@@ -76,7 +75,7 @@ const PlayAnimation = () => {
 			<ReactJWPlayer
         playerId='my-unique-id'
         playerScript='https://cdn.jwplayer.com/libraries/85Wlrlzb.js'
-        className="PlayAnimation__box"
+        className="Player__box"
         onReady={onReady}
         width = "100%"
         height= "100%"
@@ -89,4 +88,4 @@ const PlayAnimation = () => {
 	)
 }
 
-export default PlayAnimation
+export default Player
