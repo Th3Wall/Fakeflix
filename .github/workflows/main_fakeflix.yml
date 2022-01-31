@@ -25,12 +25,13 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: build
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,5 +52,5 @@ jobs:
         with:
           app-name: 'fakeflix'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_35494976FB7A46DF99DF6152C6CEB32F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FBB7E72C84C24933841B05C8C795D0AD }}
           package: .
