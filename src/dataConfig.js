@@ -52,19 +52,19 @@ const {
 export const fetchMovieDataConfig = [
 	{
 		id: 0,
-		thunk: fetchTopRatedMoviesAsync,
-		url: fetchTopRated,
-		title: "Top Rated on Fakeflix",
-		genre: "toprated",
-		selector: movieSelectors.selectTopRatedMovies,
-	},
-	{
-		id: 1,
 		thunk: fetchTrendingMoviesAsync,
 		url: fetchTrendingMovies,
 		title: "Trending Now",
 		genre: "trending",
 		selector: movieSelectors.selectTrendingMovies,
+	},
+	{
+		id: 1,
+		thunk: fetchTopRatedMoviesAsync,
+		url: fetchTopRated,
+		title: "Top Rated on Fakeflix",
+		genre: "toprated",
+		selector: movieSelectors.selectTopRatedMovies,
 	},
 	{
 		id: 2,

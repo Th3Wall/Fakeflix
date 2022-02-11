@@ -124,7 +124,7 @@ $iteration-count: infinite;
   @for $i from 1 through 6 {
     &.poster {
       &:nth-child(#{$i}) {
-        animation-delay: $i * (2.5s / 18);
+        animation-delay: $i * (calc(2.5s / 18));
       }
     }
   }
