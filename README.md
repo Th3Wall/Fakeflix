@@ -13,10 +13,10 @@ I have started this project with the purpose of learning how to structure a Web 
 I've tried to replicate the original layout as much as possible, and I've also made some improvements in some sections, inserting route animations and micro-interactions. Furthermore, I've also inserted a really close clone of Netflix's original splash animation (forked from a famous [codepen from Claudio Bonfati](https://codepen.io/claudio_bonfati/pen/mdryxPv)), made entirely with CSS, as well as the play animation. I have then sampled the original Netflix "ta-duummm" sound, and I made it play along with the two animations.
 I put a lot of effort into it and I hope that you could like it.<br/><br/>
 The Web App redirects you to an authentication page, in which you can choose to sign up or to sign in: you can sign in with your custom account or with your Google account. Once you are logged in and after the splash animation, you will land on the homepage, in which you can find a mix of movies and series divided into rows.<br/>
-Each row represents a movie/series category: you can click on it and you will be redirected to the selected category, a page that loads thousands of movies with an infinite scroll. You can also navigate to the movies page, series page, new & popular page (that contains the upcoming movies/series and the most popular ones) or you can navigate to your favorites page.<br/>
+Each row represents a movie/series category: you can click on it, and you will be redirected to the selected category, a page that loads thousands of movies with an infinite scroll. You can also navigate to the movies page, series page, new & popular page (that contains the upcoming movies/series and the most popular ones) or you can navigate to your favorites page.<br/>
 You can add/remove movies/series through the plus and minus buttons that you can find hovering each poster or opening a single movie's detail modal. If you click on the play button you can enjoy a custom CSS-only play animation with Fakeflix's brand name.<br/>
 You have also the option to search through TMDB's catalogue using the search functionality inside the fixed navbar: you can search by movie name, actor or movie director.<br/><br/>
-Go try it and please let me know if you enjoyed it with a ⭐️, I would appreciate it a lot.
+Go try it, and please let me know if you enjoyed it with a ⭐️, I would appreciate it a lot.
 <br/>
 
 ## ▶️ Demo
@@ -39,7 +39,7 @@ I have also added a button that lets you sign in anonymously.
 :heavy_check_mark: &nbsp;&nbsp;Category related page with infinite scroll<br />
 :heavy_check_mark: &nbsp;&nbsp;Search by title, actor, movie director<br />
 :heavy_check_mark: &nbsp;&nbsp;Add/Remove to/from "My list" functionality<br />
-:heavy_check_mark: &nbsp;&nbsp;Detail modal with extra informations about the selected movie/series<br />
+:heavy_check_mark: &nbsp;&nbsp;Detail modal with extra information about the selected movie/series<br />
 :heavy_check_mark: &nbsp;&nbsp;Customized splash animation (credits: [Claudio Bonfati's pen](https://codepen.io/claudio_bonfati/pen/mdryxPv)) with characteristic Netflix sound<br />
 :heavy_check_mark: &nbsp;&nbsp;Play animation with characteristic Netflix sound<br />
 :heavy_check_mark: &nbsp;&nbsp;Google login<br />
@@ -47,7 +47,7 @@ I have also added a button that lets you sign in anonymously.
 :heavy_check_mark: &nbsp;&nbsp;Use of React hooks and custom hooks<br />
 :heavy_check_mark: &nbsp;&nbsp;Favourites list persistence (session storage)<br />
 :heavy_check_mark: &nbsp;&nbsp;Responsive layout<br />
-:heavy_check_mark: &nbsp;&nbsp;Swipeable movies list<br />
+:heavy_check_mark: &nbsp;&nbsp;Swipe-able movies list<br />
 :heavy_check_mark: &nbsp;&nbsp;Loading skeletons<br />
 :heavy_check_mark: &nbsp;&nbsp;Route animations and micro-interactions (handled with Framer Motion)<br />
 
@@ -69,7 +69,7 @@ I have also added a button that lets you sign in anonymously.
 - [SwiperJS](https://swiperjs.com/react)
 - [Framer Motion](https://www.framer.com/motion/)
 - [React Icons](https://react-icons.github.io/react-icons/)
-- [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deploy and CI.
+- [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deployment and CI.
 
 ## Netlify deploy & configuration
 
@@ -81,7 +81,7 @@ I have also added a button that lets you sign in anonymously.
 2. Select the project
 3. In Settings → Build & Deploy → Set **Build command** to : **_npm run build_**
 4. In Settings → Build & Deploy → Set **Publish directory** to : **_build_**
-5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBd's API key, Firebase configuration).
+5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (i.e.: TMBd's API key, Firebase configuration).
    <br/>
 
 ## 📸 Screenshots
@@ -136,7 +136,7 @@ https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-
 
 - Create a .env file
 
-- Request an API key from TMDB and them add it to the .env file
+- Request an API key from TMDB and then add it to the .env file
 
 ```
 REACT_APP_API_KEY=REACT_APP_API_KEY
