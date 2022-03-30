@@ -21,10 +21,9 @@ Go try it and please let me know if you enjoyed it with a ⭐️, I would apprec
 
 ## ▶️ Demo
 
-Here you can find the demo links:
+Here you can find the demo link:
 
-- [Custom](https://fakeflix.th3wall.codes)
-- [Netlify](https://fakeflix-app.netlify.app)
+- [Demo](https://fakeflix.th3wall.codes)
 
 ### Test credentials (for lazy users 😓)
 
@@ -70,10 +69,6 @@ I have also added a button that lets you sign in anonymously.
 - [Framer Motion](https://www.framer.com/motion/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Netlify](https://www.netlify.com) (have a look below) and [Vercel](https://vercel.com/) for the deploy and CI.
-
-## Netlify deploy & configuration
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14a32bbb-d899-445d-8fa6-8bed739c0296/deploy-status)](https://app.netlify.com/sites/fakeflix-app/deploys)
 
 ### Deploy configuration steps
 
