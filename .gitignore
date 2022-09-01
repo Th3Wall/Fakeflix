@@ -26,3 +26,4 @@ firebase-debug.log*
 .prettierrc
 .idea
 .env
+package-lock.json
