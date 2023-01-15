@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="https://twitter.com/ShareGPT">
+  <a href="https://twitter.com/Th3Wall25">
     <img src="https://img.shields.io/twitter/follow/Th3Wall25?style=flat&label=Th3Wall25&logo=twitter&color=0bf&logoColor=fff" alt="Twitter" />
   </a>
 </p>
