@@ -1,7 +1,29 @@
-<h1 align="center">Fakeflix</h1>
-<h5 align="center">Not the usual clone that you can find on the web.</h5><br/>
+<a href="https://fakeflix.th3wall.codes">
+  <img alt="Fakeflix – Not the usual clone that you can find on the web" src="https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png">
+  <h1 align="center">Fakeflix</h1>
+</a>
 
-![Image of Fakeflix Project](https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/Fakeflix_readme.png)
+<p align="center">
+  Not the usual clone that you can find on the web.
+</p>
+
+<p align="center">
+  <a href="https://twitter.com/ShareGPT">
+    <img src="https://img.shields.io/twitter/follow/Th3Wall25?style=flat&label=Th3Wall25&logo=twitter&color=0bf&logoColor=fff" alt="Twitter" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="#-about"><strong>About</strong></a> ·
+  <a href="#%EF%B8%8F-demo"><strong>Demo</strong></a> ·
+  <a href="#sparkles-features"><strong>Features</strong></a> ·
+  <a href="#rocket-technologies"><strong>Technologies</strong></a> ·
+  <a href="#-screenshots"><strong>Screenshots</strong></a> ·
+  <a href="#-run-locally"><strong>Run Locally</strong></a> ·
+  <a href="#white_check_mark-requirements"><strong>Requirements</strong></a> ·
+  <a href="#-license"><strong>License</strong></a>
+</p>
+<br/>
 
 https://user-images.githubusercontent.com/25078541/123811962-01474580-d8f4-11eb-83ba-66cded3f321f.mp4
 
