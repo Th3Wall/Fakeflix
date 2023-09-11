@@ -40,6 +40,7 @@ Each row represents a movie/series category: you can click on it and you will be
 You can add/remove movies/series through the plus and minus buttons that you can find hovering each poster or opening a single movie's detail modal. If you click on the play button you can enjoy a custom CSS-only play animation with Fakeflix's brand name.<br/>
 You have also the option to search through TMDB's catalogue using the search functionality inside the fixed navbar: you can search by movie name, actor or movie director.<br/><br/>
 Go try it and please let me know if you enjoyed it with a ⭐️, I would appreciate it a lot.
+
 <br/>
 
 ## ▶️ Demo
@@ -54,6 +55,8 @@ Here you can find the demo link:
 > Password: FakeflixTest<br/>
 
 I have also added a button that lets you sign in anonymously.
+
+<br/>
 
 ## :sparkles: Features
 
@@ -72,6 +75,8 @@ I have also added a button that lets you sign in anonymously.
 :heavy_check_mark: &nbsp;&nbsp;Swipeable movies list<br />
 :heavy_check_mark: &nbsp;&nbsp;Loading skeletons<br />
 :heavy_check_mark: &nbsp;&nbsp;Route animations and micro-interactions (handled with Framer Motion)<br />
+
+<br/>
 
 ## :rocket: Technologies
 
@@ -100,7 +105,8 @@ I have also added a button that lets you sign in anonymously.
 3. In Settings → Build & Deploy → Set **Build command** to : **_npm run build_**
 4. In Settings → Build & Deploy → Set **Publish directory** to : **_build_**
 5. In Settings → Build & Deploy → Set **Environment variables** → Click on **Edit variables** and add yours (ie: TMBd's API key, Firebase configuration).
-   <br/>
+
+<br/>
 
 ## 📸 Screenshots
 
@@ -179,6 +185,8 @@ REACT_APP_FIREBASE_MEASUREMEMT_ID=REACT_APP_FIREBASE_MEASUREMEMT_ID
 ```bash
   npm start
 ```
+
+<br/>
 
 ## :white_check_mark: Requirements
 
