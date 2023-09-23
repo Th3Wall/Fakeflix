@@ -47,7 +47,7 @@ $custom-red: #e40913;
 			background-position: -1950px 0;
         }
 
-		&[letter="F"] {
+		&[data-letter="F"] {
 			transform-origin: 30% center;
 
 			.helper-1 {
@@ -327,7 +327,7 @@ $custom-red: #e40913;
 
 				.lamp-1 {
 					--color: #ff0100;
-                    z: 6;
+                    z-index: 6;
 					left: 0.7%;
 					width: 1%;
 					animation-delay: (calc(random(200) / 100)) + s;

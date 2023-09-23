@@ -36,7 +36,7 @@ const SplashAnimation = () => {
 			exit={{opacity: 0}}
 		>
 			<audio ref={soundRef} src={TADUM_SOUND_URL} />
-			<div className="netflixintro" letter="F">
+			<div className="netflixintro" data-letter="F">
 				<div className="helper-1">
 					<div className="effect-brush">
 						<span className="fur-31"></span>
