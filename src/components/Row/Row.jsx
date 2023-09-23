@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useViewport from "../../hooks/useViewport";
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import { FiChevronRight } from "react-icons/all";
+import { FiChevronRight } from "react-icons/fi";
 
 // Swiper
 import SwiperCore, { Navigation, Pagination } from 'swiper';
