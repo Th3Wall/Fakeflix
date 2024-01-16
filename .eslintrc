@@ -1,32 +1,31 @@
 {
-    "env": {
-        "browser": true,
-        "jest": true,
-        "es6": true,
-        "node": true
-    },
-    "plugins": ["import", "react"],
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true,
-            "experimentalObjectRestSpread": true
-        }
-    },
-    "rules": {
-        "no-console": "off",
-        "no-eval": "error",
-        "import/first": "error",
-        "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off"
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": ["import", "react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
     }
+  },
+  "rules": {
+    "no-console": "off",
+    "no-eval": "error",
+    "import/first": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
